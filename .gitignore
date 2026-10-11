@@ -1,0 +1,17 @@
+# Temporary files
+~$*.docx
+~$*.doc
+*.tmp
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs & environments
+*.log
+__pycache__/
+*.py[cod]
+.venv/
+env/

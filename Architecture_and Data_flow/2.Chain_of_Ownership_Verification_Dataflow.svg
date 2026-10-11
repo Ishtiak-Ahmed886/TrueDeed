@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1127.4119999999998 694.45" width="1127.4119999999998" height="694.45" style="--bg:#1F1F1F;--fg:#CCCCCC;--line:#CCCCCC;--accent:#0078D4;--muted:#CCCCCCCC;--surface:#181818;--border:#CCCCCC;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="seq-arrow" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto-start-reverse">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" />
+  </marker>
+  <marker id="seq-arrow-open" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto-start-reverse">
+    <polyline points="0 0, 8 2.5, 0 5" fill="none" stroke="var(--_arrow)" stroke-width="1" />
+  </marker>
+</defs>
+<g class="block" data-type="alt" data-label="চেইনে কোনো গরমিল পাওয়া গেলে">
+  <rect x="30" y="440.45" width="850.8159999999999" height="204.00000000000006" rx="0" ry="0" fill="none" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="30" y="440.45" width="197.83" height="18" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="36" y="449.45" font-size="11" font-weight="600" fill="var(--_text-sec)" dy="3.8499999999999996">alt [চেইনে কোনো গরমিল পাওয়া গেলে]</text>
+  <line x1="30" y1="556.45" x2="880.8159999999999" y2="556.45" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+  <text x="38" y="570.45" font-size="11" text-anchor="start" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">[সম্পূর্ণ চেইন সঠিক থাকলে]</text>
+</g>
+<line class="lifeline" data-actor="User" x1="142.93099999999998" y1="92.45" x2="142.93099999999998" y2="664.45" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<line class="lifeline" data-actor="UI" x1="378.0485" y1="70" x2="378.0485" y2="664.45" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<line class="lifeline" data-actor="Parser" x1="589.0835" y1="70" x2="589.0835" y2="664.45" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<line class="lifeline" data-actor="Engine" x1="789.3739999999999" y1="70" x2="789.3739999999999" y2="664.45" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<line class="lifeline" data-actor="DB" x1="1004.1139999999998" y1="70" x2="1004.1139999999998" y2="664.45" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<g class="message" data-from="User" data-to="UI" data-label="দলিলের ছবি/পিডিএফ আপলোড করে" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="142.93099999999998" y1="112.45" x2="378.0485" y2="112.45" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="260.48974999999996" y="102.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">দলিলের ছবি/পিডিএফ আপলোড করে</text>
+</g>
+<g class="message" data-from="UI" data-to="Parser" data-label="ফাইল পাঠায় (API Call)" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="378.0485" y1="152.45" x2="589.0835" y2="152.45" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="483.566" y="142.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">ফাইল পাঠায় (API Call)</text>
+</g>
+<g class="message" data-from="Parser" data-to="Parser" data-label="বাংলা আইনি টেক্সট থেকে বায়া রেফারেন্স ফিল্টার করে" data-line-style="solid" data-arrow-head="filled" data-self="true">
+  <polyline points="589.0835,192.45 619.0835,192.45 619.0835,212.45 589.0835,212.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="627.0835" y="202.45" font-size="11" text-anchor="start" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">বাংলা আইনি টেক্সট থেকে বায়া রেফারেন্স ফিল্টার করে</text>
+</g>
+<g class="message" data-from="Parser" data-to="Engine" data-label="Structured JSON Nodes প্রদান করে" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+  <line x1="589.0835" y1="262.45" x2="789.3739999999999" y2="262.45" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="689.22875" y="252.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">Structured JSON Nodes প্রদান করে</text>
+</g>
+<g class="message" data-from="Engine" data-to="DB" data-label="পূর্ববর্তী বায়া দলিলের নম্বর ও সাল কুয়েরি করে" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="789.3739999999999" y1="302.45" x2="1004.1139999999998" y2="302.45" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="896.7439999999999" y="292.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">পূর্ববর্তী বায়া দলিলের নম্বর ও সাল কুয়েরি করে</text>
+</g>
+<g class="message" data-from="DB" data-to="Engine" data-label="সরকারি রেকর্ড থেকে পূর্ববর্তী দলিলের সত্যতা দেয়" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+  <line x1="1004.1139999999998" y1="342.45" x2="789.3739999999999" y2="342.45" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="896.7439999999999" y="332.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">সরকারি রেকর্ড থেকে পূর্ববর্তী দলিলের সত্যতা দেয়</text>
+</g>
+<g class="message" data-from="Engine" data-to="Engine" data-label="৩টি চেক চালায় (তারিখ, ব্যক্তি সংযোগ, জমির পরিমাণ)" data-line-style="solid" data-arrow-head="filled" data-self="true">
+  <polyline points="789.3739999999999,382.45 819.3739999999999,382.45 819.3739999999999,402.45 789.3739999999999,402.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="827.3739999999999" y="392.45" font-size="11" text-anchor="start" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">৩টি চেক চালায় (তারিখ, ব্যক্তি সংযোগ, জমির পরিমাণ)</text>
+</g>
+<g class="message" data-from="Engine" data-to="UI" data-label="{ Status: &quot;BROKEN_CHAIN&quot;, Broken_Node: &quot;Baya-2&quot;, Alert: &quot;ব্যক্তি অমিল&quot; }" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+  <line x1="789.3739999999999" y1="480.45" x2="378.0485" y2="480.45" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="583.71125" y="470.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">{ Status: &quot;BROKEN_CHAIN&quot;, Broken_Node: &quot;Baya-2&quot;, Alert: &quot;ব্যক্তি অমিল&quot; }</text>
+</g>
+<g class="message" data-from="UI" data-to="User" data-label="লাল রঙে 'Broken Link' এবং ফ্রড অ্যালার্ট দেখায়" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+  <line x1="378.0485" y1="520.45" x2="142.93099999999998" y2="520.45" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="260.48974999999996" y="510.45000000000005" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">লাল রঙে &#39;Broken Link&#39; এবং ফ্রড অ্যালার্ট দেখায়</text>
+</g>
+<g class="message" data-from="Engine" data-to="UI" data-label="{ Status: &quot;CHAIN_VERIFIED&quot;, Trust_Bonus: +40% }" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+  <line x1="789.3739999999999" y1="584.45" x2="378.0485" y2="584.45" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="583.71125" y="574.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">{ Status: &quot;CHAIN_VERIFIED&quot;, Trust_Bonus: +40% }</text>
+</g>
+<g class="message" data-from="UI" data-to="User" data-label="সবুজ ভেরিফায়েড টাইমলাইন ও সার্টিফিকেট প্রদর্শন করে" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+  <line x1="378.0485" y1="624.45" x2="142.93099999999998" y2="624.45" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="260.48974999999996" y="614.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">সবুজ ভেরিফায়েড টাইমলাইন ও সার্টিফিকেট প্রদর্শন করে</text>
+</g>
+<g class="actor" data-id="User" data-label="ব্যবহারকারী (Buyer/Citizen)" data-type="actor">
+  <g transform="translate(124.93099999999998,32) scale(1.5)">
+    <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" fill="none" stroke="var(--_line)" stroke-width="0.6666666666666666" />
+    <path d="M15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z" fill="none" stroke="var(--_line)" stroke-width="0.6666666666666666" />
+    <path d="M5.62842 18.3563C7.08963 17.0398 9.39997 16 12 16C14.6 16 16.9104 17.0398 18.3716 18.3563" fill="none" stroke="var(--_line)" stroke-width="0.6666666666666666" />
+  </g>
+  <text x="142.93099999999998" y="84" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">ব্যবহারকারী (Buyer/Citizen)</text>
+</g>
+<g class="actor" data-id="UI" data-label="ফ্রন্টএন্ড ড্যাশবোর্ড" data-type="participant">
+  <rect x="285.86199999999997" y="30" width="184.373" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="378.0485" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">ফ্রন্টএন্ড ড্যাশবোর্ড</text>
+</g>
+<g class="actor" data-id="Parser" data-label="OCR &amp; Text Extractor" data-type="participant">
+  <rect x="510.23499999999996" y="30" width="157.697" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="589.0835" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">OCR &amp; Text Extractor</text>
+</g>
+<g class="actor" data-id="Engine" data-label="Lineage Chain Engine" data-type="participant">
+  <rect x="707.9319999999999" y="30" width="162.88399999999996" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="789.3739999999999" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">Lineage Chain Engine</text>
+</g>
+<g class="actor" data-id="DB" data-label="ল্যান্ড রেকর্ড ডাটাবেজ" data-type="participant">
+  <rect x="910.8159999999998" y="30" width="186.59599999999998" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="1004.1139999999998" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">ল্যান্ড রেকর্ড ডাটাবেজ</text>
+</g>
+</svg>
