@@ -15,21 +15,153 @@ Under **Problem P3: Catch Fraud & Double-Selling**, **TrueDeed** resolves the fo
 
 ---
 
-## 🏗️ 2. System Architecture & Data Flow Blueprints
+## 🏗️ 2. System Architecture & Data Flow Visual Showcase
 
-All 10 architecture and data flow diagrams are available in the [`Architecture_and Data_flow/`](./Architecture_and%20Data_flow/) directory:
-
-| Module | Architecture Blueprint | End-to-End Data Flow |
-| :--- | :--- | :--- |
-| **1. Farayez Inheritance Fraud Prevention** | [`Architecture SVG`](./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Architecture.svg) | [`Data Flow SVG`](./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Dataflow.svg) |
-| **2. Baya Deed Lineage (Chain of Ownership)** | [`Architecture SVG`](./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Architecture.svg) | [`Data Flow SVG`](./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Dataflow.svg) |
-| **3. Double-Selling Prevention (Plot Lock)** | [`Architecture SVG`](./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Architecture.svg) | [`Data Flow SVG`](./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Dataflow.svg) |
-| **4. Bangla Legal Document OCR** | [`Architecture SVG`](./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Architecture.svg) | [`Data Flow SVG`](./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Dataflow.svg) |
-| **5. TrueDeed Composite Trust Score** | [`Architecture SVG`](./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Architecture.svg) | [`Data Flow SVG`](./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Dataflow.svg) |
+> 💡 **Tip for Evaluators:** Click on any diagram or use the direct **"Full Tab View"** links below to view diagrams in 100% high-definition vector resolution without scaling down.
 
 ---
 
-## 🎯 3. Core Verification Engines
+### Module 1: Farayez Inheritance Fraud Prevention
+
+<details open>
+<summary><b>📐 1.1 Architecture Blueprint (Click to Expand / Collapse)</b></summary>
+<br>
+<p align="center">
+  <a href="./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Architecture.svg" target="_blank">
+    <img src="./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Architecture.svg" width="100%" alt="Inheritance Fraud Prevention Architecture">
+  </a>
+  <br>
+  <a href="./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Architecture.svg" target="_blank">🔍 <b>[Click here to Open Architecture in Full Tab HD]</b></a>
+</p>
+</details>
+
+<details open>
+<summary><b>🔄 1.2 End-to-End Data Flow Sequence (Click to Expand / Collapse)</b></summary>
+<br>
+<p align="center">
+  <a href="./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Dataflow.svg" target="_blank">
+    <img src="./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Dataflow.svg" width="100%" alt="Inheritance Fraud Prevention Dataflow">
+  </a>
+  <br>
+  <a href="./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Dataflow.svg" target="_blank">🔍 <b>[Click here to Open Data Flow in Full Tab HD]</b></a>
+</p>
+</details>
+
+---
+
+### Module 2: Baya Deed Lineage (Chain of Ownership Verification)
+
+<details open>
+<summary><b>📐 2.1 Directed Acyclic Graph (DAG) Architecture</b></summary>
+<br>
+<p align="center">
+  <a href="./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Architecture.svg" target="_blank">
+    <img src="./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Architecture.svg" width="100%" alt="Chain of Ownership Architecture">
+  </a>
+  <br>
+  <a href="./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Architecture.svg" target="_blank">🔍 <b>[Click here to Open Architecture in Full Tab HD]</b></a>
+</p>
+</details>
+
+<details open>
+<summary><b>🔄 2.2 Baya Deed Verification Sequence</b></summary>
+<br>
+<p align="center">
+  <a href="./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Dataflow.svg" target="_blank">
+    <img src="./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Dataflow.svg" width="100%" alt="Chain of Ownership Dataflow">
+  </a>
+  <br>
+  <a href="./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Dataflow.svg" target="_blank">🔍 <b>[Click here to Open Data Flow in Full Tab HD]</b></a>
+</p>
+</details>
+
+---
+
+### Module 3: Double-Selling Prevention (Temporal Active Plot Lock)
+
+<details open>
+<summary><b>📐 3.1 45-Day Concurrency Lock Architecture</b></summary>
+<br>
+<p align="center">
+  <a href="./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Architecture.svg" target="_blank">
+    <img src="./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Architecture.svg" width="100%" alt="Double Selling Prevention Architecture">
+  </a>
+  <br>
+  <a href="./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Architecture.svg" target="_blank">🔍 <b>[Click here to Open Architecture in Full Tab HD]</b></a>
+</p>
+</details>
+
+<details open>
+<summary><b>🔄 3.2 Double-Selling Alert Sequence</b></summary>
+<br>
+<p align="center">
+  <a href="./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Dataflow.svg" target="_blank">
+    <img src="./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Dataflow.svg" width="100%" alt="Double Selling Prevention Dataflow">
+  </a>
+  <br>
+  <a href="./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Dataflow.svg" target="_blank">🔍 <b>[Click here to Open Data Flow in Full Tab HD]</b></a>
+</p>
+</details>
+
+---
+
+### Module 4: Bangla Legal Document OCR & Entity Extraction
+
+<details open>
+<summary><b>📐 4.1 Multimodal VLM Perception Architecture</b></summary>
+<br>
+<p align="center">
+  <a href="./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Architecture.svg" target="_blank">
+    <img src="./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Architecture.svg" width="100%" alt="Bangla Legal OCR Architecture">
+  </a>
+  <br>
+  <a href="./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Architecture.svg" target="_blank">🔍 <b>[Click here to Open Architecture in Full Tab HD]</b></a>
+</p>
+</details>
+
+<details open>
+<summary><b>🔄 4.2 Document Parsing Data Flow</b></summary>
+<br>
+<p align="center">
+  <a href="./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Dataflow.svg" target="_blank">
+    <img src="./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Dataflow.svg" width="100%" alt="Bangla Legal OCR Dataflow">
+  </a>
+  <br>
+  <a href="./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Dataflow.svg" target="_blank">🔍 <b>[Click here to Open Data Flow in Full Tab HD]</b></a>
+</p>
+</details>
+
+---
+
+### Module 5: TrueDeed Composite Trust Score (0–100%)
+
+<details open>
+<summary><b>📐 5.1 Weighted Scoring & Fail-Safe Veto Architecture</b></summary>
+<br>
+<p align="center">
+  <a href="./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Architecture.svg" target="_blank">
+    <img src="./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Architecture.svg" width="100%" alt="Trust Score Architecture">
+  </a>
+  <br>
+  <a href="./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Architecture.svg" target="_blank">🔍 <b>[Click here to Open Architecture in Full Tab HD]</b></a>
+</p>
+</details>
+
+<details open>
+<summary><b>🔄 5.2 Verification & QR Audit Certificate Dispatch</b></summary>
+<br>
+<p align="center">
+  <a href="./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Dataflow.svg" target="_blank">
+    <img src="./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Dataflow.svg" width="100%" alt="Trust Score Dataflow">
+  </a>
+  <br>
+  <a href="./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Dataflow.svg" target="_blank">🔍 <b>[Click here to Open Data Flow in Full Tab HD]</b></a>
+</p>
+</details>
+
+---
+
+## 🎯 3. Core Verification Engines Summary
 
 1. **Multimodal Bangla Legal OCR:** Extracts structured legal entities (Mouza, JL, Khatian, Daag, Chouhaddi, Area) directly from physical deed scans without manual data entry.
 2. **Algorithmic Farayez (Inheritance Math) Engine:** Enforces statutory ratios under the *Muslim Family Laws Ordinance 1961* ($1 \text{ Son} = 2 \text{ Daughters}$). Flags immediate alerts if deeded selling area exceeds the seller's maximum legal entitlement.

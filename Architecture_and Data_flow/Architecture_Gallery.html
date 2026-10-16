@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrueDeed - System Architecture & Data Flow Gallery (HD)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0b0f19;
+    color: #e2e8f0;
+    line-height: 1.6;
+    padding: 30px 20px;
+  }
+
+  .container {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #1e293b;
+    margin-bottom: 40px;
+  }
+
+  .badge {
+    background: #0f766e;
+    color: #ccfbf1;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #f8fafc;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: #94a3b8;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Module Section */
+  .module-card {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  }
+
+  .module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #1f2937;
+  }
+
+  .module-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #38bdf8;
+  }
+
+  .tabs-nav {
+    display: flex;
+    gap: 10px;
+  }
+
+  .tab-btn {
+    background: #1f2937;
+    color: #94a3b8;
+    border: 1px solid #374151;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab-btn.active {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #38bdf8;
+  }
+
+  /* Diagram Frame */
+  .diagram-frame {
+    background: #1f1f1f;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    text-align: center;
+    position: relative;
+  }
+
+  .diagram-frame img {
+    width: 100%;
+    min-width: 800px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+  }
+
+  .view-raw-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    background: #1e293b;
+    color: #38bdf8;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    transition: all 0.2s;
+  }
+
+  .view-raw-btn:hover {
+    background: #0284c7;
+    color: #ffffff;
+  }
+
+  /* Quick Navigation */
+  .quick-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .quick-link {
+    background: #1e293b;
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+  }
+
+  .quick-link:hover {
+    background: #0f766e;
+    color: #ffffff;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">Team TrueDeed (LA-72) • LandTech 2026</div>
+    <h1>TrueDeed: System Architecture & Data Flow Showcase</h1>
+    <div class="subtitle">
+      Comprehensive Full-Width High-Resolution Diagrams for Evaluators and Mentors. Every diagram is rendered in 100% vector fidelity with zero downscaling.
+    </div>
+  </div>
+
+  <!-- Quick Links -->
+  <div class="quick-nav">
+    <a class="quick-link" href="#mod1">1. Farayez Inheritance Engine</a>
+    <a class="quick-link" href="#mod2">2. Baya Lineage (DAG)</a>
+    <a class="quick-link" href="#mod3">3. Double-Selling Lock</a>
+    <a class="quick-link" href="#mod4">4. Bangla Legal OCR</a>
+    <a class="quick-link" href="#mod5">5. Composite Trust Score</a>
+  </div>
+
+  <!-- MODULE 1 -->
+  <div class="module-card" id="mod1">
+    <div class="module-header">
+      <div class="module-title">1. Farayez Inheritance Fraud Prevention</div>
+      <div class="tabs-nav">
+        <a class="view-raw-btn" href="./1.Inheritance_Fraud_Prevention_Architecture.svg" target="_blank">🔍 Open Architecture (Full Tab)</a>
+        <a class="view-raw-btn" href="./1.Inheritance_Fraud_Prevention_Dataflow.svg" target="_blank">🔍 Open Data Flow (Full Tab)</a>
+      </div>
+    </div>
+    <div class="diagram-frame">
+      <h4 style="color:#94a3b8; margin-bottom:10px; font-size:13px; text-transform:uppercase;">System Architecture Blueprint</h4>
+      <img src="./1.Inheritance_Fraud_Prevention_Architecture.svg" alt="Inheritance Fraud Prevention Architecture">
+    </div>
+    <div class="diagram-frame" style="margin-top: 16px;">
+      <h4 style="color:#94a3b8; margin-bottom:10px; font-size:13px; text-transform:uppercase;">End-to-End Data Flow Sequence</h4>
+      <img src="./1.Inheritance_Fraud_Prevention_Dataflow.svg" alt="Inheritance Fraud Prevention Dataflow">
+    </div>
+  </div>
+
+  <!-- MODULE 2 -->
+  <div class="module-card" id="mod2">
+    <div class="module-header">
+      <div class="module-title">2. Chain of Ownership Verification (Baya DAG Lineage)</div>
+      <div class="tabs-nav">
+        <a class="view-raw-btn" href="./2.Chain_of_Ownership_Verification_Architecture.svg" target="_blank">🔍 Open Architecture (Full Tab)</a>
+        <a class="view-raw-btn" href="./2.Chain_of_Ownership_Verification_Dataflow.svg" target="_blank">🔍 Open Data Flow (Full Tab)</a>
+      </div>
+    </div>
+    <div class="diagram-frame">
+      <h4 style="color:#94a3b8; margin-bottom:10px; font-size:13px; text-transform:uppercase;">Directed Acyclic Graph (DAG) Architecture</h4>
+      <img src="./2.Chain_of_Ownership_Verification_Architecture.svg" alt="Chain of Ownership Architecture">
+    </div>
+    <div class="diagram-frame" style="margin-top: 16px;">
+      <h4 style="color:#94a3b8; margin-bottom:10px; font-size:13px; text-transform:uppercase;">Baya Deed Verification Sequence</h4>
+      <img src="./2.Chain_of_Ownership_Verification_Dataflow.svg" alt="Chain of Ownership Dataflow">
+    </div>
+  </div>
+
+  <!-- MODULE 3 -->
+  <div class="module-card" id="mod3">
+    <div class="module-header">
+      <div class="module-title">3. Double-Selling Prevention (Temporal Active Plot Lock)</div>
+      <div class="tabs-nav">
+        <a class="view-raw-btn" href="./3.Double_Selling_Prevention_Architecture.svg" target="_blank">🔍 Open Architecture (Full Tab)</a>
+        <a class="view-raw-btn" href="./3.Double_Selling_Prevention_Dataflow.svg" target="_blank">🔍 Open Data Flow (Full Tab)</a>
+      </div>
+    </div>
+    <div class="diagram-frame">
+      <h4 style="color:#94a3b8; margin-bottom:10px; font-size:13px; text-transform:uppercase;">45-Day Mutex Lock Architecture</h4>
+      <img src="./3.Double_Selling_Prevention_Architecture.svg" alt="Double Selling Prevention Architecture">
+    </div>
+    <div class="diagram-frame" style="margin-top: 16px;">
+      <h4 style="color:#94a3b8; margin-bottom:10px; font-size:13px; text-transform:uppercase;">Concurrency Conflict & Alert Data Flow</h4>
+      <img src="./3.Double_Selling_Prevention_Dataflow.svg" alt="Double Selling Prevention Dataflow">
+    </div>
+  </div>
+
+  <!-- MODULE 4 -->
+  <div class="module-card" id="mod4">
+    <div class="module-header">
+      <div class="module-title">4. Bangla Legal Document OCR & Entity Extraction</div>
+      <div class="tabs-nav">
+        <a class="view-raw-btn" href="./4.Bangla_Legal_OCR_Architecture.svg" target="_blank">🔍 Open Architecture (Full Tab)</a>
+        <a class="view-raw-btn" href="./4.Bangla_Legal_OCR_Dataflow.svg" target="_blank">🔍 Open Data Flow (Full Tab)</a>
+      </div>
+    </div>
+    <div class="diagram-frame">
+      <h4 style="color:#94a3b8; margin-bottom:10px; font-size:13px; text-transform:uppercase;">Multimodal VLM Perception Pipeline</h4>
+      <img src="./4.Bangla_Legal_OCR_Architecture.svg" alt="Bangla Legal OCR Architecture">
+    </div>
+    <div class="diagram-frame" style="margin-top: 16px;">
+      <h4 style="color:#94a3b8; margin-bottom:10px; font-size:13px; text-transform:uppercase;">End-to-End Extraction Sequence</h4>
+      <img src="./4.Bangla_Legal_OCR_Dataflow.svg" alt="Bangla Legal OCR Dataflow">
+    </div>
+  </div>
+
+  <!-- MODULE 5 -->
+  <div class="module-card" id="mod5">
+    <div class="module-header">
+      <div class="module-title">5. TrueDeed Composite Trust Score (0–100%)</div>
+      <div class="tabs-nav">
+        <a class="view-raw-btn" href="./5.TrueDeed_Trust_Score_Architecture.svg" target="_blank">🔍 Open Architecture (Full Tab)</a>
+        <a class="view-raw-btn" href="./5.TrueDeed_Trust_Score_Dataflow.svg" target="_blank">🔍 Open Data Flow (Full Tab)</a>
+      </div>
+    </div>
+    <div class="diagram-frame">
+      <h4 style="color:#94a3b8; margin-bottom:10px; font-size:13px; text-transform:uppercase;">Weighted Aggregator & Fail-Safe Veto Architecture</h4>
+      <img src="./5.TrueDeed_Trust_Score_Architecture.svg" alt="Trust Score Architecture">
+    </div>
+    <div class="diagram-frame" style="margin-top: 16px;">
+      <h4 style="color:#94a3b8; margin-bottom:10px; font-size:13px; text-transform:uppercase;">Scoring & Audit Certificate Dispatch Sequence</h4>
+      <img src="./5.TrueDeed_Trust_Score_Dataflow.svg" alt="Trust Score Dataflow">
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
