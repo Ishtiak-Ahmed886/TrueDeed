@@ -1,118 +1,75 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2339.4279166666665 558.5" width="2339.4279166666665" height="558.5" style="--bg:#1F1F1F;--fg:#CCCCCC;--line:#CCCCCC;--accent:#0078D4;--muted:#CCCCCCCC;--surface:#181818;--border:#CCCCCC;background:var(--bg)">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
-  text { font-family: 'Inter', system-ui, sans-serif; }
-  svg {
-    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
-    --_text:          var(--fg);
-    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
-    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
-    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
-    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
-    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
-    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
-    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
-    --_group-fill:    var(--bg);
-    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
-    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
-    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
-  }
-</style>
-<defs>
-  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
-    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
-  </marker>
-  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
-    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
-  </marker>
-</defs>
-<g class="subgraph" data-id="ClientLayer" data-label="১. ক্লায়েন্ট লেয়ার (Frontend / UI)">
-  <rect x="182.10991666666655" y="177.5" width="985.9719999999999" height="113.80000000000001" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
-  <rect x="182.10991666666655" y="177.5" width="985.9719999999999" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
-  <text x="194.10991666666655" y="191.5" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">১. ক্লায়েন্ট লেয়ার (Frontend / UI)</text>
-</g>
-<g class="subgraph" data-id="APILayer" data-label="২. সার্ভিস / এপিআই লেয়ার (Backend Gateway)">
-  <rect x="700.6554666666666" y="395.6" width="570.7159999999999" height="96.9" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
-  <rect x="700.6554666666666" y="395.6" width="570.7159999999999" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
-  <text x="712.6554666666666" y="409.6" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">২. সার্ভিস / এপিআই লেয়ার (Backend Gateway)</text>
-</g>
-<g class="subgraph" data-id="LogicLayer" data-label="৩. কোর বিজনেস লজিক লেয়ার (Core Engines)">
-  <rect x="1196.0819166666665" y="40" width="1103.3459999999998" height="113.80000000000001" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
-  <rect x="1196.0819166666665" y="40" width="1103.3459999999998" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
-  <text x="1208.0819166666665" y="54" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">৩. কোর বিজনেস লজিক লেয়ার (Core Engines)</text>
-</g>
-<g class="subgraph" data-id="DataLayer" data-label="৪. ডাটা লেয়ার (Storage &amp; Database)">
-  <rect x="1281.5584666666666" y="207.8" width="320.703" height="127.80000000000001" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
-  <rect x="1281.5584666666666" y="207.8" width="320.703" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
-  <text x="1293.5584666666666" y="221.8" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">৪. ডাটা লেয়ার (Storage &amp; Database)</text>
-</g>
-<polyline class="edge" data-from="Form" data-to="Router" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="JSON Request" points="379.5114166666665,273.55 379.5114166666665,377.6 1073.2767999999999,377.6 1073.2767999999999,439.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
-<polyline class="edge" data-from="Router" data-to="LogicLayer" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1164.324133333333,476.5 1164.324133333333,510.5 1939.3378666666663,510.5 1939.3378666666663,510.5 2078.7587166666663,510.5 2078.7587166666663,153.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
-<polyline class="edge" data-from="LogicLayer" data-to="DB" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1416.7511166666663,153.8 1416.7511166666663,189.8 1441.9099666666666,189.8 1441.9099666666666,236.65" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
-<polyline class="edge" data-from="DB" data-to="LogicLayer" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1441.9099666666666,304.45000000000005 1441.9099666666666,365.6 1637.4203166666664,365.6 1637.4203166666664,153.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
-<polyline class="edge" data-from="LogicLayer" data-to="Router" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Calculated Score &amp; Alert" points="1858.0895166666664,153.8 1858.0895166666664,333.3 1783.7549166666663,333.3 1783.7549166666663,377.6 1164.324133333333,377.6 1164.324133333333,439.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
-<polyline class="edge" data-from="Router" data-to="ResultCard" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="JSON Response" points="1073.2767999999999,476.5 1073.2767999999999,510.5 84.5,510.5 84.5,159.5 995.8744166666664,159.5 995.8744166666664,236.65" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
-<g class="edge-label" data-from="Form" data-to="Router" data-label="JSON Request">
-  <rect x="335.5114166666665" y="340.3" width="87.14800000000002" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
-  <text x="379.0854166666665" y="355.45" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">JSON Request</text>
-</g>
-<g class="edge-label" data-from="LogicLayer" data-to="Router" data-label="Calculated Score &amp; Alert">
-  <rect x="1717.7549166666663" y="340.3" width="131.10400000000004" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
-  <text x="1783.3069166666662" y="355.45" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Calculated Score &amp; Alert</text>
-</g>
-<g class="edge-label" data-from="Router" data-to="ResultCard" data-label="JSON Response">
-  <rect x="36" y="473.2" width="96.65200000000002" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
-  <text x="84.32600000000001" y="488.34999999999997" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">JSON Response</text>
-</g>
-<g class="node" data-id="UI" data-label="মডার্ন ওয়েব ড্যাশবোর্ড
-(HTML5 / Tailwind CSS / React)" data-shape="rectangle">
-  <rect x="588.9129166666664" y="236.65" width="222.75399999999996" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <text x="700.2899166666664" y="263.55" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="700.2899166666664" dy="-3.9000000000000012">মডার্ন ওয়েব ড্যাশবোর্ড</tspan><tspan x="700.2899166666664" dy="16.900000000000002">(HTML5 / Tailwind CSS / React)</tspan></text>
-</g>
-<g class="node" data-id="Form" data-label="ইনপুট ফর্ম: মোট জমি, ওয়ারিশ সংখ্যা, বিক্রীত পরিমাণ" data-shape="rectangle">
-  <rect x="198.10991666666655" y="236.65" width="362.80299999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <text x="379.5114166666665" y="255.10000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">ইনপুট ফর্ম: মোট জমি, ওয়ারিশ সংখ্যা, বিক্রীত পরিমাণ</text>
-</g>
-<g class="node" data-id="ResultCard" data-label="লাইভ রেজাল্ট কার্ড
-(Trust Score, 🔴 Fraud Alert, 🟢 Verified Badge)" data-shape="rectangle">
-  <rect x="839.6669166666665" y="236.65" width="312.41499999999996" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <text x="995.8744166666664" y="263.55" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="995.8744166666664" dy="-3.9000000000000012">লাইভ রেজাল্ট কার্ড</tspan><tspan x="995.8744166666664" dy="16.900000000000002">(Trust Score, 🔴 Fraud Alert, 🟢 Verified Badge)</tspan></text>
-</g>
-<g class="node" data-id="API" data-label="FastAPI / Flask REST API Server" data-shape="rectangle">
-  <rect x="716.6554666666666" y="439.6" width="237.57399999999996" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <text x="835.4424666666666" y="458.05" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">FastAPI / Flask REST API Server</text>
-</g>
-<g class="node" data-id="Router" data-label="/api/v1/verify-share &amp; /api/v1/verify-deed" data-shape="rectangle">
-  <rect x="982.2294666666666" y="439.6" width="273.14199999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <text x="1118.8004666666666" y="458.05" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">/api/v1/verify-share &amp; /api/v1/verify-deed</text>
-</g>
-<g class="node" data-id="OCR" data-label="A. Bangla OCR &amp; Extractor
-(দলিলের ছবি থেকে টেক্সট এক্সট্র্যাক্ট)" data-shape="rectangle">
-  <rect x="1466.5409166666664" y="84" width="295.37199999999996" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <text x="1614.2269166666663" y="110.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1614.2269166666663" dy="-3.9000000000000012">A. Bangla OCR &amp; Extractor</tspan><tspan x="1614.2269166666663" dy="16.900000000000002">(দলিলের ছবি থেকে টেক্সট এক্সট্র্যাক্ট)</tspan></text>
-</g>
-<g class="node" data-id="Farayez" data-label="B. Farayez Math Engine
-(উত্তরাধিকার অনুপাত ও অংশের হিসাব)" data-shape="rectangle">
-  <rect x="1789.9129166666664" y="84" width="265.73199999999997" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <text x="1922.7789166666664" y="110.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1922.7789166666664" dy="-3.9000000000000012">B. Farayez Math Engine</tspan><tspan x="1922.7789166666664" dy="16.900000000000002">(উত্তরাধিকার অনুপাত ও অংশের হিসাব)</tspan></text>
-</g>
-<g class="node" data-id="LockEngine" data-label="C. Double-Selling Lock Engine
-(দাগে সক্রিয় ট্রানজেকশন চেক)" data-shape="rectangle">
-  <rect x="1212.0819166666665" y="84" width="226.459" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <text x="1325.3114166666664" y="110.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1325.3114166666664" dy="-3.9000000000000012">C. Double-Selling Lock Engine</tspan><tspan x="1325.3114166666664" dy="16.900000000000002">(দাগে সক্রিয় ট্রানজেকশন চেক)</tspan></text>
-</g>
-<g class="node" data-id="TrustScore" data-label="D. Trust Scoring Algorithm
-(০-১০০% সিকিউরিটি স্কোর)" data-shape="rectangle">
-  <rect x="2083.644916666666" y="84" width="199.783" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <text x="2183.5364166666664" y="110.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="2183.5364166666664" dy="-3.9000000000000012">D. Trust Scoring Algorithm</tspan><tspan x="2183.5364166666664" dy="16.900000000000002">(০-১০০% সিকিউরিটি স্কোর)</tspan></text>
-</g>
-<g class="node" data-id="DB" data-label="SQLite / PostgreSQL
-(খতিয়ান, দাগ, ওয়ারিশ রেকর্ড ও হিস্ট্রি)" data-shape="cylinder">
-  <rect x="1297.5584666666666" y="243.65" width="288.703" height="53.80000000000001" fill="var(--_node-fill)" stroke="none" />
-  <line x1="1297.5584666666666" y1="243.65" x2="1297.5584666666666" y2="297.45000000000005" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <line x1="1586.2614666666666" y1="243.65" x2="1586.2614666666666" y2="297.45000000000005" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <ellipse cx="1441.9099666666666" cy="297.45000000000005" rx="144.3515" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <ellipse cx="1441.9099666666666" cy="243.65" rx="144.3515" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-  <text x="1441.9099666666666" y="270.55" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1441.9099666666666" dy="-3.9000000000000012">SQLite / PostgreSQL</tspan><tspan x="1441.9099666666666" dy="16.900000000000002">(খতিয়ান, দাগ, ওয়ারিশ রেকর্ড ও হিস্ট্রি)</tspan></text>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="100%" height="100%" style="background:#0f172a; font-family:'Inter',system-ui,sans-serif;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Title Banner -->
+  <rect x="20" y="20" width="920" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="700">1.1 Farayez Inheritance Fraud Prevention — Architecture Blueprint</text>
+  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="500">Module 1: Statutory Inheritance Quota Calculation & Over-Selling Intercept Engine</text>
+  <line x1="480" y1="230" x2="480" y2="260" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
+  <rect x="403.5" y="227.0" width="153" height="18" rx="4" fill="#0f172a" opacity="0.9" />
+  <text x="480.0" y="240.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">POST JSON Payload</text>
+  <line x1="480" y1="380" x2="480" y2="410" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
+  <rect x="381.0" y="377.0" width="198" height="18" rx="4" fill="#0f172a" opacity="0.9" />
+  <text x="480.0" y="390.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Forward to Math Engine</text>
+  <line x1="260" y1="540" x2="260" y2="570" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
+  <rect x="156.5" y="537.0" width="207" height="18" rx="4" fill="#0f172a" opacity="0.9" />
+  <text x="260.0" y="550.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Selling > Share (Fraud)</text>
+  <line x1="700" y1="540" x2="700" y2="570" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
+  <rect x="596.5" y="537.0" width="207" height="18" rx="4" fill="#0f172a" opacity="0.9" />
+  <text x="700.0" y="550.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Selling <= Share (Safe)</text>
+  <!-- Node: 1. USER INTERFACE & DEED INPUT LAYER -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="120" width="840" height="110" rx="8" fill="#134e4a" stroke="#0d9488" stroke-width="2" />
+    <path d="M 60 148 L 900 148" stroke="#0d9488" stroke-width="1.5" />
+    <text x="480.0" y="139" text-anchor="middle" fill="#ccfbf1" font-size="13" font-weight="700">1. USER INTERFACE & DEED INPUT LAYER</text>
+    <text x="74" y="168" fill="#e2e8f0" font-size="11.5" font-weight="500">• Web Dropzone: Physical Deed Scan / Porcha Image / PDF</text>
+    <text x="74" y="188" fill="#e2e8f0" font-size="11.5" font-weight="500">• Input Form: Total Baseline Land Area (Decimals), Heir Breakdown (Sons, Daughters, Spouses)</text>
+    <text x="74" y="208" fill="#e2e8f0" font-size="11.5" font-weight="500">• Transaction Claim: Seller Identity, Deeded Selling Acreage</text>
+  </g>
+  <!-- Node: 2. FASTAPI GATEWAY & NORMALIZATION LAYER -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="260" width="840" height="120" rx="8" fill="#1e293b" stroke="#0284c7" stroke-width="2" />
+    <path d="M 60 288 L 900 288" stroke="#0284c7" stroke-width="1.5" />
+    <text x="480.0" y="279" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="700">2. FASTAPI GATEWAY & NORMALIZATION LAYER</text>
+    <text x="74" y="308" fill="#e2e8f0" font-size="11.5" font-weight="500">• REST API Endpoint: POST /api/v1/verify/inheritance</text>
+    <text x="74" y="328" fill="#e2e8f0" font-size="11.5" font-weight="500">• Data Sanitization: Convert Bengali Numerals ('২০ শতক') to Standard Floats (20.0)</text>
+    <text x="74" y="348" fill="#e2e8f0" font-size="11.5" font-weight="500">• Validation Contract: Enforce Schema Types and Missing Parameter Guardrails</text>
+  </g>
+  <!-- Node: 3. ALGORITHMIC FARAYEZ MATH CORE (CALCULATION & COMPARISON) -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="410" width="840" height="130" rx="8" fill="#581c87" stroke="#9333ea" stroke-width="2" />
+    <path d="M 60 438 L 900 438" stroke="#9333ea" stroke-width="1.5" />
+    <text x="480.0" y="429" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="700">3. ALGORITHMIC FARAYEZ MATH CORE (CALCULATION & COMPARISON)</text>
+    <text x="74" y="458" fill="#e2e8f0" font-size="11.5" font-weight="500">• Statutory Logic: Muslim Family Laws Ordinance 1961 (1 Son = 2 Daughters)</text>
+    <text x="74" y="478" fill="#e2e8f0" font-size="11.5" font-weight="500">• Quota Formula: Share_i = (k_i / Total_Points) * Total_Estate</text>
+    <text x="74" y="498" fill="#e2e8f0" font-size="11.5" font-weight="500">• Decision Boundary: If Deeded_Selling_Area > Legal_Share -> Trigger FRAUD_ALERT</text>
+    <text x="74" y="518" fill="#e2e8f0" font-size="11.5" font-weight="500">• Exact Surplus Metric: Surplus_Area = Deeded_Selling_Area - Legal_Share</text>
+  </g>
+  <!-- Node: 4A. FRAUD INTERCEPT ALERT -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="570" width="400" height="140" rx="8" fill="#7f1d1d" stroke="#dc2626" stroke-width="2" />
+    <path d="M 60 598 L 460 598" stroke="#dc2626" stroke-width="1.5" />
+    <text x="260.0" y="589" text-anchor="middle" fill="#fee2e2" font-size="13" font-weight="700">4A. FRAUD INTERCEPT ALERT</text>
+    <text x="74" y="618" fill="#e2e8f0" font-size="11.5" font-weight="500">• Status: 🔴 CRITICAL_OVER_SELLING</text>
+    <text x="74" y="638" fill="#e2e8f0" font-size="11.5" font-weight="500">• Visual: Red Warning Badge & Alert Card</text>
+    <text x="74" y="658" fill="#e2e8f0" font-size="11.5" font-weight="500">• Action: Transaction Blocked & Logged</text>
+    <text x="74" y="678" fill="#e2e8f0" font-size="11.5" font-weight="500">• Message: Seller exceeds legal share!</text>
+  </g>
+  <!-- Node: 4B. VERIFIED & COMPLIANT BADGE -->
+  <g filter="url(#shadow)">
+    <rect x="500" y="570" width="400" height="140" rx="8" fill="#14532d" stroke="#16a34a" stroke-width="2" />
+    <path d="M 500 598 L 900 598" stroke="#16a34a" stroke-width="1.5" />
+    <text x="700.0" y="589" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="700">4B. VERIFIED & COMPLIANT BADGE</text>
+    <text x="514" y="618" fill="#e2e8f0" font-size="11.5" font-weight="500">• Status: 🟢 SHARE_VERIFIED</text>
+    <text x="514" y="638" fill="#e2e8f0" font-size="11.5" font-weight="500">• Visual: Green Certified Badge</text>
+    <text x="514" y="658" fill="#e2e8f0" font-size="11.5" font-weight="500">• Action: +25 Points to TrueDeed Trust Score</text>
+    <text x="514" y="678" fill="#e2e8f0" font-size="11.5" font-weight="500">• Message: Deeded share within legal quota</text>
+  </g>
 </svg>
