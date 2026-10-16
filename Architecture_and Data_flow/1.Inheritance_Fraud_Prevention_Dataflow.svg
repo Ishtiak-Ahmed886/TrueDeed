@@ -1,105 +1,150 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="960" height="760" style="background:#0f172a; font-family:'Segoe UI',Arial,sans-serif;">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
-    </marker>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 730" width="100%" height="100%" style="--bg:#1F1F1F;--fg:#CCCCCC;--line:#CCCCCC;--accent:#0078D4;--muted:#CCCCCCCC;--surface:#181818;--border:#CCCCCC;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  svg {
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="seq-arrow" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto-start-reverse">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" />
+  </marker>
+  <marker id="seq-arrow-open" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto-start-reverse">
+    <polyline points="0 0, 8 2.5, 0 5" fill="none" stroke="var(--_arrow)" stroke-width="1" />
+  </marker>
+</defs>
 
-  <!-- Title Banner -->
-  <rect x="20" y="20" width="920" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
-  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="bold">1.2 Farayez Inheritance Fraud Prevention - End-to-End Data Flow</text>
-  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12">Sequential Execution Pipeline: From Citizen Entry to Real-Time Fraud Intercept</text>
-  <line x1="310" y1="190" x2="350" y2="190" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="280.5" y="172.0" width="99" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="330.0" y="186.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Submit Data</text>
-  <line x1="610" y1="190" x2="650" y2="190" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="598.5" y="172.0" width="63" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="630.0" y="186.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Compute</text>
-  <line x1="780" y1="260" x2="780" y2="310" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="744.0" y="267.0" width="72" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="780.0" y="281.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Evaluate</text>
-  <line x1="650" y1="380" x2="610" y2="380" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="585.0" y="362.0" width="90" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="630.0" y="376.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Log Result</text>
-  <line x1="350" y1="380" x2="310" y2="380" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="267.0" y="362.0" width="126" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="330.0" y="376.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Dispatch Alert</text>
-  <line x1="180" y1="450" x2="180" y2="500" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="126.0" y="457.0" width="108" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="180.0" y="471.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Final Impact</text>
-  <!-- Node: STEP 1: USER SUBMISSION -->
-  <g>
-    <rect x="50" y="120" width="260" height="140" rx="8" fill="#134e4a" stroke="#0d9488" stroke-width="2" />
-    <path d="M 50 150 L 310 150" stroke="#0d9488" stroke-width="1.5" />
-    <text x="180.0" y="140" text-anchor="middle" fill="#ccfbf1" font-size="13" font-weight="bold">STEP 1: USER SUBMISSION</text>
-    <text x="64" y="170" fill="#e2e8f0" font-size="11.5">• Citizen / Buyer Inputs:</text>
-    <text x="64" y="190" fill="#e2e8f0" font-size="11.5">  - Total Land: 60 Decimals</text>
-    <text x="64" y="210" fill="#e2e8f0" font-size="11.5">  - Heirs: 2 Sons, 2 Daughters</text>
-    <text x="64" y="230" fill="#e2e8f0" font-size="11.5">  - Seller: Elder Son</text>
-    <text x="64" y="250" fill="#e2e8f0" font-size="11.5">  - Selling Claim: 30 Decimals</text>
+<!-- ALT BLOCK FOR FRAUD vs VERIFIED -->
+<g class="block" data-type="alt" data-label="উত্তরাধিকার যাচাই ফলাফল">
+  <rect x="40" y="440" width="1060" height="230" rx="0" ry="0" fill="none" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="40" y="440" width="260" height="20" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="48" y="450" font-size="11" font-weight="600" fill="var(--_text-sec)" dy="3.85">alt [বিক্রীত জমি &gt; বৈধ অংশ (Over-Selling / Fraud)]</text>
+  
+  <line x1="40" y1="560" x2="1100" y2="560" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+  <text x="48" y="575" font-size="11" text-anchor="start" font-weight="600" fill="var(--_text-muted)" dy="3.85">[বিক্রীত জমি &lt;= বৈধ অংশ (Statutory Share Clear)]</text>
+</g>
+
+<!-- LIFELINES -->
+<!-- Actor 1: User (x = 120) -->
+<line class="lifeline" data-actor="User" x1="120" y1="92" x2="120" y2="690" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<!-- Actor 2: UI (x = 340) -->
+<line class="lifeline" data-actor="UI" x1="340" y1="70" x2="340" y2="690" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<!-- Actor 3: API (x = 560) -->
+<line class="lifeline" data-actor="API" x1="560" y1="70" x2="560" y2="690" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<!-- Actor 4: Farayez (x = 790) -->
+<line class="lifeline" data-actor="Farayez" x1="790" y1="70" x2="790" y2="690" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<!-- Actor 5: DB (x = 1010) -->
+<line class="lifeline" data-actor="DB" x1="1010" y1="70" x2="1010" y2="690" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+
+<!-- MESSAGES -->
+<!-- 1. User -> UI -->
+<g class="message" data-from="User" data-to="UI" data-label="ইউজার ইনপুট দেয় (মোট জমি, ওয়ারিশ সংখ্যা, বিক্রয় দাবি)">
+  <line x1="120" y1="120" x2="340" y2="120" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="230" y="110" font-size="11" text-anchor="middle" font-weight="500" fill="var(--_text-muted)" dy="3.85">ইউজার ইনপুট দেয় (মোট জমি, ওয়ারিশ সংখ্যা, বিক্রয় দাবি)</text>
+</g>
+
+<!-- 2. UI -> API -->
+<g class="message" data-from="UI" data-to="API" data-label="POST /api/v1/verify-share { land: 60, sons: 2, daughters: 2, selling: 30 }">
+  <line x1="340" y1="170" x2="560" y2="170" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="450" y="160" font-size="11" text-anchor="middle" font-weight="500" fill="var(--_text-muted)" dy="3.85">POST /api/v1/verify-share { land: 60, sons: 2, selling: 30 }</text>
+</g>
+
+<!-- 3. API -> DB -->
+<g class="message" data-from="API" data-to="DB" data-label="খতিয়ান ও মূল রেকর্ড কুয়েরি করে">
+  <line x1="560" y1="220" x2="1010" y2="220" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="785" y="210" font-size="11" text-anchor="middle" font-weight="500" fill="var(--_text-muted)" dy="3.85">খতিয়ান ও মূল রেকর্ড কুয়েরি করে</text>
+</g>
+
+<!-- 4. DB -> API -->
+<g class="message" data-from="DB" data-to="API" data-label="রেকর্ড ও ঐতিহাসিক হিস্যা ডাটা রিটার্ন">
+  <line x1="1010" y1="265" x2="560" y2="265" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="785" y="255" font-size="11" text-anchor="middle" font-weight="500" fill="var(--_text-muted)" dy="3.85">রেকর্ড ও ঐতিহাসিক হিস্যা ডাটা রিটার্ন</text>
+</g>
+
+<!-- 5. API -> Farayez -->
+<g class="message" data-from="API" data-to="Farayez" data-label="বৈধ অংশের অনুপাত ও সীমা গণনার অনুরোধ">
+  <line x1="560" y1="315" x2="790" y2="315" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="675" y="305" font-size="11" text-anchor="middle" font-weight="500" fill="var(--_text-muted)" dy="3.85">বৈধ অংশের অনুপাত ও সীমা গণনার অনুরোধ</text>
+</g>
+
+<!-- 6. Farayez Self Call -->
+<g class="message" data-from="Farayez" data-to="Farayez" data-label="ফারায়েজ সূত্র হিসাব: বৈধ অংশ = ২০, বিক্রয় = ৩০, অতিরিক্ত = ১০">
+  <polyline points="790,360 820,360 820,385 790,385" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="830" y="372" font-size="11" text-anchor="start" font-weight="500" fill="var(--_text-muted)" dy="3.85">ফারায়েজ সূত্র হিসাব: বৈধ অংশ = ২০, বিক্রয় = ৩০, অতিরিক্ত = ১০</text>
+</g>
+
+<!-- ALT 1: Fraud Path -->
+<g class="message" data-from="Farayez" data-to="API" data-label="{ status: &quot;FRAUD&quot;, excess: 10, legal_share: 20 }">
+  <line x1="790" y1="480" x2="560" y2="480" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="675" y="470" font-size="11" text-anchor="middle" font-weight="500" fill="var(--_text-muted)" dy="3.85">{ status: &quot;FRAUD&quot;, excess: 10, legal_share: 20 }</text>
+</g>
+<g class="message" data-from="API" data-to="UI" data-label="409 Conflict + Critical Fraud Alert">
+  <line x1="560" y1="510" x2="340" y2="510" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="450" y="500" font-size="11" text-anchor="middle" font-weight="500" fill="var(--_text-muted)" dy="3.85">409 Conflict + Critical Fraud Alert</text>
+</g>
+<g class="message" data-from="UI" data-to="User" data-label="🔴 স্ক্রিনে লাল কালিতে প্রতারণা সতর্কতা কার্ড প্রদর্শন!">
+  <line x1="340" y1="540" x2="120" y2="540" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="230" y="530" font-size="11" text-anchor="middle" font-weight="600" fill="#f87171" dy="3.85">🔴 স্ক্রিনে লাল কালিতে প্রতারণা সতর্কতা কার্ড প্রদর্শন!</text>
+</g>
+
+<!-- ALT 2: Clear Path -->
+<g class="message" data-from="Farayez" data-to="API" data-label="{ status: &quot;VERIFIED&quot;, quota: &quot;100% Valid&quot; }">
+  <line x1="790" y1="600" x2="560" y2="600" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="675" y="590" font-size="11" text-anchor="middle" font-weight="500" fill="var(--_text-muted)" dy="3.85">{ status: &quot;VERIFIED&quot;, quota: &quot;100% Valid&quot; }</text>
+</g>
+<g class="message" data-from="API" data-to="UI" data-label="200 OK + Verified Badge Payload">
+  <line x1="560" y1="630" x2="340" y2="630" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="450" y="620" font-size="11" text-anchor="middle" font-weight="500" fill="var(--_text-muted)" dy="3.85">200 OK + Verified Badge Payload</text>
+</g>
+<g class="message" data-from="UI" data-to="User" data-label="🟢 নিরাপদ ও অনুমোদিত উত্তরাধিকার ভেরিফাইড ব্যাজ প্রদর্শন!">
+  <line x1="340" y1="660" x2="120" y2="660" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="230" y="650" font-size="11" text-anchor="middle" font-weight="600" fill="#4ade80" dy="3.85">🟢 নিরাপদ ও অনুমোদিত উত্তরাধিকার ভেরিফাইড ব্যাজ প্রদর্শন!</text>
+</g>
+
+<!-- ACTOR BOXES AT TOP -->
+<!-- Actor 1: User -->
+<g class="actor" data-id="User" data-label="ইউজার (ওয়ারিশ / ক্রেতা)" data-type="actor">
+  <g transform="translate(102,32) scale(1.5)">
+    <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" fill="none" stroke="var(--_line)" stroke-width="0.67" />
+    <path d="M15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z" fill="none" stroke="var(--_line)" stroke-width="0.67" />
+    <path d="M5.62842 18.3563C7.08963 17.0398 9.39997 16 12 16C14.6 16 16.9104 17.0398 18.3716 18.3563" fill="none" stroke="var(--_line)" stroke-width="0.67" />
   </g>
-  <!-- Node: STEP 2: API INGESTION -->
-  <g>
-    <rect x="350" y="120" width="260" height="140" rx="8" fill="#1e293b" stroke="#0284c7" stroke-width="2" />
-    <path d="M 350 150 L 610 150" stroke="#0284c7" stroke-width="1.5" />
-    <text x="480.0" y="140" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="bold">STEP 2: API INGESTION</text>
-    <text x="364" y="170" fill="#e2e8f0" font-size="11.5">• FastAPI Gateway handles request</text>
-    <text x="364" y="190" fill="#e2e8f0" font-size="11.5">• Validates integer and float values</text>
-    <text x="364" y="210" fill="#e2e8f0" font-size="11.5">• Payload: {land: 60.0,</text>
-    <text x="364" y="230" fill="#e2e8f0" font-size="11.5">   sons: 2, daughters: 2,</text>
-    <text x="364" y="250" fill="#e2e8f0" font-size="11.5">   claim: 30.0}</text>
-  </g>
-  <!-- Node: STEP 3: FARAYEZ MATH -->
-  <g>
-    <rect x="650" y="120" width="260" height="140" rx="8" fill="#581c87" stroke="#9333ea" stroke-width="2" />
-    <path d="M 650 150 L 910 150" stroke="#9333ea" stroke-width="1.5" />
-    <text x="780.0" y="140" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="bold">STEP 3: FARAYEZ MATH</text>
-    <text x="664" y="170" fill="#e2e8f0" font-size="11.5">• Calculate Inheritance Points:</text>
-    <text x="664" y="190" fill="#e2e8f0" font-size="11.5">  - 2 Sons * 2 = 4 Points</text>
-    <text x="664" y="210" fill="#e2e8f0" font-size="11.5">  - 2 Daughters * 1 = 2 Points</text>
-    <text x="664" y="230" fill="#e2e8f0" font-size="11.5">  - Total Points = 6</text>
-    <text x="664" y="250" fill="#e2e8f0" font-size="11.5">• Value / Point = 60 / 6 = 10</text>
-  </g>
-  <!-- Node: STEP 4: QUOTA EVALUATION -->
-  <g>
-    <rect x="650" y="310" width="260" height="140" rx="8" fill="#581c87" stroke="#9333ea" stroke-width="2" />
-    <path d="M 650 340 L 910 340" stroke="#9333ea" stroke-width="1.5" />
-    <text x="780.0" y="330" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="bold">STEP 4: QUOTA EVALUATION</text>
-    <text x="664" y="360" fill="#e2e8f0" font-size="11.5">• Elder Son&#x27;s Share: 2 * 10 = 20</text>
-    <text x="664" y="380" fill="#e2e8f0" font-size="11.5">• Compare Claim vs Quota:</text>
-    <text x="664" y="400" fill="#e2e8f0" font-size="11.5">  - Deeded Claim = 30 Decimals</text>
-    <text x="664" y="420" fill="#e2e8f0" font-size="11.5">  - Legal Ceiling = 20 Decimals</text>
-    <text x="664" y="440" fill="#e2e8f0" font-size="11.5">• Condition: 30 &gt; 20 (VIOLATION!)</text>
-  </g>
-  <!-- Node: STEP 5: AUDIT LOGGING -->
-  <g>
-    <rect x="350" y="310" width="260" height="140" rx="8" fill="#1e293b" stroke="#0284c7" stroke-width="2" />
-    <path d="M 350 340 L 610 340" stroke="#0284c7" stroke-width="1.5" />
-    <text x="480.0" y="330" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="bold">STEP 5: AUDIT LOGGING</text>
-    <text x="364" y="360" fill="#e2e8f0" font-size="11.5">• Calculate Surplus: 10 Decimals</text>
-    <text x="364" y="380" fill="#e2e8f0" font-size="11.5">• Assign Status: FRAUD_DETECTED</text>
-    <text x="364" y="400" fill="#e2e8f0" font-size="11.5">• Deduct points from Trust Score</text>
-    <text x="364" y="420" fill="#e2e8f0" font-size="11.5">• Archive event in Security Ledger</text>
-  </g>
-  <!-- Node: STEP 6: REAL-TIME ALERT -->
-  <g>
-    <rect x="50" y="310" width="260" height="140" rx="8" fill="#7f1d1d" stroke="#dc2626" stroke-width="2" />
-    <path d="M 50 340 L 310 340" stroke="#dc2626" stroke-width="1.5" />
-    <text x="180.0" y="330" text-anchor="middle" fill="#fee2e2" font-size="13" font-weight="bold">STEP 6: REAL-TIME ALERT</text>
-    <text x="64" y="360" fill="#e2e8f0" font-size="11.5">• UI renders Red Warning Card:</text>
-    <text x="64" y="380" fill="#e2e8f0" font-size="11.5">  &#x27;CRITICAL FRAUD: Seller is</text>
-    <text x="64" y="400" fill="#e2e8f0" font-size="11.5">   selling 30 decimals from an</text>
-    <text x="64" y="420" fill="#e2e8f0" font-size="11.5">   eligible share of 20 decimals!&#x27;</text>
-    <text x="64" y="440" fill="#e2e8f0" font-size="11.5">• Buyers protected from dispute</text>
-  </g>
-  <!-- Node: STEP 7: COMPREHENSIVE CITIZEN IMPACT AND VALUE DELIVERED -->
-  <g>
-    <rect x="50" y="500" width="860" height="190" rx="8" fill="#14532d" stroke="#16a34a" stroke-width="2" />
-    <path d="M 50 530 L 910 530" stroke="#16a34a" stroke-width="1.5" />
-    <text x="480.0" y="520" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="bold">STEP 7: COMPREHENSIVE CITIZEN IMPACT AND VALUE DELIVERED</text>
-    <text x="64" y="550" fill="#e2e8f0" font-size="11.5">• Proactive Protection: Stops illegal transfers before registration fee or token money is paid.</text>
-    <text x="64" y="570" fill="#e2e8f0" font-size="11.5">• Protects Female Heirs: Guarantees daughters&#x27; inherited shares cannot be secretly liquidated by brothers.</text>
-    <text x="64" y="590" fill="#e2e8f0" font-size="11.5">• Unburdens Civil Courts: Eliminates the root cause of generational partition suits across Bangladesh.</text>
-    <text x="64" y="610" fill="#e2e8f0" font-size="11.5">• Trust Score Output: Generates verifiable audit trail for mortgage banks and government land offices.</text>
-  </g>
+  <text x="120" y="84" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">ইউজার (ওয়ারিশ / ক্রেতা)</text>
+</g>
+
+<!-- Actor 2: UI -->
+<g class="actor" data-id="UI" data-label="ফ্রন্টএন্ড ড্যাশবোর্ড" data-type="participant">
+  <rect x="250" y="30" width="180" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="340" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">ফ্রন্টএন্ড ড্যাশবোর্ড</text>
+</g>
+
+<!-- Actor 3: API -->
+<g class="actor" data-id="API" data-label="ব্যাকএন্ড গেটওয়ে (FastAPI)" data-type="participant">
+  <rect x="465" y="30" width="190" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="560" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">ব্যাকএন্ড গেটওয়ে (FastAPI)</text>
+</g>
+
+<!-- Actor 4: Farayez -->
+<g class="actor" data-id="Farayez" data-label="ফারায়েজ ইঞ্জিন (Math Core)" data-type="participant">
+  <rect x="690" y="30" width="200" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="790" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">ফারায়েজ ইঞ্জিন (Math Core)</text>
+</g>
+
+<!-- Actor 5: DB -->
+<g class="actor" data-id="DB" data-label="খতিয়ান ডাটাবেজ (Postgres)" data-type="participant">
+  <rect x="910" y="30" width="200" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="1010" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">খতিয়ান ডাটাবেজ (Postgres)</text>
+</g>
 </svg>

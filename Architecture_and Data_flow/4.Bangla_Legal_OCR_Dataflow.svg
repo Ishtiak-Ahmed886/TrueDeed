@@ -1,73 +1,108 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="960" height="760" style="background:#0f172a; font-family:'Segoe UI',Arial,sans-serif;">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
-    </marker>
-  </defs>
-
-  <!-- Title Banner -->
-  <rect x="20" y="20" width="920" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
-  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="bold">4.2 Bangla Legal OCR and Entity Extractor - End-to-End Data Flow</text>
-  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12">Document Parsing Sequence: Transforming Raw Deed Images into Structured Entity Tables</text>
-  <line x1="310" y1="185" x2="350" y2="185" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="298.5" y="167.0" width="63" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="330.0" y="181.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Enhance</text>
-  <line x1="610" y1="185" x2="650" y2="185" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="589.5" y="167.0" width="81" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="630.0" y="181.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">OCR Parse</text>
-  <line x1="480" y1="260" x2="480" y2="290" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="426.0" y="257.0" width="108" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="480.0" y="271.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Map Entities</text>
-  <line x1="480" y1="480" x2="480" y2="510" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="439.5" y="477.0" width="81" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="480.0" y="491.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Pass Data</text>
-  <!-- Node: STEP 1: CAPTURE -->
-  <g>
-    <rect x="50" y="110" width="260" height="150" rx="8" fill="#134e4a" stroke="#0d9488" stroke-width="2" />
-    <path d="M 50 140 L 310 140" stroke="#0d9488" stroke-width="1.5" />
-    <text x="180.0" y="130" text-anchor="middle" fill="#ccfbf1" font-size="13" font-weight="bold">STEP 1: CAPTURE</text>
-    <text x="64" y="160" fill="#e2e8f0" font-size="11.5">• Citizen uploads deed image</text>
-    <text x="64" y="180" fill="#e2e8f0" font-size="11.5">• Archaic yellowed paper</text>
-    <text x="64" y="200" fill="#e2e8f0" font-size="11.5">• Bengali cursive writing</text>
-    <text x="64" y="220" fill="#e2e8f0" font-size="11.5">• Legal stamps and seals</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1852.5829999999996 617.45" width="1852.5829999999996" height="617.45" style="--bg:#1F1F1F;--fg:#CCCCCC;--line:#CCCCCC;--accent:#0078D4;--muted:#CCCCCCCC;--surface:#181818;--border:#CCCCCC;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="seq-arrow" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto-start-reverse">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" />
+  </marker>
+  <marker id="seq-arrow-open" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto-start-reverse">
+    <polyline points="0 0, 8 2.5, 0 5" fill="none" stroke="var(--_arrow)" stroke-width="1" />
+  </marker>
+</defs>
+<line class="lifeline" data-actor="User" x1="162.20049999999998" y1="92.45" x2="162.20049999999998" y2="587.45" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<line class="lifeline" data-actor="UI" x1="435.1089999999999" y1="70" x2="435.1089999999999" y2="587.45" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<line class="lifeline" data-actor="API" x1="672.8199999999999" y1="70" x2="672.8199999999999" y2="587.45" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<line class="lifeline" data-actor="Preprocessor" x1="912.7539999999999" y1="70" x2="912.7539999999999" y2="587.45" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<line class="lifeline" data-actor="VisionAI" x1="1165.2849999999999" y1="70" x2="1165.2849999999999" y2="587.45" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<line class="lifeline" data-actor="Parser" x1="1430.4129999999998" y1="70" x2="1430.4129999999998" y2="587.45" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<g class="message" data-from="User" data-to="UI" data-label="দলিলের পাতার ছবি আপলোড করে" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="162.20049999999998" y1="112.45" x2="435.1089999999999" y2="112.45" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="298.6547499999999" y="102.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">দলিলের পাতার ছবি আপলোড করে</text>
+</g>
+<g class="message" data-from="UI" data-to="API" data-label="POST /api/v1/extract-deed (মাল্টিপার্ট ফাইল)" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="435.1089999999999" y1="152.45" x2="672.8199999999999" y2="152.45" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="553.9644999999999" y="142.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">POST /api/v1/extract-deed (মাল্টিপার্ট ফাইল)</text>
+</g>
+<g class="message" data-from="API" data-to="Preprocessor" data-label="ইমেজ পাঠায়" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="672.8199999999999" y1="192.45" x2="912.7539999999999" y2="192.45" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="792.7869999999999" y="182.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">ইমেজ পাঠায়</text>
+</g>
+<g class="message" data-from="Preprocessor" data-to="Preprocessor" data-label="কন্ট্রাস্ট বাড়ায়, নয়েজ ফিল্টার করে" data-line-style="solid" data-arrow-head="filled" data-self="true">
+  <polyline points="912.7539999999999,232.45 942.7539999999999,232.45 942.7539999999999,252.45 912.7539999999999,252.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="950.7539999999999" y="242.45" font-size="11" text-anchor="start" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">কন্ট্রাস্ট বাড়ায়, নয়েজ ফিল্টার করে</text>
+</g>
+<g class="message" data-from="Preprocessor" data-to="VisionAI" data-label="অপ্টিমাইজড ইমেজ পাঠায়" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+  <line x1="912.7539999999999" y1="302.45" x2="1165.2849999999999" y2="302.45" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="1039.0194999999999" y="292.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">অপ্টিমাইজড ইমেজ পাঠায়</text>
+</g>
+<g class="message" data-from="VisionAI" data-to="Parser" data-label="আনস্ট্রাকচার্ড বাংলা টেক্সট রেসপন্স" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+  <line x1="1165.2849999999999" y1="357.45" x2="1430.4129999999998" y2="357.45" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="1297.8489999999997" y="347.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">আনস্ট্রাকচার্ড বাংলা টেক্সট রেসপন্স</text>
+</g>
+<g class="message" data-from="Parser" data-to="Parser" data-label="তফসিল অংশ খুঁজে বের করে এবং সংখ্যাগুলোকে ইংলিশ ফ্লোটে কনভার্ট করে" data-line-style="solid" data-arrow-head="filled" data-self="true">
+  <polyline points="1430.4129999999998,397.45 1460.4129999999998,397.45 1460.4129999999998,417.45 1430.4129999999998,417.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="1468.4129999999998" y="407.45" font-size="11" text-anchor="start" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">তফসিল অংশ খুঁজে বের করে এবং সংখ্যাগুলোকে ইংলিশ ফ্লোটে কনভার্ট করে</text>
+</g>
+<g class="message" data-from="Parser" data-to="API" data-label="ক্লিন স্ট্রাকচার্ড JSON রিটার্ন করে" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+  <line x1="1430.4129999999998" y1="467.45" x2="672.8199999999999" y2="467.45" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="1051.6164999999999" y="457.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">ক্লিন স্ট্রাকচার্ড JSON রিটার্ন করে</text>
+</g>
+<g class="message" data-from="API" data-to="UI" data-label="টেবিল ফরম্যাটে রেসপন্স প্রদান করে" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+  <line x1="672.8199999999999" y1="507.45" x2="435.1089999999999" y2="507.45" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="553.9644999999999" y="497.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">টেবিল ফরম্যাটে রেসপন্স প্রদান করে</text>
+</g>
+<g class="message" data-from="UI" data-to="User" data-label="১ ক্লিকে দলিলের সারাংশ ও মূল ডাটা প্রদর্শন করে" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+  <line x1="435.1089999999999" y1="547.45" x2="162.20049999999998" y2="547.45" stroke="var(--_line)" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+  <text x="298.6547499999999" y="537.45" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">১ ক্লিকে দলিলের সারাংশ ও মূল ডাটা প্রদর্শন করে</text>
+</g>
+<g class="note" data-position="over" data-actors="VisionAI">
+  <polygon points="927.0369999999999,310.45 1397.533,310.45 1403.533,316.45 1403.533,333.45 927.0369999999999,333.45" fill="var(--bg)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <polygon points="1397.533,310.45 1403.533,316.45 1397.533,316.45" fill="var(--_inner-stroke)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1165.2849999999999" y="321.95" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)"><tspan x="1165.2849999999999" dy="-3.3000000000000007">আইনি বাংলা প্রম্পট প্রয়োগ করে:</tspan><tspan x="1165.2849999999999" dy="14.3">&quot;Extract Mouza, Khatian, Daag, Chouhaddi, and Area in JSON&quot;</tspan></text>
+</g>
+<g class="actor" data-id="User" data-label="ব্যবহারকারী (নাগরিক/ব্যাংক অফিসার)" data-type="actor">
+  <g transform="translate(144.20049999999998,32) scale(1.5)">
+    <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" fill="none" stroke="var(--_line)" stroke-width="0.6666666666666666" />
+    <path d="M15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z" fill="none" stroke="var(--_line)" stroke-width="0.6666666666666666" />
+    <path d="M5.62842 18.3563C7.08963 17.0398 9.39997 16 12 16C14.6 16 16.9104 17.0398 18.3716 18.3563" fill="none" stroke="var(--_line)" stroke-width="0.6666666666666666" />
   </g>
-  <!-- Node: STEP 2: PREPROCESS -->
-  <g>
-    <rect x="350" y="110" width="260" height="150" rx="8" fill="#1e293b" stroke="#0284c7" stroke-width="2" />
-    <path d="M 350 140 L 610 140" stroke="#0284c7" stroke-width="1.5" />
-    <text x="480.0" y="130" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="bold">STEP 2: PREPROCESS</text>
-    <text x="364" y="160" fill="#e2e8f0" font-size="11.5">• OpenCV deskews rotation</text>
-    <text x="364" y="180" fill="#e2e8f0" font-size="11.5">• Removes background noise</text>
-    <text x="364" y="200" fill="#e2e8f0" font-size="11.5">• Adaptive thresholding</text>
-    <text x="364" y="220" fill="#e2e8f0" font-size="11.5">• High-contrast grayscale</text>
-  </g>
-  <!-- Node: STEP 3: VLM INFERENCE -->
-  <g>
-    <rect x="650" y="110" width="260" height="150" rx="8" fill="#581c87" stroke="#9333ea" stroke-width="2" />
-    <path d="M 650 140 L 910 140" stroke="#9333ea" stroke-width="1.5" />
-    <text x="780.0" y="130" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="bold">STEP 3: VLM INFERENCE</text>
-    <text x="664" y="160" fill="#e2e8f0" font-size="11.5">• Gemini Vision multimodal parse</text>
-    <text x="664" y="180" fill="#e2e8f0" font-size="11.5">• Reads schedule and boundaries</text>
-    <text x="664" y="200" fill="#e2e8f0" font-size="11.5">• Identifies Mouza and Khatian</text>
-    <text x="664" y="220" fill="#e2e8f0" font-size="11.5">• Extracts decimal land area</text>
-  </g>
-  <!-- Node: STEP 4: STRUCTURED ENTITY MAPPING AND NORMALIZATION -->
-  <g>
-    <rect x="50" y="290" width="860" height="190" rx="8" fill="#581c87" stroke="#9333ea" stroke-width="2" />
-    <path d="M 50 320 L 910 320" stroke="#9333ea" stroke-width="1.5" />
-    <text x="480.0" y="310" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="bold">STEP 4: STRUCTURED ENTITY MAPPING AND NORMALIZATION</text>
-    <text x="64" y="340" fill="#e2e8f0" font-size="11.5">• Location Extracted: District = Dhaka, Upazila = Savar, Mouza = Birulia, JL = 42</text>
-    <text x="64" y="360" fill="#e2e8f0" font-size="11.5">• Land Records: Khatian Type = RS, Khatian No = 312, Haal Daag = 1045, Sabek Daag = 890</text>
-    <text x="64" y="380" fill="#e2e8f0" font-size="11.5">• Area Normalized: Extracted text converted to floating decimal value 12.50</text>
-    <text x="64" y="400" fill="#e2e8f0" font-size="11.5">• Chouhaddi Mapped: Directional boundaries extracted for North, South, East, West properties</text>
-  </g>
-  <!-- Node: STEP 5: DOWNSTREAM INGESTION AND VERIFICATION PIPELINE -->
-  <g>
-    <rect x="50" y="510" width="860" height="210" rx="8" fill="#14532d" stroke="#16a34a" stroke-width="2" />
-    <path d="M 50 540 L 910 540" stroke="#16a34a" stroke-width="1.5" />
-    <text x="480.0" y="530" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="bold">STEP 5: DOWNSTREAM INGESTION AND VERIFICATION PIPELINE</text>
-    <text x="64" y="560" fill="#e2e8f0" font-size="11.5">• Automatic Pipeline Dispatch: Passes extracted metadata to Farayez and Baya Lineage engines.</text>
-    <text x="64" y="580" fill="#e2e8f0" font-size="11.5">• Verification Dashboard: Renders side-by-side verification preview for citizen and registry officer.</text>
-    <text x="64" y="600" fill="#e2e8f0" font-size="11.5">• 100% Feasibility: Executes via enterprise free tiers in under 2 seconds per document.</text>
-  </g>
+  <text x="162.20049999999998" y="84" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">ব্যবহারকারী (নাগরিক/ব্যাংক অফিসার)</text>
+</g>
+<g class="actor" data-id="UI" data-label="ফ্রন্টএন্ড আপলোড ড্রপজোন" data-type="participant">
+  <rect x="334.40099999999995" y="30" width="201.41599999999997" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="435.1089999999999" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">ফ্রন্টএন্ড আপলোড ড্রপজোন</text>
+</g>
+<g class="actor" data-id="API" data-label="ব্যাকএন্ড এপিআই গেটওয়ে" data-type="participant">
+  <rect x="575.817" y="30" width="194.00599999999997" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="672.8199999999999" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">ব্যাকএন্ড এপিআই গেটওয়ে</text>
+</g>
+<g class="actor" data-id="Preprocessor" data-label="ইমেজ অপ্টিমাইজার (OpenCV)" data-type="participant">
+  <rect x="809.8229999999999" y="30" width="205.86199999999997" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="912.7539999999999" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">ইমেজ অপ্টিমাইজার (OpenCV)</text>
+</g>
+<g class="actor" data-id="VisionAI" data-label="ভিশন এআই ইঞ্জিন (Gemini Flash)" data-type="participant">
+  <rect x="1055.685" y="30" width="219.19999999999993" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="1165.2849999999999" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">ভিশন এআই ইঞ্জিন (Gemini Flash)</text>
+</g>
+<g class="actor" data-id="Parser" data-label="লিগ্যাল এন্টিটি এক্সট্রাক্টর" data-type="participant">
+  <rect x="1314.8849999999998" y="30" width="231.05599999999998" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="1430.4129999999998" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">লিগ্যাল এন্টিটি এক্সট্রাক্টর</text>
+</g>
 </svg>

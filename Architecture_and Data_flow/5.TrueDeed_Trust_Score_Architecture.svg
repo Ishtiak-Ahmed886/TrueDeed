@@ -1,58 +1,130 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="960" height="760" style="background:#0f172a; font-family:'Segoe UI',Arial,sans-serif;">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
-    </marker>
-  </defs>
-
-  <!-- Title Banner -->
-  <rect x="20" y="20" width="920" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
-  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="bold">5.1 TrueDeed Composite Trust Score - Scoring Architecture</text>
-  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12">Module 5: Multi-Signal Aggregation, Hard Veto Logic and Audit Certificate Generation</text>
-  <line x1="480" y1="230" x2="480" y2="250" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="403.5" y="222.0" width="153" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="480.0" y="236.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Aggregate Signals</text>
-  <line x1="480" y1="380" x2="480" y2="400" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="421.5" y="372.0" width="117" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="480.0" y="386.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Classify Risk</text>
-  <line x1="480" y1="530" x2="480" y2="550" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
-  <rect x="390.0" y="522.0" width="180" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
-  <text x="480.0" y="536.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Dispatch Certificate</text>
-  <!-- Node: 1. MULTI-SIGNAL ENGINE INGESTION LAYER -->
-  <g>
-    <rect x="60" y="110" width="840" height="120" rx="8" fill="#134e4a" stroke="#0d9488" stroke-width="2" />
-    <path d="M 60 140 L 900 140" stroke="#0d9488" stroke-width="1.5" />
-    <text x="480.0" y="130" text-anchor="middle" fill="#ccfbf1" font-size="13" font-weight="bold">1. MULTI-SIGNAL ENGINE INGESTION LAYER</text>
-    <text x="74" y="160" fill="#e2e8f0" font-size="11.5">• Signal 1: Baya DAG Lineage Continuity (Max Weight: 35%)</text>
-    <text x="74" y="180" fill="#e2e8f0" font-size="11.5">• Signal 2: Farayez Inheritance Share Compliance (Max Weight: 25%)</text>
-    <text x="74" y="200" fill="#e2e8f0" font-size="11.5">• Signal 3: Concurrency Plot Lock and Mutation Status (Max Weight: 25%)</text>
-    <text x="74" y="220" fill="#e2e8f0" font-size="11.5">• Signal 4: Registry and NID Identity Consistency (Max Weight: 15%)</text>
-  </g>
-  <!-- Node: 2. WEIGHTED AGGREGATOR AND FAIL-SAFE VETO CORE -->
-  <g>
-    <rect x="60" y="250" width="840" height="130" rx="8" fill="#1e293b" stroke="#0284c7" stroke-width="2" />
-    <path d="M 60 280 L 900 280" stroke="#0284c7" stroke-width="1.5" />
-    <text x="480.0" y="270" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="bold">2. WEIGHTED AGGREGATOR AND FAIL-SAFE VETO CORE</text>
-    <text x="74" y="300" fill="#e2e8f0" font-size="11.5">• Mathematical Aggregation: Base_Score = (S1*0.35) + (S2*0.25) + (S3*0.25) + (S4*0.15)</text>
-    <text x="74" y="320" fill="#e2e8f0" font-size="11.5">• Hard Veto Override: Active Section 144 Court Injunction -&gt; Score forced to &lt; 30% (Critical)</text>
-    <text x="74" y="340" fill="#e2e8f0" font-size="11.5">• Discrepancy Penalty: Minor spelling discrepancy on survey record -&gt; Deduct 10 points</text>
-  </g>
-  <!-- Node: 3. RISK CLASSIFICATION AND RATING BANDS -->
-  <g>
-    <rect x="60" y="400" width="840" height="130" rx="8" fill="#581c87" stroke="#9333ea" stroke-width="2" />
-    <path d="M 60 430 L 900 430" stroke="#9333ea" stroke-width="1.5" />
-    <text x="480.0" y="420" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="bold">3. RISK CLASSIFICATION AND RATING BANDS</text>
-    <text x="74" y="450" fill="#e2e8f0" font-size="11.5">• Grade A (90% - 100%): Safe to Buy | 100% Eligible for Bank Mortgage and Collateral</text>
-    <text x="74" y="470" fill="#e2e8f0" font-size="11.5">• Grade B (60% - 89%): Cautionary Risk | Mutation pending or minor typographical variance</text>
-    <text x="74" y="490" fill="#e2e8f0" font-size="11.5">• Grade C (&lt; 60%): High Fraud Alert | Title defective; conveyance strictly prohibited</text>
-  </g>
-  <!-- Node: 4. DIGITAL AUDIT CERTIFICATE AND QR VERIFICATION DISPATCH -->
-  <g>
-    <rect x="60" y="550" width="840" height="170" rx="8" fill="#14532d" stroke="#16a34a" stroke-width="2" />
-    <path d="M 60 580 L 900 580" stroke="#16a34a" stroke-width="1.5" />
-    <text x="480.0" y="570" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="bold">4. DIGITAL AUDIT CERTIFICATE AND QR VERIFICATION DISPATCH</text>
-    <text x="74" y="600" fill="#e2e8f0" font-size="11.5">• Cryptographic Hash: SHA-256 seal embedded into digital verification certificate</text>
-    <text x="74" y="620" fill="#e2e8f0" font-size="11.5">• Offline Verification: Dynamic QR code verifiable by bank loan officers and sub-registrars</text>
-    <text x="74" y="640" fill="#e2e8f0" font-size="11.5">• Standardized Metric: Serves as Bangladesh&#x27;s first institutional Land Credit Rating</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1267.375 1179.456" width="1267.375" height="1179.456" style="--bg:#1F1F1F;--fg:#CCCCCC;--line:#CCCCCC;--accent:#0078D4;--muted:#CCCCCCCC;--surface:#181818;--border:#CCCCCC;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<g class="subgraph" data-id="SignalInputs" data-label="১. মাল্টি-সিগন্যাল কালেক্টর লেয়ার (Multi-Engine Inputs)">
+  <rect x="40" y="40" width="1187.375" height="113.80000000000001" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="40" y="40" width="1187.375" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="52" y="54" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">১. মাল্টি-সিগন্যাল কালেক্টর লেয়ার (Multi-Engine Inputs)</text>
+</g>
+<g class="subgraph" data-id="ScoringCore" data-label="২. স্কোরিং ও পেনাল্টি কোর (Scoring &amp; Aggregator Core)">
+  <rect x="302.165" y="213.8" width="580.7939999999999" height="215.60000000000002" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="302.165" y="213.8" width="580.7939999999999" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="314.165" y="227.8" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">২. স্কোরিং ও পেনাল্টি কোর (Scoring &amp; Aggregator Core)</text>
+</g>
+<g class="subgraph" data-id="Classifier" data-label="৩. ঝুঁকি শ্রেণীবিন্যাস লেয়ার (Risk Band Classifier)">
+  <rect x="132.921" y="489.40000000000003" width="1001.5329999999999" height="476.256" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="132.921" y="489.40000000000003" width="1001.5329999999999" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="144.921" y="503.40000000000003" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">৩. ঝুঁকি শ্রেণীবিন্যাস লেয়ার (Risk Band Classifier)</text>
+</g>
+<g class="subgraph" data-id="OutputReport" data-label="৪. রিপোর্ট ও ডিজিটাল সার্টিফিকেট লেয়ার (Output &amp; PDF Engine)">
+  <rect x="379.41425" y="1025.656" width="467.42099999999994" height="113.80000000000001" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="379.41425" y="1025.656" width="467.42099999999994" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="391.41425" y="1039.656" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">৪. রিপোর্ট ও ডিজিটাল সার্টিফিকেট লেয়ার (Output &amp; PDF Engine)</text>
+</g>
+<polyline class="edge" data-from="S1" data-to="Aggregator" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="348.477,137.8 348.477,197.8 501.0963333333333,197.8 501.0963333333333,257.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="S2" data-to="Aggregator" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="590.7094999999999,137.8 590.7094999999999,197.8 501.0963333333333,197.8 501.0963333333333,257.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="S3" data-to="Aggregator" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="145.147,137.8 145.147,197.8 501.0963333333333,197.8 501.0963333333333,257.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="S4" data-to="Aggregator" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="848.8735,137.8 848.8735,197.8 501.0963333333333,197.8 501.0963333333333,257.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="S5" data-to="Veto" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1095.1815000000001,137.8 1095.1815000000001,335.6 592.5619999999999,335.6 592.5619999999999,359.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Veto" data-to="Band" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="592.5619999999999,413.40000000000003 592.5619999999999,533.4000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Green" data-to="Report" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="276.2295,949.6560000000001 276.2295,1009.656 613.12475,1009.656 613.12475,1069.656" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Yellow" data-to="Report" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="592.5619999999999,949.6560000000001 592.5619999999999,1009.656 613.12475,1009.656 613.12475,1069.656" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Red" data-to="Report" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="950.02,949.6560000000001 950.02,1009.656 613.12475,1009.656 613.12475,1069.656" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Aggregator" data-to="Veto" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="501.0963333333333,311.6 501.0963333333333,335.6 592.5619999999999,335.6 592.5619999999999,359.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Band" data-to="Green" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="৯০% - ১০০%" points="526.798,730.6920000000002 526.798,808.456 276.2295,808.456 276.2295,912.7560000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Band" data-to="Yellow" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="৬০% - ৮৯%" points="592.5619999999999,796.4560000000001 592.5619999999999,912.7560000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Band" data-to="Red" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="&lt; ৬০%" points="658.326,730.692 658.326,808.456 950.02,808.456 950.02,912.7560000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="Band" data-to="Green" data-label="৯০% - ১০০%">
+  <rect x="241.72949999999997" y="839.456" width="68.14" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="275.79949999999997" y="854.606" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">৯০% - ১০০%</text>
+</g>
+<g class="edge-label" data-from="Band" data-to="Yellow" data-label="৬০% - ৮৯%">
+  <rect x="561.062" y="839.456" width="62.2" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="592.162" y="854.606" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">৬০% - ৮৯%</text>
+</g>
+<g class="edge-label" data-from="Band" data-to="Red" data-label="&lt; ৬০%">
+  <rect x="927.52" y="839.456" width="44.379999999999995" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="949.71" y="854.606" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">&lt; ৬০%</text>
+</g>
+<g class="node" data-id="S1" data-label="ফারায়েজ অংশ ইঞ্জিন
+(Weight: ২৫%)" data-shape="rectangle">
+  <rect x="262.294" y="84" width="172.36599999999999" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="348.477" y="110.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="348.477" dy="-3.9000000000000012">ফারায়েজ অংশ ইঞ্জিন</tspan><tspan x="348.477" dy="16.900000000000002">(Weight: ২৫%)</tspan></text>
+</g>
+<g class="node" data-id="S2" data-label="বায়া দলিলের ধারাবাহিকতা ইঞ্জিন
+(Weight: ৩৫%)" data-shape="rectangle">
+  <rect x="462.65999999999997" y="84" width="256.099" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="590.7094999999999" y="110.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="590.7094999999999" dy="-3.9000000000000012">বায়া দলিলের ধারাবাহিকতা ইঞ্জিন</tspan><tspan x="590.7094999999999" dy="16.900000000000002">(Weight: ৩৫%)</tspan></text>
+</g>
+<g class="node" data-id="S3" data-label="ডাবল-সেলিং ও লক চেকার
+(Weight: ২৫%)" data-shape="rectangle">
+  <rect x="56" y="84" width="178.29399999999998" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="145.147" y="110.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="145.147" dy="-3.9000000000000012">ডাবল-সেলিং ও লক চেকার</tspan><tspan x="145.147" dy="16.900000000000002">(Weight: ২৫%)</tspan></text>
+</g>
+<g class="node" data-id="S4" data-label="নামজারি ও এনআইডি ম্যাচিং
+(Weight: ১৫%)" data-shape="rectangle">
+  <rect x="746.759" y="84" width="204.229" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="848.8735" y="110.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="848.8735" dy="-3.9000000000000012">নামজারি ও এনআইডি ম্যাচিং</tspan><tspan x="848.8735" dy="16.900000000000002">(Weight: ১৫%)</tspan></text>
+</g>
+<g class="node" data-id="S5" data-label="আদালতের নিষেধাজ্ঞা / ১৪৪ ধারা
+(Critical Kill Switch)" data-shape="rectangle">
+  <rect x="978.988" y="84" width="232.38699999999997" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1095.1815000000001" y="110.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1095.1815000000001" dy="-3.9000000000000012">আদালতের নিষেধাজ্ঞা / ১৪৪ ধারা</tspan><tspan x="1095.1815000000001" dy="16.900000000000002">(Critical Kill Switch)</tspan></text>
+</g>
+<g class="node" data-id="Aggregator" data-label="Weighted Composite Aggregator
+(বেস স্কোর ক্যালকুলেশন: ০ - ১০০)" data-shape="rectangle">
+  <rect x="382.3093333333333" y="257.8" width="237.57399999999998" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="501.0963333333333" y="284.7" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="501.0963333333333" dy="-3.9000000000000012">Weighted Composite Aggregator</tspan><tspan x="501.0963333333333" dy="16.900000000000002">(বেস স্কোর ক্যালকুলেশন: ০ - ১০০)</tspan></text>
+</g>
+<g class="node" data-id="Veto" data-label="Veto Override Engine
+(যদি সক্রিয় মামলা বা চরম জালিয়াতি থাকে ➔ স্কোর সরাসরি ৩০% এর নিচে নামিয়ে দেয়)" data-shape="rectangle">
+  <rect x="318.165" y="359.6" width="548.7939999999999" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="592.5619999999999" y="386.5" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="592.5619999999999" dy="-3.9000000000000012">Veto Override Engine</tspan><tspan x="592.5619999999999" dy="16.900000000000002">(যদি সক্রিয় মামলা বা চরম জালিয়াতি থাকে ➔ স্কোর সরাসরি ৩০% এর নিচে নামিয়ে দেয়)</tspan></text>
+</g>
+<g class="node" data-id="Band" data-label="চূড়ান্ত স্কোর শ্রেণীবিন্যাস" data-shape="diamond">
+  <polygon points="592.5619999999999,533.4000000000001 724.0899999999999,664.9280000000001 592.5619999999999,796.4560000000001 461.0339999999999,664.9280000000001" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="592.5619999999999" y="664.9280000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">চূড়ান্ত স্কোর শ্রেণীবিন্যাস</text>
+</g>
+<g class="node" data-id="Green" data-label="🟢 Grade A: Safe to Buy / Bank Eligible" data-shape="rectangle">
+  <rect x="148.921" y="912.7560000000001" width="254.61699999999996" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="276.2295" y="931.2060000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">🟢 Grade A: Safe to Buy / Bank Eligible</text>
+</g>
+<g class="node" data-id="Yellow" data-label="🟡 Grade B: Moderate Risk / Proceed with Caution" data-shape="rectangle">
+  <rect x="431.53799999999995" y="912.7560000000001" width="322.04799999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="592.5619999999999" y="931.2060000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">🟡 Grade B: Moderate Risk / Proceed with Caution</text>
+</g>
+<g class="node" data-id="Red" data-label="🔴 Grade C: Critical Fraud / Transaction Prohibited" data-shape="rectangle">
+  <rect x="781.586" y="912.7560000000001" width="336.86799999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="950.02" y="931.2060000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">🔴 Grade C: Critical Fraud / Transaction Prohibited</text>
+</g>
+<g class="node" data-id="Report" data-label="Bank-Ready Due Diligence Report
+(ব্যাংক লোন ও ক্রেতার জন্য ভেরিফিকেশন সার্টিফিকেট সহ QR কোড)" data-shape="rectangle">
+  <rect x="395.41425" y="1069.656" width="435.42099999999994" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="613.12475" y="1096.556" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="613.12475" dy="-3.9000000000000012">Bank-Ready Due Diligence Report</tspan><tspan x="613.12475" dy="16.900000000000002">(ব্যাংক লোন ও ক্রেতার জন্য ভেরিফিকেশন সার্টিফিকেট সহ QR কোড)</tspan></text>
+</g>
 </svg>
