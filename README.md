@@ -1,22 +1,23 @@
 # TrueDeed (LA-72)
-### AI-Powered Land Record Digitization, Fraud Prevention & Instant Verification Platform
-**Event:** DIU LandTech Innovation Hackathon 2026  
+### Algorithmic Land Fraud & Double-Selling Prevention Platform
+**Event:** LandTech 2026 Innovation Hackathon  
 **Track:** Digital Land Records, Verification & Digitization  
+**Problem Chosen:** `P3: Catch Fraud & Double-Selling` (Rule Book Section 5)  
 **Team Code:** LA-72  
 **Domain:** GovTech / LegalTech / PropTech  
 
 ---
 
-## 📌 Executive Overview
-Over 70% of all civil litigations in Bangladesh stem from land disputes. Existing government portals (e-Porcha, e-Namjari) serve as passive archives of historical records rather than proactive fraud detection systems.
+## 📌 1. Project Overview & Problem Chosen (P3)
+Over **70% of all civil litigations in Bangladesh** stem from land disputes. Existing government portals (such as *e-Porcha* and *e-Namjari*) act as passive archives of historical records rather than proactive fraud detection systems.
 
-**TrueDeed** bridges the structural institutional void between the **Ministry of Law (Sub-Registry Offices)** and the **Ministry of Land (AC Land Offices)**. It provides an automated, sub-second verification layer that evaluates land documents against statutory inheritance quotas, chain-of-title lineage, and active transaction locks before fraudulent transfers occur.
+Under **Problem P3: Catch Fraud & Double-Selling**, **TrueDeed** resolves the foundational institutional void between the **Ministry of Law (Sub-Registry Offices)** and the **Ministry of Land (AC Land Offices)**. It provides an automated, sub-second verification layer that evaluates land documents against statutory inheritance quotas, chain-of-title lineage, and active transaction locks before fraudulent transfers occur.
 
 ---
 
-## 🏗️ System Architecture & Data Flow Diagrams
+## 🏗️ 2. System Architecture & Data Flow Blueprints
 
-All 10 architecture and data flow diagrams are available in the [`Architecture_and Data_flow/`](./Architecture_and%20Data_flow/) folder:
+All 10 architecture and data flow diagrams are available in the [`Architecture_and Data_flow/`](./Architecture_and%20Data_flow/) directory:
 
 | Module | Architecture Blueprint | End-to-End Data Flow |
 | :--- | :--- | :--- |
@@ -28,60 +29,54 @@ All 10 architecture and data flow diagrams are available in the [`Architecture_a
 
 ---
 
-## 🎯 The 5 Core Problems Solved by TrueDeed
+## 🎯 3. Core Verification Engines
 
-### 1. Inheritance Over-Selling (Farayez Violation)
-* **Problem:** Heirs inheriting fractional rights (e.g., 20 decimals out of 60 decimals) forge heir certificates and sell 30+ decimals without co-heirs' knowledge.
-* **TrueDeed Engine:** Implements Muslim Family Laws Ordinance 1961 algorithms ($1 \text{ Son} = 2 \text{ Daughters}$). If `Selling_Amount > Legal_Share`, triggers an instant **Critical Over-Selling Fraud Alert**.
-
-### 2. Broken Baya Lineage (Chain of Title)
-* **Problem:** Fraudsters produce counterfeit intermediate deeds with fake sub-registry book volumes.
-* **TrueDeed Engine:** Constructs a Directed Acyclic Graph (DAG) connecting CS &rarr; SA &rarr; RS &rarr; Current Deed. Enforces 3 mathematical invariants: Temporal Consistency, Party Continuity, and Area Conservation.
-
-### 3. Double-Selling Scam (45-Day Mutation Window)
-* **Problem:** Mutation (Namjari) takes 30-45 days after deed execution at the Sub-Registry. Fraudulent sellers exploit this delay to sell the same plot to multiple buyers.
-* **TrueDeed Engine:** Enforces an atomic 45-day temporal lock on the composite geographic key (`District_Upazila_Mouza_Khatian_Daag`). Secondary sales fire an immediate **Concurrent Transfer Alert**.
-
-### 4. Bangla Legal Document OCR
-* **Problem:** Physical deeds contain dense, archaic Bengali legal jargon spanning 10-15 pages.
-* **TrueDeed Engine:** Multimodal Vision-Language Model extracts structured entities: Mouza, JL No, CS/SA/RS Khatian, Haal/Sabek Daag, Chouhaddi (boundaries), and transferred area.
-
-### 5. TrueDeed Trust Score (0-100%)
-* **Problem:** Buyers and mortgage banks lack an objective metric to assess title risk.
-* **TrueDeed Engine:** Computes an aggregated score:
-  * **Baya Chain Integrity:** 35%
-  * **Farayez Math Compliance:** 25%
-  * **Plot Lock Status:** 25%
-  * **Identity Match:** 15%
-  * **Hard Veto:** Active Section 144 court injunction triggers an immediate fail-safe collapse to &lt; 30%.
+1. **Multimodal Bangla Legal OCR:** Extracts structured legal entities (Mouza, JL, Khatian, Daag, Chouhaddi, Area) directly from physical deed scans without manual data entry.
+2. **Algorithmic Farayez (Inheritance Math) Engine:** Enforces statutory ratios under the *Muslim Family Laws Ordinance 1961* ($1 \text{ Son} = 2 \text{ Daughters}$). Flags immediate alerts if deeded selling area exceeds the seller's maximum legal entitlement.
+3. **Directed Acyclic Graph (DAG) for Baya Lineage:** Mathematically verifies historical chain-of-title from original state surveys (CS/SA/RS) enforcing temporal consistency, party continuity, and area conservation.
+4. **45-Day Temporal Active Plot Lock:** Places an atomic mutex lock on the composite geographic key (`District_Upazila_Mouza_Khatian_Daag`) upon registration, completely eliminating double-selling scams during the mutation latency window.
+5. **TrueDeed Trust Score (0–100%):** Standardized, defensible risk score for citizens, expatriates, and mortgage loan underwriters.
 
 ---
 
-## 📁 Repository Structure
+## 🔒 4. Data Sources & Privacy Compliance (Rule Book Section 10)
+In strict compliance with **Section 10 (Do's and Don'ts)** and **Section 14 (FAQ)** of the LandTech 2026 Rule Book:
+* **No Real Personal Data Used:** This project **does not** use real people's names, NID numbers, phone numbers, or real land records.
+* **Synthetic Dummy Data Only:** All demonstration datasets, Khatian entries, and sample deed documents are **100% synthetically generated dummy data** modeled after standard Sub-Registry deed templates (সাফ কবলা) and public survey structures (CS, SA, RS, e-Porcha schemas).
+* **Zero Government Scraping:** No data was scraped or bulk-downloaded from government websites, nor were any live government servers tested or accessed.
 
-```
-TrueeDeed/
-├── Architecture_and Data_flow/       # 10 Complete Architecture & Dataflow SVGs
-│   ├── 1.Inheritance_Fraud_Prevention_Architecture.svg
-│   ├── 1.Inheritance_Fraud_Prevention_Dataflow.svg
-│   ├── 2.Chain_of_Ownership_Verification_Architecture.svg
-│   ├── 2.Chain_of_Ownership_Verification_Dataflow.svg
-│   ├── 3.Double_Selling_Prevention_Architecture.svg
-│   ├── 3.Double_Selling_Prevention_Dataflow.svg
-│   ├── 4.Bangla_Legal_OCR_Architecture.svg
-│   ├── 4.Bangla_Legal_OCR_Dataflow.svg
-│   ├── 5.TrueDeed_Trust_Score_Architecture.svg
-│   └── 5.TrueDeed_Trust_Score_Dataflow.svg
-├── Project analysis.docx              # Initial Project Analysis & Scope
-├── TrueDeed problem and solve.md     # Detailed Problem & Solution Breakdown
-├── TrueDeed_Official_Submission_Proposal.md # Full Competition Proposal Draft
-└── README.md                         # Main Project Documentation
+---
+
+## 🤖 5. AI Tools Disclosure (Rule Book Section 8 & 10)
+In full transparency as required by the LandTech 2026 Rule Book:
+* **Google Gemini 2.0 Flash Vision API:** Used for Multimodal Vision-Language entity extraction from unstructured legal Bengali deed images.
+* **OpenCV:** Open-source computer vision library for image preprocessing (adaptive binarization, deskewing, noise filtering).
+* **Antigravity & ChatGPT:** Utilized as AI pair-programming and documentation assistants for algorithmic refinement, Farayez ratio logic formulation, and system architecture design.
+
+---
+
+## 🚀 6. How to Run the Project Locally
+
+### Prerequisites
+* Python 3.10+
+* Git
+
+### Installation & Execution
+```bash
+# 1. Clone the repository
+git clone https://github.com/Ishtiak-Ahmed886/TrueDeed.git
+cd TrueDeed
+
+# 2. View Architecture & Concept Note
+# Open TrueDeed_Concept_Note_4Pages.html in any modern browser to view or print the official 4-page submission concept note.
 ```
 
 ---
 
-## 👥 Team & Submission Information
+## 👥 7. Team & Mentorship (Rule Book Section 6)
 * **Team Name:** TrueDeed
 * **Team Code:** LA-72
-* **Hackathon:** DIU LandTech Innovation Hackathon 2026
-* **Track:** Digital Land Records, Verification & Digitization
+* **Student 1 (Team Leader):** Ishtiak Ahmed (DIU Student)
+* **Student 2 (Core Member):** [Teammate Name] (DIU Student)
+* **Faculty Mentor:** [Faculty Mentor Name] (Department of CSE, DIU)
+* **Industry Mentor:** [Industry Mentor Name] (Industry Expert)
