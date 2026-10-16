@@ -1,80 +1,77 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="100%" height="100%" style="background:#0f172a; font-family:'Inter',system-ui,sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="960" height="760" style="background:#0f172a; font-family:'Segoe UI',Arial,sans-serif;">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
     </marker>
-    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
-    </filter>
   </defs>
 
   <!-- Title Banner -->
   <rect x="20" y="20" width="920" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
-  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="700">2.2 Chain of Ownership Verification — End-to-End Data Flow</text>
-  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="500">Lineage Audit Sequence: Tracing Ownership from State Surveys to Current Seller</text>
-  <line x1="310" y1="185" x2="350" y2="185" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="285.0" y="167.0" width="90" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="330.0" y="180.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Transfer 1</text>
-  <line x1="610" y1="185" x2="650" y2="185" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="585.0" y="167.0" width="90" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="630.0" y="180.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Transfer 2</text>
-  <line x1="480" y1="260" x2="480" y2="290" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="421.5" y="257.0" width="117" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="480.0" y="270.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Audit Lineage</text>
-  <line x1="480" y1="480" x2="480" y2="510" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="403.5" y="477.0" width="153" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="480.0" y="490.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Dispatch Findings</text>
+  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="bold">2.2 Chain of Ownership Verification - End-to-End Data Flow</text>
+  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12">Lineage Audit Sequence: Tracing Ownership from State Surveys to Current Seller</text>
+  <line x1="310" y1="185" x2="350" y2="185" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="285.0" y="167.0" width="90" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="330.0" y="181.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Transfer 1</text>
+  <line x1="610" y1="185" x2="650" y2="185" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="585.0" y="167.0" width="90" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="630.0" y="181.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Transfer 2</text>
+  <line x1="480" y1="260" x2="480" y2="290" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="421.5" y="257.0" width="117" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="480.0" y="271.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Audit Lineage</text>
+  <line x1="480" y1="480" x2="480" y2="510" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="403.5" y="477.0" width="153" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="480.0" y="491.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Dispatch Findings</text>
   <!-- Node: NODE 1: CS SURVEY (1962) -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="50" y="110" width="260" height="150" rx="8" fill="#14532d" stroke="#16a34a" stroke-width="2" />
-    <path d="M 50 138 L 310 138" stroke="#16a34a" stroke-width="1.5" />
-    <text x="180.0" y="129" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="700">NODE 1: CS SURVEY (1962)</text>
-    <text x="64" y="158" fill="#e2e8f0" font-size="11.5" font-weight="500">• Baseline State Record</text>
-    <text x="64" y="178" fill="#e2e8f0" font-size="11.5" font-weight="500">• Khatian: CS-502</text>
-    <text x="64" y="198" fill="#e2e8f0" font-size="11.5" font-weight="500">• Original Owner: Karim Box</text>
-    <text x="64" y="218" fill="#e2e8f0" font-size="11.5" font-weight="500">• Recorded Land: 40 Decimals</text>
-    <text x="64" y="238" fill="#e2e8f0" font-size="11.5" font-weight="500">• Status: 🟢 Baseline Verified</text>
+    <path d="M 50 140 L 310 140" stroke="#16a34a" stroke-width="1.5" />
+    <text x="180.0" y="130" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="bold">NODE 1: CS SURVEY (1962)</text>
+    <text x="64" y="160" fill="#e2e8f0" font-size="11.5">• Baseline State Record</text>
+    <text x="64" y="180" fill="#e2e8f0" font-size="11.5">• Khatian: CS-502</text>
+    <text x="64" y="200" fill="#e2e8f0" font-size="11.5">• Original Owner: Karim Box</text>
+    <text x="64" y="220" fill="#e2e8f0" font-size="11.5">• Recorded Land: 40 Decimals</text>
+    <text x="64" y="240" fill="#e2e8f0" font-size="11.5">• Status: Baseline Verified</text>
   </g>
   <!-- Node: NODE 2: BAYA DEED (1988) -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="350" y="110" width="260" height="150" rx="8" fill="#14532d" stroke="#16a34a" stroke-width="2" />
-    <path d="M 350 138 L 610 138" stroke="#16a34a" stroke-width="1.5" />
-    <text x="480.0" y="129" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="700">NODE 2: BAYA DEED (1988)</text>
-    <text x="364" y="158" fill="#e2e8f0" font-size="11.5" font-weight="500">• Transfer Deed #1120</text>
-    <text x="364" y="178" fill="#e2e8f0" font-size="11.5" font-weight="500">• Seller: Karim Box (Matches CS!)</text>
-    <text x="364" y="198" fill="#e2e8f0" font-size="11.5" font-weight="500">• Buyer: Abdul Haque</text>
-    <text x="364" y="218" fill="#e2e8f0" font-size="11.5" font-weight="500">• Transferred: 40 Decimals</text>
-    <text x="364" y="238" fill="#e2e8f0" font-size="11.5" font-weight="500">• Status: 🟢 Link Validated</text>
+    <path d="M 350 140 L 610 140" stroke="#16a34a" stroke-width="1.5" />
+    <text x="480.0" y="130" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="bold">NODE 2: BAYA DEED (1988)</text>
+    <text x="364" y="160" fill="#e2e8f0" font-size="11.5">• Transfer Deed #1120</text>
+    <text x="364" y="180" fill="#e2e8f0" font-size="11.5">• Seller: Karim Box (Matches CS!)</text>
+    <text x="364" y="200" fill="#e2e8f0" font-size="11.5">• Buyer: Abdul Haque</text>
+    <text x="364" y="220" fill="#e2e8f0" font-size="11.5">• Transferred: 40 Decimals</text>
+    <text x="364" y="240" fill="#e2e8f0" font-size="11.5">• Status: Link Validated</text>
   </g>
   <!-- Node: NODE 3: CURRENT DEED (2024) -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="650" y="110" width="260" height="150" rx="8" fill="#7f1d1d" stroke="#dc2626" stroke-width="2" />
-    <path d="M 650 138 L 910 138" stroke="#dc2626" stroke-width="1.5" />
-    <text x="780.0" y="129" text-anchor="middle" fill="#fee2e2" font-size="13" font-weight="700">NODE 3: CURRENT DEED (2024)</text>
-    <text x="664" y="158" fill="#e2e8f0" font-size="11.5" font-weight="500">• Proposed Deed #9844</text>
-    <text x="664" y="178" fill="#e2e8f0" font-size="11.5" font-weight="500">• Seller: Mofiz Uddin (?)</text>
-    <text x="664" y="198" fill="#e2e8f0" font-size="11.5" font-weight="500">• Buyer: Current Buyer</text>
-    <text x="664" y="218" fill="#e2e8f0" font-size="11.5" font-weight="500">• Transferred: 40 Decimals</text>
-    <text x="664" y="238" fill="#e2e8f0" font-size="11.5" font-weight="500">• Status: 🔴 Anomaly Detected!</text>
+    <path d="M 650 140 L 910 140" stroke="#dc2626" stroke-width="1.5" />
+    <text x="780.0" y="130" text-anchor="middle" fill="#fee2e2" font-size="13" font-weight="bold">NODE 3: CURRENT DEED (2024)</text>
+    <text x="664" y="160" fill="#e2e8f0" font-size="11.5">• Proposed Deed #9844</text>
+    <text x="664" y="180" fill="#e2e8f0" font-size="11.5">• Seller: Mofiz Uddin (Unknown)</text>
+    <text x="664" y="200" fill="#e2e8f0" font-size="11.5">• Buyer: Current Buyer</text>
+    <text x="664" y="220" fill="#e2e8f0" font-size="11.5">• Transferred: 40 Decimals</text>
+    <text x="664" y="240" fill="#e2e8f0" font-size="11.5">• Status: Anomaly Detected!</text>
   </g>
   <!-- Node: THE DAG VERIFICATION PROCESS (STEP-BY-STEP CHECK) -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="50" y="290" width="860" height="190" rx="8" fill="#581c87" stroke="#9333ea" stroke-width="2" />
-    <path d="M 50 318 L 910 318" stroke="#9333ea" stroke-width="1.5" />
-    <text x="480.0" y="309" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="700">THE DAG VERIFICATION PROCESS (STEP-BY-STEP CHECK)</text>
-    <text x="64" y="338" fill="#e2e8f0" font-size="11.5" font-weight="500">• Step 1: Compare Node 1 (CS) to Node 2 (Baya 1): Seller 'Karim Box' matches CS Owner. Valid transition.</text>
-    <text x="64" y="358" fill="#e2e8f0" font-size="11.5" font-weight="500">• Step 2: Compare Node 2 (Baya 1) to Node 3 (Current): Node 2 Buyer was 'Abdul Haque', but Node 3 Seller is 'Mofiz Uddin'.</text>
-    <text x="64" y="378" fill="#e2e8f0" font-size="11.5" font-weight="500">• Step 3: Check Inheritance or Mutation link for 'Mofiz Uddin': NO RECORD FOUND connecting Abdul Haque to Mofiz.</text>
-    <text x="64" y="398" fill="#e2e8f0" font-size="11.5" font-weight="500">• Decision: BROKEN LINEAGE DETECTED! Mofiz Uddin holds zero legal title to sell this property.</text>
+    <path d="M 50 320 L 910 320" stroke="#9333ea" stroke-width="1.5" />
+    <text x="480.0" y="310" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="bold">THE DAG VERIFICATION PROCESS (STEP-BY-STEP CHECK)</text>
+    <text x="64" y="340" fill="#e2e8f0" font-size="11.5">• Step 1: Compare Node 1 (CS) to Node 2 (Baya 1): Seller &#x27;Karim Box&#x27; matches CS Owner. Valid transition.</text>
+    <text x="64" y="360" fill="#e2e8f0" font-size="11.5">• Step 2: Compare Node 2 (Baya 1) to Node 3 (Current): Node 2 Buyer was &#x27;Abdul Haque&#x27;, but Node 3 Seller is &#x27;Mofiz Uddin&#x27;.</text>
+    <text x="64" y="380" fill="#e2e8f0" font-size="11.5">• Step 3: Check Inheritance or Mutation link for &#x27;Mofiz Uddin&#x27;: NO RECORD FOUND connecting Abdul Haque to Mofiz.</text>
+    <text x="64" y="400" fill="#e2e8f0" font-size="11.5">• Decision: BROKEN LINEAGE DETECTED! Mofiz Uddin holds zero legal title to sell this property.</text>
   </g>
-  <!-- Node: OUTPUT & SYSTEM DEFENSE MECHANISM -->
-  <g filter="url(#shadow)">
+  <!-- Node: OUTPUT AND SYSTEM DEFENSE MECHANISM -->
+  <g>
     <rect x="50" y="510" width="860" height="210" rx="8" fill="#1e293b" stroke="#0284c7" stroke-width="2" />
-    <path d="M 50 538 L 910 538" stroke="#0284c7" stroke-width="1.5" />
-    <text x="480.0" y="529" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="700">OUTPUT & SYSTEM DEFENSE MECHANISM</text>
-    <text x="64" y="558" fill="#e2e8f0" font-size="11.5" font-weight="500">• Visual Warning on Dashboard: Highlights broken red edge between Node 2 and Node 3 on the interactive timeline.</text>
-    <text x="64" y="578" fill="#e2e8f0" font-size="11.5" font-weight="500">• Actionable Alert: 'CRITICAL TITLE DEFECT: Mofiz Uddin is not the legal successor or buyer from Abdul Haque!'</text>
-    <text x="64" y="598" fill="#e2e8f0" font-size="11.5" font-weight="500">• Financial Protection: Buyer avoids purchasing forged title; avoids 20+ year civil litigation in district courts.</text>
-    <text x="64" y="618" fill="#e2e8f0" font-size="11.5" font-weight="500">• Digital Evidence Report: Generates a 1-page forensic chain breakdown admissible in legal consultations.</text>
+    <path d="M 50 540 L 910 540" stroke="#0284c7" stroke-width="1.5" />
+    <text x="480.0" y="530" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="bold">OUTPUT AND SYSTEM DEFENSE MECHANISM</text>
+    <text x="64" y="560" fill="#e2e8f0" font-size="11.5">• Visual Warning on Dashboard: Highlights broken red edge between Node 2 and Node 3 on the interactive timeline.</text>
+    <text x="64" y="580" fill="#e2e8f0" font-size="11.5">• Actionable Alert: &#x27;CRITICAL TITLE DEFECT: Mofiz Uddin is not the legal successor or buyer from Abdul Haque!&#x27;</text>
+    <text x="64" y="600" fill="#e2e8f0" font-size="11.5">• Financial Protection: Buyer avoids purchasing forged title; avoids 20+ year civil litigation in district courts.</text>
+    <text x="64" y="620" fill="#e2e8f0" font-size="11.5">• Digital Evidence Report: Generates a 1-page forensic chain breakdown admissible in legal consultations.</text>
   </g>
 </svg>

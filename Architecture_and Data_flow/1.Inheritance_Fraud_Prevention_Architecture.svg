@@ -1,75 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="100%" height="100%" style="background:#0f172a; font-family:'Inter',system-ui,sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="960" height="760" style="background:#0f172a; font-family:'Segoe UI',Arial,sans-serif;">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
     </marker>
-    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
-    </filter>
   </defs>
 
   <!-- Title Banner -->
   <rect x="20" y="20" width="920" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
-  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="700">1.1 Farayez Inheritance Fraud Prevention — Architecture Blueprint</text>
-  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="500">Module 1: Statutory Inheritance Quota Calculation & Over-Selling Intercept Engine</text>
-  <line x1="480" y1="230" x2="480" y2="260" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="403.5" y="227.0" width="153" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="480.0" y="240.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">POST JSON Payload</text>
-  <line x1="480" y1="380" x2="480" y2="410" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="381.0" y="377.0" width="198" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="480.0" y="390.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Forward to Math Engine</text>
-  <line x1="260" y1="540" x2="260" y2="570" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="156.5" y="537.0" width="207" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="260.0" y="550.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Selling > Share (Fraud)</text>
-  <line x1="700" y1="540" x2="700" y2="570" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="596.5" y="537.0" width="207" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="700.0" y="550.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Selling <= Share (Safe)</text>
-  <!-- Node: 1. USER INTERFACE & DEED INPUT LAYER -->
-  <g filter="url(#shadow)">
+  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="bold">1.1 Farayez Inheritance Fraud Prevention - Architecture Blueprint</text>
+  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12">Module 1: Statutory Inheritance Quota Calculation and Over-Selling Intercept Engine</text>
+  <line x1="480" y1="230" x2="480" y2="260" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="403.5" y="227.0" width="153" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="480.0" y="241.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">POST JSON Payload</text>
+  <line x1="480" y1="380" x2="480" y2="410" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="381.0" y="377.0" width="198" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="480.0" y="391.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Forward to Math Engine</text>
+  <line x1="260" y1="540" x2="260" y2="570" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="156.5" y="537.0" width="207" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="260.0" y="551.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Selling &gt; Share (Fraud)</text>
+  <line x1="700" y1="540" x2="700" y2="570" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="596.5" y="537.0" width="207" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="700.0" y="551.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Selling &lt;= Share (Safe)</text>
+  <!-- Node: 1. USER INTERFACE AND DEED INPUT LAYER -->
+  <g>
     <rect x="60" y="120" width="840" height="110" rx="8" fill="#134e4a" stroke="#0d9488" stroke-width="2" />
-    <path d="M 60 148 L 900 148" stroke="#0d9488" stroke-width="1.5" />
-    <text x="480.0" y="139" text-anchor="middle" fill="#ccfbf1" font-size="13" font-weight="700">1. USER INTERFACE & DEED INPUT LAYER</text>
-    <text x="74" y="168" fill="#e2e8f0" font-size="11.5" font-weight="500">• Web Dropzone: Physical Deed Scan / Porcha Image / PDF</text>
-    <text x="74" y="188" fill="#e2e8f0" font-size="11.5" font-weight="500">• Input Form: Total Baseline Land Area (Decimals), Heir Breakdown (Sons, Daughters, Spouses)</text>
-    <text x="74" y="208" fill="#e2e8f0" font-size="11.5" font-weight="500">• Transaction Claim: Seller Identity, Deeded Selling Acreage</text>
+    <path d="M 60 150 L 900 150" stroke="#0d9488" stroke-width="1.5" />
+    <text x="480.0" y="140" text-anchor="middle" fill="#ccfbf1" font-size="13" font-weight="bold">1. USER INTERFACE AND DEED INPUT LAYER</text>
+    <text x="74" y="170" fill="#e2e8f0" font-size="11.5">• Web Dropzone: Physical Deed Scan / Porcha Image / PDF</text>
+    <text x="74" y="190" fill="#e2e8f0" font-size="11.5">• Input Form: Total Baseline Land Area (Decimals), Heir Breakdown (Sons, Daughters, Spouses)</text>
+    <text x="74" y="210" fill="#e2e8f0" font-size="11.5">• Transaction Claim: Seller Identity, Deeded Selling Acreage</text>
   </g>
-  <!-- Node: 2. FASTAPI GATEWAY & NORMALIZATION LAYER -->
-  <g filter="url(#shadow)">
+  <!-- Node: 2. FASTAPI GATEWAY AND NORMALIZATION LAYER -->
+  <g>
     <rect x="60" y="260" width="840" height="120" rx="8" fill="#1e293b" stroke="#0284c7" stroke-width="2" />
-    <path d="M 60 288 L 900 288" stroke="#0284c7" stroke-width="1.5" />
-    <text x="480.0" y="279" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="700">2. FASTAPI GATEWAY & NORMALIZATION LAYER</text>
-    <text x="74" y="308" fill="#e2e8f0" font-size="11.5" font-weight="500">• REST API Endpoint: POST /api/v1/verify/inheritance</text>
-    <text x="74" y="328" fill="#e2e8f0" font-size="11.5" font-weight="500">• Data Sanitization: Convert Bengali Numerals ('২০ শতক') to Standard Floats (20.0)</text>
-    <text x="74" y="348" fill="#e2e8f0" font-size="11.5" font-weight="500">• Validation Contract: Enforce Schema Types and Missing Parameter Guardrails</text>
+    <path d="M 60 290 L 900 290" stroke="#0284c7" stroke-width="1.5" />
+    <text x="480.0" y="280" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="bold">2. FASTAPI GATEWAY AND NORMALIZATION LAYER</text>
+    <text x="74" y="310" fill="#e2e8f0" font-size="11.5">• REST API Endpoint: POST /api/v1/verify/inheritance</text>
+    <text x="74" y="330" fill="#e2e8f0" font-size="11.5">• Data Sanitization: Convert Bengali Numerals to Standard Floats (20.0)</text>
+    <text x="74" y="350" fill="#e2e8f0" font-size="11.5">• Validation Contract: Enforce Schema Types and Missing Parameter Guardrails</text>
   </g>
-  <!-- Node: 3. ALGORITHMIC FARAYEZ MATH CORE (CALCULATION & COMPARISON) -->
-  <g filter="url(#shadow)">
+  <!-- Node: 3. ALGORITHMIC FARAYEZ MATH CORE (CALCULATION AND COMPARISON) -->
+  <g>
     <rect x="60" y="410" width="840" height="130" rx="8" fill="#581c87" stroke="#9333ea" stroke-width="2" />
-    <path d="M 60 438 L 900 438" stroke="#9333ea" stroke-width="1.5" />
-    <text x="480.0" y="429" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="700">3. ALGORITHMIC FARAYEZ MATH CORE (CALCULATION & COMPARISON)</text>
-    <text x="74" y="458" fill="#e2e8f0" font-size="11.5" font-weight="500">• Statutory Logic: Muslim Family Laws Ordinance 1961 (1 Son = 2 Daughters)</text>
-    <text x="74" y="478" fill="#e2e8f0" font-size="11.5" font-weight="500">• Quota Formula: Share_i = (k_i / Total_Points) * Total_Estate</text>
-    <text x="74" y="498" fill="#e2e8f0" font-size="11.5" font-weight="500">• Decision Boundary: If Deeded_Selling_Area > Legal_Share -> Trigger FRAUD_ALERT</text>
-    <text x="74" y="518" fill="#e2e8f0" font-size="11.5" font-weight="500">• Exact Surplus Metric: Surplus_Area = Deeded_Selling_Area - Legal_Share</text>
+    <path d="M 60 440 L 900 440" stroke="#9333ea" stroke-width="1.5" />
+    <text x="480.0" y="430" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="bold">3. ALGORITHMIC FARAYEZ MATH CORE (CALCULATION AND COMPARISON)</text>
+    <text x="74" y="460" fill="#e2e8f0" font-size="11.5">• Statutory Logic: Muslim Family Laws Ordinance 1961 (1 Son = 2 Daughters)</text>
+    <text x="74" y="480" fill="#e2e8f0" font-size="11.5">• Quota Formula: Share_i = (k_i / Total_Points) * Total_Estate</text>
+    <text x="74" y="500" fill="#e2e8f0" font-size="11.5">• Decision Boundary: If Deeded_Selling_Area &gt; Legal_Share -&gt; Trigger FRAUD_ALERT</text>
+    <text x="74" y="520" fill="#e2e8f0" font-size="11.5">• Exact Surplus Metric: Surplus_Area = Deeded_Selling_Area - Legal_Share</text>
   </g>
   <!-- Node: 4A. FRAUD INTERCEPT ALERT -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="60" y="570" width="400" height="140" rx="8" fill="#7f1d1d" stroke="#dc2626" stroke-width="2" />
-    <path d="M 60 598 L 460 598" stroke="#dc2626" stroke-width="1.5" />
-    <text x="260.0" y="589" text-anchor="middle" fill="#fee2e2" font-size="13" font-weight="700">4A. FRAUD INTERCEPT ALERT</text>
-    <text x="74" y="618" fill="#e2e8f0" font-size="11.5" font-weight="500">• Status: 🔴 CRITICAL_OVER_SELLING</text>
-    <text x="74" y="638" fill="#e2e8f0" font-size="11.5" font-weight="500">• Visual: Red Warning Badge & Alert Card</text>
-    <text x="74" y="658" fill="#e2e8f0" font-size="11.5" font-weight="500">• Action: Transaction Blocked & Logged</text>
-    <text x="74" y="678" fill="#e2e8f0" font-size="11.5" font-weight="500">• Message: Seller exceeds legal share!</text>
+    <path d="M 60 600 L 460 600" stroke="#dc2626" stroke-width="1.5" />
+    <text x="260.0" y="590" text-anchor="middle" fill="#fee2e2" font-size="13" font-weight="bold">4A. FRAUD INTERCEPT ALERT</text>
+    <text x="74" y="620" fill="#e2e8f0" font-size="11.5">• Status: CRITICAL OVER-SELLING ALERT</text>
+    <text x="74" y="640" fill="#e2e8f0" font-size="11.5">• Visual: Red Warning Badge and Alert Card</text>
+    <text x="74" y="660" fill="#e2e8f0" font-size="11.5">• Action: Transaction Blocked and Logged</text>
+    <text x="74" y="680" fill="#e2e8f0" font-size="11.5">• Message: Seller exceeds legal inherited share!</text>
   </g>
-  <!-- Node: 4B. VERIFIED & COMPLIANT BADGE -->
-  <g filter="url(#shadow)">
+  <!-- Node: 4B. VERIFIED AND COMPLIANT BADGE -->
+  <g>
     <rect x="500" y="570" width="400" height="140" rx="8" fill="#14532d" stroke="#16a34a" stroke-width="2" />
-    <path d="M 500 598 L 900 598" stroke="#16a34a" stroke-width="1.5" />
-    <text x="700.0" y="589" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="700">4B. VERIFIED & COMPLIANT BADGE</text>
-    <text x="514" y="618" fill="#e2e8f0" font-size="11.5" font-weight="500">• Status: 🟢 SHARE_VERIFIED</text>
-    <text x="514" y="638" fill="#e2e8f0" font-size="11.5" font-weight="500">• Visual: Green Certified Badge</text>
-    <text x="514" y="658" fill="#e2e8f0" font-size="11.5" font-weight="500">• Action: +25 Points to TrueDeed Trust Score</text>
-    <text x="514" y="678" fill="#e2e8f0" font-size="11.5" font-weight="500">• Message: Deeded share within legal quota</text>
+    <path d="M 500 600 L 900 600" stroke="#16a34a" stroke-width="1.5" />
+    <text x="700.0" y="590" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="bold">4B. VERIFIED AND COMPLIANT BADGE</text>
+    <text x="514" y="620" fill="#e2e8f0" font-size="11.5">• Status: SHARE VERIFIED SAFE</text>
+    <text x="514" y="640" fill="#e2e8f0" font-size="11.5">• Visual: Green Certified Badge</text>
+    <text x="514" y="660" fill="#e2e8f0" font-size="11.5">• Action: +25 Points to TrueDeed Trust Score</text>
+    <text x="514" y="680" fill="#e2e8f0" font-size="11.5">• Message: Deeded share within legal statutory quota</text>
   </g>
 </svg>

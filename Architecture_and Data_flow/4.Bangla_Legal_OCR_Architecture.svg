@@ -1,60 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="100%" height="100%" style="background:#0f172a; font-family:'Inter',system-ui,sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="960" height="760" style="background:#0f172a; font-family:'Segoe UI',Arial,sans-serif;">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
     </marker>
-    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
-    </filter>
   </defs>
 
   <!-- Title Banner -->
   <rect x="20" y="20" width="920" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
-  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="700">4.1 Bangla Legal OCR & Entity Extractor — Multimodal Architecture</text>
-  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="500">Module 4: Computer Vision & Multimodal Perception Pipeline for Archaic Deed Scans</text>
-  <line x1="480" y1="230" x2="480" y2="250" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="435.0" y="222.0" width="90" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="480.0" y="235.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Preprocess</text>
-  <line x1="480" y1="380" x2="480" y2="400" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="408.0" y="372.0" width="144" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="480.0" y="385.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Extract Entities</text>
-  <line x1="480" y1="530" x2="480" y2="550" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="421.5" y="522.0" width="117" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="480.0" y="535.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Format Output</text>
-  <!-- Node: 1. IMAGE INGESTION & ADAPTIVE PREPROCESSING -->
-  <g filter="url(#shadow)">
+  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="bold">4.1 Bangla Legal OCR and Entity Extractor - Multimodal Architecture</text>
+  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12">Module 4: Computer Vision and Multimodal Perception Pipeline for Archaic Deed Scans</text>
+  <line x1="480" y1="230" x2="480" y2="250" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="435.0" y="222.0" width="90" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="480.0" y="236.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Preprocess</text>
+  <line x1="480" y1="380" x2="480" y2="400" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="408.0" y="372.0" width="144" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="480.0" y="386.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Extract Entities</text>
+  <line x1="480" y1="530" x2="480" y2="550" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="421.5" y="522.0" width="117" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="480.0" y="536.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Format Output</text>
+  <!-- Node: 1. IMAGE INGESTION AND ADAPTIVE PREPROCESSING -->
+  <g>
     <rect x="60" y="110" width="840" height="120" rx="8" fill="#134e4a" stroke="#0d9488" stroke-width="2" />
-    <path d="M 60 138 L 900 138" stroke="#0d9488" stroke-width="1.5" />
-    <text x="480.0" y="129" text-anchor="middle" fill="#ccfbf1" font-size="13" font-weight="700">1. IMAGE INGESTION & ADAPTIVE PREPROCESSING</text>
-    <text x="74" y="158" fill="#e2e8f0" font-size="11.5" font-weight="500">• Input Formats: Mobile Camera JPG, Scanner PNG, Multi-Page Legal Deed PDF</text>
-    <text x="74" y="178" fill="#e2e8f0" font-size="11.5" font-weight="500">• OpenCV Pipeline: Adaptive Binarization (Otsu), Background Despeckling, Deskewing</text>
-    <text x="74" y="198" fill="#e2e8f0" font-size="11.5" font-weight="500">• Contrast Normalization: Neutralizes yellowed stamps, physical folds, and watermarks</text>
+    <path d="M 60 140 L 900 140" stroke="#0d9488" stroke-width="1.5" />
+    <text x="480.0" y="130" text-anchor="middle" fill="#ccfbf1" font-size="13" font-weight="bold">1. IMAGE INGESTION AND ADAPTIVE PREPROCESSING</text>
+    <text x="74" y="160" fill="#e2e8f0" font-size="11.5">• Input Formats: Mobile Camera JPG, Scanner PNG, Multi-Page Legal Deed PDF</text>
+    <text x="74" y="180" fill="#e2e8f0" font-size="11.5">• OpenCV Pipeline: Adaptive Binarization (Otsu), Background Despeckling, Deskewing</text>
+    <text x="74" y="200" fill="#e2e8f0" font-size="11.5">• Contrast Normalization: Neutralizes yellowed stamps, physical folds, and watermarks</text>
   </g>
   <!-- Node: 2. MULTIMODAL VISION-LANGUAGE MODEL (VLM CORE) -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="60" y="250" width="840" height="130" rx="8" fill="#1e293b" stroke="#0284c7" stroke-width="2" />
-    <path d="M 60 278 L 900 278" stroke="#0284c7" stroke-width="1.5" />
-    <text x="480.0" y="269" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="700">2. MULTIMODAL VISION-LANGUAGE MODEL (VLM CORE)</text>
-    <text x="74" y="298" fill="#e2e8f0" font-size="11.5" font-weight="500">• Engine: Google Gemini 2.0 Flash Vision API (Multimodal Transformer)</text>
-    <text x="74" y="318" fill="#e2e8f0" font-size="11.5" font-weight="500">• Legal Prompting: Specialised system prompt for Bangladeshi Sub-Registry deed terminology</text>
-    <text x="74" y="338" fill="#e2e8f0" font-size="11.5" font-weight="500">• Bilingual Tokenizer: Accurately parses archaic legal Bengali vocabulary ('অত্র সাফ কবলা', 'চৌহদ্দি', 'তফসিল')</text>
+    <path d="M 60 280 L 900 280" stroke="#0284c7" stroke-width="1.5" />
+    <text x="480.0" y="270" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="bold">2. MULTIMODAL VISION-LANGUAGE MODEL (VLM CORE)</text>
+    <text x="74" y="300" fill="#e2e8f0" font-size="11.5">• Engine: Google Gemini 2.0 Flash Vision API (Multimodal Transformer)</text>
+    <text x="74" y="320" fill="#e2e8f0" font-size="11.5">• Legal Prompting: Specialised system prompt for Bangladeshi Sub-Registry deed terminology</text>
+    <text x="74" y="340" fill="#e2e8f0" font-size="11.5">• Bilingual Tokenizer: Accurately parses archaic legal Bengali vocabulary</text>
   </g>
-  <!-- Node: 3. STRUCTURAL ENTITY EXTRACTION & NORMALIZER -->
-  <g filter="url(#shadow)">
+  <!-- Node: 3. STRUCTURAL ENTITY EXTRACTION AND NORMALIZER -->
+  <g>
     <rect x="60" y="400" width="840" height="130" rx="8" fill="#581c87" stroke="#9333ea" stroke-width="2" />
-    <path d="M 60 428 L 900 428" stroke="#9333ea" stroke-width="1.5" />
-    <text x="480.0" y="419" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="700">3. STRUCTURAL ENTITY EXTRACTION & NORMALIZER</text>
-    <text x="74" y="448" fill="#e2e8f0" font-size="11.5" font-weight="500">• Key Extractor: District, Upazila, Mouza, JL Number, Khatian Classification (CS/SA/RS), Daag Numbers</text>
-    <text x="74" y="468" fill="#e2e8f0" font-size="11.5" font-weight="500">• Boundary Parser: Maps directional 4-boundaries (North, South, East, West properties)</text>
-    <text x="74" y="488" fill="#e2e8f0" font-size="11.5" font-weight="500">• Number Normalizer: Converts Bengali numerals ('১২ শতক') into ISO standard floats (12.0)</text>
+    <path d="M 60 430 L 900 430" stroke="#9333ea" stroke-width="1.5" />
+    <text x="480.0" y="420" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="bold">3. STRUCTURAL ENTITY EXTRACTION AND NORMALIZER</text>
+    <text x="74" y="450" fill="#e2e8f0" font-size="11.5">• Key Extractor: District, Upazila, Mouza, JL Number, Khatian Classification (CS/SA/RS), Daag Numbers</text>
+    <text x="74" y="470" fill="#e2e8f0" font-size="11.5">• Boundary Parser: Maps directional 4-boundaries (North, South, East, West properties)</text>
+    <text x="74" y="490" fill="#e2e8f0" font-size="11.5">• Number Normalizer: Converts Bengali numerals to ISO standard decimal floats</text>
   </g>
-  <!-- Node: 4. STANDARDIZED JSON SCHEMA & INTERFACE DELIVERY -->
-  <g filter="url(#shadow)">
+  <!-- Node: 4. STANDARDIZED JSON SCHEMA AND INTERFACE DELIVERY -->
+  <g>
     <rect x="60" y="550" width="840" height="170" rx="8" fill="#14532d" stroke="#16a34a" stroke-width="2" />
-    <path d="M 60 578 L 900 578" stroke="#16a34a" stroke-width="1.5" />
-    <text x="480.0" y="569" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="700">4. STANDARDIZED JSON SCHEMA & INTERFACE DELIVERY</text>
-    <text x="74" y="598" fill="#e2e8f0" font-size="11.5" font-weight="500">• Output: Strictly validated JSON object passed to Farayez and Baya Lineage engines</text>
-    <text x="74" y="618" fill="#e2e8f0" font-size="11.5" font-weight="500">• Side-by-Side UI: Displays original deed scan alongside extracted key-value cards</text>
-    <text x="74" y="638" fill="#e2e8f0" font-size="11.5" font-weight="500">• Zero Manual Entry: Reduces citizen application time from 45 minutes to 3 seconds</text>
+    <path d="M 60 580 L 900 580" stroke="#16a34a" stroke-width="1.5" />
+    <text x="480.0" y="570" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="bold">4. STANDARDIZED JSON SCHEMA AND INTERFACE DELIVERY</text>
+    <text x="74" y="600" fill="#e2e8f0" font-size="11.5">• Output: Strictly validated JSON object passed to Farayez and Baya Lineage engines</text>
+    <text x="74" y="620" fill="#e2e8f0" font-size="11.5">• Side-by-Side UI: Displays original deed scan alongside extracted key-value cards</text>
+    <text x="74" y="640" fill="#e2e8f0" font-size="11.5">• Zero Manual Entry: Reduces citizen application time from 45 minutes to 3 seconds</text>
   </g>
 </svg>

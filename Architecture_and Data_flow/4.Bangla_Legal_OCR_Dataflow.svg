@@ -1,76 +1,73 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="100%" height="100%" style="background:#0f172a; font-family:'Inter',system-ui,sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="960" height="760" style="background:#0f172a; font-family:'Segoe UI',Arial,sans-serif;">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
     </marker>
-    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
-    </filter>
   </defs>
 
   <!-- Title Banner -->
   <rect x="20" y="20" width="920" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
-  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="700">4.2 Bangla Legal OCR & Entity Extractor — End-to-End Data Flow</text>
-  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="500">Document Parsing Sequence: Transforming Raw Deed Images into Structured Entity Tables</text>
-  <line x1="310" y1="185" x2="350" y2="185" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="298.5" y="167.0" width="63" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="330.0" y="180.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Enhance</text>
-  <line x1="610" y1="185" x2="650" y2="185" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="589.5" y="167.0" width="81" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="630.0" y="180.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">OCR Parse</text>
-  <line x1="480" y1="260" x2="480" y2="290" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="426.0" y="257.0" width="108" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="480.0" y="270.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Map Entities</text>
-  <line x1="480" y1="480" x2="480" y2="510" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="439.5" y="477.0" width="81" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="480.0" y="490.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Pass Data</text>
+  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="bold">4.2 Bangla Legal OCR and Entity Extractor - End-to-End Data Flow</text>
+  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12">Document Parsing Sequence: Transforming Raw Deed Images into Structured Entity Tables</text>
+  <line x1="310" y1="185" x2="350" y2="185" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="298.5" y="167.0" width="63" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="330.0" y="181.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Enhance</text>
+  <line x1="610" y1="185" x2="650" y2="185" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="589.5" y="167.0" width="81" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="630.0" y="181.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">OCR Parse</text>
+  <line x1="480" y1="260" x2="480" y2="290" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="426.0" y="257.0" width="108" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="480.0" y="271.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Map Entities</text>
+  <line x1="480" y1="480" x2="480" y2="510" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="439.5" y="477.0" width="81" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="480.0" y="491.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Pass Data</text>
   <!-- Node: STEP 1: CAPTURE -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="50" y="110" width="260" height="150" rx="8" fill="#134e4a" stroke="#0d9488" stroke-width="2" />
-    <path d="M 50 138 L 310 138" stroke="#0d9488" stroke-width="1.5" />
-    <text x="180.0" y="129" text-anchor="middle" fill="#ccfbf1" font-size="13" font-weight="700">STEP 1: CAPTURE</text>
-    <text x="64" y="158" fill="#e2e8f0" font-size="11.5" font-weight="500">• Citizen uploads deed image</text>
-    <text x="64" y="178" fill="#e2e8f0" font-size="11.5" font-weight="500">• Archaic yellowed paper</text>
-    <text x="64" y="198" fill="#e2e8f0" font-size="11.5" font-weight="500">• Bengali cursive writing</text>
-    <text x="64" y="218" fill="#e2e8f0" font-size="11.5" font-weight="500">• Legal stamps & seals</text>
+    <path d="M 50 140 L 310 140" stroke="#0d9488" stroke-width="1.5" />
+    <text x="180.0" y="130" text-anchor="middle" fill="#ccfbf1" font-size="13" font-weight="bold">STEP 1: CAPTURE</text>
+    <text x="64" y="160" fill="#e2e8f0" font-size="11.5">• Citizen uploads deed image</text>
+    <text x="64" y="180" fill="#e2e8f0" font-size="11.5">• Archaic yellowed paper</text>
+    <text x="64" y="200" fill="#e2e8f0" font-size="11.5">• Bengali cursive writing</text>
+    <text x="64" y="220" fill="#e2e8f0" font-size="11.5">• Legal stamps and seals</text>
   </g>
   <!-- Node: STEP 2: PREPROCESS -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="350" y="110" width="260" height="150" rx="8" fill="#1e293b" stroke="#0284c7" stroke-width="2" />
-    <path d="M 350 138 L 610 138" stroke="#0284c7" stroke-width="1.5" />
-    <text x="480.0" y="129" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="700">STEP 2: PREPROCESS</text>
-    <text x="364" y="158" fill="#e2e8f0" font-size="11.5" font-weight="500">• OpenCV deskews rotation</text>
-    <text x="364" y="178" fill="#e2e8f0" font-size="11.5" font-weight="500">• Removes background noise</text>
-    <text x="364" y="198" fill="#e2e8f0" font-size="11.5" font-weight="500">• Adaptive thresholding</text>
-    <text x="364" y="218" fill="#e2e8f0" font-size="11.5" font-weight="500">• High-contrast grayscale</text>
+    <path d="M 350 140 L 610 140" stroke="#0284c7" stroke-width="1.5" />
+    <text x="480.0" y="130" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="bold">STEP 2: PREPROCESS</text>
+    <text x="364" y="160" fill="#e2e8f0" font-size="11.5">• OpenCV deskews rotation</text>
+    <text x="364" y="180" fill="#e2e8f0" font-size="11.5">• Removes background noise</text>
+    <text x="364" y="200" fill="#e2e8f0" font-size="11.5">• Adaptive thresholding</text>
+    <text x="364" y="220" fill="#e2e8f0" font-size="11.5">• High-contrast grayscale</text>
   </g>
   <!-- Node: STEP 3: VLM INFERENCE -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="650" y="110" width="260" height="150" rx="8" fill="#581c87" stroke="#9333ea" stroke-width="2" />
-    <path d="M 650 138 L 910 138" stroke="#9333ea" stroke-width="1.5" />
-    <text x="780.0" y="129" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="700">STEP 3: VLM INFERENCE</text>
-    <text x="664" y="158" fill="#e2e8f0" font-size="11.5" font-weight="500">• Gemini Vision multimodal parse</text>
-    <text x="664" y="178" fill="#e2e8f0" font-size="11.5" font-weight="500">• Reads schedule & boundaries</text>
-    <text x="664" y="198" fill="#e2e8f0" font-size="11.5" font-weight="500">• Identifies Mouza & Khatian</text>
-    <text x="664" y="218" fill="#e2e8f0" font-size="11.5" font-weight="500">• Extracts decimal land area</text>
+    <path d="M 650 140 L 910 140" stroke="#9333ea" stroke-width="1.5" />
+    <text x="780.0" y="130" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="bold">STEP 3: VLM INFERENCE</text>
+    <text x="664" y="160" fill="#e2e8f0" font-size="11.5">• Gemini Vision multimodal parse</text>
+    <text x="664" y="180" fill="#e2e8f0" font-size="11.5">• Reads schedule and boundaries</text>
+    <text x="664" y="200" fill="#e2e8f0" font-size="11.5">• Identifies Mouza and Khatian</text>
+    <text x="664" y="220" fill="#e2e8f0" font-size="11.5">• Extracts decimal land area</text>
   </g>
-  <!-- Node: STEP 4: STRUCTURED ENTITY MAPPING & NORMALIZATION -->
-  <g filter="url(#shadow)">
+  <!-- Node: STEP 4: STRUCTURED ENTITY MAPPING AND NORMALIZATION -->
+  <g>
     <rect x="50" y="290" width="860" height="190" rx="8" fill="#581c87" stroke="#9333ea" stroke-width="2" />
-    <path d="M 50 318 L 910 318" stroke="#9333ea" stroke-width="1.5" />
-    <text x="480.0" y="309" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="700">STEP 4: STRUCTURED ENTITY MAPPING & NORMALIZATION</text>
-    <text x="64" y="338" fill="#e2e8f0" font-size="11.5" font-weight="500">• Location Extracted: District = 'ঢাকা', Upazila = 'সাভার', Mouza = 'বিরুলিয়া', JL = 42</text>
-    <text x="64" y="358" fill="#e2e8f0" font-size="11.5" font-weight="500">• Land Records: Khatian Type = 'RS', Khatian No = 312, Haal Daag = 1045, Sabek Daag = 890</text>
-    <text x="64" y="378" fill="#e2e8f0" font-size="11.5" font-weight="500">• Area Normalized: Extracted text '১২.৫ শতক' converted to floating decimal value 12.50</text>
-    <text x="64" y="398" fill="#e2e8f0" font-size="11.5" font-weight="500">• Chouhaddi Mapped: North: 'করিম বক্সের বাড়ি', South: 'পাকা রাস্তা', East: 'খাল', West: 'রহিম'</text>
+    <path d="M 50 320 L 910 320" stroke="#9333ea" stroke-width="1.5" />
+    <text x="480.0" y="310" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="bold">STEP 4: STRUCTURED ENTITY MAPPING AND NORMALIZATION</text>
+    <text x="64" y="340" fill="#e2e8f0" font-size="11.5">• Location Extracted: District = Dhaka, Upazila = Savar, Mouza = Birulia, JL = 42</text>
+    <text x="64" y="360" fill="#e2e8f0" font-size="11.5">• Land Records: Khatian Type = RS, Khatian No = 312, Haal Daag = 1045, Sabek Daag = 890</text>
+    <text x="64" y="380" fill="#e2e8f0" font-size="11.5">• Area Normalized: Extracted text converted to floating decimal value 12.50</text>
+    <text x="64" y="400" fill="#e2e8f0" font-size="11.5">• Chouhaddi Mapped: Directional boundaries extracted for North, South, East, West properties</text>
   </g>
-  <!-- Node: STEP 5: DOWNSTREAM INGESTION & VERIFICATION PIPELINE -->
-  <g filter="url(#shadow)">
+  <!-- Node: STEP 5: DOWNSTREAM INGESTION AND VERIFICATION PIPELINE -->
+  <g>
     <rect x="50" y="510" width="860" height="210" rx="8" fill="#14532d" stroke="#16a34a" stroke-width="2" />
-    <path d="M 50 538 L 910 538" stroke="#16a34a" stroke-width="1.5" />
-    <text x="480.0" y="529" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="700">STEP 5: DOWNSTREAM INGESTION & VERIFICATION PIPELINE</text>
-    <text x="64" y="558" fill="#e2e8f0" font-size="11.5" font-weight="500">• Automatic Pipeline Dispatch: Passes extracted metadata to Farayez and Baya Lineage engines.</text>
-    <text x="64" y="578" fill="#e2e8f0" font-size="11.5" font-weight="500">• Verification Dashboard: Renders side-by-side verification preview for citizen and registry officer.</text>
-    <text x="64" y="598" fill="#e2e8f0" font-size="11.5" font-weight="500">• 100% Feasibility: Executes via enterprise free tiers in under 2 seconds per document.</text>
+    <path d="M 50 540 L 910 540" stroke="#16a34a" stroke-width="1.5" />
+    <text x="480.0" y="530" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="bold">STEP 5: DOWNSTREAM INGESTION AND VERIFICATION PIPELINE</text>
+    <text x="64" y="560" fill="#e2e8f0" font-size="11.5">• Automatic Pipeline Dispatch: Passes extracted metadata to Farayez and Baya Lineage engines.</text>
+    <text x="64" y="580" fill="#e2e8f0" font-size="11.5">• Verification Dashboard: Renders side-by-side verification preview for citizen and registry officer.</text>
+    <text x="64" y="600" fill="#e2e8f0" font-size="11.5">• 100% Feasibility: Executes via enterprise free tiers in under 2 seconds per document.</text>
   </g>
 </svg>

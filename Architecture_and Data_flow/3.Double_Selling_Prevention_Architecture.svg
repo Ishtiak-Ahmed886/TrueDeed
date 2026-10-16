@@ -1,74 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="100%" height="100%" style="background:#0f172a; font-family:'Inter',system-ui,sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="960" height="760" style="background:#0f172a; font-family:'Segoe UI',Arial,sans-serif;">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
     </marker>
-    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
-    </filter>
   </defs>
 
   <!-- Title Banner -->
   <rect x="20" y="20" width="920" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
-  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="700">3.1 Double-Selling Prevention — 45-Day Active Plot Lock Architecture</text>
-  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="500">Module 3: Concurrency Control & Mutex Lock Layer for Land Conveyancing</text>
-  <line x1="480" y1="230" x2="480" y2="250" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="426.0" y="222.0" width="108" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="480.0" y="235.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Generate Key</text>
-  <line x1="480" y1="380" x2="480" y2="400" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="430.5" y="372.0" width="99" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="480.0" y="385.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Query Mutex</text>
-  <line x1="260" y1="530" x2="260" y2="550" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="192.5" y="522.0" width="135" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="260.0" y="535.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">Conflict Exists</text>
-  <line x1="700" y1="530" x2="700" y2="550" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="none" />
-  <rect x="650.5" y="522.0" width="99" height="18" rx="4" fill="#0f172a" opacity="0.9" />
-  <text x="700.0" y="535.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="600">No Conflict</text>
+  <text x="480" y="50" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="bold">3.1 Double-Selling Prevention - 45-Day Active Plot Lock Architecture</text>
+  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="12">Module 3: Concurrency Control and Mutex Lock Layer for Land Conveyancing</text>
+  <line x1="480" y1="230" x2="480" y2="250" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="426.0" y="222.0" width="108" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="480.0" y="236.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Generate Key</text>
+  <line x1="480" y1="380" x2="480" y2="400" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="430.5" y="372.0" width="99" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="480.0" y="386.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Query Mutex</text>
+  <line x1="260" y1="530" x2="260" y2="550" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="192.5" y="522.0" width="135" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="260.0" y="536.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Conflict Exists</text>
+  <line x1="700" y1="530" x2="700" y2="550" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"  />
+  <rect x="650.5" y="522.0" width="99" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="700.0" y="536.0" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">No Conflict</text>
   <!-- Node: 1. REGISTRY TRANSACTION INTAKE GATEWAY -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="60" y="110" width="840" height="120" rx="8" fill="#134e4a" stroke="#0d9488" stroke-width="2" />
-    <path d="M 60 138 L 900 138" stroke="#0d9488" stroke-width="1.5" />
-    <text x="480.0" y="129" text-anchor="middle" fill="#ccfbf1" font-size="13" font-weight="700">1. REGISTRY TRANSACTION INTAKE GATEWAY</text>
-    <text x="74" y="158" fill="#e2e8f0" font-size="11.5" font-weight="500">• Event Trigger: Deed verification or registration filing initiated at Sub-Registry or TrueDeed portal</text>
-    <text x="74" y="178" fill="#e2e8f0" font-size="11.5" font-weight="500">• Composite Key Generator: Creates unique lock hash = SHA256(District_Upazila_Mouza_Khatian_Daag)</text>
-    <text x="74" y="198" fill="#e2e8f0" font-size="11.5" font-weight="500">• Lock Inquirer: Checks active distributed ledger for existing locks on the identical composite key</text>
+    <path d="M 60 140 L 900 140" stroke="#0d9488" stroke-width="1.5" />
+    <text x="480.0" y="130" text-anchor="middle" fill="#ccfbf1" font-size="13" font-weight="bold">1. REGISTRY TRANSACTION INTAKE GATEWAY</text>
+    <text x="74" y="160" fill="#e2e8f0" font-size="11.5">• Event Trigger: Deed verification or registration filing initiated at Sub-Registry or TrueDeed portal</text>
+    <text x="74" y="180" fill="#e2e8f0" font-size="11.5">• Composite Key Generator: Creates unique lock hash = SHA256(District_Upazila_Mouza_Khatian_Daag)</text>
+    <text x="74" y="200" fill="#e2e8f0" font-size="11.5">• Lock Inquirer: Checks active distributed ledger for existing locks on the identical composite key</text>
   </g>
   <!-- Node: 2. DISTRIBUTED TEMPORAL MUTEX LOCK MANAGER -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="60" y="250" width="840" height="130" rx="8" fill="#1e293b" stroke="#0284c7" stroke-width="2" />
-    <path d="M 60 278 L 900 278" stroke="#0284c7" stroke-width="1.5" />
-    <text x="480.0" y="269" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="700">2. DISTRIBUTED TEMPORAL MUTEX LOCK MANAGER</text>
-    <text x="74" y="298" fill="#e2e8f0" font-size="11.5" font-weight="500">• Concurrency Rule: Only ONE active pending transaction permitted per plot during mutation latency window</text>
-    <text x="74" y="318" fill="#e2e8f0" font-size="11.5" font-weight="500">• Time-to-Live (TTL): 45 Days (matching statutory e-Mutation duration under Section 143, SAT Act 1950)</text>
-    <text x="74" y="338" fill="#e2e8f0" font-size="11.5" font-weight="500">• Lock Release Trigger: Automated webhook upon AC Land mutation completion or formal transaction cancellation</text>
+    <path d="M 60 280 L 900 280" stroke="#0284c7" stroke-width="1.5" />
+    <text x="480.0" y="270" text-anchor="middle" fill="#e0f2fe" font-size="13" font-weight="bold">2. DISTRIBUTED TEMPORAL MUTEX LOCK MANAGER</text>
+    <text x="74" y="300" fill="#e2e8f0" font-size="11.5">• Concurrency Rule: Only ONE active pending transaction permitted per plot during mutation latency window</text>
+    <text x="74" y="320" fill="#e2e8f0" font-size="11.5">• Time-to-Live (TTL): 45 Days (matching statutory e-Mutation duration under Section 143, SAT Act 1950)</text>
+    <text x="74" y="340" fill="#e2e8f0" font-size="11.5">• Lock Release Trigger: Automated webhook upon AC Land mutation completion or formal transaction cancellation</text>
   </g>
-  <!-- Node: 3. CONFLICT DETECTION & ANTI-DOUBLE SELLING CORE -->
-  <g filter="url(#shadow)">
+  <!-- Node: 3. CONFLICT DETECTION AND ANTI-DOUBLE SELLING CORE -->
+  <g>
     <rect x="60" y="400" width="840" height="130" rx="8" fill="#581c87" stroke="#9333ea" stroke-width="2" />
-    <path d="M 60 428 L 900 428" stroke="#9333ea" stroke-width="1.5" />
-    <text x="480.0" y="419" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="700">3. CONFLICT DETECTION & ANTI-DOUBLE SELLING CORE</text>
-    <text x="74" y="448" fill="#e2e8f0" font-size="11.5" font-weight="500">• Lock State: MUTATION_PENDING (Active Lock engaged)</text>
-    <text x="74" y="468" fill="#e2e8f0" font-size="11.5" font-weight="500">• Secondary Transaction Attempt: Intercepts secondary deed verification on locked composite key</text>
-    <text x="74" y="488" fill="#e2e8f0" font-size="11.5" font-weight="500">• Fraud Classifier: Flags prospective duplicate conveyancing before secondary deed stamp execution</text>
+    <path d="M 60 430 L 900 430" stroke="#9333ea" stroke-width="1.5" />
+    <text x="480.0" y="420" text-anchor="middle" fill="#f3e8ff" font-size="13" font-weight="bold">3. CONFLICT DETECTION AND ANTI-DOUBLE SELLING CORE</text>
+    <text x="74" y="450" fill="#e2e8f0" font-size="11.5">• Lock State: MUTATION_PENDING (Active Lock engaged)</text>
+    <text x="74" y="470" fill="#e2e8f0" font-size="11.5">• Secondary Transaction Attempt: Intercepts secondary deed verification on locked composite key</text>
+    <text x="74" y="490" fill="#e2e8f0" font-size="11.5">• Fraud Classifier: Flags prospective duplicate conveyancing before secondary deed stamp execution</text>
   </g>
   <!-- Node: 4A. CONCURRENT TRANSFER ALERT -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="60" y="550" width="400" height="170" rx="8" fill="#7f1d1d" stroke="#dc2626" stroke-width="2" />
-    <path d="M 60 578 L 460 578" stroke="#dc2626" stroke-width="1.5" />
-    <text x="260.0" y="569" text-anchor="middle" fill="#fee2e2" font-size="13" font-weight="700">4A. CONCURRENT TRANSFER ALERT</text>
-    <text x="74" y="598" fill="#e2e8f0" font-size="11.5" font-weight="500">• Status: 🔴 HIGH_RISK_DOUBLE_SELLING</text>
-    <text x="74" y="618" fill="#e2e8f0" font-size="11.5" font-weight="500">• Intercept: Secondary transaction blocked</text>
-    <text x="74" y="638" fill="#e2e8f0" font-size="11.5" font-weight="500">• Notification: Alert sent to Buyer 2 & Officer</text>
-    <text x="74" y="658" fill="#e2e8f0" font-size="11.5" font-weight="500">• Result: Zero duplicate sales executed</text>
+    <path d="M 60 580 L 460 580" stroke="#dc2626" stroke-width="1.5" />
+    <text x="260.0" y="570" text-anchor="middle" fill="#fee2e2" font-size="13" font-weight="bold">4A. CONCURRENT TRANSFER ALERT</text>
+    <text x="74" y="600" fill="#e2e8f0" font-size="11.5">• Status: HIGH RISK DOUBLE-SELLING ALERT</text>
+    <text x="74" y="620" fill="#e2e8f0" font-size="11.5">• Intercept: Secondary transaction blocked</text>
+    <text x="74" y="640" fill="#e2e8f0" font-size="11.5">• Notification: Alert sent to Buyer 2 and Officer</text>
+    <text x="74" y="660" fill="#e2e8f0" font-size="11.5">• Result: Zero duplicate sales executed</text>
   </g>
   <!-- Node: 4B. LOCK ACQUIRED (SECURE) -->
-  <g filter="url(#shadow)">
+  <g>
     <rect x="500" y="550" width="400" height="170" rx="8" fill="#14532d" stroke="#16a34a" stroke-width="2" />
-    <path d="M 500 578 L 900 578" stroke="#16a34a" stroke-width="1.5" />
-    <text x="700.0" y="569" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="700">4B. LOCK ACQUIRED (SECURE)</text>
-    <text x="514" y="598" fill="#e2e8f0" font-size="11.5" font-weight="500">• Status: 🟢 TRANSACTION_PROTECTED</text>
-    <text x="514" y="618" fill="#e2e8f0" font-size="11.5" font-weight="500">• Protection: 45-day mutex lock engaged</text>
-    <text x="514" y="638" fill="#e2e8f0" font-size="11.5" font-weight="500">• Benefit: Buyer 1 safe during mutation</text>
-    <text x="514" y="658" fill="#e2e8f0" font-size="11.5" font-weight="500">• Reward: +25 Points to Trust Score</text>
+    <path d="M 500 580 L 900 580" stroke="#16a34a" stroke-width="1.5" />
+    <text x="700.0" y="570" text-anchor="middle" fill="#dcfce7" font-size="13" font-weight="bold">4B. LOCK ACQUIRED (SECURE)</text>
+    <text x="514" y="600" fill="#e2e8f0" font-size="11.5">• Status: TRANSACTION PROTECTED</text>
+    <text x="514" y="620" fill="#e2e8f0" font-size="11.5">• Protection: 45-day mutex lock engaged</text>
+    <text x="514" y="640" fill="#e2e8f0" font-size="11.5">• Benefit: Buyer 1 safe during mutation</text>
+    <text x="514" y="660" fill="#e2e8f0" font-size="11.5">• Reward: +25 Points to Trust Score</text>
   </g>
 </svg>
