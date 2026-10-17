@@ -9,7 +9,7 @@
 
   @page {
     size: A4;
-    margin: 12mm 14mm 12mm 14mm;
+    margin: 10mm 12mm 10mm 12mm;
   }
 
   * {
@@ -19,23 +19,24 @@
   }
 
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #0f172a;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #0f172a; /* Clean Deep Black/Slate */
     background: #f8fafc;
-    line-height: 1.45;
-    font-size: 9.5pt;
-    padding: 20px 10px;
+    line-height: 1.4;
+    font-size: 9pt;
+    padding: 15px 10px;
   }
 
   .sheet {
     background: #ffffff;
     max-width: 820px;
-    margin: 0 auto 20px auto;
-    padding: 36px 42px;
-    border-radius: 6px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    margin: 0 auto 16px auto;
+    padding: 30px 36px;
+    border-radius: 4px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
     position: relative;
-    min-height: 1040px;
+    min-height: 1055px;
+    box-sizing: border-box;
   }
 
   /* Page Break Rule */
@@ -46,27 +47,27 @@
 
   /* Header */
   .header {
-    border-bottom: 2px solid #0f766e;
-    padding-bottom: 12px;
-    margin-bottom: 16px;
+    border-bottom: 2px solid #0f172a; /* Clean Black Border */
+    padding-bottom: 10px;
+    margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
   }
 
   .brand-title {
-    font-size: 22pt;
+    font-size: 21pt;
     font-weight: 800;
-    color: #064e3b;
+    color: #0f172a; /* Clean Black */
     letter-spacing: -0.5px;
     line-height: 1.1;
   }
 
   .brand-sub {
-    font-size: 10pt;
+    font-size: 9.5pt;
     font-weight: 600;
-    color: #0f766e;
-    margin-top: 3px;
+    color: #334155; /* Slate */
+    margin-top: 2px;
   }
 
   .badge-container {
@@ -74,11 +75,11 @@
   }
 
   .problem-tag {
-    background: #0f766e;
+    background: #0f172a; /* Clean Black/Slate Badge */
     color: #ffffff;
-    font-size: 8.5pt;
+    font-size: 8pt;
     font-weight: 700;
-    padding: 4px 10px;
+    padding: 4px 9px;
     border-radius: 4px;
     display: inline-block;
     text-transform: uppercase;
@@ -89,170 +90,132 @@
     font-size: 8pt;
     color: #64748b;
     font-weight: 600;
-    margin-top: 4px;
+    margin-top: 3px;
   }
 
   /* Metadata Bar */
   .meta-bar {
     display: grid;
     grid-template-columns: 1.2fr 1.8fr 1fr;
-    gap: 10px;
+    gap: 8px;
     background: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    padding: 8px 14px;
-    margin-bottom: 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 7px 12px;
+    margin-bottom: 12px;
     font-size: 8.5pt;
   }
 
   .meta-bar strong {
-    color: #064e3b;
+    color: #0f172a; /* Clean Black */
   }
 
   /* Headings */
   h2 {
-    font-size: 11.5pt;
+    font-size: 11pt;
     font-weight: 700;
-    color: #064e3b;
+    color: #0f172a; /* Clean Black */
     text-transform: uppercase;
     letter-spacing: 0.4px;
-    margin-top: 14px;
-    margin-bottom: 8px;
-    padding-bottom: 3px;
-    border-bottom: 1.5px solid #ccfbf1;
-    display: flex;
-    align-items: center;
-  }
-
-  h2::before {
-    content: "";
-    display: inline-block;
-    width: 5px;
-    height: 12px;
-    background: #0f766e;
-    margin-right: 6px;
-    border-radius: 2px;
-  }
-
-  h3 {
-    font-size: 10pt;
-    font-weight: 700;
-    color: #1e293b;
-    margin-top: 10px;
-    margin-bottom: 4px;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    border-left: 3px solid #0f172a;
+    padding-left: 7px;
   }
 
   p {
-    margin-bottom: 8px;
-    color: #334155;
+    margin-bottom: 6px;
     text-align: justify;
+    color: #0f172a; /* Clean Black */
   }
 
-  ul, ol {
-    margin-left: 18px;
-    margin-bottom: 8px;
+  strong {
+    color: #0f172a; /* Clean Black */
+  }
+
+  /* Highlight Callout Box */
+  .callout {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-left: 4px solid #0f172a;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 8px 0;
+    font-size: 8.5pt;
+    color: #0f172a;
+  }
+
+  /* Bullet Lists */
+  ul {
+    margin: 5px 0 8px 18px;
   }
 
   li {
     margin-bottom: 4px;
-    color: #334155;
-  }
-
-  /* Cards & Callouts */
-  .callout {
-    background: #f0fdf4;
-    border-left: 3.5px solid #10b981;
-    padding: 8px 12px;
-    border-radius: 0 4px 4px 0;
-    margin: 10px 0;
-    font-size: 9pt;
-    color: #065f46;
-  }
-
-  .feature-box {
-    border: 1px solid #e2e8f0;
-    background: #ffffff;
-    border-radius: 6px;
-    padding: 10px 12px;
-    margin-bottom: 8px;
-  }
-
-  .feature-title {
-    font-size: 9.5pt;
-    font-weight: 700;
-    color: #0f766e;
-    margin-bottom: 2px;
-  }
-
-  /* Diagram Box */
-  .ascii-diagram {
-    background: #0f172a;
-    color: #38bdf8;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 7.2pt;
-    padding: 10px;
-    border-radius: 6px;
-    line-height: 1.35;
-    white-space: pre;
-    overflow-x: hidden;
-    margin: 10px 0;
+    color: #0f172a;
   }
 
   /* Tables */
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 10px 0;
+    margin: 8px 0;
     font-size: 8.5pt;
   }
 
   th, td {
-    padding: 6px 10px;
-    border: 1px solid #e2e8f0;
+    padding: 5px 8px;
+    border: 1px solid #cbd5e1;
     text-align: left;
     vertical-align: top;
+    color: #0f172a;
   }
 
   th {
-    background: #f8fafc;
-    color: #0f172a;
+    background: #1e293b; /* Dark Slate Header */
+    color: #ffffff;
     font-weight: 700;
     font-size: 8pt;
     text-transform: uppercase;
+    letter-spacing: 0.3px;
   }
 
   tr:nth-child(even) {
-    background: #fafafa;
+    background: #f8fafc;
   }
 
   .footer-tag {
     position: absolute;
-    bottom: 14px;
-    left: 42px;
-    right: 42px;
+    bottom: 12px;
+    left: 36px;
+    right: 36px;
     display: flex;
     justify-content: space-between;
     font-size: 7.5pt;
-    color: #94a3b8;
-    border-top: 1px solid #f1f5f9;
-    padding-top: 4px;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 3px;
   }
 
   /* Print Toolbar */
   .toolbar {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }
 
   .btn-print {
-    background: #0f766e;
+    background: #0f172a;
     color: white;
     border: none;
-    padding: 9px 20px;
+    padding: 8px 18px;
     font-weight: 600;
     font-size: 13px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
+  }
+
+  .btn-print:hover {
+    background: #1e293b;
   }
 
   @media print {
@@ -274,50 +237,50 @@
   <div class="header">
     <div>
       <div class="brand-title">TrueDeed</div>
-      <div class="brand-sub">Algorithmic Land Fraud & Double-Selling Prevention Platform</div>
+      <div class="brand-sub">Algorithmic Land Fraud &amp; Double-Selling Pre-Verification Platform</div>
     </div>
     <div class="badge-container">
-      <div class="problem-tag">Problem P3: Catch Fraud & Double-Selling</div>
+      <div class="problem-tag">Problem P3: Catch Fraud &amp; Double-Selling</div>
       <div class="event-label">LandTech 2026 Innovation Hackathon</div>
     </div>
   </div>
 
   <div class="meta-bar">
     <div><strong>Team Code:</strong> LA-72 (Team TrueDeed)</div>
-    <div><strong>Track:</strong> Digital Land Records, Verification & Digitization</div>
+    <div><strong>Track:</strong> Digital Land Records, Verification &amp; Digitization</div>
     <div><strong>Document:</strong> Concept Note (Max 4 Pages)</div>
   </div>
 
-  <h2>1. Problem Chosen: P3 — Catch Fraud & Double-Selling</h2>
+  <h2>1. Problem Chosen: P3 — Catch Fraud &amp; Double-Selling</h2>
   <p>
-    We have selected <strong>Problem P3: Catch Fraud & Double-Selling</strong> as defined in Section 5 of the official LandTech 2026 Rule Book: <em>"Spot fake documents, the same land sold to more than one buyer, and records that do not match between registration and mutation."</em>
+    Under Section 5 of the official LandTech 2026 Rule Book, Team TrueDeed tackles <strong>Problem P3: Catch Fraud &amp; Double-Selling</strong>: <em>"Spot fake documents, the same land sold to more than one buyer, and records that do not match between registration and mutation."</em>
   </p>
 
-  <h2>2. Why It Matters in Bangladesh (National Urgency)</h2>
+  <h2>2. Why It Matters in Bangladesh (National Urgency &amp; Evidence)</h2>
   <p>
-    Land disputes are the single greatest driver of social instability, familial violence, and judicial congestion in Bangladesh. Over <strong>70% of the 3.2+ million civil litigations</strong> currently pending in national courts originate from fraudulent land titles, trapping generations of citizens in perpetual legal warfare and immobilizing billions of takas in productive capital.
+    Land disputes are the single greatest driver of social friction, generational litigation, and judicial congestion in Bangladesh. According to <strong>Law Commission of Bangladesh</strong> reports and judicial statistics from the Supreme Court, property and boundary disputes account for approximately <strong>70% of the country's ~3.5 million pending civil litigations</strong>, immobilizing billions of takas in productive wealth.
   </p>
 
   <div class="callout">
-    <strong>The Core Institutional Flaw:</strong> Deed Registration is governed by the <em>Directorate of Registration under the Ministry of Law</em>, whereas Record-of-Rights (Khatian surveys and Mutation) are administered by Upazila AC Land offices under the <em>Ministry of Land</em>. These two jurisdictions operate without real-time synchronization.
+    <strong>The Core Institutional Void:</strong> Deed Registration is governed by the <em>Directorate of Registration under the Ministry of Law</em>, whereas Record-of-Rights (Khatian surveys and Mutation) are administered by Upazila AC Land offices under the <em>Ministry of Land</em>. These two jurisdictions operate without real-time algorithmic synchronization during deed execution.
   </div>
 
   <p>Fraud syndicates exploit this structural disconnect through three disastrous mechanisms:</p>
   <ul>
     <li>
-      <strong>Inheritance Over-Selling (Farayez Violation):</strong> Following an ancestor's death, heirs inherit strict statutory quotas under the <em>Muslim Family Laws Ordinance 1961</em>. Fraudulent heirs routinely conceal female siblings, fabricate unauthorized local heir certificates, and sell 30 to 40 decimals from an estate where their mathematical share is only 15 decimals.
+      <strong>Inheritance Over-Selling (Farayez Violation):</strong> Following an ancestor's demise, heirs inherit strictly defined statutory fractional shares under Islamic law and Section 4 of the <em>Muslim Family Laws Ordinance 1961</em>. Fraudulent heirs routinely conceal female siblings, fabricate unauthorized local heir certificates, and sell 30 to 40 decimals from an estate where their mathematical share is only 15 decimals.
     </li>
     <li>
-      <strong>Broken Baya Lineage (Fake Preceding Deeds):</strong> Transfer deeds must establish an unbroken chain of ownership connecting back to state survey records (CS &rarr; SA &rarr; RS) under Section 17A of the <em>Registration Act 1908</em>. Fraudsters inject fabricated intermediate deeds featuring fictitious sub-registry volume books that cannot be verified manually by common buyers.
+      <strong>Broken Baya Lineage (Fake Preceding Deeds):</strong> Authentic title requires an unbroken historical chain of ownership connecting back to state survey records (CS &rarr; SA &rarr; RS) under Section 17A of the <em>Registration Act 1908</em>. Fraudsters routinely inject fabricated intermediate deeds featuring fictitious sub-registry volume numbers that cannot be verified manually by buyers.
     </li>
     <li>
-      <strong>The 45-Day Double-Selling Window:</strong> Under Section 143 of the <em>State Acquisition and Tenancy Act 1950</em>, finalizing an e-Mutation (নামজারি) requires 30 to 45 days post-registration. In this latency window, corrupt sellers execute duplicate sales of the identical plot to multiple buyers before the first sale reflects on government servers.
+      <strong>The 45-Day Double-Selling Concurrency Window:</strong> Under Section 143 of the <em>State Acquisition and Tenancy Act 1950</em>, finalizing an e-Mutation (নামজারি) requires 30 to 45 days post-registration. In this latency window, government databases still reflect the original seller's name, enabling corrupt sellers to execute duplicate sales of the identical plot to multiple buyers across different offices.
     </li>
   </ul>
 
   <h2>3. Proposed Solution: The TrueDeed Infrastructure</h2>
   <p>
-    <strong>TrueDeed</strong> is an automated algorithmic verification layer designed to bridge the void between Sub-Registry offices and AC Land offices. Rather than acting as a passive record query portal like <em>e-Porcha</em>, TrueDeed provides <strong>pre-execution fraud intercept algorithms</strong> that mathematically evaluate title integrity, statutory inheritance quotas, and temporal transaction locks in under 5 seconds before deeds are executed.
+    <strong>TrueDeed</strong> is an automated Algorithmic Decision Support System (ADSS) designed to bridge the void between Sub-Registry offices and AC Land offices. Rather than acting as a passive record query portal like <em>e-Porcha</em>, TrueDeed operates as an active <strong>pre-execution fraud intercept gate</strong> that evaluates title integrity, statutory inheritance quotas, and temporal transaction locks in under 5 seconds before transfer deeds are executed.
   </p>
 
   <div class="footer-tag">
@@ -330,71 +293,57 @@
 
 <!-- ==================== PAGE 2 ==================== -->
 <div class="sheet">
-  <h2>4. How It Works: System Architecture & Workflow</h2>
+  <h2>4. How It Works: System Architecture &amp; Workflow</h2>
   <p>
-    TrueDeed transforms physical deed scans into mathematical proofs of title authenticity via a 4-engine microservice architecture:
+    TrueDeed transforms physical deed scans into mathematical proofs of title authenticity via a modern 5-stage microservice architecture:
   </p>
 
-  <div class="ascii-diagram">
-+---------------------------------------------------------------------------------------------------+
-|                           INPUT: PHYSICAL DEED SCAN / CAMERA CAPTURE / PDF                        |
-+---------------------------------------------------------------------------------------------------+
-                                                  |
-                                                  v
-+---------------------------------------------------------------------------------------------------+
-|                     ENGINE 1: MULTIMODAL BANGLA LEGAL OCR & ENTITY PARSER                         |
-|      Extracts: District | Upazila | Mouza | JL | Khatian | Haal/Sabek Daag | Chouhaddi | Area      |
-+---------------------------------------------------------------------------------------------------+
-                                                  |
-                 +--------------------------------+--------------------------------+
-                 |                                |                                |
-                 v                                v                                v
-+---------------------------------+ +------------------------------+ +------------------------------+
-|   ENGINE 2: FARAYEZ MATH CORE   | |   ENGINE 3: BAYA DAG GRAPH   | | ENGINE 4: ACTIVE PLOT LOCK   |
-| Computes statutory heir quotas. | | Validates CS->SA->RS->Deed   | | Places 45-day atomic mutex   |
-| Flags: Sold_Area > Max_Share.   | | chronological continuity.    | | on Mouza+Daag (No Duplicates)|
-+---------------------------------+ +------------------------------+ +------------------------------+
-                 |                                |                                |
-                 +--------------------------------+--------------------------------+
-                                                  |
-                                                  v
-+---------------------------------------------------------------------------------------------------+
-|                        COMPOSITE SCORING CORE: TRUEDEED TRUST SCORE (0-100%)                      |
-|       Score = (Baya_DAG * 0.35) + (Farayez * 0.25) + (Plot_Lock * 0.25) + (Identity * 0.15)        |
-+---------------------------------------------------------------------------------------------------+
-                                                  |
-                                                  v
-+---------------------------------------------------------------------------------------------------+
-|           OUTPUT: RISK CLASSIFICATION & TAMPER-EVIDENT QR AUDIT CERTIFICATE                       |
-|        [🟢 90-100%: Grade A (Safe)] | [🟡 60-89%: Grade B (Caution)] | [🔴 <60%: Grade C (Fraud)]        |
-+---------------------------------------------------------------------------------------------------+
+  <!-- Modern System Architecture Diagram (Image Embed) -->
+  <div style="text-align: center; margin: 6px 0;">
+    <img src="modern_system_architecture.png" style="width: 100%; max-height: 480px; object-fit: contain; border-radius: 4px; border: 1px solid #cbd5e1;" alt="TrueDeed Modern System Architecture">
   </div>
 
-  <h2>5. Core Technology Stack & Feasibility</h2>
+  <h2>5. Core Technology Stack &amp; Implementation Feasibility</h2>
   <p>
-    TrueDeed is architected for immediate zero-cost execution and maximum deployment feasibility:
+    The system is engineered as an asynchronous, highly decoupled microservice pipeline designed for horizontal scalability:
   </p>
-  <ul>
-    <li>
-      <strong>Backend Framework:</strong> Python (FastAPI) delivering asynchronous, sub-second REST microservices.
-    </li>
-    <li>
-      <strong>Perception & Vision AI:</strong> OpenCV for adaptive binarization, noise filtering, and deskewing, paired with Google Gemini 2.0 Flash Vision API for multimodal Bengali legal entity extraction.
-    </li>
-    <li>
-      <strong>Frontend Interface:</strong> Next.js 14, React, and Tailwind CSS engineered for an accessible, bilingual (Bangla/English) citizen and bank underwriter dashboard.
-    </li>
-    <li>
-      <strong>Data & Concurrency Layer:</strong> SQLite for embedded prototyping and PostgreSQL with PostGIS schemas for spatial land coordinates and temporal mutex locks.
-    </li>
-    <li>
-      <strong>Cryptographic Security:</strong> SHA-256 hashing to generate immutable digital verification audit certificates.
-    </li>
-  </ul>
 
-  <div class="callout">
-    <strong>Zero-Cost & Privacy Compliance:</strong> In accordance with Section 10 of the LandTech Rule Book, TrueDeed operates entirely on open-source libraries and enterprise free tiers. All testing and demonstrations utilize <strong>strictly synthetic dummy records</strong> modeled after official Sub-Registry deed templates.
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Component</th>
+        <th style="width: 32%;">Technologies Used</th>
+        <th style="width: 43%;">Architectural Responsibility</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Frontend Portal</strong></td>
+        <td>React 19, Tailwind CSS, TypeScript</td>
+        <td>Fast, responsive web dashboard for Sub-Registrar desks, bank vetting officers, and citizen self-service.</td>
+      </tr>
+      <tr>
+        <td><strong>API Gateway</strong></td>
+        <td>FastAPI / Python 3.12, Uvicorn, Celery</td>
+        <td>Asynchronous microservice orchestrator with automated request routing, auth tokens, and audit logging.</td>
+      </tr>
+      <tr>
+        <td><strong>Bangla Legal OCR</strong></td>
+        <td>Multimodal Gemini Flash VLM, OpenCV</td>
+        <td>Asynchronous pipeline (3–5s) extracting District, Mouza, Khatian, Daag, Chouhaddi, and acreage into JSON.</td>
+      </tr>
+      <tr>
+        <td><strong>Farayez &amp; DAG Engine</strong></td>
+        <td>NetworkX, Custom Math Core</td>
+        <td>Sub-second (&lt;500ms) graph traversal of historical Baya deeds and mathematical calculation of statutory quotas.</td>
+      </tr>
+      <tr>
+        <td><strong>Database &amp; Ledger</strong></td>
+        <td>PostgreSQL 16, Redis, SHA-256 Hashes</td>
+        <td>ACID-compliant storage of Khatians, 45-day active plot locks, and an append-only cryptographic audit trail.</td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="footer-tag">
     <span>TrueDeed (LA-72) — LandTech Innovation Hackathon 2026</span>
@@ -407,79 +356,78 @@
 <!-- ==================== PAGE 3 ==================== -->
 <div class="sheet">
   <h2>6. Main Features of TrueDeed</h2>
+  <p>TrueDeed delivers five targeted innovations resolving Problem P3 at the national administrative level:</p>
+  <ul>
+    <li>
+      <strong>Farayez Statutory Inheritance Quota Interceptor:</strong> Automatically computes lawful fractional entitlement based on Islamic jurisprudence (incorporating <em>Aul</em> proportional abatement, <em>Radd</em> return, and Section 4 of the <em>Muslim Family Laws Ordinance 1961</em> for predeceased heirs). Blocks any transaction where claimed selling acreage exceeds legal entitlement.
+    </li>
+    <li>
+      <strong>Directed Acyclic Graph (DAG) Baya Lineage Tracer:</strong> Reconstructs the complete historical chain of title from CS/SA/RS baseline surveys down to the current seller. Flags any fake intermediate deeds, missing mutation orders, or broken seller-buyer continuity.
+    </li>
+    <li>
+      <strong>45-Day Temporal Concurrency Plot Lock:</strong> Enforces an active transactional hold on target Daag records across registration desks during the statutory e-mutation window, completely eliminating duplicate sales of the same plot to multiple buyers.
+    </li>
+    <li>
+      <strong>Multimodal Bangla Legal OCR &amp; Normalizer:</strong> Parses complex, handwritten, and archaic legal Bengali deed scans into normalized machine-readable schemas with side-by-side human-in-the-loop verification screens.
+    </li>
+    <li>
+      <strong>Composite TrueDeed Trust Score (0–100%):</strong> Provides an explainable, deterministic security metric accompanied by a tamper-evident digital verification certificate with QR-verifiable cryptographic proof.
+    </li>
+  </ul>
 
-  <div class="feature-box">
-    <div class="feature-title">Feature 1: Bangla Legal Document OCR & Entity Extraction</div>
-    <p>
-      Eliminates manual form entry by scanning physical deed documents (handwritten or printed) and directly extracting key structural metadata: District, Upazila, Mouza, JL Number, CS/SA/RS Khatian numbers, Haal and Sabek Daag numbers, directional four boundaries (চৌহদ্দি), and transferred decimal area.
-    </p>
-  </div>
+  <h2>7. The TrueDeed Trust Score Matrix (0–100%) &amp; Hard Vetoes</h2>
+  <p>
+    To guarantee legal rigor and prevent mathematical score averaging from masking critical title defects, TrueDeed implements weighted scoring coupled with <strong>non-negotiable Hard Veto overrides</strong>:
+  </p>
 
-  <div class="feature-box">
-    <div class="feature-title">Feature 2: Algorithmic Farayez (Inheritance Math) Validator</div>
-    <p>
-      Implements statutory mathematical rules of the <em>Muslim Family Laws Ordinance 1961</em> ($1 \text{ Son} = 2 \text{ Daughters}$). Given the ancestor's baseline land volume and surviving heirs, it calculates each heir's exact mathematical ceiling. If `Transferred_Area > Eligible_Share`, the engine triggers an instant <strong>Critical Over-Selling Alert</strong>.
-    </p>
-  </div>
-
-  <div class="feature-box">
-    <div class="feature-title">Feature 3: Directed Acyclic Graph (DAG) for Historical Baya Lineage</div>
-    <p>
-      Models historical title deeds as a Directed Acyclic Graph connecting original survey records (CS &rarr; SA &rarr; RS &rarr; Mutation &rarr; Current Deed). Automatically validates: (1) <em>Temporal Consistency</em>, (2) <em>Party Continuity</em> (Buyer in Deed $N$ matches Seller in Deed $N+1$), and (3) <em>Area Conservation</em>.
-    </p>
-  </div>
-
-  <div class="feature-box">
-    <div class="feature-title">Feature 4: 45-Day Temporal Active Plot Lock (Anti-Double Selling)</div>
-    <p>
-      Enforces a distributed temporal mutex lock on the composite geographic identifier (`District_Upazila_Mouza_Khatian_Daag`) upon transaction initiation. Any secondary transaction attempted on the same plot within the 45-day mutation processing window triggers an immediate <strong>Concurrent Transfer Warning</strong>.
-    </p>
-  </div>
-
-  <div class="feature-box">
-    <div class="feature-title">Feature 5: Objective TrueDeed Trust Score (0–100%)</div>
-    <p>
-      Aggregates sub-engine validations into a single standardized risk metric: Baya Chain Continuity (35%), Farayez Share Compliance (25%), Active Plot Lock (25%), and Identity/Record Consistency (15%). Active Section 144 injunctions trigger a hard fail-safe override to &lt; 30%.
-    </p>
-  </div>
-
-  <h2>7. The TrueDeed Trust Score Matrix</h2>
   <table>
     <thead>
       <tr>
-        <th style="width: 25%;">Evaluation Metric</th>
-        <th style="width: 15%;">Weightage</th>
-        <th style="width: 60%;">Algorithmic Verification Standard</th>
+        <th style="width: 28%;">Evaluation Metric</th>
+        <th style="width: 16%;">Weightage</th>
+        <th style="width: 56%;">Algorithmic Verification Standard</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Baya Chain Integrity</strong></td>
+        <td><strong>Baya Chain Continuity</strong></td>
         <td><strong>35 Points</strong></td>
-        <td>Unbroken DAG continuity from state baseline (CS/SA/RS) to current deed.</td>
+        <td>Continuous, unbroken DAG lineage tracing from state baseline (CS/SA/RS) to current deed.</td>
       </tr>
       <tr>
-        <td><strong>Farayez Share Accuracy</strong></td>
+        <td><strong>Farayez Quota Compliance</strong></td>
         <td><strong>25 Points</strong></td>
-        <td>Transferred acreage is strictly &le; statutory inheritance entitlement.</td>
+        <td>Deeded acreage is strictly &le; statutory inheritance entitlement calculated from baseline khatian.</td>
       </tr>
       <tr>
-        <td><strong>Active Plot Lock</strong></td>
+        <td><strong>Active Plot Lock Check</strong></td>
         <td><strong>25 Points</strong></td>
-        <td>Zero concurrent transfer filings on target Daag within the 45-day window.</td>
+        <td>Zero concurrent transfer filings or active holds on target Daag within the 45-day window.</td>
       </tr>
       <tr>
-        <td><strong>Registry & NID Match</strong></td>
+        <td><strong>Registry &amp; NID Match</strong></td>
         <td><strong>15 Points</strong></td>
-        <td>Cross-verified consistency across Seller NID, Khatian, and Sub-Registry logs.</td>
+        <td>Cross-verified consistency across Seller NID, Porcha records, and biometric registry logs.</td>
       </tr>
       <tr style="background: #fef2f2;">
-        <td><strong>Hard Veto Override</strong></td>
-        <td><strong>FAIL-SAFE</strong></td>
-        <td>Active Section 144 court injunction triggers an immediate drop to &lt; 30%.</td>
+        <td><strong>HARD VETO: Chain Broken</strong></td>
+        <td><strong>&lt; 30% Fatal</strong></td>
+        <td>Missing or forged intermediate Baya deed drops total score below 30% regardless of other points.</td>
+      </tr>
+      <tr style="background: #fef2f2;">
+        <td><strong>HARD VETO: Civil Injunction</strong></td>
+        <td><strong>0% Lock</strong></td>
+        <td>Active temporary injunction under Order 39, Rules 1–2 of CPC 1908 immediately halts registration.</td>
       </tr>
     </tbody>
   </table>
+
+  <div class="callout" style="margin-top: 8px;">
+    <strong>Standardized Risk Bands:</strong> 
+    <strong>Grade A (85–100):</strong> Safe for Deed Stamping | 
+    <strong>Grade B (60–84):</strong> Requires Senior Kanungo Review | 
+    <strong>Grade C (Below 60 or Any Veto):</strong> High Fraud Risk — Transaction Automatically Blocked.
+  </div>
 
   <div class="footer-tag">
     <span>TrueDeed (LA-72) — LandTech Innovation Hackathon 2026</span>
@@ -491,7 +439,7 @@
 
 <!-- ==================== PAGE 4 ==================== -->
 <div class="sheet">
-  <h2>8. Nationwide Deployment & E-Governance Adoption Plan</h2>
+  <h2>8. Nationwide Deployment &amp; E-Governance Adoption Plan</h2>
   <p>
     TrueDeed is designed to integrate seamlessly into Bangladesh's national e-governance framework:
   </p>
@@ -513,17 +461,17 @@
         <td>Automates cross-checking during e-Mutation hearings, instantly catching forged Baya deeds and preventing duplicate mutation applications.</td>
       </tr>
       <tr>
-        <td><strong>Mortgage Banks & NBFIs</strong></td>
+        <td><strong>Mortgage Banks &amp; NBFIs</strong></td>
         <td>Integrated via secure B2B API into loan origination systems to reduce collateral property title vetting from 21 days down to 5 seconds.</td>
       </tr>
       <tr>
-        <td><strong>Citizens & Expatriates</strong></td>
+        <td><strong>Citizens &amp; Expatriates</strong></td>
         <td>Mobile-first citizen portal ("Check Before You Pay") enabling non-resident Bangladeshis and buyers to verify title validity before paying token money.</td>
       </tr>
     </tbody>
   </table>
 
-  <h2>9. Team Composition & Mentors (Rule Book Compliance)</h2>
+  <h2>9. Team Composition &amp; Mentors (Rule Book Compliance)</h2>
   <p>
     In strict compliance with Section 6 of the LandTech 2026 Rule Book, Team TrueDeed comprises 2 DIU students and 2 specialized mentors:
   </p>
@@ -534,47 +482,49 @@
         <th style="width: 22%;">Role</th>
         <th style="width: 28%;">Name</th>
         <th style="width: 25%;">Affiliation / ID</th>
-        <th style="width: 25%;">Responsibility</th>
+        <th style="width: 25%;">Contact / Responsibility</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><strong>Student 1 (Team Leader)</strong></td>
-        <td>Ishtiak Ahmed</td>
-        <td>DIU Student</td>
-        <td>System Architecture, Full-Stack Engine & Presentation</td>
+        <td><strong>ISHTIAK AHMED</strong></td>
+        <td>0242310005101006<br>Department of CSE, DIU</td>
+        <td>System Architecture, Full-Stack Engine &amp; Presentation</td>
       </tr>
       <tr>
         <td><strong>Student 2 (Core Member)</strong></td>
-        <td>[Teammate Name]</td>
-        <td>DIU Student</td>
-        <td>UI/UX Design, Concept Documentation & Testing</td>
+        <td><strong>Ashfikur Rahman Mahi</strong></td>
+        <td>0242310005101618<br>Department of CSE, DIU</td>
+        <td>UI/UX Design, Pipeline Testing &amp; Concept Documentation</td>
       </tr>
       <tr>
         <td><strong>Faculty Mentor</strong></td>
-        <td>[Faculty Mentor Name]</td>
-        <td>Department of CSE, DIU</td>
-        <td>Academic Guidance, Algorithmic Validation</td>
+        <td><strong>Md. Jubayar Alam Rafi</strong></td>
+        <td>Lecturer, Department of CSE<br>Daffodil International University</td>
+        <td>alamrafi.cse@diu.edu.bd<br>01707587089</td>
       </tr>
       <tr>
-        <td><strong>Industry Mentor</strong></td>
-        <td>[Industry Mentor Name]</td>
-        <td>Industry Expert / Tech Lead</td>
-        <td>GovTech Feasibility & Enterprise Scaling</td>
+        <td><strong>Industry Support Mentor</strong></td>
+        <td><strong>MD Zafor Iqbal</strong></td>
+        <td>CSE-TECH</td>
+        <td>xoy4444@gmail.com<br>GovTech Scaling &amp; Cloud Feasibility</td>
       </tr>
     </tbody>
   </table>
 
-  <h2>10. Hackathon Execution Roadmap</h2>
+  <h2>10. Hackathon Execution Roadmap &amp; Edge-Case Safeguards</h2>
   <ul>
-    <li><strong>Round 1 (Current Submission):</strong> Concept Note, Algorithmic Specifications, System Architecture, and GitHub repository.</li>
-    <li><strong>Round 2 (Final On-Site):</strong> Live interactive prototype demonstrating real-time deed upload, Farayez fraud detection, Baya DAG timeline, and Trust Score generation.</li>
-    <li><strong>National Vision:</strong> Pilot collaboration with Ministry of Land and ICT Division for national rollout.</li>
+    <li><strong>Cold-Start Handling:</strong> Un-digitized CS/SA records trigger a <em>Provisional Title Audit</em> tag with an automated physical record-room inspection requisition rather than false clearance or unfair blocking.</li>
+    <li><strong>Plot Lock Anti-Abuse:</strong> 45-day plot locks require biometric NID verification and non-refundable statutory fees, auto-releasing if no e-mutation application is filed.</li>
+    <li><strong>Phase 1 (Current Submission):</strong> Concept Note, System Architecture Blueprints, and Live GitHub Repository showcase.</li>
+    <li><strong>Phase 2 (Final On-Site):</strong> Live interactive prototype demonstrating real-time deed upload, Farayez fraud detection, Baya DAG timeline, and Trust Score generation.</li>
   </ul>
 
-  <div style="margin-top: 24px; padding-top: 10px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; font-size: 8pt; color: #64748b;">
+  <div style="margin-top: 14px; padding-top: 8px; border-top: 1px solid #cbd5e1; display: flex; justify-content: space-between; font-size: 8pt; color: #64748b;">
     <div><strong>Submitted by:</strong> Team TrueDeed (LA-72)</div>
-    <div><strong>Event:</strong> LandTech 2026 Innovation Hackathon</div>
+    <div><strong>Track:</strong> Digital Land Records, Verification &amp; Digitization</div>
+    <div><strong>Institution:</strong> Daffodil International University</div>
   </div>
 
   <div class="footer-tag">
