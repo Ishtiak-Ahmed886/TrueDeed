@@ -7,7 +7,7 @@ import {
   AlertTriangle, ArrowRight, BadgeCheck, BookOpen, Check, ChevronDown, 
   ClipboardCheck, Copy, FileCheck2, FileJson, GitBranch, Globe2, KeyRound, 
   LockKeyhole, ScanLine, ShieldCheck, UserRound, X, Zap, Scale, Layers, 
-  Sliders, Plus, Minus, RotateCcw, AlertCircle, Sparkles
+  Sliders, Plus, Minus, RotateCcw, AlertCircle, Sparkles, FileText, MapPin, Clock
 } from 'lucide-react'
 
 type Bilingual = { en: string; bn: string }
@@ -529,26 +529,45 @@ export default function Page() {
           <div>
             {/* ROLE PERSPECTIVE BANNER */}
             <div style={{
-              background: role === 'Sub-Registrar' ? '#0d1d16' : role === 'Bank Underwriter' ? '#0e1824' : '#1c150b',
-              border: `1px solid ${role === 'Sub-Registrar' ? '#184533' : role === 'Bank Underwriter' ? '#1a3a54' : '#573a14'}`,
-              color: role === 'Sub-Registrar' ? 'var(--green)' : role === 'Bank Underwriter' ? 'var(--blue)' : 'var(--amber)',
-              borderRadius: '7px',
-              padding: '7px 14px',
+              background: role === 'Sub-Registrar' 
+                ? 'linear-gradient(90deg, rgba(13,29,22,0.92) 0%, rgba(10,22,17,0.85) 100%)' 
+                : role === 'Bank Underwriter' 
+                ? 'linear-gradient(90deg, rgba(14,24,36,0.92) 0%, rgba(10,18,28,0.85) 100%)' 
+                : 'linear-gradient(90deg, rgba(28,21,11,0.92) 0%, rgba(20,15,8,0.85) 100%)',
+              border: `1px solid ${role === 'Sub-Registrar' ? 'rgba(45,212,163,0.3)' : role === 'Bank Underwriter' ? 'rgba(102,179,232,0.3)' : 'rgba(246,189,85,0.3)'}`,
+              borderRadius: '8px',
+              padding: '8px 14px',
               fontSize: '11px',
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              marginBottom: '10px'
+              gap: '10px',
+              marginBottom: '10px',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.2)'
             }}>
-              {role === 'Sub-Registrar' ? <ShieldCheck size={15} /> : role === 'Bank Underwriter' ? <BadgeCheck size={15} /> : <UserRound size={15} />}
-              <span>
-                <strong>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '3px 9px',
+                borderRadius: '5px',
+                background: role === 'Sub-Registrar' ? 'rgba(45,212,163,0.15)' : role === 'Bank Underwriter' ? 'rgba(102,179,232,0.15)' : 'rgba(246,189,85,0.15)',
+                color: role === 'Sub-Registrar' ? 'var(--green)' : role === 'Bank Underwriter' ? 'var(--blue)' : 'var(--amber)',
+                fontWeight: 700,
+                fontSize: '10px',
+                letterSpacing: '0.4px',
+                whiteSpace: 'nowrap',
+                flexShrink: 0
+              }}>
+                {role === 'Sub-Registrar' ? <ShieldCheck size={13} /> : role === 'Bank Underwriter' ? <BadgeCheck size={13} /> : <UserRound size={13} />}
+                <span>
                   {role === 'Sub-Registrar' 
                     ? (lang === 'bn' ? 'সরকারি সাব-রেজিস্ট্রি ডেস্ক' : 'GOVERNMENT SUB-REGISTRY DESK') 
                     : role === 'Bank Underwriter' 
                     ? (lang === 'bn' ? 'বাণিজ্যিক ব্যাংক মর্টগেজ ডেস্ক' : 'COMMERCIAL BANK MORTGAGE DESK') 
-                    : (lang === 'bn' ? 'নাগরিক ও প্রবাসী ভূমি যাচাই পোর্টাল' : 'CITIZEN & NRB LAND VERIFICATION DESK')}:
-                </strong>{' '}
+                    : (lang === 'bn' ? 'নাগরিক ও প্রবাসী ভূমি পোর্টাল' : 'CITIZEN & NRB LAND PORTAL')}
+                </span>
+              </div>
+              <span style={{ color: '#cbd5e1', fontSize: '11px', lineHeight: 1.4 }}>
                 {role === 'Sub-Registrar' 
                   ? (lang === 'bn' 
                       ? 'সংবিধিবদ্ধ নিবন্ধন কর্তৃপক্ষ ভিউ। সেকশন ২২এ আইনি ভেটো, বায়া দলিলের অবিচ্ছিন্নতা এবং উত্তরাধিকার কোটা বিশ্লেষণ করা হচ্ছে।' 
@@ -563,32 +582,92 @@ export default function Page() {
               </span>
             </div>
 
+            {/* ENHANCED EXECUTIVE METADATA COMMAND STRIP */}
             <div className="case-strip">
-              <span>
-                <span className="case-label">
+              <div className="case-strip-items">
+                {/* 1. DOCUMENT IDENTIFIER */}
+                <div className="case-badge case-badge-primary">
+                  <div className="case-badge-icon blue">
+                    <FileText size={14} />
+                  </div>
+                  <div className="case-badge-content">
+                    <span className="case-badge-label">
+                      {role === 'Sub-Registrar' 
+                        ? (lang === 'bn' ? 'দলিল রেজিস্ট্রি নথি নং' : 'REGISTRY DEED FILE') 
+                        : role === 'Bank Underwriter' 
+                        ? (lang === 'bn' ? 'বন্ধকী জামানত নথি নং' : 'MORTGAGE FILE') 
+                        : (lang === 'bn' ? 'নাগরিক অডিট কেস নং' : 'BUYER AUDIT CASE')}
+                    </span>
+                    <span className="case-badge-val mono">
+                      {role === 'Sub-Registrar' ? 'TD-2026-014872' : role === 'Bank Underwriter' ? 'MORT-2026-8812' : 'CITIZEN-AUDIT-992'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* 2. DEED NATURE / COLLATERAL */}
+                <div className="case-badge">
+                  <div className="case-badge-icon green">
+                    <BookOpen size={14} />
+                  </div>
+                  <div className="case-badge-content">
+                    <span className="case-badge-label">
+                      {role === 'Bank Underwriter' 
+                        ? (lang === 'bn' ? 'জামানতের ধরন' : 'SECURITY TYPE') 
+                        : (lang === 'bn' ? 'দলিলের প্রকৃতি' : 'DEED NATURE')}
+                    </span>
+                    <span className="case-badge-val">
+                      {role === 'Bank Underwriter' 
+                        ? (lang === 'bn' ? 'গৃহ ঋণ জামানত (৪৫ লাখ ৳)' : 'Home Loan Collateral (BDT 45L)') 
+                        : (lang === 'bn' ? 'সাফ-কবলা হস্তান্তর' : 'Saf-Kabla (Outright Sale)')}
+                    </span>
+                  </div>
+                </div>
+
+                {/* 3. JURISDICTION & MOUZA */}
+                <div className="case-badge">
+                  <div className="case-badge-icon amber">
+                    <MapPin size={14} />
+                  </div>
+                  <div className="case-badge-content">
+                    <span className="case-badge-label">
+                      {lang === 'bn' ? 'এখতিয়ার ও মৌজা' : 'JURISDICTION'}
+                    </span>
+                    <span className="case-badge-val">
+                      {lang === 'bn' ? 'সাভার, ঢাকা (মৌজা: বিরুলিয়া, JL-৪২)' : 'Savar, Dhaka (Birulia, JL-42)'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* 4. LODGED TIMESTAMP */}
+                <div className="case-badge">
+                  <div className="case-badge-icon purple">
+                    <Clock size={14} />
+                  </div>
+                  <div className="case-badge-content">
+                    <span className="case-badge-label">
+                      {lang === 'bn' ? 'দাখিলের সময়' : 'SUBMITTED'}
+                    </span>
+                    <span className="case-badge-val" style={{ color: '#94a3b8', fontSize: '11px' }}>
+                      {lang === 'bn' ? '১৭ অক্টো ২০২৬ · ১১:৪২ মি.' : '17 Oct 2026 · 11:42 AM'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 5. LIVE NETWORK GATEWAY BADGE */}
+              <div className={`case-status-badge ${role === 'Bank Underwriter' ? 'blue' : role === 'Citizen-NRB' ? 'amber' : 'green'}`}>
+                <div className="radar-dot">
+                  <span className="ring" />
+                  <span className="core" />
+                </div>
+                <span>
                   {role === 'Sub-Registrar' 
-                    ? (lang === 'bn' ? 'দলিল নথি' : 'DEED FILE') 
+                    ? (lang === 'bn' ? 'সাব-রেজিস্ট্রি সরাসরি সংযুক্ত' : 'Sub-Registry Live Connected') 
                     : role === 'Bank Underwriter' 
-                    ? (lang === 'bn' ? 'বন্ধকী নথি' : 'MORTGAGE FILE') 
-                    : (lang === 'bn' ? 'ক্রেতা অডিট' : 'BUYER AUDIT')}
+                    ? (lang === 'bn' ? 'কোর ব্যাংকিং সিবিএস সংযুক্ত (API)' : 'Core Banking CBS Live') 
+                    : (lang === 'bn' ? 'পাবলিক ট্রাস্ট গেটওয়ে লাইভ' : 'Public Land Trust Gateway')}
                 </span>
-                <b className="mono">
-                  {role === 'Sub-Registrar' ? 'TD-2026-014872' : role === 'Bank Underwriter' ? 'MORT-2026-8812' : 'CITIZEN-AUDIT-992'}
-                </b>
-              </span>
-              <span>
-                <BookOpen size={13} /> {role === 'Bank Underwriter' ? (lang === 'bn' ? 'জামানত ধরন' : 'Loan Security') : t('deedType')}{' '}
-                <em>{role === 'Bank Underwriter' ? (lang === 'bn' ? 'গৃহ ঋণ জামানত (৪৫ লাখ টাকা)' : 'Home Loan Collateral (BDT 45L)') : t('deedType')}</em>
-              </span>
-              <span><Globe2 size={13} /> {t('location')}</span>
-              <span className="muted">{t('lodged')}</span>
-              <span style={{ marginLeft: 'auto', color: role === 'Bank Underwriter' ? 'var(--blue)' : 'var(--green)' }}>
-                {role === 'Sub-Registrar' 
-                  ? (lang === 'bn' ? '● সাব-রেজিস্ট্রি সরাসরি সংযুক্ত' : '● Sub-Registry Live Connected') 
-                  : role === 'Bank Underwriter' 
-                  ? (lang === 'bn' ? '● কোর ব্যাংকিং সিবিএস সংযুক্ত (API)' : '● Core Banking CBS Connected (API)') 
-                  : (lang === 'bn' ? '● পাবলিক ল্যান্ড ট্রাস্ট গেটওয়ে' : '● Public Land Integrity Gateway')}
-              </span>
+              </div>
             </div>
 
             <div className="dashboard-grid">
