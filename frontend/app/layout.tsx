@@ -7,9 +7,8 @@ import { Noto_Sans_Bengali } from 'next/font/google'
 const bengali = Noto_Sans_Bengali({ subsets: ['bengali'], weight: ['400', '500', '600', '700'], variable: '--font-bengali' })
 
 export const metadata: Metadata = {
-  title: 'TrueDeed · Verification Command Center',
-  description: 'GovTech pre-registration decision support for Bangladesh land deeds.',
-  generator: 'v0.app',
+  title: 'TrueDeed · Algorithmic Land Fraud & Double-Selling Prevention Platform',
+  description: 'National GovTech decision-support platform for pre-registration deed verification, Hanafi Farayez quota calculation, and Baya DAG title lineage audit.',
   icons: {
     icon: [
       {
