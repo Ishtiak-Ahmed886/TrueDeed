@@ -1,214 +1,237 @@
-# TrueDeed (LA-72)
+<div align="center">
+
+# 🛡️ TrueDeed (LA-72)
 ### Algorithmic Land Fraud & Double-Selling Prevention Platform
-**Event:** LandTech 2026 Innovation Hackathon  
-**Track:** Digital Land Records, Verification & Digitization  
-**Problem Chosen:** `P3: Catch Fraud & Double-Selling` (Rule Book Section 5)  
-**Team Code:** LA-72  
-**Domain:** GovTech / LegalTech / PropTech  
+
+[![Event: LandTech Hackathon 2026](https://img.shields.io/badge/Event-LandTech_2026_Hackathon-10b981?style=for-the-badge&logo=target&logoColor=white)](https://github.com/Ishtiak-Ahmed886/TrueDeed)
+[![Track: Digital Land Records](https://img.shields.io/badge/Track-Digital_Land_Records-0284c7?style=for-the-badge&logo=database&logoColor=white)](https://github.com/Ishtiak-Ahmed886/TrueDeed)
+[![Problem: P3 Catch Fraud](https://img.shields.io/badge/Problem-P3_Fraud_%26_Double_Selling-e11d48?style=for-the-badge&logo=shield&logoColor=white)](https://github.com/Ishtiak-Ahmed886/TrueDeed)
+[![License: MIT](https://img.shields.io/badge/License-MIT-f59e0b?style=for-the-badge)](LICENSE)
+
+<br/>
+
+**[📄 Read Official 4-Page Concept Note (PDF)](./TrueDeed_Concept_Note_Official.pdf)** &nbsp;•&nbsp;
+**[🏛️ Interactive Architecture Gallery](./Architecture_and%20Data_flow/Architecture_Gallery.html)** &nbsp;•&nbsp;
+**[📐 Modern Architecture](#-2-modern-system-architecture)** &nbsp;•&nbsp;
+**[👥 Team & Mentors](#-8-team--mentorship-rule-book-section-6)**
 
 ---
 
-## 📌 1. Project Overview & Problem Chosen (P3)
-Over **70% of all civil litigations in Bangladesh** stem from land disputes. Existing government portals (such as *e-Porcha* and *e-Namjari*) act as passive archives of historical records rather than proactive fraud detection systems.
+</div>
 
-Under **Problem P3: Catch Fraud & Double-Selling**, **TrueDeed** resolves the foundational institutional void between the **Ministry of Law (Sub-Registry Offices)** and the **Ministry of Land (AC Land Offices)**. It provides an automated, sub-second verification layer that evaluates land documents against statutory inheritance quotas, chain-of-title lineage, and active transaction locks before fraudulent transfers occur.
+## 📌 1. Executive Summary & National Urgency
 
----
+Over **70% of all civil litigations in Bangladesh**—representing approximately **3.5 million pending cases** in formal courts—originate from land ownership disputes, forged deeds, and unauthorized transfers. 
 
-## 🏗️ 2. System Architecture & Data Flow Visual Showcase
+### The Institutional Void
+The root cause is a systemic institutional disconnect between two distinct government authorities:
+1. **The Ministry of Law (Sub-Registry Offices):** Exercises statutory authority over deed registration under the *Registration Act 1908*, but lacks automated visibility into live khatian mutation statuses or physical boundary encumbrances.
+2. **The Ministry of Land (Upazila Land Offices / AC Land):** Administers mutation records (*e-Namjari*) and revenue records (*e-Porcha*), but historically operates asynchronously from registration desks.
 
-> 💡 **Tip for Evaluators:** Click on any diagram or use the direct **"Full Tab View"** links below to view diagrams in 100% high-definition vector resolution without scaling down.
-
----
-
-### Module 1: Farayez Inheritance Fraud Prevention
-
-<details open>
-<summary><b>📐 1.1 Architecture Blueprint (Click to Expand / Collapse)</b></summary>
-<br>
-<p align="center">
-  <a href="./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Architecture.svg" target="_blank">
-    <img src="./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Architecture.svg" width="100%" alt="Inheritance Fraud Prevention Architecture">
-  </a>
-  <br>
-  <a href="./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Architecture.svg" target="_blank">🔍 <b>[Click here to Open Architecture in Full Tab HD]</b></a>
-</p>
-</details>
-
-<details open>
-<summary><b>🔄 1.2 End-to-End Data Flow Sequence (Click to Expand / Collapse)</b></summary>
-<br>
-<p align="center">
-  <a href="./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Dataflow.svg" target="_blank">
-    <img src="./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Dataflow.svg" width="100%" alt="Inheritance Fraud Prevention Dataflow">
-  </a>
-  <br>
-  <a href="./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Dataflow.svg" target="_blank">🔍 <b>[Click here to Open Data Flow in Full Tab HD]</b></a>
-</p>
-</details>
+Under **Problem P3: Catch Fraud & Double-Selling**, **TrueDeed** builds an automated, sub-second pre-registration verification layer. It intercepts fraudulent land sales **before** registration by mathematically auditing statutory inheritance quotas, validating Baya deed chain-of-title lineage, and enforcing real-time transactional concurrency locks.
 
 ---
 
-### Module 2: Baya Deed Lineage (Chain of Ownership Verification)
+## 🏛️ 2. Modern System Architecture
 
-<details open>
-<summary><b>📐 2.1 Directed Acyclic Graph (DAG) Architecture</b></summary>
-<br>
-<p align="center">
-  <a href="./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Architecture.svg" target="_blank">
-    <img src="./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Architecture.svg" width="100%" alt="Chain of Ownership Architecture">
-  </a>
-  <br>
-  <a href="./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Architecture.svg" target="_blank">🔍 <b>[Click here to Open Architecture in Full Tab HD]</b></a>
-</p>
-</details>
+The following diagram illustrates the complete, end-to-end multi-layer architecture of TrueDeed—from physical Bengali deed ingestion to automated algorithmic verification and QR-verifiable certificate dispatch:
 
-<details open>
-<summary><b>🔄 2.2 Baya Deed Verification Sequence</b></summary>
-<br>
 <p align="center">
-  <a href="./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Dataflow.svg" target="_blank">
-    <img src="./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Dataflow.svg" width="100%" alt="Chain of Ownership Dataflow">
-  </a>
-  <br>
-  <a href="./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Dataflow.svg" target="_blank">🔍 <b>[Click here to Open Data Flow in Full Tab HD]</b></a>
+  <img src="./modern_system_architecture.png" alt="TrueDeed Modern System Architecture" width="100%">
 </p>
-</details>
 
 ---
 
-### Module 3: Double-Selling Prevention (Temporal Active Plot Lock)
+## ⚡ 3. Five Targeted Core Innovations
 
-<details open>
-<summary><b>📐 3.1 45-Day Concurrency Lock Architecture</b></summary>
-<br>
-<p align="center">
-  <a href="./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Architecture.svg" target="_blank">
-    <img src="./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Architecture.svg" width="100%" alt="Double Selling Prevention Architecture">
-  </a>
-  <br>
-  <a href="./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Architecture.svg" target="_blank">🔍 <b>[Click here to Open Architecture in Full Tab HD]</b></a>
-</p>
-</details>
+TrueDeed delivers five targeted technological modules resolving Problem P3 at the national administrative level:
 
-<details open>
-<summary><b>🔄 3.2 Double-Selling Alert Sequence</b></summary>
-<br>
-<p align="center">
-  <a href="./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Dataflow.svg" target="_blank">
-    <img src="./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Dataflow.svg" width="100%" alt="Double Selling Prevention Dataflow">
-  </a>
-  <br>
-  <a href="./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Dataflow.svg" target="_blank">🔍 <b>[Click here to Open Data Flow in Full Tab HD]</b></a>
-</p>
-</details>
+| # | Innovation Module | Legal & Algorithmic Foundation | Fraud Vector Prevented |
+|---|-------------------|--------------------------------|------------------------|
+| **1** | **Farayez Statutory Inheritance Quota Interceptor** | Enforces fractional inheritance calculations under Islamic jurisprudence (*Aul*, *Radd*, and the *Muslim Family Laws Ordinance 1961*). | Blocks heirs from selling more than their lawful fractional share or disinheriting female co-heirs. |
+| **2** | **DAG Baya Deed Lineage Tracer** | Constructs a Directed Acyclic Graph tracing unbroken ownership from state survey baselines (CS/SA/RS) to current seller. | Identifies fake intermediate deeds, missing mutation orders, and broken seller-buyer continuity. |
+| **3** | **45-Day Temporal Concurrency Plot Lock** | Places an active transactional hold across all registration desks during the statutory e-mutation window. | Eliminates double-selling scams where dishonest owners sell the same plot to multiple buyers within days. |
+| **4** | **Multimodal Bangla Legal OCR & Normalizer** | Employs Google Gemini 2.0 Flash Vision API and OpenCV to parse archaic, handwritten Bengali deeds into normalized JSON schemas. | Eliminates manual clerical transcription errors and boundary manipulation. |
+| **5** | **Composite TrueDeed Trust Score (0–100%)** | Weighted 100-point security metric backed by hard fail-safe vetoes (e.g., Order 39 CPC injunctions, broken Baya chain). | Generates a tamper-evident digital verification certificate with QR-verifiable cryptographic proof. |
 
 ---
 
-### Module 4: Bangla Legal Document OCR & Entity Extraction
+## 📊 4. Trust Score Matrix & Fail-Safe Veto Rules
 
-<details open>
-<summary><b>📐 4.1 Multimodal VLM Perception Architecture</b></summary>
-<br>
-<p align="center">
-  <a href="./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Architecture.svg" target="_blank">
-    <img src="./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Architecture.svg" width="100%" alt="Bangla Legal OCR Architecture">
-  </a>
-  <br>
-  <a href="./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Architecture.svg" target="_blank">🔍 <b>[Click here to Open Architecture in Full Tab HD]</b></a>
-</p>
-</details>
+TrueDeed calculates a deterministic, explainable risk index (0–100%) based on five transparent verification pillars:
 
-<details open>
-<summary><b>🔄 4.2 Document Parsing Data Flow</b></summary>
-<br>
-<p align="center">
-  <a href="./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Dataflow.svg" target="_blank">
-    <img src="./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Dataflow.svg" width="100%" alt="Bangla Legal OCR Dataflow">
-  </a>
-  <br>
-  <a href="./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Dataflow.svg" target="_blank">🔍 <b>[Click here to Open Data Flow in Full Tab HD]</b></a>
-</p>
-</details>
+```
+┌─────────────────────────────────────────────────────────┐
+│              TrueDeed Trust Score (100 Pts)             │
+├─────────────────────────────────────────────────────────┤
+│ [25 Pts] Inheritance & Farayez Quota Legitimacy        │
+│ [25 Pts] Baya Deed Lineage & Root Chain Continuity      │
+│ [20 Pts] Cadastral Boundary & Spatial Match (Daag/Mouza)│
+│ [15 Pts] Mutation & DCR Upazila Verification            │
+│ [15 Pts] Encumbrance & Active Concurrency Lock Status    │
+└─────────────────────────────────────────────────────────┘
+```
+
+### 🛑 Hard Fail-Safe Vetoes (Immediate Disqualification)
+Regardless of the cumulative score, the transaction is immediately flagged with a **CRITICAL FRAUD VETO (Score = 0)** if any of the following are detected:
+- ❌ **Active Civil Court Injunction** (Under *Order 39, Code of Civil Procedure 1908*).
+- ❌ **Broken Baya Lineage** (Seller cannot prove unbroken chain of title back to recorded Khatian).
+- ❌ **Farayez Quota Breach** (Selling acreage exceeds legally calculated inheritance quota).
+- ❌ **Active Concurrency Lock Violation** (Deed already lodged for the same plot within the 45-day mutation window).
 
 ---
 
-### Module 5: TrueDeed Composite Trust Score (0–100%)
+## 📐 5. Detailed Architecture & Data Flow Showcase
+
+Explore the modular technical blueprints and sequence data flows for each verification pillar:
+
+> 💡 **Tip:** Click any section to expand, or open the **[🏛️ Interactive Architecture Gallery](./Architecture_and%20Data_flow/Architecture_Gallery.html)** in your browser for full-screen viewing.
 
 <details open>
-<summary><b>📐 5.1 Weighted Scoring & Fail-Safe Veto Architecture</b></summary>
+<summary><b>Module 1: Farayez Inheritance Fraud Prevention</b></summary>
 <br>
-<p align="center">
-  <a href="./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Architecture.svg" target="_blank">
-    <img src="./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Architecture.svg" width="100%" alt="Trust Score Architecture">
-  </a>
-  <br>
-  <a href="./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Architecture.svg" target="_blank">🔍 <b>[Click here to Open Architecture in Full Tab HD]</b></a>
-</p>
+
+| Architecture Blueprint | Sequence Data Flow |
+| :---: | :---: |
+| [![Farayez Architecture](./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Architecture.svg)](./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Architecture.svg) | [![Farayez Dataflow](./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Dataflow.svg)](./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Dataflow.svg) |
+| [🔍 Full Tab HD View](./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Architecture.svg) | [🔍 Full Tab HD View](./Architecture_and%20Data_flow/1.Inheritance_Fraud_Prevention_Dataflow.svg) |
+
 </details>
 
 <details open>
-<summary><b>🔄 5.2 Verification & QR Audit Certificate Dispatch</b></summary>
+<summary><b>Module 2: Baya Deed Lineage (Chain of Ownership Verification)</b></summary>
 <br>
-<p align="center">
-  <a href="./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Dataflow.svg" target="_blank">
-    <img src="./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Dataflow.svg" width="100%" alt="Trust Score Dataflow">
-  </a>
-  <br>
-  <a href="./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Dataflow.svg" target="_blank">🔍 <b>[Click here to Open Data Flow in Full Tab HD]</b></a>
-</p>
+
+| Architecture Blueprint | Sequence Data Flow |
+| :---: | :---: |
+| [![Baya Architecture](./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Architecture.svg)](./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Architecture.svg) | [![Baya Dataflow](./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Dataflow.svg)](./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Dataflow.svg) |
+| [🔍 Full Tab HD View](./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Architecture.svg) | [🔍 Full Tab HD View](./Architecture_and%20Data_flow/2.Chain_of_Ownership_Verification_Dataflow.svg) |
+
+</details>
+
+<details open>
+<summary><b>Module 3: Double-Selling Prevention (Temporal Active Plot Lock)</b></summary>
+<br>
+
+| Architecture Blueprint | Sequence Data Flow |
+| :---: | :---: |
+| [![Lock Architecture](./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Architecture.svg)](./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Architecture.svg) | [![Lock Dataflow](./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Dataflow.svg)](./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Dataflow.svg) |
+| [🔍 Full Tab HD View](./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Architecture.svg) | [🔍 Full Tab HD View](./Architecture_and%20Data_flow/3.Double_Selling_Prevention_Dataflow.svg) |
+
+</details>
+
+<details open>
+<summary><b>Module 4: Bangla Legal Document OCR & Entity Extraction</b></summary>
+<br>
+
+| Architecture Blueprint | Sequence Data Flow |
+| :---: | :---: |
+| [![OCR Architecture](./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Architecture.svg)](./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Architecture.svg) | [![OCR Dataflow](./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Dataflow.svg)](./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Dataflow.svg) |
+| [🔍 Full Tab HD View](./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Architecture.svg) | [🔍 Full Tab HD View](./Architecture_and%20Data_flow/4.Bangla_Legal_OCR_Dataflow.svg) |
+
+</details>
+
+<details open>
+<summary><b>Module 5: TrueDeed Composite Trust Score & QR Verification Certificate</b></summary>
+<br>
+
+| Architecture Blueprint | Sequence Data Flow |
+| :---: | :---: |
+| [![Trust Score Architecture](./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Architecture.svg)](./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Architecture.svg) | [![Trust Score Dataflow](./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Dataflow.svg)](./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Dataflow.svg) |
+| [🔍 Full Tab HD View](./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Architecture.svg) | [🔍 Full Tab HD View](./Architecture_and%20Data_flow/5.TrueDeed_Trust_Score_Dataflow.svg) |
+
 </details>
 
 ---
 
-## 🎯 3. Core Verification Engines Summary
+## 💻 6. Technology Stack & Specifications
 
-1. **Multimodal Bangla Legal OCR:** Extracts structured legal entities (Mouza, JL, Khatian, Daag, Chouhaddi, Area) directly from physical deed scans without manual data entry.
-2. **Algorithmic Farayez (Inheritance Math) Engine:** Enforces statutory ratios under the *Muslim Family Laws Ordinance 1961* ($1 \text{ Son} = 2 \text{ Daughters}$). Flags immediate alerts if deeded selling area exceeds the seller's maximum legal entitlement.
-3. **Directed Acyclic Graph (DAG) for Baya Lineage:** Mathematically verifies historical chain-of-title from original state surveys (CS/SA/RS) enforcing temporal consistency, party continuity, and area conservation.
-4. **45-Day Temporal Active Plot Lock:** Places an atomic mutex lock on the composite geographic key (`District_Upazila_Mouza_Khatian_Daag`) upon registration, completely eliminating double-selling scams during the mutation latency window.
-5. **TrueDeed Trust Score (0–100%):** Standardized, defensible risk score for citizens, expatriates, and mortgage loan underwriters.
+| Layer | Technology | Version | Purpose |
+|---|---|---|---|
+| **Frontend UI** | React | 19.x | Modern, responsive single-page portal with dual English/Bangla localization. |
+| **Styling & Icons** | Tailwind CSS & Lucide Icons | Latest | Clean, accessible government-grade design system. |
+| **Backend API** | FastAPI (Python) | 3.10+ | Asynchronous, sub-second title evaluation microservices. |
+| **Graph Lineage Engine** | NetworkX | 3.x | Directed Acyclic Graph (DAG) for deep multi-generational Baya deed traversal. |
+| **VLM & Document OCR** | Google Gemini 2.0 Flash Vision API | Latest | Multimodal perception parsing archaic, handwritten Bengali deeds. |
+| **Image Preprocessing** | OpenCV | 4.x | Adaptive binarization, deskewing, and noise filtering for physical deed scans. |
+| **Concurrency Locks** | Redis / In-Memory Mutex | 7.x | 45-day atomic mutex locks indexed by composite cadastral keys. |
+| **Cryptographic Proof** | PyCryptodome / Hashlib | Built-in | SHA-256 Merkle tree verification and QR-verifiable digital certificates. |
 
 ---
 
-## 🔒 4. Data Sources & Privacy Compliance (Rule Book Section 10)
+## 🔒 7. Data Privacy & Hackathon Rule Compliance
+
 In strict compliance with **Section 10 (Do's and Don'ts)** and **Section 14 (FAQ)** of the LandTech 2026 Rule Book:
-* **No Real Personal Data Used:** This project **does not** use real people's names, NID numbers, phone numbers, or real land records.
-* **Synthetic Dummy Data Only:** All demonstration datasets, Khatian entries, and sample deed documents are **100% synthetically generated dummy data** modeled after standard Sub-Registry deed templates (সাফ কবলা) and public survey structures (CS, SA, RS, e-Porcha schemas).
-* **Zero Government Scraping:** No data was scraped or bulk-downloaded from government websites, nor were any live government servers tested or accessed.
+
+- 🛡️ **Zero Real Personal Data Used:** This project **does not** utilize real citizens' names, National Identity (NID) numbers, biometric data, phone numbers, or actual confidential land records.
+- 🧪 **100% Synthetic Dummy Datasets:** All demonstration datasets, Khatian entries, and sample deed documents are synthetically modeled after standard public Sub-Registry deed templates (*সাফ কবলা*) and historical survey schemas (*CS, SA, RS, e-Porcha*).
+- 🚫 **Zero Government System Scraping:** No live government servers (*land.gov.bd*, *minland.gov.bd*, etc.) were scraped, load-tested, or accessed. All integration is demonstrated via mock API contracts.
+- 🤖 **AI Transparency Disclosure (Rule Book Section 8 & 10):**
+  - **Google Gemini 2.0 Flash Vision API:** Utilized for multimodal extraction from unstructured legal Bengali deed images.
+  - **OpenCV:** Employed for deterministic computer vision image preprocessing.
+  - **Antigravity & ChatGPT:** Utilized as pair-programming and documentation assistants for algorithmic formulation and architecture design.
 
 ---
 
-## 🤖 5. AI Tools Disclosure (Rule Book Section 8 & 10)
-In full transparency as required by the LandTech 2026 Rule Book:
-* **Google Gemini 2.0 Flash Vision API:** Used for Multimodal Vision-Language entity extraction from unstructured legal Bengali deed images.
-* **OpenCV:** Open-source computer vision library for image preprocessing (adaptive binarization, deskewing, noise filtering).
-* **Antigravity & ChatGPT:** Utilized as AI pair-programming and documentation assistants for algorithmic refinement, Farayez ratio logic formulation, and system architecture design.
+## 👥 8. Team & Mentorship (Rule Book Section 6)
+
+| Role | Name | Department / Affiliation | Institutional ID / Designation |
+|---|---|---|---|
+| **Student 1 (Team Leader)** | **ISHTIAK AHMED** | Dept. of Computer Science & Engineering, Daffodil International University | **Student ID:** `0242310005101006` |
+| **Student 2 (Core Member)** | **Ashfikur Rahman Mahi** | Dept. of Computer Science & Engineering, Daffodil International University | **Student ID:** `0242310005101618` |
+| **Faculty Mentor** | **Md. Jubayar Alam Rafi** | Dept. of Computer Science & Engineering, Daffodil International University | **Designation:** Assistant Professor |
+| **Industry Support Mentor** | **MD Zafor Iqbal** | Zafor IT System | **Designation:** Managing Director |
 
 ---
 
-## 🚀 6. How to Run the Project Locally
+## 📁 9. Repository Structure
 
-### Prerequisites
-* Python 3.10+
-* Git
-
-### Installation & Execution
-```bash
-# 1. Clone the repository
-git clone https://github.com/Ishtiak-Ahmed886/TrueDeed.git
-cd TrueDeed
-
-# 2. View Architecture & Concept Note
-# Open TrueDeed_Concept_Note_4Pages.html in any modern browser to view or print the official 4-page submission concept note.
+```text
+TrueDeed/
+├── Architecture_and Data_flow/             # High-definition vector blueprints & dataflows
+│   ├── 1.Inheritance_Fraud_Prevention_Architecture.svg
+│   ├── 1.Inheritance_Fraud_Prevention_Dataflow.svg
+│   ├── 2.Chain_of_Ownership_Verification_Architecture.svg
+│   ├── 2.Chain_of_Ownership_Verification_Dataflow.svg
+│   ├── 3.Double_Selling_Prevention_Architecture.svg
+│   ├── 3.Double_Selling_Prevention_Dataflow.svg
+│   ├── 4.Bangla_Legal_OCR_Architecture.svg
+│   ├── 4.Bangla_Legal_OCR_Dataflow.svg
+│   ├── 5.TrueDeed_Trust_Score_Architecture.svg
+│   ├── 5.TrueDeed_Trust_Score_Dataflow.svg
+│   └── Architecture_Gallery.html           # Full-screen interactive visual gallery
+├── modern_system_architecture.png          # High-resolution master architecture diagram
+├── TrueDeed_Concept_Note_Official.pdf      # Official 4-page hackathon submission PDF
+├── TrueDeed_Concept_Note_4Pages.html       # Print-perfect HTML source for concept note
+├── LICENSE                                 # Open-source MIT License
+├── README.md                               # Project documentation & evaluator guide
+└── .gitignore                              # Git exclusion rules
 ```
 
 ---
 
-## 👥 7. Team & Mentorship (Rule Book Section 6)
-* **Team Name:** TrueDeed
-* **Team Code:** LA-72
-* **Student 1 (Team Leader):** Ishtiak Ahmed (DIU Student)
-* **Student 2 (Core Member):** [Teammate Name] (DIU Student)
-* **Faculty Mentor:** [Faculty Mentor Name] (Department of CSE, DIU)
-* **Industry Mentor:** [Industry Mentor Name] (Industry Expert)
+## 🚀 10. Execution Roadmap & Hackathon Milestones
+
+```text
+Phase 1: Concept Note & System Architecture (Current Phase)
+  ├── Problem P3 Rigorous Formulation & Legal Jurisprudence Mapping [COMPLETED]
+  ├── End-to-End System Architecture & High-Resolution Vector Blueprints [COMPLETED]
+  ├── Official 4-Page Concept Note Formulation & Submission [COMPLETED]
+  └── GitHub Open-Source Documentation & Architecture Gallery Setup [COMPLETED]
+
+Phase 2: Working Prototype & Video Demonstration
+  ├── FastAPI Backend Microservices & Algorithmic Farayez Engine Integration
+  ├── NetworkX Baya Deed DAG Lineage Tracer & Temporal Concurrency Mutex
+  ├── React 19 Frontend Dashboard with Side-by-Side OCR Verification Screen
+  └── 3-Minute High-Impact Demonstration Video & Pitch Deck
+
+Phase 3: National Scale Deployment & Ministry Sandbox
+  ├── Dual Sub-Registry & AC Land e-Mutation Webhook Integration Sandbox
+  └── QR-Verifiable Cryptographic Proof Generation for Citizen Verifications
+```
+
+---
+
+<div align="center">
+  <sub>Developed with pride by Team <b>TrueDeed (LA-72)</b> for the <b>DIU LandTech Innovation Hackathon 2026</b>.</sub>
+</div>
