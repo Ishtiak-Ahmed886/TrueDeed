@@ -128,10 +128,19 @@ export default function Page() {
   const [sisterCount, setSisterCount] = useState<number>(0)
   const [activePreset, setActivePreset] = useState<'typical' | 'daughters' | 'aul' | 'custom'>('typical')
 
+  // Automatically sync Farayez sandbox claimed sale with Scenario switcher
+  useEffect(() => {
+    if (scenario === 'fraud') {
+      setClaimedSale(22)
+    } else {
+      setClaimedSale(12)
+    }
+  }, [scenario])
+
   const setTypicalPreset = () => {
     setActivePreset('typical')
     setEstateArea(40)
-    setClaimedSale(12)
+    setClaimedSale(scenario === 'fraud' ? 22 : 12)
     setDeceasedGender('male')
     setWifeCount(1)
     setHusbandCount(0)
@@ -1018,59 +1027,88 @@ export default function Page() {
             </div>
 
             {/* PRESETS ROW */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px', flexWrap: 'wrap' }}>
-              <span style={{ fontSize: '10px', fontWeight: 700, color: 'var(--muted)', letterSpacing: '1.2px' }}>
-                PRESETS
-              </span>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px', marginBottom: '18px', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '10px', fontWeight: 700, color: 'var(--muted)', letterSpacing: '1.2px' }}>
+                  PRESETS
+                </span>
 
-              <button 
-                onClick={setTypicalPreset}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px',
-                  background: activePreset === 'typical' ? '#142735' : '#0c131a',
-                  border: `1px solid ${activePreset === 'typical' ? 'var(--blue)' : 'var(--line)'}`,
-                  color: activePreset === 'typical' ? 'var(--text)' : 'var(--muted)',
-                  cursor: 'pointer'
-                }}
-              >
-                <b>Typical family</b> <small style={{ opacity: 0.7 }}>widow · 1 son · 3 daughters</small>
-              </button>
+                <button 
+                  onClick={setTypicalPreset}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px',
+                    background: activePreset === 'typical' ? '#142735' : '#0c131a',
+                    border: `1px solid ${activePreset === 'typical' ? 'var(--blue)' : 'var(--line)'}`,
+                    color: activePreset === 'typical' ? 'var(--text)' : 'var(--muted)',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <b>Typical family</b> <small style={{ opacity: 0.7 }}>widow · 1 son · 3 daughters</small>
+                </button>
 
-              <button 
-                onClick={setDaughtersPreset}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px',
-                  background: activePreset === 'daughters' ? '#142735' : '#0c131a',
-                  border: `1px solid ${activePreset === 'daughters' ? 'var(--blue)' : 'var(--line)'}`,
-                  color: activePreset === 'daughters' ? 'var(--text)' : 'var(--muted)',
-                  cursor: 'pointer'
-                }}
-              >
-                <b>Daughters only</b>
-              </button>
+                <button 
+                  onClick={setDaughtersPreset}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px',
+                    background: activePreset === 'daughters' ? '#142735' : '#0c131a',
+                    border: `1px solid ${activePreset === 'daughters' ? 'var(--blue)' : 'var(--line)'}`,
+                    color: activePreset === 'daughters' ? 'var(--text)' : 'var(--muted)',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <b>Daughters only</b>
+                </button>
 
-              <button 
-                onClick={setAulPreset}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px',
-                  background: activePreset === 'aul' ? '#142735' : '#0c131a',
-                  border: `1px solid ${activePreset === 'aul' ? 'var(--blue)' : 'var(--line)'}`,
-                  color: activePreset === 'aul' ? 'var(--text)' : 'var(--muted)',
-                  cursor: 'pointer'
-                }}
-              >
-                <b>Aul case</b> <small style={{ opacity: 0.7 }}>husband · mother · 2 sisters</small>
-              </button>
+                <button 
+                  onClick={setAulPreset}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px',
+                    background: activePreset === 'aul' ? '#142735' : '#0c131a',
+                    border: `1px solid ${activePreset === 'aul' ? 'var(--blue)' : 'var(--line)'}`,
+                    color: activePreset === 'aul' ? 'var(--text)' : 'var(--muted)',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <b>Aul case</b> <small style={{ opacity: 0.7 }}>husband · mother · 2 sisters</small>
+                </button>
 
-              <button 
-                onClick={setTypicalPreset}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: '5px', padding: '6px 10px', borderRadius: '6px', fontSize: '11px',
-                  background: 'transparent', border: '1px solid var(--line)', color: 'var(--muted)', cursor: 'pointer'
-                }}
-              >
-                <RotateCcw size={12} /> Reset
-              </button>
+                <button 
+                  onClick={setTypicalPreset}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '5px', padding: '6px 10px', borderRadius: '6px', fontSize: '11px',
+                    background: 'transparent', border: '1px solid var(--line)', color: 'var(--muted)', cursor: 'pointer'
+                  }}
+                >
+                  <RotateCcw size={12} /> Reset
+                </button>
+              </div>
+
+              {/* INLINE SCENARIO SWITCHER ON PAGE 3 */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '1px' }}>SCENARIO:</span>
+                <button 
+                  onClick={() => setScenario('valid')}
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '5px 10px', borderRadius: '5px', fontSize: '10px', fontWeight: 700, cursor: 'pointer',
+                    background: scenario === 'valid' ? '#123128' : '#080d12',
+                    border: `1px solid ${scenario === 'valid' ? 'var(--green)' : 'var(--line)'}`,
+                    color: scenario === 'valid' ? 'var(--green)' : 'var(--muted)'
+                  }}
+                >
+                  <Check size={11} /> Valid (12 Stk)
+                </button>
+                <button 
+                  onClick={() => setScenario('fraud')}
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '5px 10px', borderRadius: '5px', fontSize: '10px', fontWeight: 700, cursor: 'pointer',
+                    background: scenario === 'fraud' ? '#281216' : '#080d12',
+                    border: `1px solid ${scenario === 'fraud' ? 'var(--red)' : 'var(--line)'}`,
+                    color: scenario === 'fraud' ? 'var(--red)' : 'var(--muted)'
+                  }}
+                >
+                  <AlertTriangle size={11} /> Fraud (22 Stk Breach)
+                </button>
+              </div>
             </div>
 
             {/* 2-COLUMN MAIN WORKBENCH */}
@@ -1106,12 +1144,26 @@ export default function Page() {
 
                 {/* CLAIMED SALE */}
                 <div style={{ marginBottom: '14px' }}>
-                  <label style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '5px' }}>Seller's claimed sale (shatak)</label>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
+                    <label style={{ fontSize: '10px', color: 'var(--muted)' }}>Seller's claimed sale (shatak)</label>
+                    <span style={{ fontSize: '10px', fontWeight: 700, color: isClaimLegal ? 'var(--green)' : 'var(--red)' }}>
+                      {isClaimLegal ? '✓ Legal' : '🚨 Quota Breach (+8.00 Stk)'}
+                    </span>
+                  </div>
                   <input 
                     type="number" 
                     value={claimedSale} 
                     onChange={(e) => setClaimedSale(Number(e.target.value))}
-                    style={{ width: '100%', background: '#060a0f', border: '1px solid var(--line)', color: 'var(--text)', padding: '8px 10px', borderRadius: '6px', fontSize: '13px', fontWeight: 700 }}
+                    style={{ 
+                      width: '100%', 
+                      background: isClaimLegal ? '#060a0f' : '#231014', 
+                      border: `1px solid ${isClaimLegal ? 'var(--line)' : 'var(--red)'}`, 
+                      color: isClaimLegal ? 'var(--text)' : '#ffb3b8', 
+                      padding: '8px 10px', 
+                      borderRadius: '6px', 
+                      fontSize: '13px', 
+                      fontWeight: 700 
+                    }}
                   />
                 </div>
 
