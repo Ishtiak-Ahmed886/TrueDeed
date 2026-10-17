@@ -384,12 +384,12 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="breadcrumb">
-            <span>
+          <div className="breadcrumb" style={{ whiteSpace: 'nowrap', flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#0a1219', border: '1px solid #1a2836', padding: '4px 12px', borderRadius: '20px', fontSize: '11px' }}>
+            <span style={{ color: 'var(--muted)' }}>
               {role === 'Sub-Registrar' ? t('subRegistryDesk') : role === 'Bank Underwriter' ? (lang === 'bn' ? 'বাণিজ্যিক ব্যাংক ডেস্ক' : 'Commercial Bank Desk') : (lang === 'bn' ? 'নাগরিক সেবা পোর্টাল' : 'Citizen Self-Service')}
             </span>
-            <ArrowRight size={12} />
-            <strong>
+            <ArrowRight size={11} style={{ opacity: 0.5 }} />
+            <strong style={{ color: 'var(--text)' }}>
               {role === 'Sub-Registrar' ? t('preRegistration') : role === 'Bank Underwriter' ? (lang === 'bn' ? 'বন্ধকী টাইটেল ক্লিয়ারেন্স' : 'Mortgage Title Clearance') : (lang === 'bn' ? 'দলিল অখণ্ডতা যাচাই' : 'Title Integrity Check')}
             </strong>
           </div>
@@ -413,16 +413,29 @@ export default function Page() {
           </div>
         </header>
 
-        {/* 3-PAGE NAVIGATION TABS */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', margin: '14px 0 10px', flexWrap: 'wrap', gap: '10px' }}>
-          <div style={{ display: 'flex', gap: '8px', background: '#0a1017', padding: '4px', borderRadius: '8px', border: '1px solid var(--line)' }}>
+        {/* 3-PAGE NAVIGATION & SCENARIO COMMAND BAR */}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between', 
+          margin: '14px 0 12px', 
+          background: '#0a1017', 
+          border: '1px solid var(--line)', 
+          borderRadius: '10px', 
+          padding: '6px 8px',
+          gap: '12px',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
+        }}>
+          {/* TABS (LEFT) */}
+          <div style={{ display: 'flex', gap: '6px', flex: '1 1 auto', overflowX: 'auto' }}>
             <button 
               onClick={() => setTab('cockpit')}
               style={{
-                display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer',
+                display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '7px 14px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap',
                 background: tab === 'cockpit' ? '#142735' : 'transparent',
                 color: tab === 'cockpit' ? 'var(--blue)' : 'var(--muted)',
-                boxShadow: tab === 'cockpit' ? '0 0 12px rgba(102,179,232,0.2)' : 'none'
+                boxShadow: tab === 'cockpit' ? '0 0 12px rgba(102,179,232,0.25)' : 'none',
+                transition: 'all 0.2s ease'
               }}
             >
               <ShieldCheck size={14} /> {lang === 'en' ? '1. Verification Cockpit' : '১. ভেরিফিকেশন ককপিট'}
@@ -431,30 +444,33 @@ export default function Page() {
             <button 
               onClick={() => setTab('baya')}
               style={{
-                display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer',
+                display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '7px 14px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap',
                 background: tab === 'baya' ? '#142735' : 'transparent',
                 color: tab === 'baya' ? 'var(--blue)' : 'var(--muted)',
-                boxShadow: tab === 'baya' ? '0 0 12px rgba(102,179,232,0.2)' : 'none'
+                boxShadow: tab === 'baya' ? '0 0 12px rgba(102,179,232,0.25)' : 'none',
+                transition: 'all 0.2s ease'
               }}
             >
-              <GitBranch size={14} /> {lang === 'en' ? '2. Baya DAG Lineage Tree' : '২. বায়া দলিলের ধারাবাহিকতা (DAG)'}
+              <GitBranch size={14} /> {lang === 'en' ? '2. Baya DAG Lineage' : '২. বায়া দলিলের ধারাবাহিকতা (DAG)'}
             </button>
 
             <button 
               onClick={() => setTab('farayez')}
               style={{
-                display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer',
+                display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '7px 14px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap',
                 background: tab === 'farayez' ? '#142735' : 'transparent',
                 color: tab === 'farayez' ? 'var(--blue)' : 'var(--muted)',
-                boxShadow: tab === 'farayez' ? '0 0 12px rgba(102,179,232,0.2)' : 'none'
+                boxShadow: tab === 'farayez' ? '0 0 12px rgba(102,179,232,0.25)' : 'none',
+                transition: 'all 0.2s ease'
               }}
             >
-              <Scale size={14} /> {lang === 'en' ? '3. Farayez Inheritance Sandbox' : '৩. ফারায়েজ উত্তরাধিকার ক্যালকুলেটর'}
+              <Scale size={14} /> {lang === 'en' ? '3. Farayez Calculator' : '৩. ফারায়েজ উত্তরাধিকার ক্যালকুলেটর'}
             </button>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '1px' }}>SCENARIO:</span>
+          {/* SCENARIO SWITCHER (RIGHT) */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+            <span style={{ fontSize: '9px', fontWeight: 700, color: 'var(--muted)', letterSpacing: '1px' }}>SCENARIO:</span>
             <div className="scenario-switcher">
               <button className={scenario === 'valid' ? 'active valid' : ''} onClick={() => setScenario('valid')}>
                 <Check size={13} /> {t('verifiedValidTitle')} <b>94%</b>
