@@ -154,7 +154,7 @@ export default function Page() {
   const setDaughtersPreset = () => {
     setActivePreset('daughters')
     setEstateArea(40)
-    setClaimedSale(12)
+    setClaimedSale(scenario === 'fraud' ? 18 : 12)
     setDeceasedGender('male')
     setWifeCount(1)
     setHusbandCount(0)
@@ -168,7 +168,7 @@ export default function Page() {
   const setAulPreset = () => {
     setActivePreset('aul')
     setEstateArea(40)
-    setClaimedSale(10)
+    setClaimedSale(scenario === 'fraud' ? 20 : 10)
     setDeceasedGender('female')
     setWifeCount(0)
     setHusbandCount(1)
@@ -239,13 +239,15 @@ export default function Page() {
     })
   } else if (deceasedGender === 'female' && husbandCount > 0) {
     const husbandPct = (spouseShare * aulFactor) * 100
+    const isHusbandSeller = sonCount === 0 && daughterCount === 0
     heirRows.push({
-      name: 'Husband / স্বামী',
+      name: isHusbandSeller ? 'Husband (Seller) / স্বামী (বিক্রেতা)' : 'Husband / স্বামী',
       fraction: childrenCount > 0 ? '1/4' : (isAul ? '3/8 (Aul)' : '1/2'),
       percent: husbandPct,
       shatak: estateArea * (spouseShare * aulFactor),
       rule: isAul ? 'Normalized under Hanafi Aul reduction' : (childrenCount > 0 ? 'Surviving children present (Quran 4:12)' : 'No surviving children (Quran 4:12)'),
-      color: '#2dd4a3'
+      color: '#2dd4a3',
+      isSeller: isHusbandSeller
     })
   }
 
@@ -312,12 +314,13 @@ export default function Page() {
       const perDaughterAcreage = (estateArea * daughtersShare) / daughterCount
       for (let i = 1; i <= daughterCount; i++) {
         heirRows.push({
-          name: `Daughter ${i} / কন্যা ${i}`,
+          name: i === 1 ? 'Daughter 1 (Seller) / কন্যা ১ (বিক্রেতা)' : `Daughter ${i} / কন্যা ${i}`,
           fraction: daughterCount === 1 ? '1/2' : '1/3 each (2/3 total)',
           percent: perDaughterPct,
           shatak: perDaughterAcreage,
           rule: daughterCount === 1 ? 'Sole daughter fixed Quranic half (Quran 4:11)' : 'Multiple daughters fixed two-thirds (Quran 4:11)',
-          color: '#f6bd55'
+          color: '#f6bd55',
+          isSeller: i === 1
         })
       }
     } else {
@@ -350,8 +353,22 @@ export default function Page() {
     }
   })
 
-  const sellerLegalShare = sonCount > 0 ? sonAcreage : (deceasedGender === 'female' && husbandCount > 0 ? (estateArea * spouseShare * aulFactor) : 0)
+  let sellerLegalShare = 0
+  let sellerTitle = 'Seller / বিক্রেতা'
+  if (sonCount > 0) {
+    sellerLegalShare = sonAcreage
+    sellerTitle = 'Son 1 (Seller)'
+  } else if (daughterCount > 0) {
+    const daughtersShare = daughterCount === 1 ? 0.5 : (2/3)
+    sellerLegalShare = (estateArea * daughtersShare) / daughterCount
+    sellerTitle = 'Daughter 1 (Seller)'
+  } else if (deceasedGender === 'female' && husbandCount > 0) {
+    sellerLegalShare = estateArea * spouseShare * aulFactor
+    sellerTitle = 'Husband (Seller)'
+  }
+
   const isClaimLegal = claimedSale <= sellerLegalShare + 0.01
+  const excessShatak = Math.max(0, claimedSale - sellerLegalShare)
 
   return (
     <>
@@ -1145,9 +1162,9 @@ export default function Page() {
                 {/* CLAIMED SALE */}
                 <div style={{ marginBottom: '14px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
-                    <label style={{ fontSize: '10px', color: 'var(--muted)' }}>Seller's claimed sale (shatak)</label>
+                    <label style={{ fontSize: '10px', color: 'var(--muted)' }}>{sellerTitle}'s claimed sale (shatak)</label>
                     <span style={{ fontSize: '10px', fontWeight: 700, color: isClaimLegal ? 'var(--green)' : 'var(--red)' }}>
-                      {isClaimLegal ? '✓ Legal' : '🚨 Quota Breach (+8.00 Stk)'}
+                      {isClaimLegal ? `✓ Legal (<= ${sellerLegalShare.toFixed(2)} Stk)` : `🚨 Quota Breach (+${excessShatak.toFixed(2)} Stk)`}
                     </span>
                   </div>
                   <input 
