@@ -306,7 +306,6 @@ TrueDeed/
 │   └── Architecture_Gallery.html           # Full-screen interactive visual gallery
 ├── modern_system_architecture.png          # High-resolution master architecture diagram
 ├── TrueDeed_Concept_Note_Official.pdf      # Official 4-page hackathon submission PDF
-├── TrueDeed_Concept_Note_4Pages.html       # Print-perfect HTML source for concept note
 ├── LICENSE                                 # Open-source MIT License
 ├── README.md                               # Project documentation & evaluator guide
 └── .gitignore                              # Git exclusion rules
