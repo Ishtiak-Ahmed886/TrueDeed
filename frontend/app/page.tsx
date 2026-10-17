@@ -762,7 +762,7 @@ export default function Page() {
             </div>
 
             <Card style={{ padding: '24px', marginBottom: '16px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--line)', paddingBottom: '16px', marginBottom: '20px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--line)', paddingBottom: '16px', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
                 <div>
                   <h2 style={{ fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--text)' }}>
                     🌲 Directed Acyclic Graph (DAG) Baya Lineage Tracer
@@ -771,13 +771,38 @@ export default function Page() {
                     Mathematical Chain-of-Title verification from original 1921 Cadastral Survey down to current 2026 deed lodgment
                   </p>
                 </div>
-                <Pill tone={scenario === 'valid' ? 'good' : 'bad'}>
-                  {scenario === 'valid' ? 'ALL 5 NODES CONTINUOUS & VERIFIED' : 'CRITICAL FRAUD: BROKEN LINEAGE DETECTED'}
-                </Pill>
+                
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                  <button 
+                    onClick={() => setScenario('valid')}
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px', fontWeight: 700, cursor: 'pointer',
+                      background: scenario === 'valid' ? '#123128' : '#080d12',
+                      border: `1px solid ${scenario === 'valid' ? 'var(--green)' : 'var(--line)'}`,
+                      color: scenario === 'valid' ? 'var(--green)' : 'var(--muted)'
+                    }}
+                  >
+                    <Check size={12} /> Valid Chain (94%)
+                  </button>
+                  <button 
+                    onClick={() => setScenario('fraud')}
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px', fontWeight: 700, cursor: 'pointer',
+                      background: scenario === 'fraud' ? '#281216' : '#080d12',
+                      border: `1px solid ${scenario === 'fraud' ? 'var(--red)' : 'var(--line)'}`,
+                      color: scenario === 'fraud' ? 'var(--red)' : 'var(--muted)'
+                    }}
+                  >
+                    <AlertTriangle size={12} /> Fraud Chain (18%)
+                  </button>
+                  <Pill tone={scenario === 'valid' ? 'good' : 'bad'}>
+                    {scenario === 'valid' ? 'ALL 5 NODES CONTINUOUS & VERIFIED' : 'CRITICAL FRAUD: BROKEN LINEAGE DETECTED'}
+                  </Pill>
+                </div>
               </div>
 
               {/* VERTICAL VISUAL DAG TREE */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '850px', margin: '0 auto' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxWidth: '850px', margin: '0 auto' }}>
                 {/* NODE 1: CS */}
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                   <div style={{ width: '130px', textAlign: 'right', flexShrink: 0 }}>
@@ -796,6 +821,15 @@ export default function Page() {
                       Recorded Proprietor: <b>Jonab Ali Sheikh</b> · Mouza: Ashulia (JL 87) · Daag: 1893<br/>
                       Baseline Survey Acreage: <b style={{ color: 'var(--green)' }}>120.00 Shatak (1.20 Acres)</b> · Gazetted in Bengal District Gazette.
                     </div>
+                  </div>
+                </div>
+
+                {/* CONNECTOR 1 -> 2 */}
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', margin: '-4px 0' }}>
+                  <div style={{ width: '130px' }} />
+                  <div style={{ width: '2px', height: '22px', background: 'var(--green)' }} />
+                  <div style={{ fontSize: '10px', color: 'var(--muted)', background: '#070d13', border: '1px solid #142433', padding: '2px 8px', borderRadius: '4px' }}>
+                    ↓ Inheritance Partition (120 Stk → 60 Stk) · Area Conserved ✓
                   </div>
                 </div>
 
@@ -820,14 +854,23 @@ export default function Page() {
                   </div>
                 </div>
 
+                {/* CONNECTOR 2 -> 3 */}
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', margin: '-4px 0' }}>
+                  <div style={{ width: '130px' }} />
+                  <div style={{ width: '2px', height: '22px', background: 'var(--green)' }} />
+                  <div style={{ fontSize: '10px', color: 'var(--muted)', background: '#070d13', border: '1px solid #142433', padding: '2px 8px', borderRadius: '4px' }}>
+                    ↓ RS Settlement (60 Stk → 40 Stk) · Active Porcha #412 ✓
+                  </div>
+                </div>
+
                 {/* NODE 3: RS */}
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                   <div style={{ width: '130px', textAlign: 'right', flexShrink: 0 }}>
                     <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--blue)' }}>1987 A.D.</span>
                     <div style={{ fontSize: '9px', color: 'var(--muted)' }}>Bangladesh Revisional</div>
                   </div>
-                  <div style={{ width: '2px', height: '100%', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)', minHeight: '80px', position: 'relative' }}>
-                    <div style={{ position: 'absolute', top: '0', left: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)' }} />
+                  <div style={{ width: '2px', height: '100%', background: 'var(--green)', minHeight: '80px', position: 'relative' }}>
+                    <div style={{ position: 'absolute', top: '0', left: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--green)', boxShadow: '0 0 10px var(--green)' }} />
                   </div>
                   <div style={{ flex: 1, background: '#0b131d', border: '1px solid #1a2f42', borderRadius: '8px', padding: '14px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -839,6 +882,21 @@ export default function Page() {
                       Settled Land Area: <b style={{ color: 'var(--green)' }}>40.00 Shatak</b> (Remaining 20 shatak conveyed to co-sharer).
                     </div>
                   </div>
+                </div>
+
+                {/* CONNECTOR 3 -> 4 (FRACTURE POINT ON FRAUD) */}
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', margin: '-4px 0' }}>
+                  <div style={{ width: '130px' }} />
+                  <div style={{ width: '2px', height: '26px', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)' }} />
+                  {scenario === 'valid' ? (
+                    <div style={{ fontSize: '10px', color: 'var(--green)', background: '#081712', border: '1px solid #163e2c', padding: '3px 8px', borderRadius: '4px' }}>
+                      ↓ Saf-Kabla Deed #8921 (Vol 412, Pg 18 · DCR Verified ✓)
+                    </div>
+                  ) : (
+                    <div style={{ fontSize: '10px', color: '#ffb3b8', background: '#260e13', border: '1px solid #8e3946', padding: '3px 8px', borderRadius: '4px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <AlertTriangle size={12} color="var(--red)" /> ⚡ CRITICAL FRACTURE POINT: Volume 412 Blank · DCR Missing ✕
+                    </div>
+                  )}
                 </div>
 
                 {/* NODE 4: BAYA DEED 2009 (THE FRACTURE POINT IN FRAUD SCENARIO) */}
@@ -873,18 +931,37 @@ export default function Page() {
                   </div>
                 </div>
 
+                {/* CONNECTOR 4 -> 5 */}
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', margin: '-4px 0' }}>
+                  <div style={{ width: '130px' }} />
+                  <div style={{ width: '2px', height: '26px', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)' }} />
+                  {scenario === 'valid' ? (
+                    <div style={{ fontSize: '10px', color: 'var(--green)', background: '#081712', border: '1px solid #163e2c', padding: '3px 8px', borderRadius: '4px' }}>
+                      ↓ Target Conveyance #1214 (Claimed 12.00 Stk &lt;= 14.00 Stk ✓)
+                    </div>
+                  ) : (
+                    <div style={{ fontSize: '10px', color: '#ffb3b8', background: '#260e13', border: '1px solid #8e3946', padding: '3px 8px', borderRadius: '4px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <X size={12} color="var(--red)" /> ⛔ EXECUTION BLOCKED: Chain of Title Severed by Hard Veto ✕
+                    </div>
+                  )}
+                </div>
+
                 {/* NODE 5: CURRENT 2026 DEED */}
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                   <div style={{ width: '130px', textAlign: 'right', flexShrink: 0 }}>
-                    <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--green)' }}>2026 A.D. (NOW)</span>
+                    <span style={{ fontSize: '12px', fontWeight: 700, color: scenario === 'valid' ? 'var(--green)' : 'var(--red)' }}>
+                      2026 A.D. {scenario === 'valid' ? '(NOW)' : '(BLOCKED)'}
+                    </span>
                     <div style={{ fontSize: '9px', color: 'var(--muted)' }}>Current Lodgment</div>
                   </div>
                   <div style={{ width: '2px', height: '100%', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)', minHeight: '80px', position: 'relative' }}>
-                    <div style={{ position: 'absolute', top: '0', left: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)' }} />
+                    <div style={{ position: 'absolute', top: '0', left: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)', boxShadow: scenario === 'fraud' ? '0 0 12px var(--red)' : 'none' }} />
                   </div>
-                  <div style={{ flex: 1, background: '#0b131d', border: `1px solid ${scenario === 'valid' ? '#205340' : '#8e3946'}`, borderRadius: '8px', padding: '14px' }}>
+                  <div style={{ flex: 1, background: scenario === 'valid' ? '#0b131d' : '#1c0f13', border: `1px solid ${scenario === 'valid' ? '#205340' : '#8e3946'}`, borderRadius: '8px', padding: '14px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <strong style={{ fontSize: '13px', color: 'var(--text)' }}>Node 5: Target Saf-Kabla Deed #1214 (Under Review)</strong>
+                      <strong style={{ fontSize: '13px', color: scenario === 'valid' ? 'var(--text)' : 'var(--red)' }}>
+                        Node 5: Target Saf-Kabla Deed #1214 (Under Review)
+                      </strong>
                       <Pill tone={scenario === 'valid' ? 'good' : 'bad'}>
                         {scenario === 'valid' ? 'READY FOR EXECUTION' : 'EXECUTION BLOCKED'}
                       </Pill>
