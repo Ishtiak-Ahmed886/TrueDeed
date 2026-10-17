@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLanguage } from '@/lib/language-context'
 import { Toaster, toast } from 'sonner'
 import { 
@@ -104,6 +104,9 @@ function Interceptor({ icon: Icon, title, status, verdict, children, open, onOpe
 }
 
 export default function Page() {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => { setMounted(true) }, [])
+
   const [tab, setTab] = useState<Tab>('cockpit')
   const [scenario, setScenario] = useState<Scenario>('valid')
   const { lang, setLang, t } = useLanguage()
@@ -145,6 +148,8 @@ export default function Page() {
   const daughterAcreage = estateArea * daughterShare
 
   const isClaimLegal = claimedSale <= sonAcreage + 0.01
+
+  if (!mounted) return null
 
   return (
     <>
