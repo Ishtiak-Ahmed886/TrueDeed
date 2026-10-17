@@ -203,7 +203,146 @@ export default function Page() {
   const sonAcreage = estateArea * sonShare
   const daughterAcreage = estateArea * daughterShare
 
-  const isClaimLegal = claimedSale <= sonAcreage + 0.01
+  // Structured Heir Rows for dynamic rendering
+  interface HeirRow {
+    name: string
+    fraction: string
+    percent: number
+    shatak: number
+    rule: string
+    color: string
+    isSeller?: boolean
+  }
+
+  const heirRows: HeirRow[] = []
+
+  if (deceasedGender === 'male' && wifeCount > 0) {
+    const totalWifePct = (spouseShare * aulFactor) * 100
+    const perWifePct = totalWifePct / wifeCount
+    const perWifeAcreage = (estateArea * (spouseShare * aulFactor)) / wifeCount
+    heirRows.push({
+      name: wifeCount > 1 ? `Wives (${wifeCount})` : 'Wife / বিধবা স্ত্রী',
+      fraction: childrenCount > 0 ? (wifeCount > 1 ? `1/${8 * wifeCount} each` : '1/8') : (wifeCount > 1 ? `1/${4 * wifeCount} each` : '1/4'),
+      percent: perWifePct,
+      shatak: perWifeAcreage,
+      rule: childrenCount > 0 ? 'Surviving children present (Quran 4:12)' : 'No surviving children (Quran 4:12)',
+      color: '#2dd4a3'
+    })
+  } else if (deceasedGender === 'female' && husbandCount > 0) {
+    const husbandPct = (spouseShare * aulFactor) * 100
+    heirRows.push({
+      name: 'Husband / স্বামী',
+      fraction: childrenCount > 0 ? '1/4' : (isAul ? '3/8 (Aul)' : '1/2'),
+      percent: husbandPct,
+      shatak: estateArea * (spouseShare * aulFactor),
+      rule: isAul ? 'Normalized under Hanafi Aul reduction' : (childrenCount > 0 ? 'Surviving children present (Quran 4:12)' : 'No surviving children (Quran 4:12)'),
+      color: '#2dd4a3'
+    })
+  }
+
+  if (hasMother) {
+    const motherPct = (motherShare * aulFactor) * 100
+    heirRows.push({
+      name: 'Mother / মাতা',
+      fraction: isAul ? '1/8 (Aul)' : (childrenCount > 0 || sisterCount > 1 ? '1/6' : '1/3'),
+      percent: motherPct,
+      shatak: estateArea * (motherShare * aulFactor),
+      rule: isAul ? 'Normalized under Hanafi Aul reduction' : (childrenCount > 0 ? 'Surviving children present (Quran 4:11)' : 'No children (Quran 4:11)'),
+      color: '#a78bfa'
+    })
+  }
+
+  if (hasFather) {
+    const fatherPct = (fatherShare * aulFactor) * 100
+    heirRows.push({
+      name: 'Father / পিতা',
+      fraction: '1/6',
+      percent: fatherPct,
+      shatak: estateArea * (fatherShare * aulFactor),
+      rule: 'Fixed Quranic share as Zawil Furood (Quran 4:11)',
+      color: '#fb923c'
+    })
+  }
+
+  if (sisterCount > 0 && childrenCount === 0 && !hasFather) {
+    const sisterTotalPct = (sisterShare * aulFactor) * 100
+    const perSisterPct = sisterTotalPct / sisterCount
+    const perSisterAcreage = (estateArea * (sisterShare * aulFactor)) / sisterCount
+    for (let i = 1; i <= sisterCount; i++) {
+      heirRows.push({
+        name: `Sister ${i} / বোন ${i}`,
+        fraction: isAul ? '1/4 (Aul)' : (sisterCount >= 2 ? '1/3 each' : '1/2'),
+        percent: perSisterPct,
+        shatak: perSisterAcreage,
+        rule: isAul ? 'Normalized under Hanafi Aul reduction' : 'Kalalah case with multiple sisters (Quran 4:176)',
+        color: '#f43f5e'
+      })
+    }
+  }
+
+  // Children: Sons & Daughters
+  if (sonCount > 0) {
+    const sonPct = sonShare * 100
+    for (let i = 1; i <= sonCount; i++) {
+      heirRows.push({
+        name: i === 1 ? 'Son 1 (Seller) / পুত্র (বিক্রেতা)' : `Son ${i} / পুত্র ${i}`,
+        fraction: activePreset === 'typical' ? '7/20' : `${((sonShare * 100)).toFixed(1)}%`,
+        percent: sonPct,
+        shatak: sonAcreage,
+        rule: daughterCount > 0 ? 'Residuary (Asaba) 2:1 against daughter (Quran 4:11)' : 'Residuary (Asaba) universal heir (Quran 4:11)',
+        color: '#38bdf8',
+        isSeller: i === 1
+      })
+    }
+  }
+
+  if (daughterCount > 0) {
+    if (sonCount === 0) {
+      const daughtersShare = daughterCount === 1 ? 0.5 : (2/3)
+      const perDaughterPct = (daughtersShare * 100) / daughterCount
+      const perDaughterAcreage = (estateArea * daughtersShare) / daughterCount
+      for (let i = 1; i <= daughterCount; i++) {
+        heirRows.push({
+          name: `Daughter ${i} / কন্যা ${i}`,
+          fraction: daughterCount === 1 ? '1/2' : '1/3 each (2/3 total)',
+          percent: perDaughterPct,
+          shatak: perDaughterAcreage,
+          rule: daughterCount === 1 ? 'Sole daughter fixed Quranic half (Quran 4:11)' : 'Multiple daughters fixed two-thirds (Quran 4:11)',
+          color: '#f6bd55'
+        })
+      }
+    } else {
+      const daughterPct = daughterShare * 100
+      for (let i = 1; i <= daughterCount; i++) {
+        heirRows.push({
+          name: `Daughter ${i} / কন্যা ${i}`,
+          fraction: activePreset === 'typical' ? '7/40' : `${((daughterShare * 100)).toFixed(1)}%`,
+          percent: daughterPct,
+          shatak: daughterAcreage,
+          rule: 'Residuary (Asaba) 1:2 against brother (Quran 4:11)',
+          color: '#f6bd55'
+        })
+      }
+    }
+  }
+
+  // SVG donut calculation
+  const circumference = 2 * Math.PI * 38 // 238.76
+  let accumulatedLength = 0
+  const donutSlices = heirRows.map(heir => {
+    const sliceLength = (heir.percent / 100) * circumference
+    const strokeDasharray = `${sliceLength.toFixed(1)} ${(circumference - sliceLength).toFixed(1)}`
+    const strokeDashoffset = -accumulatedLength
+    accumulatedLength += sliceLength
+    return {
+      ...heir,
+      strokeDasharray,
+      strokeDashoffset
+    }
+  })
+
+  const sellerLegalShare = sonCount > 0 ? sonAcreage : (deceasedGender === 'female' && husbandCount > 0 ? (estateArea * spouseShare * aulFactor) : 0)
+  const isClaimLegal = claimedSale <= sellerLegalShare + 0.01
 
   return (
     <>
@@ -220,9 +359,13 @@ export default function Page() {
           </div>
 
           <div className="breadcrumb">
-            <span>{t('subRegistryDesk')}</span>
+            <span>
+              {role === 'Sub-Registrar' ? t('subRegistryDesk') : role === 'Bank Underwriter' ? (lang === 'bn' ? 'বাণিজ্যিক ব্যাংক ডেস্ক' : 'Commercial Bank Desk') : (lang === 'bn' ? 'নাগরিক সেবা পোর্টাল' : 'Citizen Self-Service')}
+            </span>
             <ArrowRight size={12} />
-            <strong>{t('preRegistration')}</strong>
+            <strong>
+              {role === 'Sub-Registrar' ? t('preRegistration') : role === 'Bank Underwriter' ? (lang === 'bn' ? 'বন্ধকী টাইটেল ক্লিয়ারেন্স' : 'Mortgage Title Clearance') : (lang === 'bn' ? 'দলিল অখণ্ডতা যাচাই' : 'Title Integrity Check')}
+            </strong>
           </div>
 
           <div className="top-actions">
@@ -238,7 +381,9 @@ export default function Page() {
               <span className={lang === 'bn' ? 'active' : ''}>বাংলা</span>
             </button>
             <div className="latency"><Zap size={12} /> 3.8s</div>
-            <div className="avatar">SR</div>
+            <div className="avatar">
+              {role === 'Sub-Registrar' ? 'SR' : role === 'Bank Underwriter' ? 'BU' : 'CZ'}
+            </div>
           </div>
         </header>
 
@@ -602,6 +747,20 @@ export default function Page() {
         {/* ================= PAGE 2: BAYA DAG LINEAGE TREE ================= */}
         {tab === 'baya' && (
           <div style={{ animation: 'reveal .3s ease' }}>
+            {/* BACK BUTTON */}
+            <div style={{ marginBottom: '14px' }}>
+              <button 
+                onClick={() => setTab('cockpit')}
+                style={{ 
+                  display: 'inline-flex', alignItems: 'center', gap: '6px', 
+                  background: 'none', border: 'none', color: 'var(--blue)', 
+                  fontSize: '12px', fontWeight: 600, cursor: 'pointer', padding: 0 
+                }}
+              >
+                ← Back to Command Center
+              </button>
+            </div>
+
             <Card style={{ padding: '24px', marginBottom: '16px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--line)', paddingBottom: '16px', marginBottom: '20px' }}>
                 <div>
@@ -989,16 +1148,24 @@ export default function Page() {
                   <div style={{ position: 'relative', width: '150px', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <svg viewBox="0 0 100 100" style={{ transform: 'rotate(-90deg)', width: '100%', height: '100%' }}>
                       <circle cx="50" cy="50" r="38" fill="transparent" stroke="#16222f" strokeWidth="16" />
-                      {/* Green: Wife 12.5% */}
-                      <circle cx="50" cy="50" r="38" fill="transparent" stroke="#2dd4a3" strokeWidth="16" strokeDasharray="30 238" strokeDashoffset="0" />
-                      {/* Blue: Son 35% */}
-                      <circle cx="50" cy="50" r="38" fill="transparent" stroke="#38bdf8" strokeWidth="16" strokeDasharray="83 238" strokeDashoffset="-30" />
-                      {/* Amber: Daughters 17.5% */}
-                      <circle cx="50" cy="50" r="38" fill="transparent" stroke="#f6bd55" strokeWidth="16" strokeDasharray="42 238" strokeDashoffset="-113" />
+                      {donutSlices.map((slice, idx) => (
+                        <circle
+                          key={idx}
+                          cx="50"
+                          cy="50"
+                          r="38"
+                          fill="transparent"
+                          stroke={slice.color}
+                          strokeWidth="16"
+                          strokeDasharray={slice.strokeDasharray}
+                          strokeDashoffset={slice.strokeDashoffset}
+                          style={{ transition: 'all 0.4s ease' }}
+                        />
+                      ))}
                     </svg>
                     <div style={{ position: 'absolute', textAlign: 'center' }}>
-                      <strong style={{ fontSize: '22px', fontWeight: 800, color: 'var(--text)', display: 'block', lineHeight: 1 }}>
-                        13/20
+                      <strong style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text)', display: 'block', lineHeight: 1 }}>
+                        {activePreset === 'typical' ? '13/20' : `${Math.min(100, Math.round(heirRows.reduce((acc, h) => acc + h.percent, 0)))}%`}
                       </strong>
                       <span style={{ fontSize: '8px', color: 'var(--muted)', letterSpacing: '0.5px' }}>
                         estate allocated
@@ -1007,27 +1174,16 @@ export default function Page() {
                   </div>
 
                   {/* LEGEND */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '11px', minWidth: '200px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <i style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#2dd4a3' }} /> Wife
-                      </span>
-                      <b className="mono">12.50%</b>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <i style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#38bdf8' }} /> Son
-                      </span>
-                      <b className="mono">35.00%</b>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <i style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f6bd55' }} /> Daughters
-                      </span>
-                      <b className="mono">17.50%</b>
-                    </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '11px', minWidth: '220px' }}>
+                    {heirRows.map((heir, idx) => (
+                      <div key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <i style={{ width: '8px', height: '8px', borderRadius: '50%', background: heir.color, flexShrink: 0 }} />
+                          <span style={{ color: heir.isSeller ? 'var(--blue)' : 'var(--text)', fontWeight: heir.isSeller ? 600 : 400 }}>{heir.name}</span>
+                        </span>
+                        <b className="mono">{heir.percent.toFixed(2)}%</b>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
@@ -1043,41 +1199,17 @@ export default function Page() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style={{ borderBottom: '1px solid #14202c' }}>
-                      <td style={{ padding: '7px 4px' }}><b>Wife</b></td>
-                      <td style={{ padding: '7px 4px' }} className="mono">1/8</td>
-                      <td style={{ padding: '7px 4px' }} className="mono">12.50%</td>
-                      <td style={{ padding: '7px 4px', color: '#2dd4a3' }} className="mono"><b>5.00</b></td>
-                      <td style={{ padding: '7px 4px', color: 'var(--muted)' }}>Surviving children present (Quran 4:12)</td>
-                    </tr>
-                    <tr style={{ borderBottom: '1px solid #14202c', background: '#0e1f2b' }}>
-                      <td style={{ padding: '7px 4px' }}><b>Son (Seller)</b></td>
-                      <td style={{ padding: '7px 4px' }} className="mono">7/20</td>
-                      <td style={{ padding: '7px 4px' }} className="mono">35.00%</td>
-                      <td style={{ padding: '7px 4px', color: 'var(--green)' }} className="mono"><b>14.00</b></td>
-                      <td style={{ padding: '7px 4px', color: 'var(--muted)' }}>Residuary (Asaba) 2:1 against daughter (Quran 4:11)</td>
-                    </tr>
-                    <tr style={{ borderBottom: '1px solid #14202c' }}>
-                      <td style={{ padding: '7px 4px' }}>Daughter 1</td>
-                      <td style={{ padding: '7px 4px' }} className="mono">7/40</td>
-                      <td style={{ padding: '7px 4px' }} className="mono">17.50%</td>
-                      <td style={{ padding: '7px 4px', color: '#f6bd55' }} className="mono"><b>7.00</b></td>
-                      <td style={{ padding: '7px 4px', color: 'var(--muted)' }}>Residuary (Asaba) 1:2 against brother (Quran 4:11)</td>
-                    </tr>
-                    <tr style={{ borderBottom: '1px solid #14202c' }}>
-                      <td style={{ padding: '7px 4px' }}>Daughter 2</td>
-                      <td style={{ padding: '7px 4px' }} className="mono">7/40</td>
-                      <td style={{ padding: '7px 4px' }} className="mono">17.50%</td>
-                      <td style={{ padding: '7px 4px', color: '#f6bd55' }} className="mono"><b>7.00</b></td>
-                      <td style={{ padding: '7px 4px', color: 'var(--muted)' }}>Residuary (Asaba) 1:2 against brother (Quran 4:11)</td>
-                    </tr>
-                    <tr style={{ borderBottom: '1px solid #14202c' }}>
-                      <td style={{ padding: '7px 4px' }}>Daughter 3</td>
-                      <td style={{ padding: '7px 4px' }} className="mono">7/40</td>
-                      <td style={{ padding: '7px 4px' }} className="mono">17.50%</td>
-                      <td style={{ padding: '7px 4px', color: '#f6bd55' }} className="mono"><b>7.00</b></td>
-                      <td style={{ padding: '7px 4px', color: 'var(--muted)' }}>Residuary (Asaba) 1:2 against brother (Quran 4:11)</td>
-                    </tr>
+                    {heirRows.map((heir, idx) => (
+                      <tr key={idx} style={{ borderBottom: '1px solid #14202c', background: heir.isSeller ? '#0e1f2b' : 'transparent' }}>
+                        <td style={{ padding: '7px 4px' }}>
+                          <b style={{ color: heir.isSeller ? 'var(--blue)' : 'inherit' }}>{heir.name}</b>
+                        </td>
+                        <td style={{ padding: '7px 4px' }} className="mono">{heir.fraction}</td>
+                        <td style={{ padding: '7px 4px' }} className="mono">{heir.percent.toFixed(2)}%</td>
+                        <td style={{ padding: '7px 4px', color: heir.color }} className="mono"><b>{heir.shatak.toFixed(2)}</b></td>
+                        <td style={{ padding: '7px 4px', color: 'var(--muted)' }}>{heir.rule}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
 
@@ -1091,14 +1223,14 @@ export default function Page() {
                     {isClaimLegal ? '✅ Quota Verification Passed' : '❌ Critical Fraud: Quota Breach'}
                   </strong>
                   <div style={{ fontSize: '10px', color: 'var(--text)', lineHeight: '1.4' }}>
-                    Seller legal entitlement: <b>14.00 Shatak</b> | Attempted sale: <b>{claimedSale.toFixed(2)} Shatak</b>.
-                    {claimedSale <= 14 ? (
+                    Seller legal entitlement: <b>{sellerLegalShare.toFixed(2)} Shatak</b> | Attempted sale: <b>{claimedSale.toFixed(2)} Shatak</b>.
+                    {isClaimLegal ? (
                       <span style={{ color: 'var(--green)', display: 'block', marginTop: '2px' }}>
                         Safe to proceed. Sale is within inherited quota under Muslim Family Laws Ordinance 1961.
                       </span>
                     ) : (
                       <span style={{ color: 'var(--red)', display: 'block', marginTop: '2px' }}>
-                        CRITICAL FRAUD: Seller is attempting to sell <b>{(claimedSale - 14).toFixed(2)} Shatak</b> in excess, depriving female co-heirs!
+                        CRITICAL FRAUD: Seller is attempting to sell <b>{(claimedSale - sellerLegalShare).toFixed(2)} Shatak</b> in excess, depriving co-heirs!
                       </span>
                     )}
                   </div>
