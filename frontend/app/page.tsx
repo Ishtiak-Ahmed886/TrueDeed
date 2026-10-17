@@ -111,6 +111,18 @@ export default function Page() {
   const [scenario, setScenario] = useState<Scenario>('valid')
   const { lang, setLang, t } = useLanguage()
   const [role, setRole] = useState<Role>('Sub-Registrar')
+
+  const handleRoleChange = (newRole: Role) => {
+    setRole(newRole)
+    if (newRole === 'Sub-Registrar') {
+      toast.success('Switched to Sub-Registrar Desk · Statutory Registration Authority View', { icon: '🏛️' })
+    } else if (newRole === 'Bank Underwriter') {
+      toast.success('Switched to Bank Underwriter Desk · Mortgage Collateral Clearance View', { icon: '🏦' })
+    } else {
+      toast.success('Switched to Citizen & NRB Portal · Buyer Due-Diligence & Fraud Shield', { icon: '🛡️' })
+    }
+  }
+
   const [open, setOpen] = useState('farayez')
   const [loading, setLoading] = useState(false)
   const [showJson, setShowJson] = useState(false)
@@ -395,10 +407,23 @@ export default function Page() {
           </div>
 
           <div className="top-actions">
-            <select value={role} onChange={(e) => setRole(e.target.value as Role)} aria-label={t('userRole')}>
-              <option>Sub-Registrar</option>
-              <option>Bank Underwriter</option>
-              <option>Citizen-NRB</option>
+            <select 
+              value={role} 
+              onChange={(e) => handleRoleChange(e.target.value as Role)} 
+              aria-label={t('userRole')}
+              style={{
+                borderColor: role === 'Sub-Registrar' ? '#2dd4a3' : role === 'Bank Underwriter' ? '#66b3e8' : '#f6bd55',
+                color: role === 'Sub-Registrar' ? '#2dd4a3' : role === 'Bank Underwriter' ? '#66b3e8' : '#f6bd55',
+                background: '#0d1520',
+                fontWeight: 700,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                boxShadow: `0 0 10px ${role === 'Sub-Registrar' ? 'rgba(45,212,163,0.15)' : role === 'Bank Underwriter' ? 'rgba(102,179,232,0.15)' : 'rgba(246,189,85,0.15)'}`
+              }}
+            >
+              <option value="Sub-Registrar">🏛️ Sub-Registrar</option>
+              <option value="Bank Underwriter">🏦 Bank Underwriter</option>
+              <option value="Citizen-NRB">🛡️ Citizen / NRB</option>
             </select>
             
             <button className="lang-toggle" onClick={() => setLang(lang === 'en' ? 'bn' : 'en')} aria-label={t('switchLanguage')}>
@@ -485,12 +510,47 @@ export default function Page() {
         {/* ================= PAGE 1: VERIFICATION COCKPIT ================= */}
         {tab === 'cockpit' && (
           <div>
+            {/* ROLE PERSPECTIVE BANNER */}
+            <div style={{
+              background: role === 'Sub-Registrar' ? '#0d1d16' : role === 'Bank Underwriter' ? '#0e1824' : '#1c150b',
+              border: `1px solid ${role === 'Sub-Registrar' ? '#184533' : role === 'Bank Underwriter' ? '#1a3a54' : '#573a14'}`,
+              color: role === 'Sub-Registrar' ? 'var(--green)' : role === 'Bank Underwriter' ? 'var(--blue)' : 'var(--amber)',
+              borderRadius: '7px',
+              padding: '7px 14px',
+              fontSize: '11px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              marginBottom: '10px'
+            }}>
+              {role === 'Sub-Registrar' ? <ShieldCheck size={15} /> : role === 'Bank Underwriter' ? <BadgeCheck size={15} /> : <UserRound size={15} />}
+              <span>
+                <strong>
+                  {role === 'Sub-Registrar' ? 'GOVERNMENT SUB-REGISTRY DESK' : role === 'Bank Underwriter' ? 'COMMERCIAL BANK MORTGAGE DESK' : 'CITIZEN & NRB LAND VERIFICATION DESK'}:
+                </strong>{' '}
+                {role === 'Sub-Registrar' 
+                  ? 'Statutory registration authority view. Evaluating hard veto triggers, Baya continuity, and automated quota compliance.'
+                  : role === 'Bank Underwriter'
+                  ? 'Mortgage collateral clearance view. Assessing title risk, loan security value (BDT 45,00,000), and duplicate lien status.'
+                  : 'Pre-purchase due diligence view for buyers & non-resident Bangladeshis. Ensuring seller has clean title before monetary exchange.'}
+              </span>
+            </div>
+
             <div className="case-strip">
-              <span><span className="case-label">{t('caseStrip')}</span><b className="mono">TD-2026-014872</b></span>
-              <span><BookOpen size={13} /> {t('deedType')} <em>{t('deedType')}</em></span>
+              <span>
+                <span className="case-label">
+                  {role === 'Sub-Registrar' ? 'DEED FILE' : role === 'Bank Underwriter' ? 'MORTGAGE FILE' : 'BUYER AUDIT'}
+                </span>
+                <b className="mono">
+                  {role === 'Sub-Registrar' ? 'TD-2026-014872' : role === 'Bank Underwriter' ? 'MORT-2026-8812' : 'CITIZEN-AUDIT-992'}
+                </b>
+              </span>
+              <span><BookOpen size={13} /> {role === 'Bank Underwriter' ? 'Loan Security' : t('deedType')} <em>{role === 'Bank Underwriter' ? 'Home Loan Collateral (BDT 45L)' : t('deedType')}</em></span>
               <span><Globe2 size={13} /> {t('location')}</span>
               <span className="muted">{t('lodged')}</span>
-              <span style={{ marginLeft: 'auto', color: 'var(--green)' }}>● Sub-Registry Live Connected</span>
+              <span style={{ marginLeft: 'auto', color: role === 'Bank Underwriter' ? 'var(--blue)' : 'var(--green)' }}>
+                {role === 'Sub-Registrar' ? '● Sub-Registry Live Connected' : role === 'Bank Underwriter' ? '● Core Banking CBS Connected (API)' : '● Public Land Integrity Gateway'}
+              </span>
             </div>
 
             <div className="dashboard-grid">
@@ -698,61 +758,143 @@ export default function Page() {
                 </Card>
 
                 <Card className="veto-card">
-                  <div className="card-title">{t('hardVeto')}</div>
+                  <div className="card-title">
+                    {role === 'Sub-Registrar' ? t('hardVeto') : role === 'Bank Underwriter' ? 'Credit Risk & Lien Vetoes' : 'Buyer Risk Warnings'}
+                  </div>
                   <div className="veto-row">
-                    <span><GitBranch size={13} /> {t('brokenBaya')}</span>
+                    <span><GitBranch size={13} /> {role === 'Bank Underwriter' ? 'Defective Chain-of-Title' : role === 'Citizen-NRB' ? 'Fake / Broken Deed Trail' : t('brokenBaya')}</span>
                     <Pill tone={scenario === 'fraud' ? 'bad' : 'good'}>
-                      {scenario === 'fraud' ? t('triggered') : t('clear')}
+                      {scenario === 'fraud' ? (role === 'Bank Underwriter' ? 'DEFAULT RISK' : role === 'Citizen-NRB' ? 'FRAUD RISK' : t('triggered')) : t('clear')}
                     </Pill>
                   </div>
                   <div className="veto-row">
-                    <span><AlertTriangle size={13} /> {t('injunction')} <small>{t('orderRules')}</small></span>
+                    <span><AlertTriangle size={13} /> {role === 'Bank Underwriter' ? 'Civil Court Injunction' : role === 'Citizen-NRB' ? 'Court Stay Order' : t('injunction')} <small>{t('orderRules')}</small></span>
                     <Pill tone="good">{t('clearStatus')}</Pill>
                   </div>
                 </Card>
 
                 <Card className={`decision-card ${scenario === 'fraud' ? 'decision-bad' : ''}`}>
-                  {scenario === 'valid' ? (
-                    <>
-                      <div className="decision-icon"><BadgeCheck size={20} /></div>
-                      <div>
-                        <div className="decision-title">{t('approveRegistration')}</div>
-                        <div className="card-sub">{t('checksPassed')}</div>
-                      </div>
-                      <button className="primary-button" onClick={() => toast.success(t('approvalQueued'))}>
-                        {t('approve')} <ArrowRight size={14} />
-                      </button>
-                    </>
+                  {role === 'Sub-Registrar' ? (
+                    scenario === 'valid' ? (
+                      <>
+                        <div className="decision-icon"><BadgeCheck size={20} /></div>
+                        <div>
+                          <div className="decision-title">{t('approveRegistration')}</div>
+                          <div className="card-sub">{t('checksPassed')}</div>
+                        </div>
+                        <button className="primary-button" onClick={() => toast.success(t('approvalQueued'))}>
+                          {t('approve')} <ArrowRight size={14} />
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <div className="decision-icon"><X size={20} /></div>
+                        <div>
+                          <div className="decision-title">{t('registrationBlocked')}</div>
+                          <div className="card-sub">{t('fraudEscalation')}</div>
+                        </div>
+                        <div className="decision-actions">
+                          <button className="danger-button" onClick={() => toast('Escalation packet prepared for AC (Land)')}>
+                            Escalate to AC
+                          </button>
+                          <button className="outline-button" onClick={() => toast('Notification queued for 3 co-heirs')}>
+                            Notify Co-heirs
+                          </button>
+                        </div>
+                      </>
+                    )
+                  ) : role === 'Bank Underwriter' ? (
+                    scenario === 'valid' ? (
+                      <>
+                        <div className="decision-icon" style={{ background: 'rgba(102,179,232,0.15)', color: 'var(--blue)' }}>
+                          <ShieldCheck size={20} />
+                        </div>
+                        <div>
+                          <div className="decision-title" style={{ color: 'var(--blue)' }}>Sanction Mortgage Collateral</div>
+                          <div className="card-sub">Title clear for loan disbursal (Security: BDT 45,00,000)</div>
+                        </div>
+                        <button className="primary-button" style={{ background: 'var(--blue)', borderColor: 'var(--blue)' }} onClick={() => toast.success('Mortgage lien registered with Sub-Registry API')}>
+                          Clear Loan Collateral <ArrowRight size={14} />
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <div className="decision-icon"><X size={20} /></div>
+                        <div>
+                          <div className="decision-title" style={{ color: 'var(--red)' }}>Decline Loan Collateral</div>
+                          <div className="card-sub">CRITICAL: Defective title in 2009 Baya · High loan default risk</div>
+                        </div>
+                        <div className="decision-actions">
+                          <button className="danger-button" onClick={() => toast.error('Loan rejected. Risk flagged in Credit Information Bureau (CIB)')}>
+                            Decline Application
+                          </button>
+                          <button className="outline-button" onClick={() => toast('Underwriter audit memo saved')}>
+                            Flag in CIB
+                          </button>
+                        </div>
+                      </>
+                    )
                   ) : (
-                    <>
-                      <div className="decision-icon"><X size={20} /></div>
-                      <div>
-                        <div className="decision-title">{t('registrationBlocked')}</div>
-                        <div className="card-sub">{t('fraudEscalation')}</div>
-                      </div>
-                      <div className="decision-actions">
-                        <button className="danger-button" onClick={() => toast('Escalation packet prepared for AC (Land)')}>
-                          Escalate to AC
+                    // Citizen-NRB
+                    scenario === 'valid' ? (
+                      <>
+                        <div className="decision-icon" style={{ background: 'rgba(246,189,85,0.15)', color: 'var(--amber)' }}>
+                          <Check size={20} />
+                        </div>
+                        <div>
+                          <div className="decision-title" style={{ color: 'var(--amber)' }}>Verified Safe to Purchase</div>
+                          <div className="card-sub">Unbroken 100-yr lineage · Clean Quranic share verified</div>
+                        </div>
+                        <button className="primary-button" style={{ background: 'var(--amber)', color: '#000', borderColor: 'var(--amber)' }} onClick={() => toast.success('Buyer Verification Dossier generated!')}>
+                          Safe to Buy <ArrowRight size={14} />
                         </button>
-                        <button className="outline-button" onClick={() => toast('Notification queued for 3 co-heirs')}>
-                          Notify Co-heirs
-                        </button>
-                      </div>
-                    </>
+                      </>
+                    ) : (
+                      <>
+                        <div className="decision-icon"><X size={20} /></div>
+                        <div>
+                          <div className="decision-title" style={{ color: 'var(--red)' }}>DO NOT BUY: High Risk Fraud</div>
+                          <div className="card-sub">Seller attempting to sell unowned land · Severe title dispute</div>
+                        </div>
+                        <div className="decision-actions">
+                          <button className="danger-button" onClick={() => toast.error('Fraud complaint dispatched to Land Ministry hotline 16122')}>
+                            Report Fraud
+                          </button>
+                          <button className="outline-button" onClick={() => toast('Connecting to Government Legal Aid Helpline (16430)')}>
+                            Legal Aid Helpline
+                          </button>
+                        </div>
+                      </>
+                    )
                   )}
                 </Card>
 
                 <Card className="certificate">
                   <div className="certificate-head">
                     <div>
-                      <div className="card-title">{t('certificateTitle')}</div>
-                      <div className="card-sub">Pre-registration verification proof</div>
+                      <div className="card-title">
+                        {role === 'Sub-Registrar' 
+                          ? t('certificateTitle') 
+                          : role === 'Bank Underwriter' 
+                          ? 'Mortgage Title Clearance' 
+                          : 'Citizen Buyer Due-Diligence'}
+                      </div>
+                      <div className="card-sub">
+                        {role === 'Sub-Registrar' 
+                          ? 'Pre-registration statutory verification proof' 
+                          : role === 'Bank Underwriter' 
+                          ? 'Credit Risk Division · Bangladesh Bank Collateral Audit' 
+                          : 'Public Sovereign Land Integrity Trust Seal'}
+                      </div>
                     </div>
                     <FileCheck2 size={19} className={scenario === 'valid' ? 'good-text' : 'bad-text'} />
                   </div>
                   {scenario === 'valid' ? (
                     <>
-                      <div className="cert-valid"><BadgeCheck size={13} /> VALID CERTIFICATE</div>
+                      <div className="cert-valid">
+                        <BadgeCheck size={13} /> 
+                        {role === 'Sub-Registrar' ? 'VALID STATUTORY CERTIFICATE' : role === 'Bank Underwriter' ? 'MORTGAGE APPROVED: ZERO LIEN' : 'VERIFIED SAFE PROPERTY'}
+                      </div>
                       <div className="cert-body">
                         <div className="qr">
                           <svg viewBox="0 0 80 80">
@@ -762,11 +904,19 @@ export default function Page() {
                           </svg>
                         </div>
                         <div className="cert-meta">
-                          <span>ID <b className="mono">TD-CERT-014872</b></span>
+                          <span>ID <b className="mono">
+                            {role === 'Sub-Registrar' ? 'TD-CERT-014872' : role === 'Bank Underwriter' ? 'TD-MORT-8812' : 'TD-TRUST-9921'}
+                          </b></span>
                           <span>SHA-256 <b className="mono hash">a9e4b1d7…c02f7a91</b>
                             <button className="icon-button" onClick={copyHash} aria-label={t('copyHash')}><Copy size={12} /></button>
                           </span>
-                          <span>Signed by <b>Sub-Registrar, Savar</b></span>
+                          <span>Signed by <b>
+                            {role === 'Sub-Registrar' 
+                              ? 'Sub-Registrar, Savar' 
+                              : role === 'Bank Underwriter' 
+                              ? 'Senior Underwriter, Credit Risk Division' 
+                              : 'TrueDeed Public Trust Verifier'}
+                          </b></span>
                         </div>
                       </div>
                       <button className="download-button" onClick={() => toast.success('Certificate downloaded successfully!')}>
@@ -776,8 +926,20 @@ export default function Page() {
                   ) : (
                     <div className="withheld">
                       <LockKeyhole size={18} />
-                      <strong>Certificate withheld</strong>
-                      <span>Fraud report issued · Case escalated</span>
+                      <strong>
+                        {role === 'Sub-Registrar' 
+                          ? 'Certificate withheld' 
+                          : role === 'Bank Underwriter' 
+                          ? 'Mortgage Security Rejected' 
+                          : 'Property Blacklisted'}
+                      </strong>
+                      <span>
+                        {role === 'Sub-Registrar' 
+                          ? 'Fraud report issued · Case escalated' 
+                          : role === 'Bank Underwriter' 
+                          ? 'High risk collateral flagged in CIB database' 
+                          : 'High fraud probability · Do not transfer funds'}
+                      </span>
                     </div>
                   )}
                 </Card>
@@ -801,6 +963,31 @@ export default function Page() {
               >
                 ← Back to Command Center
               </button>
+            </div>
+
+            {/* ROLE PERSPECTIVE BANNER FOR BAYA */}
+            <div style={{
+              background: role === 'Sub-Registrar' ? '#0d1d16' : role === 'Bank Underwriter' ? '#0e1824' : '#1c150b',
+              border: `1px solid ${role === 'Sub-Registrar' ? '#184533' : role === 'Bank Underwriter' ? '#1a3a54' : '#573a14'}`,
+              color: role === 'Sub-Registrar' ? 'var(--green)' : role === 'Bank Underwriter' ? 'var(--blue)' : 'var(--amber)',
+              borderRadius: '7px',
+              padding: '8px 14px',
+              fontSize: '11px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              marginBottom: '14px',
+              transition: 'all 0.3s ease'
+            }}>
+              {role === 'Sub-Registrar' ? <ShieldCheck size={15} /> : role === 'Bank Underwriter' ? <BadgeCheck size={15} /> : <UserRound size={15} />}
+              <span>
+                <strong>{role === 'Sub-Registrar' ? 'GOVERNMENT REGISTRATION AUDIT' : role === 'Bank Underwriter' ? 'BANK MORTGAGE RISK AUDIT' : 'CITIZEN PRE-PURCHASE AUDIT'}:</strong>{' '}
+                {role === 'Sub-Registrar'
+                  ? 'Tracing statutory unbroken chain of title from 1921 CS to 2026 deed under Registration Act Sec 22A.'
+                  : role === 'Bank Underwriter'
+                  ? 'Assessing first-charge collateral security; any broken link invalidates bank mortgage recovery in court.'
+                  : 'Verifying seller actually owns the title before transferring earnest money or signing purchase agreement.'}
+              </span>
             </div>
 
             <Card style={{ padding: '24px', marginBottom: '16px' }}>
@@ -1034,6 +1221,31 @@ export default function Page() {
               >
                 ← Back to Command Center
               </button>
+            </div>
+
+            {/* ROLE PERSPECTIVE BANNER FOR FARAYEZ */}
+            <div style={{
+              background: role === 'Sub-Registrar' ? '#0d1d16' : role === 'Bank Underwriter' ? '#0e1824' : '#1c150b',
+              border: `1px solid ${role === 'Sub-Registrar' ? '#184533' : role === 'Bank Underwriter' ? '#1a3a54' : '#573a14'}`,
+              color: role === 'Sub-Registrar' ? 'var(--green)' : role === 'Bank Underwriter' ? 'var(--blue)' : 'var(--amber)',
+              borderRadius: '7px',
+              padding: '8px 14px',
+              fontSize: '11px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              marginBottom: '14px',
+              transition: 'all 0.3s ease'
+            }}>
+              {role === 'Sub-Registrar' ? <ShieldCheck size={15} /> : role === 'Bank Underwriter' ? <BadgeCheck size={15} /> : <UserRound size={15} />}
+              <span>
+                <strong>{role === 'Sub-Registrar' ? 'GOVERNMENT INHERITANCE AUDIT' : role === 'Bank Underwriter' ? 'BANK BORROWER EQUITY AUDIT' : 'CITIZEN CO-HEIR PROTECTION AUDIT'}:</strong>{' '}
+                {role === 'Sub-Registrar'
+                  ? 'Verifying statutory inheritance quota under Muslim Personal Law (Shariat) to prevent illegal over-sale.'
+                  : role === 'Bank Underwriter'
+                  ? 'Calculating exact unencumbered equity share to ensure borrower cannot pledge co-heirs’ property as loan collateral.'
+                  : 'Validating that seller is not attempting to sell their sisters’ or mother’s Quranic shares to an unsuspecting buyer.'}
+              </span>
             </div>
 
             {/* HEADER BANNER */}
