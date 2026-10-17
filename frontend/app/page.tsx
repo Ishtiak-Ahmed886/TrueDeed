@@ -115,11 +115,26 @@ export default function Page() {
   const handleRoleChange = (newRole: Role) => {
     setRole(newRole)
     if (newRole === 'Sub-Registrar') {
-      toast.success('Switched to Sub-Registrar Desk · Statutory Registration Authority View', { icon: '🏛️' })
+      toast.success(
+        lang === 'bn' 
+          ? 'সাব-রেজিস্ট্রার ডেস্ক · সংবিধিবদ্ধ নিবন্ধন কর্তৃপক্ষ ভিউ সক্রিয়' 
+          : 'Switched to Sub-Registrar Desk · Statutory Registration Authority View', 
+        { icon: '🏛️' }
+      )
     } else if (newRole === 'Bank Underwriter') {
-      toast.success('Switched to Bank Underwriter Desk · Mortgage Collateral Clearance View', { icon: '🏦' })
+      toast.success(
+        lang === 'bn' 
+          ? 'বাণিজ্যিক ব্যাংক ডেস্ক · বন্ধকী জামানত ক্লিয়ারেন্স ভিউ সক্রিয়' 
+          : 'Switched to Bank Underwriter Desk · Mortgage Collateral Clearance View', 
+        { icon: '🏦' }
+      )
     } else {
-      toast.success('Switched to Citizen & NRB Portal · Buyer Due-Diligence & Fraud Shield', { icon: '🛡️' })
+      toast.success(
+        lang === 'bn' 
+          ? 'নাগরিক সেবা পোর্টাল · জমি ক্রয়পূর্ব অডিট ও সুরক্ষা ভিউ সক্রিয়' 
+          : 'Switched to Citizen & NRB Portal · Buyer Due-Diligence & Fraud Shield', 
+        { icon: '🛡️' }
+      )
     }
   }
 
@@ -398,11 +413,11 @@ export default function Page() {
 
           <div className="breadcrumb" style={{ whiteSpace: 'nowrap', flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#0a1219', border: '1px solid #1a2836', padding: '4px 12px', borderRadius: '20px', fontSize: '11px' }}>
             <span style={{ color: 'var(--muted)' }}>
-              {role === 'Sub-Registrar' ? t('subRegistryDesk') : role === 'Bank Underwriter' ? (lang === 'bn' ? 'বাণিজ্যিক ব্যাংক ডেস্ক' : 'Commercial Bank Desk') : (lang === 'bn' ? 'নাগরিক সেবা পোর্টাল' : 'Citizen Self-Service')}
+              {role === 'Sub-Registrar' ? t('subRegistryDesk') : role === 'Bank Underwriter' ? t('commercialBankDesk') : t('citizenPortal')}
             </span>
             <ArrowRight size={11} style={{ opacity: 0.5 }} />
             <strong style={{ color: 'var(--text)' }}>
-              {role === 'Sub-Registrar' ? t('preRegistration') : role === 'Bank Underwriter' ? (lang === 'bn' ? 'বন্ধকী টাইটেল ক্লিয়ারেন্স' : 'Mortgage Title Clearance') : (lang === 'bn' ? 'দলিল অখণ্ডতা যাচাই' : 'Title Integrity Check')}
+              {role === 'Sub-Registrar' ? t('preRegistration') : role === 'Bank Underwriter' ? t('mortgageClearance') : t('titleIntegrity')}
             </strong>
           </div>
 
@@ -421,9 +436,9 @@ export default function Page() {
                 boxShadow: `0 0 10px ${role === 'Sub-Registrar' ? 'rgba(45,212,163,0.15)' : role === 'Bank Underwriter' ? 'rgba(102,179,232,0.15)' : 'rgba(246,189,85,0.15)'}`
               }}
             >
-              <option value="Sub-Registrar">🏛️ Sub-Registrar</option>
-              <option value="Bank Underwriter">🏦 Bank Underwriter</option>
-              <option value="Citizen-NRB">🛡️ Citizen / NRB</option>
+              <option value="Sub-Registrar">{lang === 'bn' ? '🏛️ সাব-রেজিস্ট্রার' : '🏛️ Sub-Registrar'}</option>
+              <option value="Bank Underwriter">{lang === 'bn' ? '🏦 ব্যাংক আন্ডাররাইটার' : '🏦 Bank Underwriter'}</option>
+              <option value="Citizen-NRB">{lang === 'bn' ? '🛡️ নাগরিক / প্রবাসী' : '🛡️ Citizen / NRB'}</option>
             </select>
             
             <button className="lang-toggle" onClick={() => setLang(lang === 'en' ? 'bn' : 'en')} aria-label={t('switchLanguage')}>
@@ -431,9 +446,9 @@ export default function Page() {
               <span>/</span>
               <span className={lang === 'bn' ? 'active' : ''}>বাংলা</span>
             </button>
-            <div className="latency"><Zap size={12} /> 3.8s</div>
+            <div className="latency"><Zap size={12} /> {lang === 'bn' ? '৩.৮ সে.' : '3.8s'}</div>
             <div className="avatar">
-              {role === 'Sub-Registrar' ? 'SR' : role === 'Bank Underwriter' ? 'BU' : 'CZ'}
+              {role === 'Sub-Registrar' ? (lang === 'bn' ? 'এসআর' : 'SR') : role === 'Bank Underwriter' ? (lang === 'bn' ? 'বিইউ' : 'BU') : (lang === 'bn' ? 'সিজেড' : 'CZ')}
             </div>
           </div>
         </header>
@@ -463,7 +478,7 @@ export default function Page() {
                 transition: 'all 0.2s ease'
               }}
             >
-              <ShieldCheck size={14} /> {lang === 'en' ? '1. Verification Cockpit' : '১. ভেরিফিকেশন ককপিট'}
+              <ShieldCheck size={14} /> {lang === 'en' ? '1. Verification Cockpit' : '১. যাচাই ককপিট'}
             </button>
 
             <button 
@@ -476,7 +491,7 @@ export default function Page() {
                 transition: 'all 0.2s ease'
               }}
             >
-              <GitBranch size={14} /> {lang === 'en' ? '2. Baya DAG Lineage' : '২. বায়া দলিলের ধারাবাহিকতা (DAG)'}
+              <GitBranch size={14} /> {lang === 'en' ? '2. Baya DAG Lineage' : '২. বায়া খতিয়ান ও দলিল ধারাবাহিকতা (DAG)'}
             </button>
 
             <button 
@@ -489,13 +504,15 @@ export default function Page() {
                 transition: 'all 0.2s ease'
               }}
             >
-              <Scale size={14} /> {lang === 'en' ? '3. Farayez Calculator' : '৩. ফারায়েজ উত্তরাধিকার ক্যালকুলেটর'}
+              <Scale size={14} /> {lang === 'en' ? '3. Farayez Calculator' : '৩. ফারায়েজ বণ্টন ক্যালকুলেটর'}
             </button>
           </div>
 
           {/* SCENARIO SWITCHER (RIGHT) */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
-            <span style={{ fontSize: '9px', fontWeight: 700, color: 'var(--muted)', letterSpacing: '1px' }}>SCENARIO:</span>
+            <span style={{ fontSize: '9px', fontWeight: 700, color: 'var(--muted)', letterSpacing: '1px' }}>
+              {lang === 'bn' ? 'পরিস্থিতি:' : 'SCENARIO:'}
+            </span>
             <div className="scenario-switcher">
               <button className={scenario === 'valid' ? 'active valid' : ''} onClick={() => setScenario('valid')}>
                 <Check size={13} /> {t('verifiedValidTitle')} <b>94%</b>
@@ -526,30 +543,51 @@ export default function Page() {
               {role === 'Sub-Registrar' ? <ShieldCheck size={15} /> : role === 'Bank Underwriter' ? <BadgeCheck size={15} /> : <UserRound size={15} />}
               <span>
                 <strong>
-                  {role === 'Sub-Registrar' ? 'GOVERNMENT SUB-REGISTRY DESK' : role === 'Bank Underwriter' ? 'COMMERCIAL BANK MORTGAGE DESK' : 'CITIZEN & NRB LAND VERIFICATION DESK'}:
+                  {role === 'Sub-Registrar' 
+                    ? (lang === 'bn' ? 'সরকারি সাব-রেজিস্ট্রি ডেস্ক' : 'GOVERNMENT SUB-REGISTRY DESK') 
+                    : role === 'Bank Underwriter' 
+                    ? (lang === 'bn' ? 'বাণিজ্যিক ব্যাংক মর্টগেজ ডেস্ক' : 'COMMERCIAL BANK MORTGAGE DESK') 
+                    : (lang === 'bn' ? 'নাগরিক ও প্রবাসী ভূমি যাচাই পোর্টাল' : 'CITIZEN & NRB LAND VERIFICATION DESK')}:
                 </strong>{' '}
                 {role === 'Sub-Registrar' 
-                  ? 'Statutory registration authority view. Evaluating hard veto triggers, Baya continuity, and automated quota compliance.'
+                  ? (lang === 'bn' 
+                      ? 'সংবিধিবদ্ধ নিবন্ধন কর্তৃপক্ষ ভিউ। সেকশন ২২এ আইনি ভেটো, বায়া দলিলের অবিচ্ছিন্নতা এবং উত্তরাধিকার কোটা বিশ্লেষণ করা হচ্ছে।' 
+                      : 'Statutory registration authority view. Evaluating hard veto triggers, Baya continuity, and automated quota compliance.')
                   : role === 'Bank Underwriter'
-                  ? 'Mortgage collateral clearance view. Assessing title risk, loan security value (BDT 45,00,000), and duplicate lien status.'
-                  : 'Pre-purchase due diligence view for buyers & non-resident Bangladeshis. Ensuring seller has clean title before monetary exchange.'}
+                  ? (lang === 'bn'
+                      ? 'বন্ধকী জামানত ক্লিয়ারেন্স ভিউ। ঋণের জামানত মূল্যায়ন (৪৫,০০,০০০ টাকা), স্বত্ব ঝুঁকি ও সিআইবি রেকর্ড যাচাই করা হচ্ছে।'
+                      : 'Mortgage collateral clearance view. Assessing title risk, loan security value (BDT 45,00,000), and duplicate lien status.')
+                  : (lang === 'bn'
+                      ? 'জমি ক্রেতা ও প্রবাসী বাংলাদেশিদের জন্য ক্রয়পূর্ব অডিট। টাকা লেনদেন ও চুক্তি স্বাক্ষরের পূর্বে বিক্রেতার নিষ্কণ্টক মালিকানা নিশ্চিত করা হচ্ছে।'
+                      : 'Pre-purchase due diligence view for buyers & non-resident Bangladeshis. Ensuring seller has clean title before monetary exchange.')}
               </span>
             </div>
 
             <div className="case-strip">
               <span>
                 <span className="case-label">
-                  {role === 'Sub-Registrar' ? 'DEED FILE' : role === 'Bank Underwriter' ? 'MORTGAGE FILE' : 'BUYER AUDIT'}
+                  {role === 'Sub-Registrar' 
+                    ? (lang === 'bn' ? 'দলিল নথি' : 'DEED FILE') 
+                    : role === 'Bank Underwriter' 
+                    ? (lang === 'bn' ? 'বন্ধকী নথি' : 'MORTGAGE FILE') 
+                    : (lang === 'bn' ? 'ক্রেতা অডিট' : 'BUYER AUDIT')}
                 </span>
                 <b className="mono">
                   {role === 'Sub-Registrar' ? 'TD-2026-014872' : role === 'Bank Underwriter' ? 'MORT-2026-8812' : 'CITIZEN-AUDIT-992'}
                 </b>
               </span>
-              <span><BookOpen size={13} /> {role === 'Bank Underwriter' ? 'Loan Security' : t('deedType')} <em>{role === 'Bank Underwriter' ? 'Home Loan Collateral (BDT 45L)' : t('deedType')}</em></span>
+              <span>
+                <BookOpen size={13} /> {role === 'Bank Underwriter' ? (lang === 'bn' ? 'জামানত ধরন' : 'Loan Security') : t('deedType')}{' '}
+                <em>{role === 'Bank Underwriter' ? (lang === 'bn' ? 'গৃহ ঋণ জামানত (৪৫ লাখ টাকা)' : 'Home Loan Collateral (BDT 45L)') : t('deedType')}</em>
+              </span>
               <span><Globe2 size={13} /> {t('location')}</span>
               <span className="muted">{t('lodged')}</span>
               <span style={{ marginLeft: 'auto', color: role === 'Bank Underwriter' ? 'var(--blue)' : 'var(--green)' }}>
-                {role === 'Sub-Registrar' ? '● Sub-Registry Live Connected' : role === 'Bank Underwriter' ? '● Core Banking CBS Connected (API)' : '● Public Land Integrity Gateway'}
+                {role === 'Sub-Registrar' 
+                  ? (lang === 'bn' ? '● সাব-রেজিস্ট্রি সরাসরি সংযুক্ত' : '● Sub-Registry Live Connected') 
+                  : role === 'Bank Underwriter' 
+                  ? (lang === 'bn' ? '● কোর ব্যাংকিং সিবিএস সংযুক্ত (API)' : '● Core Banking CBS Connected (API)') 
+                  : (lang === 'bn' ? '● পাবলিক ল্যান্ড ট্রাস্ট গেটওয়ে' : '● Public Land Integrity Gateway')}
               </span>
             </div>
 
@@ -625,14 +663,14 @@ export default function Page() {
                   </div>
                   <div className="compare">
                     <div>
-                      <small>CLAIMED</small>
+                      <small>{lang === 'bn' ? 'দাবিকৃত জমি' : 'CLAIMED'}</small>
                       <strong className={scenario === 'fraud' ? 'bad-text' : ''}>
                         {current.claimed} <small>{t('shatak')}</small>
                       </strong>
                     </div>
                     <div className="compare-arrow">vs</div>
                     <div>
-                      <small>ENTITLED</small>
+                      <small>{lang === 'bn' ? 'বৈধ প্রাপ্য' : 'ENTITLED'}</small>
                       <strong className="good-text">14 <small>{t('shatak')}</small></strong>
                     </div>
                   </div>
@@ -642,7 +680,7 @@ export default function Page() {
                     onClick={() => setTab('farayez')}
                     style={{ marginTop: '10px', width: '100%' }}
                   >
-                    Open Full Farayez Sandbox <ArrowRight size={13} />
+                    {lang === 'bn' ? 'ফারায়েজ বণ্টন ক্যালকুলেটরে দেখুন' : 'Open Full Farayez Sandbox'} <ArrowRight size={13} />
                   </button>
                 </Interceptor>
 
@@ -667,10 +705,10 @@ export default function Page() {
                     <span>SELLER<small>NOW</small></span>
                   </div>
                   <div className="check-list">
-                    <div><Check size={12} /> Party continuity</div>
-                    <div><Check size={12} /> Area conservation</div>
+                    <div><Check size={12} /> {lang === 'bn' ? 'মালিকানার ধারাবাহিকতা' : 'Party continuity'}</div>
+                    <div><Check size={12} /> {lang === 'bn' ? 'জমির পরিমাণের সমতা' : 'Area conservation'}</div>
                     <div className={scenario === 'fraud' ? 'bad-text' : ''}>
-                      {scenario === 'fraud' ? <X size={12} /> : <Check size={12} />} Mutation DCR present
+                      {scenario === 'fraud' ? <X size={12} /> : <Check size={12} />} {lang === 'bn' ? 'নামজারি ডিসিআর (DCR) বিদ্যমান' : 'Mutation DCR present'}
                     </div>
                   </div>
                   <button 
@@ -678,16 +716,16 @@ export default function Page() {
                     onClick={() => setTab('baya')}
                     style={{ width: '100%' }}
                   >
-                    Open Full Lineage DAG Visualizer <ArrowRight size={13} />
+                    {lang === 'bn' ? 'বায়া ধারাবাহিকতা DAG ট্রেসারে দেখুন' : 'Open Full Lineage DAG Visualizer'} <ArrowRight size={13} />
                   </button>
                 </Interceptor>
 
                 {/* LOCK MANAGER CARD */}
                 <Interceptor 
                   icon={LockKeyhole} 
-                  title="Concurrency Lock Manager" 
+                  title={t('lockManager')} 
                   status={scenario === 'valid' ? 'PASS' : 'WARNING'} 
-                  verdict={scenario === 'valid' ? t('freshLock') : 'Active lock held by Dhamrai · duplicate rejected'} 
+                  verdict={scenario === 'valid' ? t('freshLock') : (lang === 'bn' ? 'ধামরাই সাব-রেজিস্ট্রিতে লক সক্রিয় · দ্বৈত আবেদন বাতিল' : 'Active lock held by Dhamrai · duplicate rejected')} 
                   open={open === 'lock'} 
                   onOpen={() => setOpen(open === 'lock' ? '' : 'lock')}
                 >
@@ -695,34 +733,36 @@ export default function Page() {
                   <div className="lock-grid">
                     <div className="countdown">
                       <strong>{scenario === 'valid' ? '45' : '36'}</strong>
-                      <small>DAYS LEFT</small>
+                      <small>{lang === 'bn' ? 'দিন বাকি' : 'DAYS LEFT'}</small>
                     </div>
                     <div>
                       <div className="lock-state">
-                        <LockKeyhole size={13} /> {current.lock} · {scenario === 'valid' ? 'Sub-Registry Savar' : 'Sub-Registry Dhamrai'}
+                        <LockKeyhole size={13} /> {current.lock} · {scenario === 'valid' ? (lang === 'bn' ? 'সাব-রেজিস্ট্রি সাভার' : 'Sub-Registry Savar') : (lang === 'bn' ? 'সাব-রেজিস্ট্রি ধামরাই' : 'Sub-Registry Dhamrai')}
                       </div>
                       <div className="lock-log">
-                        17 Oct · Savar · acquired<br />
-                        08 Oct · Dhamrai · filing accepted<br />
-                        08 Oct · Dhamrai · lock created
+                        {lang === 'bn' ? (
+                          <>১৭ অক্টো · সাভার · লক সক্রিয়<br />০৮ অক্টো · ধামরাই · দাখিল গ্রহণ<br />০৮ অক্টো · ধামরাই · লক তৈরি</>
+                        ) : (
+                          <>17 Oct · Savar · acquired<br />08 Oct · Dhamrai · filing accepted<br />08 Oct · Dhamrai · lock created</>
+                        )}
                       </div>
                     </div>
                   </div>
-                  <div className="lock-note">Lock auto-releases when e-Namjari mutation completes.</div>
+                  <div className="lock-note">{t('lockRelease')}</div>
                 </Interceptor>
 
                 <Card className="consistency">
                   <div className="consistency-title">
-                    <KeyRound size={14} /> NID & Registry Consistency 
+                    <KeyRound size={14} /> {t('nidConsistency')}
                     <Pill tone={scenario === 'valid' ? 'warn' : 'bad'}>
-                      {scenario === 'valid' ? 'REVIEW' : 'ALERT'}
+                      {scenario === 'valid' ? (lang === 'bn' ? 'পর্যালোচনা' : 'REVIEW') : (lang === 'bn' ? 'সতর্কতা' : 'ALERT')}
                     </Pill>
                   </div>
                   <div className="consistency-grid">
-                    <span><Check size={12} /> Seller NID</span>
-                    <span><Check size={12} /> Porcha match</span>
+                    <span><Check size={12} /> {t('sellerNid')}</span>
+                    <span><Check size={12} /> {t('porchaMatch')}</span>
                     <span className={scenario === 'fraud' ? 'bad-text' : ''}>
-                      {scenario === 'fraud' ? <X size={12} /> : <Check size={12} />} Biometric log
+                      {scenario === 'fraud' ? <X size={12} /> : <Check size={12} />} {t('biometricLog')}
                     </span>
                   </div>
                 </Card>
@@ -759,16 +799,41 @@ export default function Page() {
 
                 <Card className="veto-card">
                   <div className="card-title">
-                    {role === 'Sub-Registrar' ? t('hardVeto') : role === 'Bank Underwriter' ? 'Credit Risk & Lien Vetoes' : 'Buyer Risk Warnings'}
+                    {role === 'Sub-Registrar' 
+                      ? (lang === 'bn' ? 'বাধ্যতামূলক আইনি ভেটো (Hard Veto)' : t('hardVeto')) 
+                      : role === 'Bank Underwriter' 
+                      ? (lang === 'bn' ? 'ক্রেডিট ঝুঁকি ও লিয়েন ভেটো' : 'Credit Risk & Lien Vetoes') 
+                      : (lang === 'bn' ? 'ক্রেতার জন্য ঝুঁকি ও সতর্কতা' : 'Buyer Risk Warnings')}
                   </div>
                   <div className="veto-row">
-                    <span><GitBranch size={13} /> {role === 'Bank Underwriter' ? 'Defective Chain-of-Title' : role === 'Citizen-NRB' ? 'Fake / Broken Deed Trail' : t('brokenBaya')}</span>
+                    <span>
+                      <GitBranch size={13} />{' '}
+                      {role === 'Bank Underwriter' 
+                        ? (lang === 'bn' ? 'ত্রুটিপূর্ণ দলিল চেইন (Defective Title)' : 'Defective Chain-of-Title') 
+                        : role === 'Citizen-NRB' 
+                        ? (lang === 'bn' ? 'জাল বা ভুয়া দলিল ট্রেইল' : 'Fake / Broken Deed Trail') 
+                        : t('brokenBaya')}
+                    </span>
                     <Pill tone={scenario === 'fraud' ? 'bad' : 'good'}>
-                      {scenario === 'fraud' ? (role === 'Bank Underwriter' ? 'DEFAULT RISK' : role === 'Citizen-NRB' ? 'FRAUD RISK' : t('triggered')) : t('clear')}
+                      {scenario === 'fraud' 
+                        ? (role === 'Bank Underwriter' 
+                            ? (lang === 'bn' ? 'ডিফল্ট ঝুঁকি' : 'DEFAULT RISK') 
+                            : role === 'Citizen-NRB' 
+                            ? (lang === 'bn' ? 'জালিয়াতির ঝুঁকি' : 'FRAUD RISK') 
+                            : t('triggered')) 
+                        : t('clear')}
                     </Pill>
                   </div>
                   <div className="veto-row">
-                    <span><AlertTriangle size={13} /> {role === 'Bank Underwriter' ? 'Civil Court Injunction' : role === 'Citizen-NRB' ? 'Court Stay Order' : t('injunction')} <small>{t('orderRules')}</small></span>
+                    <span>
+                      <AlertTriangle size={13} />{' '}
+                      {role === 'Bank Underwriter' 
+                        ? (lang === 'bn' ? 'দেওয়ানি আদালতের স্থগিতাদেশ' : 'Civil Court Injunction') 
+                        : role === 'Citizen-NRB' 
+                        ? (lang === 'bn' ? 'আদালতের নিষেধাজ্ঞা বা স্টে-অর্ডার' : 'Court Stay Order') 
+                        : t('injunction')}{' '}
+                      <small>{t('orderRules')}</small>
+                    </span>
                     <Pill tone="good">{t('clearStatus')}</Pill>
                   </div>
                 </Card>
@@ -794,11 +859,11 @@ export default function Page() {
                           <div className="card-sub">{t('fraudEscalation')}</div>
                         </div>
                         <div className="decision-actions">
-                          <button className="danger-button" onClick={() => toast('Escalation packet prepared for AC (Land)')}>
-                            Escalate to AC
+                          <button className="danger-button" onClick={() => toast(lang === 'bn' ? 'এসিল্যান্ডের নিকট এস্কেলেশন ফাইল প্রেরিত' : 'Escalation packet prepared for AC (Land)')}>
+                            {t('escalate')}
                           </button>
-                          <button className="outline-button" onClick={() => toast('Notification queued for 3 co-heirs')}>
-                            Notify Co-heirs
+                          <button className="outline-button" onClick={() => toast(lang === 'bn' ? '৩ জন সহ-উত্তরাধিকারীকে নোটিশ পাঠানো হয়েছে' : 'Notification queued for 3 co-heirs')}>
+                            {t('notifyCoheirs')}
                           </button>
                         </div>
                       </>
@@ -810,26 +875,38 @@ export default function Page() {
                           <ShieldCheck size={20} />
                         </div>
                         <div>
-                          <div className="decision-title" style={{ color: 'var(--blue)' }}>Sanction Mortgage Collateral</div>
-                          <div className="card-sub">Title clear for loan disbursal (Security: BDT 45,00,000)</div>
+                          <div className="decision-title" style={{ color: 'var(--blue)' }}>
+                            {lang === 'bn' ? 'বন্ধকী জামানত অনুমোদন (Sanction Collateral)' : 'Sanction Mortgage Collateral'}
+                          </div>
+                          <div className="card-sub">
+                            {lang === 'bn' 
+                              ? '১৯২১ সিএস হতে স্বত্ব নিষ্কণ্টক · ঋণ বিতরণের জন্য নিরাপদ (৪৫ লাখ টাকা)' 
+                              : 'Title clear for loan disbursal (Security: BDT 45,00,000)'}
+                          </div>
                         </div>
-                        <button className="primary-button" style={{ background: 'var(--blue)', borderColor: 'var(--blue)' }} onClick={() => toast.success('Mortgage lien registered with Sub-Registry API')}>
-                          Clear Loan Collateral <ArrowRight size={14} />
+                        <button className="primary-button" style={{ background: 'var(--blue)', borderColor: 'var(--blue)' }} onClick={() => toast.success(lang === 'bn' ? 'সাব-রেজিস্ট্রি এপিআই-তে লিয়েন নিবন্ধিত' : 'Mortgage lien registered with Sub-Registry API')}>
+                          {lang === 'bn' ? 'জামানত অনুমোদন করুন' : 'Clear Loan Collateral'} <ArrowRight size={14} />
                         </button>
                       </>
                     ) : (
                       <>
                         <div className="decision-icon"><X size={20} /></div>
                         <div>
-                          <div className="decision-title" style={{ color: 'var(--red)' }}>Decline Loan Collateral</div>
-                          <div className="card-sub">CRITICAL: Defective title in 2009 Baya · High loan default risk</div>
+                          <div className="decision-title" style={{ color: 'var(--red)' }}>
+                            {lang === 'bn' ? 'বন্ধকী জামানত প্রত্যাখ্যান (Decline Collateral)' : 'Decline Loan Collateral'}
+                          </div>
+                          <div className="card-sub">
+                            {lang === 'bn' 
+                              ? 'মারাত্মক ঝুঁকি: ২০০৯ বায়া দলিলে স্বত্ব বিচ্ছিন্ন · ঋণ খেলাপি হওয়ার ঝুঁকি' 
+                              : 'CRITICAL: Defective title in 2009 Baya · High loan default risk'}
+                          </div>
                         </div>
                         <div className="decision-actions">
-                          <button className="danger-button" onClick={() => toast.error('Loan rejected. Risk flagged in Credit Information Bureau (CIB)')}>
-                            Decline Application
+                          <button className="danger-button" onClick={() => toast.error(lang === 'bn' ? 'ঋণ বাতিল। সিআইবি (CIB) ডেটাবেজে ঝুঁকি রিপোর্ট করা হয়েছে' : 'Loan rejected. Risk flagged in Credit Information Bureau (CIB)')}>
+                            {lang === 'bn' ? 'ঋণ আবেদন বাতিল' : 'Decline Application'}
                           </button>
-                          <button className="outline-button" onClick={() => toast('Underwriter audit memo saved')}>
-                            Flag in CIB
+                          <button className="outline-button" onClick={() => toast(lang === 'bn' ? 'আন্ডাররাইটার অডিট মেমো সংরক্ষিত' : 'Underwriter audit memo saved')}>
+                            {lang === 'bn' ? 'সিআইবি-তে রিপোর্ট' : 'Flag in CIB'}
                           </button>
                         </div>
                       </>
@@ -842,26 +919,38 @@ export default function Page() {
                           <Check size={20} />
                         </div>
                         <div>
-                          <div className="decision-title" style={{ color: 'var(--amber)' }}>Verified Safe to Purchase</div>
-                          <div className="card-sub">Unbroken 100-yr lineage · Clean Quranic share verified</div>
+                          <div className="decision-title" style={{ color: 'var(--amber)' }}>
+                            {lang === 'bn' ? 'জমিটি ক্রয় করা সম্পূর্ণ নিরাপদ' : 'Verified Safe to Purchase'}
+                          </div>
+                          <div className="card-sub">
+                            {lang === 'bn' 
+                              ? '১০০ বছরের অবিচ্ছিন্ন বায়া চেইন ও নিখুঁত ফারায়েজ অংশ যাচাইকৃত' 
+                              : 'Unbroken 100-yr lineage · Clean Quranic share verified'}
+                          </div>
                         </div>
-                        <button className="primary-button" style={{ background: 'var(--amber)', color: '#000', borderColor: 'var(--amber)' }} onClick={() => toast.success('Buyer Verification Dossier generated!')}>
-                          Safe to Buy <ArrowRight size={14} />
+                        <button className="primary-button" style={{ background: 'var(--amber)', color: '#000', borderColor: 'var(--amber)' }} onClick={() => toast.success(lang === 'bn' ? 'ক্রেতা সুরক্ষা সনদ প্রস্তুত হয়েছে!' : 'Buyer Verification Dossier generated!')}>
+                          {lang === 'bn' ? 'নিরাপদে জমি কিনুন' : 'Safe to Buy'} <ArrowRight size={14} />
                         </button>
                       </>
                     ) : (
                       <>
                         <div className="decision-icon"><X size={20} /></div>
                         <div>
-                          <div className="decision-title" style={{ color: 'var(--red)' }}>DO NOT BUY: High Risk Fraud</div>
-                          <div className="card-sub">Seller attempting to sell unowned land · Severe title dispute</div>
+                          <div className="decision-title" style={{ color: 'var(--red)' }}>
+                            {lang === 'bn' ? 'জমিটি কিনবেন না: চরম প্রতারণার ঝুঁকি' : 'DO NOT BUY: High Risk Fraud'}
+                          </div>
+                          <div className="card-sub">
+                            {lang === 'bn' 
+                              ? 'বিক্রেতা অন্যের জমি বিক্রির চেষ্টা করছে · জমি কিনলে মামলায় জড়াবেন' 
+                              : 'Seller attempting to sell unowned land · Severe title dispute'}
+                          </div>
                         </div>
                         <div className="decision-actions">
-                          <button className="danger-button" onClick={() => toast.error('Fraud complaint dispatched to Land Ministry hotline 16122')}>
-                            Report Fraud
+                          <button className="danger-button" onClick={() => toast.error(lang === 'bn' ? 'ভূমি মন্ত্রণালয়ের হটলাইনে (১৬১২২) অভিযোগ পাঠানো হয়েছে' : 'Fraud complaint dispatched to Land Ministry hotline 16122')}>
+                            {lang === 'bn' ? 'প্রতারণার অভিযোগ (১৬১২২)' : 'Report Fraud'}
                           </button>
-                          <button className="outline-button" onClick={() => toast('Connecting to Government Legal Aid Helpline (16430)')}>
-                            Legal Aid Helpline
+                          <button className="outline-button" onClick={() => toast(lang === 'bn' ? 'সরকারি আইনি সহায়তা হেল্পলাইনে (১৬৪৩০) সংযোগ হচ্ছে' : 'Connecting to Government Legal Aid Helpline (16430)')}>
+                            {lang === 'bn' ? 'আইনি সহায়তা (১৬৪৩০)' : 'Legal Aid Helpline'}
                           </button>
                         </div>
                       </>
@@ -876,15 +965,15 @@ export default function Page() {
                         {role === 'Sub-Registrar' 
                           ? t('certificateTitle') 
                           : role === 'Bank Underwriter' 
-                          ? 'Mortgage Title Clearance' 
-                          : 'Citizen Buyer Due-Diligence'}
+                          ? (lang === 'bn' ? 'বন্ধকী স্বত্ব ক্লিয়ারেন্স সনদ' : 'Mortgage Title Clearance') 
+                          : (lang === 'bn' ? 'নাগরিক ক্রয়পূর্ব ট্রাস্ট সনদ' : 'Citizen Buyer Due-Diligence')}
                       </div>
                       <div className="card-sub">
                         {role === 'Sub-Registrar' 
-                          ? 'Pre-registration statutory verification proof' 
+                          ? t('certificateSubtitle') 
                           : role === 'Bank Underwriter' 
-                          ? 'Credit Risk Division · Bangladesh Bank Collateral Audit' 
-                          : 'Public Sovereign Land Integrity Trust Seal'}
+                          ? (lang === 'bn' ? 'ক্রেডিট রিস্ক বিভাগ · বাংলাদেশ ব্যাংক জামানত অডিট' : 'Credit Risk Division · Bangladesh Bank Collateral Audit') 
+                          : (lang === 'bn' ? 'পাবলিক সার্বভৌম ভূমি সুরক্ষা সিল' : 'Public Sovereign Land Integrity Trust Seal')}
                       </div>
                     </div>
                     <FileCheck2 size={19} className={scenario === 'valid' ? 'good-text' : 'bad-text'} />
@@ -893,7 +982,11 @@ export default function Page() {
                     <>
                       <div className="cert-valid">
                         <BadgeCheck size={13} /> 
-                        {role === 'Sub-Registrar' ? 'VALID STATUTORY CERTIFICATE' : role === 'Bank Underwriter' ? 'MORTGAGE APPROVED: ZERO LIEN' : 'VERIFIED SAFE PROPERTY'}
+                        {role === 'Sub-Registrar' 
+                          ? (lang === 'bn' ? 'বৈধ ডিজিটাল সনদ' : 'VALID STATUTORY CERTIFICATE') 
+                          : role === 'Bank Underwriter' 
+                          ? (lang === 'bn' ? 'অনুমোদিত জামানত: কোনো দায় নেই' : 'MORTGAGE APPROVED: ZERO LIEN') 
+                          : (lang === 'bn' ? 'যাচাইকৃত নিষ্কণ্টক জমি' : 'VERIFIED SAFE PROPERTY')}
                       </div>
                       <div className="cert-body">
                         <div className="qr">
@@ -904,23 +997,23 @@ export default function Page() {
                           </svg>
                         </div>
                         <div className="cert-meta">
-                          <span>ID <b className="mono">
+                          <span>{t('certificateId')} <b className="mono">
                             {role === 'Sub-Registrar' ? 'TD-CERT-014872' : role === 'Bank Underwriter' ? 'TD-MORT-8812' : 'TD-TRUST-9921'}
                           </b></span>
                           <span>SHA-256 <b className="mono hash">a9e4b1d7…c02f7a91</b>
                             <button className="icon-button" onClick={copyHash} aria-label={t('copyHash')}><Copy size={12} /></button>
                           </span>
-                          <span>Signed by <b>
+                          <span>{t('signedBy')} <b>
                             {role === 'Sub-Registrar' 
-                              ? 'Sub-Registrar, Savar' 
+                              ? (lang === 'bn' ? 'সাব-রেজিস্ট্রার, সাভার (ভূমি নিবন্ধন)' : 'Sub-Registrar, Savar') 
                               : role === 'Bank Underwriter' 
-                              ? 'Senior Underwriter, Credit Risk Division' 
-                              : 'TrueDeed Public Trust Verifier'}
+                              ? (lang === 'bn' ? 'সিনিয়র আন্ডাররাইটার, ক্রেডিট রিস্ক বিভাগ' : 'Senior Underwriter, Credit Risk Division') 
+                              : (lang === 'bn' ? 'ট্রুডিড সার্বভৌম ল্যান্ড ভেরিফায়ার' : 'TrueDeed Public Trust Verifier')}
                           </b></span>
                         </div>
                       </div>
-                      <button className="download-button" onClick={() => toast.success('Certificate downloaded successfully!')}>
-                        Download PDF <ArrowRight size={13} />
+                      <button className="download-button" onClick={() => toast.success(lang === 'bn' ? 'সনদপত্র ডাউনলোড সম্পন্ন!' : 'Certificate downloaded successfully!')}>
+                        {t('downloadPdf')} <ArrowRight size={13} />
                       </button>
                     </>
                   ) : (
@@ -928,17 +1021,17 @@ export default function Page() {
                       <LockKeyhole size={18} />
                       <strong>
                         {role === 'Sub-Registrar' 
-                          ? 'Certificate withheld' 
+                          ? (lang === 'bn' ? 'সনদপত্র স্থগিত ও বাজেয়াপ্ত' : 'Certificate withheld') 
                           : role === 'Bank Underwriter' 
-                          ? 'Mortgage Security Rejected' 
-                          : 'Property Blacklisted'}
+                          ? (lang === 'bn' ? 'বন্ধকী জামানত বাতিল' : 'Mortgage Security Rejected') 
+                          : (lang === 'bn' ? 'জমিটি কালো তালিকাভুক্ত' : 'Property Blacklisted')}
                       </strong>
                       <span>
                         {role === 'Sub-Registrar' 
-                          ? 'Fraud report issued · Case escalated' 
+                          ? (lang === 'bn' ? 'জালিয়াতির প্রতিবেদন তৈরি হয়েছে · কেস এসিল্যান্ডের নিকট প্রেরিত' : 'Fraud report issued · Case escalated') 
                           : role === 'Bank Underwriter' 
-                          ? 'High risk collateral flagged in CIB database' 
-                          : 'High fraud probability · Do not transfer funds'}
+                          ? (lang === 'bn' ? 'উচ্চ ঝুঁকির জামানত সিআইবি (CIB) ডেটাবেজে তালিকাভুক্ত' : 'High risk collateral flagged in CIB database') 
+                          : (lang === 'bn' ? 'চরম জালিয়াতির ঝুঁকি · টাকা লেনদেন করবেন না' : 'High fraud probability · Do not transfer funds')}
                       </span>
                     </div>
                   )}
@@ -961,7 +1054,7 @@ export default function Page() {
                   fontSize: '12px', fontWeight: 600, cursor: 'pointer', padding: 0 
                 }}
               >
-                ← Back to Command Center
+                {lang === 'bn' ? '← কমান্ড সেন্টারে ফিরে যান' : '← Back to Command Center'}
               </button>
             </div>
 
@@ -981,12 +1074,24 @@ export default function Page() {
             }}>
               {role === 'Sub-Registrar' ? <ShieldCheck size={15} /> : role === 'Bank Underwriter' ? <BadgeCheck size={15} /> : <UserRound size={15} />}
               <span>
-                <strong>{role === 'Sub-Registrar' ? 'GOVERNMENT REGISTRATION AUDIT' : role === 'Bank Underwriter' ? 'BANK MORTGAGE RISK AUDIT' : 'CITIZEN PRE-PURCHASE AUDIT'}:</strong>{' '}
+                <strong>
+                  {role === 'Sub-Registrar' 
+                    ? (lang === 'bn' ? 'সরকারি সাব-রেজিস্ট্রি অডিট' : 'GOVERNMENT REGISTRATION AUDIT') 
+                    : role === 'Bank Underwriter' 
+                    ? (lang === 'bn' ? 'ব্যাংক মর্টগেজ ঝুঁকি অডিট' : 'BANK MORTGAGE RISK AUDIT') 
+                    : (lang === 'bn' ? 'নাগরিক ক্রয়পূর্ব অডিট' : 'CITIZEN PRE-PURCHASE AUDIT')}:
+                </strong>{' '}
                 {role === 'Sub-Registrar'
-                  ? 'Tracing statutory unbroken chain of title from 1921 CS to 2026 deed under Registration Act Sec 22A.'
+                  ? (lang === 'bn' 
+                      ? 'রেজিস্ট্রেশন আইন ১৯০৮-এর ধারা ২২এ অনুযায়ী ১৯২১ সিএস হতে ২০২৬ বর্তমান দলিল পর্যন্ত অবিচ্ছিন্ন বায়া চেইন বিশ্লেষণ।' 
+                      : 'Tracing statutory unbroken chain of title from 1921 CS to 2026 deed under Registration Act Sec 22A.')
                   : role === 'Bank Underwriter'
-                  ? 'Assessing first-charge collateral security; any broken link invalidates bank mortgage recovery in court.'
-                  : 'Verifying seller actually owns the title before transferring earnest money or signing purchase agreement.'}
+                  ? (lang === 'bn'
+                      ? 'প্রথম-চার্জ জামানত নিরাপত্তা যাচাই; দলিলের কোনো একটি লিংকে ত্রুটি থাকলে আদালতে ঋণ আদায় সম্ভব হবে না।'
+                      : 'Assessing first-charge collateral security; any broken link invalidates bank mortgage recovery in court.')
+                  : (lang === 'bn'
+                      ? 'বায়না চুক্তি বা টাকা হস্তান্তরের পূর্বে নিশ্চিত হওয়া যে বিক্রেতার পূর্ববর্তী মালিকানা নিষ্কণ্টক ছিল কিনা।'
+                      : 'Verifying seller actually owns the title before transferring earnest money or signing purchase agreement.')}
               </span>
             </div>
 
@@ -994,10 +1099,12 @@ export default function Page() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--line)', paddingBottom: '16px', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
                 <div>
                   <h2 style={{ fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--text)' }}>
-                    🌲 Directed Acyclic Graph (DAG) Baya Lineage Tracer
+                    {lang === 'bn' ? '🌲 ডিরেক্টেড অ্যাসাইক্লিক গ্রাফ (DAG) বায়া ধারাবাহিকতা ট্রেসার' : '🌲 Directed Acyclic Graph (DAG) Baya Lineage Tracer'}
                   </h2>
                   <p style={{ fontSize: '11px', color: 'var(--muted)', margin: '4px 0 0' }}>
-                    Mathematical Chain-of-Title verification from original 1921 Cadastral Survey down to current 2026 deed lodgment
+                    {lang === 'bn' 
+                      ? 'মূল ১৯২১ ক্যাডাস্ট্রাল সার্ভে (সিএস) হতে বর্তমান ২০২৬ দলিল পর্যন্ত গাণিতিক স্বত্ব ধারাবাহিকতা যাচাই' 
+                      : 'Mathematical Chain-of-Title verification from original 1921 Cadastral Survey down to current 2026 deed lodgment'}
                   </p>
                 </div>
                 
@@ -1011,7 +1118,7 @@ export default function Page() {
                       color: scenario === 'valid' ? 'var(--green)' : 'var(--muted)'
                     }}
                   >
-                    <Check size={12} /> Valid Chain (94%)
+                    <Check size={12} /> {lang === 'bn' ? '✓ অবিচ্ছিন্ন চেইন (৯৪%)' : 'Valid Chain (94%)'}
                   </button>
                   <button 
                     onClick={() => setScenario('fraud')}
@@ -1022,10 +1129,12 @@ export default function Page() {
                       color: scenario === 'fraud' ? 'var(--red)' : 'var(--muted)'
                     }}
                   >
-                    <AlertTriangle size={12} /> Fraud Chain (18%)
+                    <AlertTriangle size={12} /> {lang === 'bn' ? '⚠ ত্রুটিযুক্ত চেইন (১৮%)' : 'Fraud Chain (18%)'}
                   </button>
                   <Pill tone={scenario === 'valid' ? 'good' : 'bad'}>
-                    {scenario === 'valid' ? 'ALL 5 NODES CONTINUOUS & VERIFIED' : 'CRITICAL FRAUD: BROKEN LINEAGE DETECTED'}
+                    {scenario === 'valid' 
+                      ? (lang === 'bn' ? '৫টি নোডই অবিচ্ছিন্ন ও যাচাইকৃত' : 'ALL 5 NODES CONTINUOUS & VERIFIED') 
+                      : (lang === 'bn' ? 'মারাত্মক জালিয়াতি: বায়া চেইনে বিচ্যুতি শনাক্ত' : 'CRITICAL FRAUD: BROKEN LINEAGE DETECTED')}
                   </Pill>
                 </div>
               </div>
@@ -1035,20 +1144,35 @@ export default function Page() {
                 {/* NODE 1: CS */}
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                   <div style={{ width: '130px', textAlign: 'right', flexShrink: 0 }}>
-                    <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--blue)' }}>1921 A.D.</span>
-                    <div style={{ fontSize: '9px', color: 'var(--muted)' }}>British Raj Survey</div>
+                    <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--blue)' }}>
+                      {lang === 'bn' ? '১৯২১ খ্রি.' : '1921 A.D.'}
+                    </span>
+                    <div style={{ fontSize: '9px', color: 'var(--muted)' }}>
+                      {lang === 'bn' ? 'ব্রিটিশ ভারত ভূমি জরিপ' : 'British Raj Survey'}
+                    </div>
                   </div>
                   <div style={{ width: '2px', height: '100%', background: 'var(--green)', minHeight: '80px', position: 'relative' }}>
                     <div style={{ position: 'absolute', top: '0', left: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--green)', boxShadow: '0 0 10px var(--green)' }} />
                   </div>
                   <div style={{ flex: 1, background: '#0b131d', border: '1px solid #1a2f42', borderRadius: '8px', padding: '14px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <strong style={{ fontSize: '13px', color: 'var(--text)' }}>Node 1: CS Khatian #102 (Cadastral Survey Baseline)</strong>
-                      <Pill tone="good">STATE BASELINE</Pill>
+                      <strong style={{ fontSize: '13px', color: 'var(--text)' }}>
+                        {lang === 'bn' ? 'নোড ১: সিএস খতিয়ান #১০২ (ক্যাডাস্ট্রাল সার্ভে বেসলাইন)' : 'Node 1: CS Khatian #102 (Cadastral Survey Baseline)'}
+                      </strong>
+                      <Pill tone="good">{lang === 'bn' ? 'রাষ্ট্রীয় বেসলাইন' : 'STATE BASELINE'}</Pill>
                     </div>
                     <div style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '6px', lineHeight: '1.6' }}>
-                      Recorded Proprietor: <b>Jonab Ali Sheikh</b> · Mouza: Ashulia (JL 87) · Daag: 1893<br/>
-                      Baseline Survey Acreage: <b style={{ color: 'var(--green)' }}>120.00 Shatak (1.20 Acres)</b> · Gazetted in Bengal District Gazette.
+                      {lang === 'bn' ? (
+                        <>
+                          রেকর্ডভুক্ত মালিক: <b>জনাব আলী শেখ</b> · মৌজা: আশুলিয়া (জে.এল ৮৭) · দাগ: ১৮৯৩<br/>
+                          মূল জরিপকৃত জমি: <b style={{ color: 'var(--green)' }}>১২০.০০ শতক (১.২০ একর)</b> · বেঙ্গল ডিস্ট্রিক্ট গেজেট দ্বারা সত্যায়িত।
+                        </>
+                      ) : (
+                        <>
+                          Recorded Proprietor: <b>Jonab Ali Sheikh</b> · Mouza: Ashulia (JL 87) · Daag: 1893<br/>
+                          Baseline Survey Acreage: <b style={{ color: 'var(--green)' }}>120.00 Shatak (1.20 Acres)</b> · Gazetted in Bengal District Gazette.
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1058,27 +1182,42 @@ export default function Page() {
                   <div style={{ width: '130px' }} />
                   <div style={{ width: '2px', height: '22px', background: 'var(--green)' }} />
                   <div style={{ fontSize: '10px', color: 'var(--muted)', background: '#070d13', border: '1px solid #142433', padding: '2px 8px', borderRadius: '4px' }}>
-                    ↓ Inheritance Partition (120 Stk → 60 Stk) · Area Conserved ✓
+                    {lang === 'bn' ? '↓ ওয়ারিশসূত্রে বণ্টন (১২০ শতক → ৬০ শতক) · জমির পরিমাণ সংরক্ষিত ✓' : '↓ Inheritance Partition (120 Stk → 60 Stk) · Area Conserved ✓'}
                   </div>
                 </div>
 
                 {/* NODE 2: SA */}
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                   <div style={{ width: '130px', textAlign: 'right', flexShrink: 0 }}>
-                    <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--blue)' }}>1962 A.D.</span>
-                    <div style={{ fontSize: '9px', color: 'var(--muted)' }}>East Pakistan Survey</div>
+                    <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--blue)' }}>
+                      {lang === 'bn' ? '১৯৬২ খ্রি.' : '1962 A.D.'}
+                    </span>
+                    <div style={{ fontSize: '9px', color: 'var(--muted)' }}>
+                      {lang === 'bn' ? 'পূর্ব পাকিস্তান ভূমি জরিপ' : 'East Pakistan Survey'}
+                    </div>
                   </div>
                   <div style={{ width: '2px', height: '100%', background: 'var(--green)', minHeight: '80px', position: 'relative' }}>
                     <div style={{ position: 'absolute', top: '0', left: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--green)' }} />
                   </div>
                   <div style={{ flex: 1, background: '#0b131d', border: '1px solid #1a2f42', borderRadius: '8px', padding: '14px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <strong style={{ fontSize: '13px', color: 'var(--text)' }}>Node 2: SA Khatian #204 (State Acquisition Survey)</strong>
-                      <Pill tone="good">MUTATION CONFIRMED</Pill>
+                      <strong style={{ fontSize: '13px', color: 'var(--text)' }}>
+                        {lang === 'bn' ? 'নোড ২: এসএ খতিয়ান #২০৪ (স্টেট অ্যাকুইজিশন সার্ভে)' : 'Node 2: SA Khatian #204 (State Acquisition Survey)'}
+                      </strong>
+                      <Pill tone="good">{lang === 'bn' ? 'নামজারি নিশ্চিত' : 'MUTATION CONFIRMED'}</Pill>
                     </div>
                     <div style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '6px', lineHeight: '1.6' }}>
-                      Conveyance: Inheritance Partition (Jonab Ali Sheikh → Rahim Ullah Sheikh)<br/>
-                      Transferred Area: <b style={{ color: 'var(--green)' }}>60.00 Shatak</b> (Area Conserved: 60 &lt;= 120) · Record Room Vol. 14, Page 88.
+                      {lang === 'bn' ? (
+                        <>
+                          হস্তান্তর: ওয়ারিশসূত্রে বণ্টন (জনাব আলী শেখ → রহিম উল্লাহ শেখ)<br/>
+                          হস্তান্তরিত জমি: <b style={{ color: 'var(--green)' }}>৬০.০০ শতক</b> (জমির সমতা: ৬০ &lt;= ১২০) · রেকর্ড রুম খণ্ড ১৪, পৃষ্ঠা ৮৮।
+                        </>
+                      ) : (
+                        <>
+                          Conveyance: Inheritance Partition (Jonab Ali Sheikh → Rahim Ullah Sheikh)<br/>
+                          Transferred Area: <b style={{ color: 'var(--green)' }}>60.00 Shatak</b> (Area Conserved: 60 &lt;= 120) · Record Room Vol. 14, Page 88.
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1088,27 +1227,42 @@ export default function Page() {
                   <div style={{ width: '130px' }} />
                   <div style={{ width: '2px', height: '22px', background: 'var(--green)' }} />
                   <div style={{ fontSize: '10px', color: 'var(--muted)', background: '#070d13', border: '1px solid #142433', padding: '2px 8px', borderRadius: '4px' }}>
-                    ↓ RS Settlement (60 Stk → 40 Stk) · Active Porcha #412 ✓
+                    {lang === 'bn' ? '↓ আরএস রেকর্ড বন্দোবস্ত (৬০ শতক → ৪০ শতক) · সক্রিয় পর্চা #৪১২ ✓' : '↓ RS Settlement (60 Stk → 40 Stk) · Active Porcha #412 ✓'}
                   </div>
                 </div>
 
                 {/* NODE 3: RS */}
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                   <div style={{ width: '130px', textAlign: 'right', flexShrink: 0 }}>
-                    <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--blue)' }}>1987 A.D.</span>
-                    <div style={{ fontSize: '9px', color: 'var(--muted)' }}>Bangladesh Revisional</div>
+                    <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--blue)' }}>
+                      {lang === 'bn' ? '১৯৮৭ খ্রি.' : '1987 A.D.'}
+                    </span>
+                    <div style={{ fontSize: '9px', color: 'var(--muted)' }}>
+                      {lang === 'bn' ? 'বাংলাদেশ রিভিশনাল জরিপ' : 'Bangladesh Revisional'}
+                    </div>
                   </div>
                   <div style={{ width: '2px', height: '100%', background: 'var(--green)', minHeight: '80px', position: 'relative' }}>
                     <div style={{ position: 'absolute', top: '0', left: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--green)', boxShadow: '0 0 10px var(--green)' }} />
                   </div>
                   <div style={{ flex: 1, background: '#0b131d', border: '1px solid #1a2f42', borderRadius: '8px', padding: '14px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <strong style={{ fontSize: '13px', color: 'var(--text)' }}>Node 3: RS Khatian #412 (Revisional Survey)</strong>
-                      <Pill tone="good">ACTIVE PORCHA</Pill>
+                      <strong style={{ fontSize: '13px', color: 'var(--text)' }}>
+                        {lang === 'bn' ? 'নোড ৩: আরএস খতিয়ান #৪১২ (রিভিশনাল সার্ভে)' : 'Node 3: RS Khatian #412 (Revisional Survey)'}
+                      </strong>
+                      <Pill tone="good">{lang === 'bn' ? 'সক্রিয় পর্চা' : 'ACTIVE PORCHA'}</Pill>
                     </div>
                     <div style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '6px', lineHeight: '1.6' }}>
-                      Recorded Holder: <b>Late Rahim Ullah Sheikh</b> · Mutation Case No. 118/1987<br/>
-                      Settled Land Area: <b style={{ color: 'var(--green)' }}>40.00 Shatak</b> (Remaining 20 shatak conveyed to co-sharer).
+                      {lang === 'bn' ? (
+                        <>
+                          রেকর্ডভুক্ত মালিক: <b>মরহুম রহিম উল্লাহ শেখ</b> · নামজারি কেস নং ১১৮/১৯৮৭<br/>
+                          নির্ধারিত জমির পরিমাণ: <b style={{ color: 'var(--green)' }}>৪০.০০ শতক</b> (অবশিষ্ট ২০ শতক সহ-অংশীদারকে প্রদান)।
+                        </>
+                      ) : (
+                        <>
+                          Recorded Holder: <b>Late Rahim Ullah Sheikh</b> · Mutation Case No. 118/1987<br/>
+                          Settled Land Area: <b style={{ color: 'var(--green)' }}>40.00 Shatak</b> (Remaining 20 shatak conveyed to co-sharer).
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1119,11 +1273,14 @@ export default function Page() {
                   <div style={{ width: '2px', height: '26px', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)' }} />
                   {scenario === 'valid' ? (
                     <div style={{ fontSize: '10px', color: 'var(--green)', background: '#081712', border: '1px solid #163e2c', padding: '3px 8px', borderRadius: '4px' }}>
-                      ↓ Saf-Kabla Deed #8921 (Vol 412, Pg 18 · DCR Verified ✓)
+                      {lang === 'bn' ? '↓ সাফ-কবলা দলিল #৮৯২১ (ভলিউম ৪১২, পৃষ্ঠা ১৮ · ডিসিআর যাচাইকৃত ✓)' : '↓ Saf-Kabla Deed #8921 (Vol 412, Pg 18 · DCR Verified ✓)'}
                     </div>
                   ) : (
                     <div style={{ fontSize: '10px', color: '#ffb3b8', background: '#260e13', border: '1px solid #8e3946', padding: '3px 8px', borderRadius: '4px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}>
-                      <AlertTriangle size={12} color="var(--red)" /> ⚡ CRITICAL FRACTURE POINT: Volume 412 Blank · DCR Missing ✕
+                      <AlertTriangle size={12} color="var(--red)" />{' '}
+                      {lang === 'bn' 
+                        ? '⚡ মারাত্মক ত্রুটিযুক্ত সংযোগ: ভলিউম ৪১২ ফাঁকা · সাব-রেজিস্ট্রি রেকর্ডে ডিসিআর (DCR) অনুপস্থিত ✕' 
+                        : '⚡ CRITICAL FRACTURE POINT: Volume 412 Blank · DCR Missing ✕'}
                     </div>
                   )}
                 </div>
@@ -1131,8 +1288,12 @@ export default function Page() {
                 {/* NODE 4: BAYA DEED 2009 (THE FRACTURE POINT IN FRAUD SCENARIO) */}
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                   <div style={{ width: '130px', textAlign: 'right', flexShrink: 0 }}>
-                    <span style={{ fontSize: '12px', fontWeight: 700, color: scenario === 'valid' ? 'var(--blue)' : 'var(--red)' }}>2009 A.D.</span>
-                    <div style={{ fontSize: '9px', color: 'var(--muted)' }}>Intermediate Transfer</div>
+                    <span style={{ fontSize: '12px', fontWeight: 700, color: scenario === 'valid' ? 'var(--blue)' : 'var(--red)' }}>
+                      {lang === 'bn' ? '২০০৯ খ্রি.' : '2009 A.D.'}
+                    </span>
+                    <div style={{ fontSize: '9px', color: 'var(--muted)' }}>
+                      {lang === 'bn' ? 'মধ্যবর্তী হস্তান্তর' : 'Intermediate Transfer'}
+                    </div>
                   </div>
                   <div style={{ width: '2px', height: '100%', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)', minHeight: '80px', position: 'relative' }}>
                     <div style={{ position: 'absolute', top: '0', left: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)', boxShadow: scenario === 'fraud' ? '0 0 12px var(--red)' : 'none' }} />
@@ -1140,21 +1301,41 @@ export default function Page() {
                   <div style={{ flex: 1, background: scenario === 'valid' ? '#0b131d' : '#231217', border: `1px solid ${scenario === 'valid' ? '#1a2f42' : '#8e3946'}`, borderRadius: '8px', padding: '14px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <strong style={{ fontSize: '13px', color: scenario === 'valid' ? 'var(--text)' : 'var(--red)' }}>
-                        Node 4: Baya Saf-Kabla Deed #8921 (Savar Sub-Registry)
+                        {lang === 'bn' ? 'নোড ৪: বায়া সাফ-কবলা দলিল #৮৯২১ (সাভার সাব-রেজিস্ট্রি)' : 'Node 4: Baya Saf-Kabla Deed #8921 (Savar Sub-Registry)'}
                       </strong>
                       <Pill tone={scenario === 'valid' ? 'good' : 'bad'}>
-                        {scenario === 'valid' ? 'VERIFIED WITH DCR' : '🚨 FAKE INTERMEDIATE DEED'}
+                        {scenario === 'valid' 
+                          ? (lang === 'bn' ? 'ডিসিআর দ্বারা যাচাইকৃত' : 'VERIFIED WITH DCR') 
+                          : (lang === 'bn' ? '🚨 ভুয়া মধ্যবর্তী দলিল' : '🚨 FAKE INTERMEDIATE DEED')}
                       </Pill>
                     </div>
                     {scenario === 'valid' ? (
                       <div style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '6px', lineHeight: '1.6' }}>
-                        Seller: Rahim Ullah Sheikh → Buyer: <b>Md. Abdul Karim</b> (Current Seller)<br/>
-                        Acreage: <b>14.00 Shatak</b> · Sub-Registry Volume: 412, Page: 18 · DCR Receipt: Verified (#DCR-90412).
+                        {lang === 'bn' ? (
+                          <>
+                            দাতা: রহিম উল্লাহ শেখ → গ্রহীতা: <b>মোঃ আব্দুল করিম</b> (বর্তমান বিক্রেতা)<br/>
+                            জমির পরিমাণ: <b>১৪.০০ শতক</b> · সাব-রেজিস্ট্রি ভলিউম: ৪১২, পৃষ্ঠা: ১৮ · ডিসিআর রসিদ: অনুমোদিত (#DCR-90412)।
+                          </>
+                        ) : (
+                          <>
+                            Seller: Rahim Ullah Sheikh → Buyer: <b>Md. Abdul Karim</b> (Current Seller)<br/>
+                            Acreage: <b>14.00 Shatak</b> · Sub-Registry Volume: 412, Page: 18 · DCR Receipt: Verified (#DCR-90412).
+                          </>
+                        )}
                       </div>
                     ) : (
                       <div style={{ fontSize: '11px', color: '#ffb3b8', marginTop: '6px', lineHeight: '1.6' }}>
-                        <b>CRITICAL BREAK:</b> Sub-Registry Volume 412, Page 18 is blank or registered to a different Mouza!<br/>
-                        Missing Mutation DCR receipt from AC Land office. Chain-of-Title broken at this transition.
+                        {lang === 'bn' ? (
+                          <>
+                            <b>মারাত্মক বিচ্যুতি:</b> সাভার সাব-রেজিস্ট্রি ভলিউম ৪১২, পৃষ্ঠা ১৮ ফাঁকা অথবা অন্য কোনো মৌজার নামে নিবন্ধিত!<br/>
+                            সহকারী কমিশনার (ভূমি) কার্যালয়ের নামজারি ডিসিআর রসিদ অনুপস্থিত। এই ধাপে বায়া চেইন সম্পূর্ণ বিচ্ছিন্ন।
+                          </>
+                        ) : (
+                          <>
+                            <b>CRITICAL BREAK:</b> Sub-Registry Volume 412, Page 18 is blank or registered to a different Mouza!<br/>
+                            Missing Mutation DCR receipt from AC Land office. Chain-of-Title broken at this transition.
+                          </>
+                        )}
                       </div>
                     )}
                   </div>
@@ -1166,11 +1347,16 @@ export default function Page() {
                   <div style={{ width: '2px', height: '26px', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)' }} />
                   {scenario === 'valid' ? (
                     <div style={{ fontSize: '10px', color: 'var(--green)', background: '#081712', border: '1px solid #163e2c', padding: '3px 8px', borderRadius: '4px' }}>
-                      ↓ Target Conveyance #1214 (Claimed 12.00 Stk &lt;= 14.00 Stk ✓)
+                      {lang === 'bn' 
+                        ? '↓ প্রস্তাবিত সাফ-কবলা হস্তান্তর #১২১৪ (দাবিকৃত ১২.০০ শতক <= ১৪.০০ শতক ✓)' 
+                        : '↓ Target Conveyance #1214 (Claimed 12.00 Stk <= 14.00 Stk ✓)'}
                     </div>
                   ) : (
                     <div style={{ fontSize: '10px', color: '#ffb3b8', background: '#260e13', border: '1px solid #8e3946', padding: '3px 8px', borderRadius: '4px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}>
-                      <X size={12} color="var(--red)" /> ⛔ EXECUTION BLOCKED: Chain of Title Severed by Hard Veto ✕
+                      <X size={12} color="var(--red)" />{' '}
+                      {lang === 'bn' 
+                        ? '⛔ দলিল সম্পাদন নিষিদ্ধ: আইনি ভেটোর কারণে মালিকানা চেইন বিচ্ছিন্ন ✕' 
+                        : '⛔ EXECUTION BLOCKED: Chain of Title Severed by Hard Veto ✕'}
                     </div>
                   )}
                 </div>
@@ -1179,9 +1365,14 @@ export default function Page() {
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                   <div style={{ width: '130px', textAlign: 'right', flexShrink: 0 }}>
                     <span style={{ fontSize: '12px', fontWeight: 700, color: scenario === 'valid' ? 'var(--green)' : 'var(--red)' }}>
-                      2026 A.D. {scenario === 'valid' ? '(NOW)' : '(BLOCKED)'}
+                      {lang === 'bn' ? '২০২৬ খ্রি.' : '2026 A.D.'}{' '}
+                      {scenario === 'valid' 
+                        ? (lang === 'bn' ? '(বর্তমান)' : '(NOW)') 
+                        : (lang === 'bn' ? '(স্থগিত)' : '(BLOCKED)')}
                     </span>
-                    <div style={{ fontSize: '9px', color: 'var(--muted)' }}>Current Lodgment</div>
+                    <div style={{ fontSize: '9px', color: 'var(--muted)' }}>
+                      {lang === 'bn' ? 'বর্তমান দাখিলকৃত দলিল' : 'Current Lodgment'}
+                    </div>
                   </div>
                   <div style={{ width: '2px', height: '100%', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)', minHeight: '80px', position: 'relative' }}>
                     <div style={{ position: 'absolute', top: '0', left: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: scenario === 'valid' ? 'var(--green)' : 'var(--red)', boxShadow: scenario === 'fraud' ? '0 0 12px var(--red)' : 'none' }} />
@@ -1189,15 +1380,28 @@ export default function Page() {
                   <div style={{ flex: 1, background: scenario === 'valid' ? '#0b131d' : '#1c0f13', border: `1px solid ${scenario === 'valid' ? '#205340' : '#8e3946'}`, borderRadius: '8px', padding: '14px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <strong style={{ fontSize: '13px', color: scenario === 'valid' ? 'var(--text)' : 'var(--red)' }}>
-                        Node 5: Target Saf-Kabla Deed #1214 (Under Review)
+                        {lang === 'bn' 
+                          ? 'নোড ৫: প্রস্তাবিত সাফ-কবলা দলিল TD-2026-014872 (যাচাই প্রক্রিয়াধীন)' 
+                          : 'Node 5: Target Saf-Kabla Deed #1214 (Under Review)'}
                       </strong>
                       <Pill tone={scenario === 'valid' ? 'good' : 'bad'}>
-                        {scenario === 'valid' ? 'READY FOR EXECUTION' : 'EXECUTION BLOCKED'}
+                        {scenario === 'valid' 
+                          ? (lang === 'bn' ? 'সম্পাদনের জন্য প্রস্তুত' : 'READY FOR EXECUTION') 
+                          : (lang === 'bn' ? 'সম্পাদন স্থগিত ও নিষিদ্ধ' : 'EXECUTION BLOCKED')}
                       </Pill>
                     </div>
                     <div style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '6px', lineHeight: '1.6' }}>
-                      Seller: Md. Abdul Karim → Buyer: Md. Shamim Reza · Deeded Area: <b>{scenario === 'valid' ? '12.00 Shatak' : '22.00 Shatak'}</b><br/>
-                      Verdict: {scenario === 'valid' ? 'Continuity verified back to 1921 CS survey.' : 'REGISTRATION REJECTED due to broken intermediate node.'}
+                      {lang === 'bn' ? (
+                        <>
+                          বিক্রেতা: মোঃ আব্দুল করিম → ক্রেতা: মোঃ শামীম রেজা · দলিলে উল্লিখিত জমি: <b>{scenario === 'valid' ? '১২.০০ শতক' : '২২.০০ শতক'}</b><br/>
+                          ফলাফল: {scenario === 'valid' ? '১৯২১ সিএস জরিপ পর্যন্ত অবিচ্ছিন্ন ধারাবাহিকতা প্রমাণিত।' : 'মধ্যবর্তী নোডে ত্রুটির কারণে নিবন্ধন আইনত বাতিল ও প্রত্যাখ্যাত।'}
+                        </>
+                      ) : (
+                        <>
+                          Seller: Md. Abdul Karim → Buyer: Md. Shamim Reza · Deeded Area: <b>{scenario === 'valid' ? '12.00 Shatak' : '22.00 Shatak'}</b><br/>
+                          Verdict: {scenario === 'valid' ? 'Continuity verified back to 1921 CS survey.' : 'REGISTRATION REJECTED due to broken intermediate node.'}
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1219,7 +1423,7 @@ export default function Page() {
                   fontSize: '12px', fontWeight: 600, cursor: 'pointer', padding: 0 
                 }}
               >
-                ← Back to Command Center
+                {lang === 'bn' ? '← কমান্ড সেন্টারে ফিরে যান' : '← Back to Command Center'}
               </button>
             </div>
 
@@ -1239,12 +1443,24 @@ export default function Page() {
             }}>
               {role === 'Sub-Registrar' ? <ShieldCheck size={15} /> : role === 'Bank Underwriter' ? <BadgeCheck size={15} /> : <UserRound size={15} />}
               <span>
-                <strong>{role === 'Sub-Registrar' ? 'GOVERNMENT INHERITANCE AUDIT' : role === 'Bank Underwriter' ? 'BANK BORROWER EQUITY AUDIT' : 'CITIZEN CO-HEIR PROTECTION AUDIT'}:</strong>{' '}
+                <strong>
+                  {role === 'Sub-Registrar' 
+                    ? (lang === 'bn' ? 'সরকারি উত্তরাধিকার অডিট' : 'GOVERNMENT INHERITANCE AUDIT') 
+                    : role === 'Bank Underwriter' 
+                    ? (lang === 'bn' ? 'ব্যাংক ঋণগ্রহীতা ইকুইটি অডিট' : 'BANK BORROWER EQUITY AUDIT') 
+                    : (lang === 'bn' ? 'নাগরিক সহ-ওয়ারিশ সুরক্ষা অডিট' : 'CITIZEN CO-HEIR PROTECTION AUDIT')}:
+                </strong>{' '}
                 {role === 'Sub-Registrar'
-                  ? 'Verifying statutory inheritance quota under Muslim Personal Law (Shariat) to prevent illegal over-sale.'
+                  ? (lang === 'bn' 
+                      ? 'মুসলিম পারিবারিক আইন অধ্যাদেশ ১৯৬১ ও শরিয়াহ অনুযায়ী বিক্রেতার বৈধ উত্তরাধিকার কোটা যাচাই।' 
+                      : 'Verifying statutory inheritance quota under Muslim Personal Law (Shariat) to prevent illegal over-sale.')
                   : role === 'Bank Underwriter'
-                  ? 'Calculating exact unencumbered equity share to ensure borrower cannot pledge co-heirs’ property as loan collateral.'
-                  : 'Validating that seller is not attempting to sell their sisters’ or mother’s Quranic shares to an unsuspecting buyer.'}
+                  ? (lang === 'bn'
+                      ? 'ঋণগ্রহীতার সুনির্দিষ্ট নিষ্কণ্টক অংশ নির্ধারণ, যাতে অন্য কোনো সহ-ওয়ারিশের অংশ বন্ধক হিসেবে না পড়ে।'
+                      : 'Calculating exact unencumbered equity share to ensure borrower cannot pledge co-heirs’ property as loan collateral.')
+                  : (lang === 'bn'
+                      ? 'বিক্রেতা তার মা বা বোনদের কোরআনিক অংশ ফাঁকি দিয়ে অতিরিক্ত জমি বিক্রি করছে কিনা তা নিখুঁতভাবে যাচাই।'
+                      : 'Validating that seller is not attempting to sell their sisters’ or mother’s Quranic shares to an unsuspecting buyer.')}
               </span>
             </div>
 
@@ -1252,13 +1468,15 @@ export default function Page() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '18px', flexWrap: 'wrap', gap: '12px' }}>
               <div>
                 <div style={{ fontSize: '9px', letterSpacing: '1.5px', color: 'var(--muted)', fontWeight: 700, textTransform: 'uppercase' }}>
-                  SUCCESSION WORKBENCH · BD-1961
+                  {lang === 'bn' ? 'উত্তরাধিকার কর্মশালা · মুসলিম পারিবারিক আইন অধ্যাদেশ ১৯৬১' : 'SUCCESSION WORKBENCH · BD-1961'}
                 </div>
                 <h1 style={{ fontSize: '24px', fontWeight: 800, margin: '4px 0 2px', color: 'var(--text)' }}>
-                  Farayez Calculator Sandbox
+                  {lang === 'bn' ? 'ফারায়েজ উত্তরাধিকার বণ্টন ক্যালকুলেটর' : 'Farayez Calculator Sandbox'}
                 </h1>
                 <p style={{ fontSize: '12px', color: 'var(--muted)', margin: 0 }}>
-                  Exact fractional inheritance math for Bangladesh land succession review.
+                  {lang === 'bn' 
+                    ? 'বাংলাদেশ ল্যান্ড রেজিস্ট্রেশন ও মুসলিম উত্তরাধিকার আইনের নির্ভুল গাণিতিক সিমুলেটর।' 
+                    : 'Exact fractional inheritance math for Bangladesh land succession review.'}
                 </p>
               </div>
 
@@ -1267,7 +1485,7 @@ export default function Page() {
                 color: '#f6bd55', borderRadius: '20px', padding: '6px 14px', 
                 fontSize: '11px', fontWeight: 600 
               }}>
-                Sunni (Hanafi) rules, as applied in Bangladesh
+                {lang === 'bn' ? 'সুন্নি (হানাফি) ফিকহ ও বণ্টন বিধিমালা' : 'Sunni (Hanafi) rules, as applied in Bangladesh'}
               </div>
             </div>
 
@@ -1275,7 +1493,7 @@ export default function Page() {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px', marginBottom: '18px', flexWrap: 'wrap' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                 <span style={{ fontSize: '10px', fontWeight: 700, color: 'var(--muted)', letterSpacing: '1.2px' }}>
-                  PRESETS
+                  {lang === 'bn' ? 'প্রিসেটসমূহ' : 'PRESETS'}
                 </span>
 
                 <button 
@@ -1288,7 +1506,10 @@ export default function Page() {
                     cursor: 'pointer'
                   }}
                 >
-                  <b>Typical family</b> <small style={{ opacity: 0.7 }}>widow · 1 son · 3 daughters</small>
+                  <b>{lang === 'bn' ? 'সাধারণ পরিবার' : 'Typical family'}</b>{' '}
+                  <small style={{ opacity: 0.7 }}>
+                    {lang === 'bn' ? 'স্ত্রী · ১ পুত্র · ৩ কন্যা' : 'widow · 1 son · 3 daughters'}
+                  </small>
                 </button>
 
                 <button 
@@ -1301,7 +1522,7 @@ export default function Page() {
                     cursor: 'pointer'
                   }}
                 >
-                  <b>Daughters only</b>
+                  <b>{lang === 'bn' ? 'শুধুমাত্র কন্যারা' : 'Daughters only'}</b>
                 </button>
 
                 <button 
@@ -1314,7 +1535,10 @@ export default function Page() {
                     cursor: 'pointer'
                   }}
                 >
-                  <b>Aul case</b> <small style={{ opacity: 0.7 }}>husband · mother · 2 sisters</small>
+                  <b>{lang === 'bn' ? 'আওল পরিস্থিতি' : 'Aul case'}</b>{' '}
+                  <small style={{ opacity: 0.7 }}>
+                    {lang === 'bn' ? 'স্বামী · মা · ২ বোন' : 'husband · mother · 2 sisters'}
+                  </small>
                 </button>
 
                 <button 
@@ -1324,13 +1548,15 @@ export default function Page() {
                     background: 'transparent', border: '1px solid var(--line)', color: 'var(--muted)', cursor: 'pointer'
                   }}
                 >
-                  <RotateCcw size={12} /> Reset
+                  <RotateCcw size={12} /> {lang === 'bn' ? 'রিসেট' : 'Reset'}
                 </button>
               </div>
 
               {/* INLINE SCENARIO SWITCHER ON PAGE 3 */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '1px' }}>SCENARIO:</span>
+                <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '1px' }}>
+                  {lang === 'bn' ? 'পরিস্থিতি:' : 'SCENARIO:'}
+                </span>
                 <button 
                   onClick={() => setScenario('valid')}
                   style={{
@@ -1340,7 +1566,7 @@ export default function Page() {
                     color: scenario === 'valid' ? 'var(--green)' : 'var(--muted)'
                   }}
                 >
-                  <Check size={11} /> Valid (12 Stk)
+                  <Check size={11} /> {lang === 'bn' ? '✓ বৈধ (১২ শতক)' : 'Valid (12 Stk)'}
                 </button>
                 <button 
                   onClick={() => setScenario('fraud')}
@@ -1351,7 +1577,7 @@ export default function Page() {
                     color: scenario === 'fraud' ? 'var(--red)' : 'var(--muted)'
                   }}
                 >
-                  <AlertTriangle size={11} /> Fraud (22 Stk Breach)
+                  <AlertTriangle size={11} /> {lang === 'bn' ? '⚠ জালিয়াতি (২২ শতক লঙ্ঘন)' : 'Fraud (22 Stk Breach)'}
                 </button>
               </div>
             </div>
@@ -1362,15 +1588,21 @@ export default function Page() {
               <div style={{ background: '#0b1118', border: '1px solid var(--line)', borderRadius: '10px', padding: '18px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
                   <div>
-                    <span style={{ fontSize: '9px', color: 'var(--muted)', letterSpacing: '1px', textTransform: 'uppercase' }}>INPUTS</span>
-                    <h3 style={{ fontSize: '14px', fontWeight: 700, margin: '2px 0 0', color: 'var(--text)' }}>Estate & family</h3>
+                    <span style={{ fontSize: '9px', color: 'var(--muted)', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                      {lang === 'bn' ? 'ইনপুট' : 'INPUTS'}
+                    </span>
+                    <h3 style={{ fontSize: '14px', fontWeight: 700, margin: '2px 0 0', color: 'var(--text)' }}>
+                      {lang === 'bn' ? 'মোট সম্পত্তি ও পরিবার' : 'Estate & family'}
+                    </h3>
                   </div>
                   <Scale size={18} style={{ color: 'var(--blue)' }} />
                 </div>
 
                 {/* ESTATE AREA */}
                 <div style={{ marginBottom: '12px' }}>
-                  <label style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '5px' }}>Estate area</label>
+                  <label style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '5px' }}>
+                    {lang === 'bn' ? 'মোট সম্পত্তির পরিমাণ' : 'Estate area'}
+                  </label>
                   <div style={{ display: 'flex', gap: '6px' }}>
                     <input 
                       type="number" 
@@ -1379,10 +1611,10 @@ export default function Page() {
                       style={{ flex: 1, background: '#060a0f', border: '1px solid var(--line)', color: 'var(--text)', padding: '8px 10px', borderRadius: '6px', fontSize: '13px', fontWeight: 700 }}
                     />
                     <select style={{ background: '#060a0f', border: '1px solid var(--line)', color: 'var(--text)', padding: '0 8px', borderRadius: '6px', fontSize: '11px' }}>
-                      <option>Shatak</option>
-                      <option>Decimal</option>
-                      <option>Katha</option>
-                      <option>Acre</option>
+                      <option>{lang === 'bn' ? 'শতক' : 'Shatak'}</option>
+                      <option>{lang === 'bn' ? 'ডেসিমাল' : 'Decimal'}</option>
+                      <option>{lang === 'bn' ? 'কাঠা' : 'Katha'}</option>
+                      <option>{lang === 'bn' ? 'একর' : 'Acre'}</option>
                     </select>
                   </div>
                 </div>
@@ -1390,9 +1622,13 @@ export default function Page() {
                 {/* CLAIMED SALE */}
                 <div style={{ marginBottom: '14px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
-                    <label style={{ fontSize: '10px', color: 'var(--muted)' }}>{sellerTitle}'s claimed sale (shatak)</label>
+                    <label style={{ fontSize: '10px', color: 'var(--muted)' }}>
+                      {sellerTitle}{lang === 'bn' ? '-এর দাবিকৃত বিক্রয় (শতক)' : '\'s claimed sale (shatak)'}
+                    </label>
                     <span style={{ fontSize: '10px', fontWeight: 700, color: isClaimLegal ? 'var(--green)' : 'var(--red)' }}>
-                      {isClaimLegal ? `✓ Legal (<= ${sellerLegalShare.toFixed(2)} Stk)` : `🚨 Quota Breach (+${excessShatak.toFixed(2)} Stk)`}
+                      {isClaimLegal 
+                        ? (lang === 'bn' ? `✓ বৈধ (<= ${sellerLegalShare.toFixed(2)} শতক)` : `✓ Legal (<= ${sellerLegalShare.toFixed(2)} Stk)`) 
+                        : (lang === 'bn' ? `🚨 কোটা লঙ্ঘন (+${excessShatak.toFixed(2)} শতক)` : `🚨 Quota Breach (+${excessShatak.toFixed(2)} Stk)`)}
                     </span>
                   </div>
                   <input 
@@ -1414,7 +1650,9 @@ export default function Page() {
 
                 {/* DECEASED GENDER */}
                 <div style={{ marginBottom: '16px' }}>
-                  <label style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '5px' }}>Deceased gender</label>
+                  <label style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '5px' }}>
+                    {lang === 'bn' ? 'মৃত ব্যক্তির লিঙ্গ' : 'Deceased gender'}
+                  </label>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
                     <button 
                       onClick={() => { setDeceasedGender('male'); setHusbandCount(0); setWifeCount(1) }}
@@ -1425,7 +1663,7 @@ export default function Page() {
                         color: deceasedGender === 'male' ? 'var(--green)' : 'var(--muted)'
                       }}
                     >
-                      Male
+                      {lang === 'bn' ? 'পুরুষ' : 'Male'}
                     </button>
                     <button 
                       onClick={() => { setDeceasedGender('female'); setWifeCount(0); setHusbandCount(1) }}
@@ -1436,19 +1674,21 @@ export default function Page() {
                         color: deceasedGender === 'female' ? 'var(--green)' : 'var(--muted)'
                       }}
                     >
-                      Female
+                      {lang === 'bn' ? 'নারী' : 'Female'}
                     </button>
                   </div>
                 </div>
 
                 {/* HEIRS LIST */}
                 <div style={{ borderTop: '1px solid var(--line)', paddingTop: '12px' }}>
-                  <span style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>Heirs in family</span>
+                  <span style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
+                    {lang === 'bn' ? 'পরিবারের উত্তরাধিকারীগণ' : 'Heirs in family'}
+                  </span>
                   
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {deceasedGender === 'male' ? (
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
-                        <span style={{ fontSize: '11px' }}>Wife / বিধবা স্ত্রী</span>
+                        <span style={{ fontSize: '11px' }}>{lang === 'bn' ? 'বিধবা স্ত্রী' : 'Wife / বিধবা স্ত্রী'}</span>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                           <button onClick={() => setWifeCount(Math.max(0, wifeCount - 1))} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>-</button>
                           <b style={{ minWidth: '14px', textAlign: 'center', fontSize: '11px' }}>{wifeCount}</b>
@@ -1457,7 +1697,7 @@ export default function Page() {
                       </div>
                     ) : (
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
-                        <span style={{ fontSize: '11px' }}>Husband / স্বামী</span>
+                        <span style={{ fontSize: '11px' }}>{lang === 'bn' ? 'স্বামী' : 'Husband / স্বামী'}</span>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                           <button onClick={() => setHusbandCount(Math.max(0, husbandCount - 1))} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>-</button>
                           <b style={{ minWidth: '14px', textAlign: 'center', fontSize: '11px' }}>{husbandCount}</b>
@@ -1467,7 +1707,7 @@ export default function Page() {
                     )}
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '11px' }}>Sons / পুত্র</span>
+                      <span style={{ fontSize: '11px' }}>{lang === 'bn' ? 'পুত্র সন্তান' : 'Sons / পুত্র'}</span>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <button onClick={() => setSonCount(Math.max(0, sonCount - 1))} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>-</button>
                         <b style={{ minWidth: '14px', textAlign: 'center', fontSize: '11px' }}>{sonCount}</b>
@@ -1476,7 +1716,7 @@ export default function Page() {
                     </div>
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '11px' }}>Daughters / কন্যা</span>
+                      <span style={{ fontSize: '11px' }}>{lang === 'bn' ? 'কন্যা সন্তান' : 'Daughters / কন্যা'}</span>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <button onClick={() => setDaughterCount(Math.max(0, daughterCount - 1))} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>-</button>
                         <b style={{ minWidth: '14px', textAlign: 'center', fontSize: '11px' }}>{daughterCount}</b>
@@ -1485,12 +1725,12 @@ export default function Page() {
                     </div>
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '11px' }}>Mother / মাতা</span>
+                      <span style={{ fontSize: '11px' }}>{lang === 'bn' ? 'মাতা' : 'Mother / মাতা'}</span>
                       <input type="checkbox" checked={hasMother} onChange={(e) => setHasMother(e.target.checked)} style={{ cursor: 'pointer' }} />
                     </div>
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '11px' }}>Father / পিতা</span>
+                      <span style={{ fontSize: '11px' }}>{lang === 'bn' ? 'পিতা' : 'Father / পিতা'}</span>
                       <input type="checkbox" checked={hasFather} onChange={(e) => setHasFather(e.target.checked)} style={{ cursor: 'pointer' }} />
                     </div>
                   </div>
@@ -1502,17 +1742,20 @@ export default function Page() {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
                   <div>
                     <span style={{ fontSize: '9px', color: 'var(--muted)', letterSpacing: '1px', textTransform: 'uppercase' }}>
-                      LIVE OUTPUT · {estateArea.toFixed(2)} SHATAK
+                      {lang === 'bn' ? `লাইভ ফলাফল · ${estateArea.toFixed(2)} শতক` : `LIVE OUTPUT · ${estateArea.toFixed(2)} SHATAK`}
                     </span>
                     <h3 style={{ fontSize: '14px', fontWeight: 700, margin: '2px 0 0', color: 'var(--text)' }}>
-                      Inheritance split
+                      {lang === 'bn' ? 'সম্পত্তি বণ্টন বিবরণ' : 'Inheritance split'}
                     </h3>
                   </div>
                   <button 
-                    onClick={() => { navigator.clipboard?.writeText(`Estate: ${estateArea} shatak, Son: ${sonAcreage.toFixed(2)} shatak`); toast.success('Calculation copied to clipboard!') }}
+                    onClick={() => { 
+                      navigator.clipboard?.writeText(`Estate: ${estateArea} shatak, Son: ${sonAcreage.toFixed(2)} shatak`); 
+                      toast.success(lang === 'bn' ? 'হিসাব ক্লিপবোর্ডে কপি করা হয়েছে!' : 'Calculation copied to clipboard!') 
+                    }}
                     style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'transparent', border: 'none', color: 'var(--blue)', fontSize: '11px', cursor: 'pointer' }}
                   >
-                    <Copy size={13} /> Copy result
+                    <Copy size={13} /> {lang === 'bn' ? 'ফলাফল কপি করুন' : 'Copy result'}
                   </button>
                 </div>
 
@@ -1542,7 +1785,7 @@ export default function Page() {
                         {activePreset === 'typical' ? '13/20' : `${Math.min(100, Math.round(heirRows.reduce((acc, h) => acc + h.percent, 0)))}%`}
                       </strong>
                       <span style={{ fontSize: '8px', color: 'var(--muted)', letterSpacing: '0.5px' }}>
-                        estate allocated
+                        {lang === 'bn' ? 'সম্পত্তি বণ্টিত' : 'estate allocated'}
                       </span>
                     </div>
                   </div>
@@ -1565,11 +1808,11 @@ export default function Page() {
                 <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '10px', textAlign: 'left', marginTop: '10px' }}>
                   <thead>
                     <tr style={{ borderBottom: '1px solid var(--line)', color: 'var(--muted)' }}>
-                      <th style={{ padding: '6px 4px' }}>Heir</th>
-                      <th style={{ padding: '6px 4px' }}>Fraction</th>
-                      <th style={{ padding: '6px 4px' }}>Percent</th>
-                      <th style={{ padding: '6px 4px' }}>Shatak</th>
-                      <th style={{ padding: '6px 4px' }}>Rule applied</th>
+                      <th style={{ padding: '6px 4px' }}>{lang === 'bn' ? 'উত্তরাধিকারী' : 'Heir'}</th>
+                      <th style={{ padding: '6px 4px' }}>{lang === 'bn' ? 'ভগ্নাংশ' : 'Fraction'}</th>
+                      <th style={{ padding: '6px 4px' }}>{lang === 'bn' ? 'শতাংশ' : 'Percent'}</th>
+                      <th style={{ padding: '6px 4px' }}>{lang === 'bn' ? 'শতক' : 'Shatak'}</th>
+                      <th style={{ padding: '6px 4px' }}>{lang === 'bn' ? 'প্রযুক্ত আইনি বিধি' : 'Rule applied'}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1594,18 +1837,37 @@ export default function Page() {
                   border: `1px solid ${isClaimLegal ? '#205340' : '#8e3946'}`
                 }}>
                   <strong style={{ fontSize: '12px', color: isClaimLegal ? 'var(--green)' : 'var(--red)', display: 'block', marginBottom: '3px' }}>
-                    {isClaimLegal ? '✅ Quota Verification Passed' : '❌ Critical Fraud: Quota Breach'}
+                    {isClaimLegal 
+                      ? (lang === 'bn' ? '✅ উত্তরাধিকার কোটা যাচাই উত্তীর্ণ' : '✅ Quota Verification Passed') 
+                      : (lang === 'bn' ? '❌ মারাত্মক জালিয়াতি: কোটা লঙ্ঘন' : '❌ Critical Fraud: Quota Breach')}
                   </strong>
                   <div style={{ fontSize: '10px', color: 'var(--text)', lineHeight: '1.4' }}>
-                    Seller legal entitlement: <b>{sellerLegalShare.toFixed(2)} Shatak</b> | Attempted sale: <b>{claimedSale.toFixed(2)} Shatak</b>.
-                    {isClaimLegal ? (
-                      <span style={{ color: 'var(--green)', display: 'block', marginTop: '2px' }}>
-                        Safe to proceed. Sale is within inherited quota under Muslim Family Laws Ordinance 1961.
-                      </span>
+                    {lang === 'bn' ? (
+                      <>
+                        বিক্রেতার বৈধ প্রাপ্যতা: <b>{sellerLegalShare.toFixed(2)} শতক</b> | দাবিকৃত বিক্রয়: <b>{claimedSale.toFixed(2)} শতক</b>।
+                        {isClaimLegal ? (
+                          <span style={{ color: 'var(--green)', display: 'block', marginTop: '2px' }}>
+                            নিবন্ধনযোগ্য ও নিরাপদ। প্রস্তাবিত হস্তান্তর মুসলিম পারিবারিক আইন অধ্যাদেশ ১৯৬১ ও কোরআনিক কোটার মধ্যে রয়েছে।
+                          </span>
+                        ) : (
+                          <span style={{ color: 'var(--red)', display: 'block', marginTop: '2px' }}>
+                            মারাত্মক জালিয়াতি: বিক্রেতা তার বৈধ প্রাপ্যতার চেয়ে <b>{(claimedSale - sellerLegalShare).toFixed(2)} শতক</b> জমি অতিরিক্ত বিক্রির চেষ্টা করছে, যা অন্যান্য সহ-উত্তরাধিকারীদের অধিকার হরণ করে!
+                          </span>
+                        )}
+                      </>
                     ) : (
-                      <span style={{ color: 'var(--red)', display: 'block', marginTop: '2px' }}>
-                        CRITICAL FRAUD: Seller is attempting to sell <b>{(claimedSale - sellerLegalShare).toFixed(2)} Shatak</b> in excess, depriving co-heirs!
-                      </span>
+                      <>
+                        Seller legal entitlement: <b>{sellerLegalShare.toFixed(2)} Shatak</b> | Attempted sale: <b>{claimedSale.toFixed(2)} Shatak</b>.
+                        {isClaimLegal ? (
+                          <span style={{ color: 'var(--green)', display: 'block', marginTop: '2px' }}>
+                            Safe to proceed. Sale is within inherited quota under Muslim Family Laws Ordinance 1961.
+                          </span>
+                        ) : (
+                          <span style={{ color: 'var(--red)', display: 'block', marginTop: '2px' }}>
+                            CRITICAL FRAUD: Seller is attempting to sell <b>{(claimedSale - sellerLegalShare).toFixed(2)} Shatak</b> in excess, depriving co-heirs!
+                          </span>
+                        )}
+                      </>
                     )}
                   </div>
                 </div>
@@ -1616,7 +1878,11 @@ export default function Page() {
 
         <footer>
           {t('footerDisclaimer')} 
-          <span>Build 2026.10.17 · Secure session · DIU LandTech 2026 (LA-72)</span>
+          <span>
+            {lang === 'bn' 
+              ? 'বিল্ড ২০২৬.১০.১৭ · সুরক্ষিত সেশন · DIU LandTech Innovation Hackathon 2026 (LA-72)' 
+              : 'Build 2026.10.17 · Secure session · DIU LandTech 2026 (LA-72)'}
+          </span>
         </footer>
       </main>
     </>
