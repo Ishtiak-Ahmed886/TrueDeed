@@ -149,8 +149,6 @@ export default function Page() {
 
   const isClaimLegal = claimedSale <= sonAcreage + 0.01
 
-  if (!mounted) return null
-
   return (
     <>
       <Toaster theme="dark" position="bottom-right" />
