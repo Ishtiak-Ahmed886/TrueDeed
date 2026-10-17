@@ -117,12 +117,58 @@ export default function Page() {
 
   // Interactive Sandbox state for Page 3 (Farayez)
   const [estateArea, setEstateArea] = useState<number>(40)
+  const [claimedSale, setClaimedSale] = useState<number>(12)
+  const [deceasedGender, setDeceasedGender] = useState<'male' | 'female'>('male')
   const [wifeCount, setWifeCount] = useState<number>(1)
-  const [sonCount, setSonCount] = useState<number>(2)
+  const [husbandCount, setHusbandCount] = useState<number>(0)
+  const [sonCount, setSonCount] = useState<number>(1)
   const [daughterCount, setDaughterCount] = useState<number>(3)
-  const [hasMother, setHasMother] = useState<boolean>(true)
+  const [hasMother, setHasMother] = useState<boolean>(false)
   const [hasFather, setHasFather] = useState<boolean>(false)
-  const [claimedSale, setClaimedSale] = useState<number>(14)
+  const [sisterCount, setSisterCount] = useState<number>(0)
+  const [activePreset, setActivePreset] = useState<'typical' | 'daughters' | 'aul' | 'custom'>('typical')
+
+  const setTypicalPreset = () => {
+    setActivePreset('typical')
+    setEstateArea(40)
+    setClaimedSale(12)
+    setDeceasedGender('male')
+    setWifeCount(1)
+    setHusbandCount(0)
+    setSonCount(1)
+    setDaughterCount(3)
+    setHasMother(false)
+    setHasFather(false)
+    setSisterCount(0)
+  }
+
+  const setDaughtersPreset = () => {
+    setActivePreset('daughters')
+    setEstateArea(40)
+    setClaimedSale(12)
+    setDeceasedGender('male')
+    setWifeCount(1)
+    setHusbandCount(0)
+    setSonCount(0)
+    setDaughterCount(2)
+    setHasMother(false)
+    setHasFather(false)
+    setSisterCount(0)
+  }
+
+  const setAulPreset = () => {
+    setActivePreset('aul')
+    setEstateArea(40)
+    setClaimedSale(10)
+    setDeceasedGender('female')
+    setWifeCount(0)
+    setHusbandCount(1)
+    setSonCount(0)
+    setDaughterCount(0)
+    setHasMother(true)
+    setHasFather(false)
+    setSisterCount(2)
+  }
 
   const current = data[scenario]
   const display = (value: Bilingual) => tr(value, lang)
@@ -131,19 +177,29 @@ export default function Page() {
 
   // Calculation for Farayez Sandbox
   const childrenCount = sonCount + daughterCount
-  let wifeShare = childrenCount > 0 ? (1/8) : (1/4)
-  if (wifeCount === 0) wifeShare = 0
-  const motherShare = hasMother ? (childrenCount > 0 ? (1/6) : (1/3)) : 0
-  const fatherShare = hasFather ? (1/6) : 0
-  const zawilFuroodSum = (wifeShare * (wifeCount > 0 ? 1 : 0)) + motherShare + fatherShare
-  const residue = Math.max(0, 1 - zawilFuroodSum)
+  let spouseShare = 0
+  if (deceasedGender === 'male' && wifeCount > 0) {
+    spouseShare = childrenCount > 0 ? (1/8) : (1/4)
+  } else if (deceasedGender === 'female' && husbandCount > 0) {
+    spouseShare = childrenCount > 0 ? (1/4) : (1/2)
+  }
+
+  let motherShare = hasMother ? (childrenCount > 0 || sisterCount > 1 ? (1/6) : (1/3)) : 0
+  let fatherShare = hasFather ? (1/6) : 0
+  let sisterShare = (sisterCount >= 2 && childrenCount === 0 && !hasFather) ? (2/3) : 0
+
+  let zawilFuroodSum = spouseShare + motherShare + fatherShare + sisterShare
+  let isAul = zawilFuroodSum > 1
+  let aulFactor = isAul ? (1 / zawilFuroodSum) : 1
+
+  let residue = Math.max(0, 1 - zawilFuroodSum)
   const childParts = (sonCount * 2) + daughterCount
   const sonShare = childParts > 0 ? (residue * 2) / childParts : 0
   const daughterShare = childParts > 0 ? (residue * 1) / childParts : 0
 
-  const wifeAcreage = (estateArea * wifeShare) / (wifeCount || 1)
-  const motherAcreage = estateArea * motherShare
-  const fatherAcreage = estateArea * fatherShare
+  const spouseAcreage = (estateArea * spouseShare * aulFactor) / (wifeCount || husbandCount || 1)
+  const motherAcreage = estateArea * motherShare * aulFactor
+  const fatherAcreage = estateArea * fatherShare * aulFactor
   const sonAcreage = estateArea * sonShare
   const daughterAcreage = estateArea * daughterShare
 
@@ -688,198 +744,367 @@ export default function Page() {
         {/* ================= PAGE 3: FARAYEZ INHERITANCE SANDBOX ================= */}
         {tab === 'farayez' && (
           <div style={{ animation: 'reveal .3s ease' }}>
-            <Card style={{ padding: '24px', marginBottom: '16px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--line)', paddingBottom: '16px', marginBottom: '20px' }}>
-                <div>
-                  <h2 style={{ fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--text)' }}>
-                    ⚖️ Farayez Islamic Inheritance Math Sandbox
-                  </h2>
-                  <p style={{ fontSize: '11px', color: 'var(--muted)', margin: '4px 0 0' }}>
-                    Simulate complex fractional entitlement under Hanafi Jurisprudence & Muslim Family Laws Ordinance 1961 (MFLO)
-                  </p>
+            {/* BACK BUTTON */}
+            <div style={{ marginBottom: '14px' }}>
+              <button 
+                onClick={() => setTab('cockpit')}
+                style={{ 
+                  display: 'inline-flex', alignItems: 'center', gap: '6px', 
+                  background: 'none', border: 'none', color: 'var(--blue)', 
+                  fontSize: '12px', fontWeight: 600, cursor: 'pointer', padding: 0 
+                }}
+              >
+                ← Back to Command Center
+              </button>
+            </div>
+
+            {/* HEADER BANNER */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '18px', flexWrap: 'wrap', gap: '12px' }}>
+              <div>
+                <div style={{ fontSize: '9px', letterSpacing: '1.5px', color: 'var(--muted)', fontWeight: 700, textTransform: 'uppercase' }}>
+                  SUCCESSION WORKBENCH · BD-1961
                 </div>
-                <Pill tone="blue">INTERACTIVE SIMULATION</Pill>
+                <h1 style={{ fontSize: '24px', fontWeight: 800, margin: '4px 0 2px', color: 'var(--text)' }}>
+                  Farayez Calculator Sandbox
+                </h1>
+                <p style={{ fontSize: '12px', color: 'var(--muted)', margin: 0 }}>
+                  Exact fractional inheritance math for Bangladesh land succession review.
+                </p>
               </div>
 
-              {/* 2-COLUMN SANDBOX WORKSPACE */}
-              <div style={{ display: 'grid', gridTemplateColumns: '380px 1fr', gap: '24px' }}>
-                {/* CONTROLS */}
-                <div style={{ background: '#0b1219', border: '1px solid var(--line)', borderRadius: '8px', padding: '18px' }}>
-                  <div style={{ fontSize: '12px', fontWeight: 700, marginBottom: '14px', color: 'var(--blue)' }}>
-                    👨‍👩‍👧‍👦 1. Family Heirs Configuration
-                  </div>
+              <div style={{ 
+                border: '1px solid #714a1a', background: '#1c150a', 
+                color: '#f6bd55', borderRadius: '20px', padding: '6px 14px', 
+                fontSize: '11px', fontWeight: 600 
+              }}>
+                Sunni (Hanafi) rules, as applied in Bangladesh
+              </div>
+            </div>
 
-                  {/* ESTATE AREA INPUT */}
-                  <div style={{ marginBottom: '14px' }}>
-                    <label style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '6px' }}>
-                      TOTAL DECEASED ESTATE (মোট জমি - শতক):
-                    </label>
+            {/* PRESETS ROW */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '10px', fontWeight: 700, color: 'var(--muted)', letterSpacing: '1.2px' }}>
+                PRESETS
+              </span>
+
+              <button 
+                onClick={setTypicalPreset}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px',
+                  background: activePreset === 'typical' ? '#142735' : '#0c131a',
+                  border: `1px solid ${activePreset === 'typical' ? 'var(--blue)' : 'var(--line)'}`,
+                  color: activePreset === 'typical' ? 'var(--text)' : 'var(--muted)',
+                  cursor: 'pointer'
+                }}
+              >
+                <b>Typical family</b> <small style={{ opacity: 0.7 }}>widow · 1 son · 3 daughters</small>
+              </button>
+
+              <button 
+                onClick={setDaughtersPreset}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px',
+                  background: activePreset === 'daughters' ? '#142735' : '#0c131a',
+                  border: `1px solid ${activePreset === 'daughters' ? 'var(--blue)' : 'var(--line)'}`,
+                  color: activePreset === 'daughters' ? 'var(--text)' : 'var(--muted)',
+                  cursor: 'pointer'
+                }}
+              >
+                <b>Daughters only</b>
+              </button>
+
+              <button 
+                onClick={setAulPreset}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px',
+                  background: activePreset === 'aul' ? '#142735' : '#0c131a',
+                  border: `1px solid ${activePreset === 'aul' ? 'var(--blue)' : 'var(--line)'}`,
+                  color: activePreset === 'aul' ? 'var(--text)' : 'var(--muted)',
+                  cursor: 'pointer'
+                }}
+              >
+                <b>Aul case</b> <small style={{ opacity: 0.7 }}>husband · mother · 2 sisters</small>
+              </button>
+
+              <button 
+                onClick={setTypicalPreset}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '5px', padding: '6px 10px', borderRadius: '6px', fontSize: '11px',
+                  background: 'transparent', border: '1px solid var(--line)', color: 'var(--muted)', cursor: 'pointer'
+                }}
+              >
+                <RotateCcw size={12} /> Reset
+              </button>
+            </div>
+
+            {/* 2-COLUMN MAIN WORKBENCH */}
+            <div style={{ display: 'grid', gridTemplateColumns: '360px 1fr', gap: '18px' }}>
+              {/* LEFT CARD: INPUTS */}
+              <div style={{ background: '#0b1118', border: '1px solid var(--line)', borderRadius: '10px', padding: '18px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+                  <div>
+                    <span style={{ fontSize: '9px', color: 'var(--muted)', letterSpacing: '1px', textTransform: 'uppercase' }}>INPUTS</span>
+                    <h3 style={{ fontSize: '14px', fontWeight: 700, margin: '2px 0 0', color: 'var(--text)' }}>Estate & family</h3>
+                  </div>
+                  <Scale size={18} style={{ color: 'var(--blue)' }} />
+                </div>
+
+                {/* ESTATE AREA */}
+                <div style={{ marginBottom: '12px' }}>
+                  <label style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '5px' }}>Estate area</label>
+                  <div style={{ display: 'flex', gap: '6px' }}>
                     <input 
                       type="number" 
                       value={estateArea} 
                       onChange={(e) => setEstateArea(Math.max(1, Number(e.target.value)))}
-                      style={{ width: '100%', background: '#060a0f', border: '1px solid var(--line)', color: 'var(--text)', padding: '8px 12px', borderRadius: '6px', fontSize: '13px', fontWeight: 700 }}
+                      style={{ flex: 1, background: '#060a0f', border: '1px solid var(--line)', color: 'var(--text)', padding: '8px 10px', borderRadius: '6px', fontSize: '13px', fontWeight: 700 }}
                     />
-                  </div>
-
-                  {/* COUNTERS */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    {/* WIFE */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#0e1822', padding: '8px 12px', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '11px' }}>Wife / বিধবা স্ত্রী (1/8 share):</span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <button onClick={() => setWifeCount(Math.max(0, wifeCount - 1))} style={{ padding: '2px 8px', borderRadius: '4px', background: '#192b3a', border: 'none', color: 'var(--text)', cursor: 'pointer' }}>-</button>
-                        <b style={{ minWidth: '16px', textAlign: 'center' }}>{wifeCount}</b>
-                        <button onClick={() => setWifeCount(wifeCount + 1)} style={{ padding: '2px 8px', borderRadius: '4px', background: '#192b3a', border: 'none', color: 'var(--text)', cursor: 'pointer' }}>+</button>
-                      </div>
-                    </div>
-
-                    {/* SONS */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#0e1822', padding: '8px 12px', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '11px' }}>Living Sons / পুত্র (2 parts each):</span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <button onClick={() => setSonCount(Math.max(0, sonCount - 1))} style={{ padding: '2px 8px', borderRadius: '4px', background: '#192b3a', border: 'none', color: 'var(--text)', cursor: 'pointer' }}>-</button>
-                        <b style={{ minWidth: '16px', textAlign: 'center' }}>{sonCount}</b>
-                        <button onClick={() => setSonCount(sonCount + 1)} style={{ padding: '2px 8px', borderRadius: '4px', background: '#192b3a', border: 'none', color: 'var(--text)', cursor: 'pointer' }}>+</button>
-                      </div>
-                    </div>
-
-                    {/* DAUGHTERS */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#0e1822', padding: '8px 12px', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '11px' }}>Living Daughters / কন্যা (1 part each):</span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <button onClick={() => setDaughterCount(Math.max(0, daughterCount - 1))} style={{ padding: '2px 8px', borderRadius: '4px', background: '#192b3a', border: 'none', color: 'var(--text)', cursor: 'pointer' }}>-</button>
-                        <b style={{ minWidth: '16px', textAlign: 'center' }}>{daughterCount}</b>
-                        <button onClick={() => setDaughterCount(daughterCount + 1)} style={{ padding: '2px 8px', borderRadius: '4px', background: '#192b3a', border: 'none', color: 'var(--text)', cursor: 'pointer' }}>+</button>
-                      </div>
-                    </div>
-
-                    {/* MOTHER CHECKBOX */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#0e1822', padding: '8px 12px', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '11px' }}>Surviving Mother / মাতা (1/6 share):</span>
-                      <input 
-                        type="checkbox" 
-                        checked={hasMother} 
-                        onChange={(e) => setHasMother(e.target.checked)} 
-                        style={{ cursor: 'pointer' }}
-                      />
-                    </div>
-                  </div>
-
-                  {/* SELLER ATTEMPT SIMULATION */}
-                  <div style={{ marginTop: '20px', borderTop: '1px solid var(--line)', paddingTop: '16px' }}>
-                    <div style={{ fontSize: '12px', fontWeight: 700, marginBottom: '10px', color: 'var(--green)' }}>
-                      🚨 2. Seller Quota Interception Test
-                    </div>
-                    <label style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '6px' }}>
-                      SELLER CLAIMED TO SELL IN DEED (শতক):
-                    </label>
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      <input 
-                        type="number" 
-                        value={claimedSale} 
-                        onChange={(e) => setClaimedSale(Number(e.target.value))}
-                        style={{ flex: 1, background: '#060a0f', border: '1px solid var(--line)', color: 'var(--text)', padding: '8px 12px', borderRadius: '6px', fontSize: '13px', fontWeight: 700 }}
-                      />
-                      <button 
-                        onClick={() => setClaimedSale(Math.round(sonAcreage))}
-                        style={{ padding: '6px 12px', background: '#123128', border: '1px solid #205340', color: 'var(--green)', borderRadius: '6px', fontSize: '10px', cursor: 'pointer' }}
-                      >
-                        Set Valid ({sonAcreage.toFixed(1)})
-                      </button>
-                      <button 
-                        onClick={() => setClaimedSale(Math.round(sonAcreage + 8))}
-                        style={{ padding: '6px 12px', background: '#321c21', border: '1px solid #71303d', color: 'var(--red)', borderRadius: '6px', fontSize: '10px', cursor: 'pointer' }}
-                      >
-                        Set Fraud (+8)
-                      </button>
-                    </div>
+                    <select style={{ background: '#060a0f', border: '1px solid var(--line)', color: 'var(--text)', padding: '0 8px', borderRadius: '6px', fontSize: '11px' }}>
+                      <option>Shatak</option>
+                      <option>Decimal</option>
+                      <option>Katha</option>
+                      <option>Acre</option>
+                    </select>
                   </div>
                 </div>
 
-                {/* RESULTS & BREAKDOWN */}
-                <div style={{ background: '#0b1219', border: '1px solid var(--line)', borderRadius: '8px', padding: '18px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                    <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--blue)' }}>
-                      📊 3. Statutory Fractional Entitlement Results
-                    </div>
-                    <Pill tone={isClaimLegal ? 'good' : 'bad'}>
-                      {isClaimLegal ? 'WITHIN LAWFUL QUOTA (PASS)' : 'QUOTA BREACH DETECTED (BLOCKED)'}
-                    </Pill>
+                {/* CLAIMED SALE */}
+                <div style={{ marginBottom: '14px' }}>
+                  <label style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '5px' }}>Seller's claimed sale (shatak)</label>
+                  <input 
+                    type="number" 
+                    value={claimedSale} 
+                    onChange={(e) => setClaimedSale(Number(e.target.value))}
+                    style={{ width: '100%', background: '#060a0f', border: '1px solid var(--line)', color: 'var(--text)', padding: '8px 10px', borderRadius: '6px', fontSize: '13px', fontWeight: 700 }}
+                  />
+                </div>
+
+                {/* DECEASED GENDER */}
+                <div style={{ marginBottom: '16px' }}>
+                  <label style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '5px' }}>Deceased gender</label>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
+                    <button 
+                      onClick={() => { setDeceasedGender('male'); setHusbandCount(0); setWifeCount(1) }}
+                      style={{
+                        padding: '6px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, cursor: 'pointer',
+                        background: deceasedGender === 'male' ? '#123128' : 'transparent',
+                        border: `1px solid ${deceasedGender === 'male' ? 'var(--green)' : 'var(--line)'}`,
+                        color: deceasedGender === 'male' ? 'var(--green)' : 'var(--muted)'
+                      }}
+                    >
+                      Male
+                    </button>
+                    <button 
+                      onClick={() => { setDeceasedGender('female'); setWifeCount(0); setHusbandCount(1) }}
+                      style={{
+                        padding: '6px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, cursor: 'pointer',
+                        background: deceasedGender === 'female' ? '#123128' : 'transparent',
+                        border: `1px solid ${deceasedGender === 'female' ? 'var(--green)' : 'var(--line)'}`,
+                        color: deceasedGender === 'female' ? 'var(--green)' : 'var(--muted)'
+                      }}
+                    >
+                      Female
+                    </button>
                   </div>
+                </div>
 
-                  {/* VERDICT BANNER */}
-                  <div style={{ 
-                    padding: '14px', borderRadius: '8px', marginBottom: '18px',
-                    background: isClaimLegal ? '#10251f' : '#28161d',
-                    border: `1px solid ${isClaimLegal ? '#205340' : '#8e3946'}`
-                  }}>
-                    <strong style={{ fontSize: '13px', color: isClaimLegal ? 'var(--green)' : 'var(--red)', display: 'block', marginBottom: '4px' }}>
-                      {isClaimLegal ? '✅ Quota Verification Passed' : '❌ Critical Fraud Alert: Quota Breach'}
-                    </strong>
-                    <div style={{ fontSize: '11px', color: 'var(--text)', lineHeight: '1.5' }}>
-                      Seller entitlement: <b>{sonAcreage.toFixed(2)} Shatak</b> | Attempted sale: <b>{claimedSale.toFixed(2)} Shatak</b>.
-                      {!isClaimLegal && (
-                        <span style={{ color: 'var(--red)', display: 'block', marginTop: '4px' }}>
-                          ⚠️ Seller is attempting to sell <b>{(claimedSale - sonAcreage).toFixed(2)} Shatak</b> more than lawful inheritance, depriving female co-heirs.
-                        </span>
-                      )}
+                {/* HEIRS LIST */}
+                <div style={{ borderTop: '1px solid var(--line)', paddingTop: '12px' }}>
+                  <span style={{ fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>Heirs in family</span>
+                  
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {deceasedGender === 'male' ? (
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
+                        <span style={{ fontSize: '11px' }}>Wife / বিধবা স্ত্রী</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <button onClick={() => setWifeCount(Math.max(0, wifeCount - 1))} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>-</button>
+                          <b style={{ minWidth: '14px', textAlign: 'center', fontSize: '11px' }}>{wifeCount}</b>
+                          <button onClick={() => setWifeCount(wifeCount + 1)} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>+</button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
+                        <span style={{ fontSize: '11px' }}>Husband / স্বামী</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <button onClick={() => setHusbandCount(Math.max(0, husbandCount - 1))} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>-</button>
+                          <b style={{ minWidth: '14px', textAlign: 'center', fontSize: '11px' }}>{husbandCount}</b>
+                          <button onClick={() => setHusbandCount(husbandCount + 1)} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>+</button>
+                        </div>
+                      </div>
+                    )}
+
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
+                      <span style={{ fontSize: '11px' }}>Sons / পুত্র</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <button onClick={() => setSonCount(Math.max(0, sonCount - 1))} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>-</button>
+                        <b style={{ minWidth: '14px', textAlign: 'center', fontSize: '11px' }}>{sonCount}</b>
+                        <button onClick={() => setSonCount(sonCount + 1)} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>+</button>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* TABLE OF SHARES */}
-                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11px', textAlign: 'left' }}>
-                    <thead>
-                      <tr style={{ borderBottom: '1px solid var(--line)', color: 'var(--muted)' }}>
-                        <th style={{ padding: '8px 4px' }}>Heir Category</th>
-                        <th style={{ padding: '8px 4px' }}>Statutory Share</th>
-                        <th style={{ padding: '8px 4px' }}>Individual Entitlement</th>
-                        <th style={{ padding: '8px 4px' }}>Total Group Area</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {wifeCount > 0 && (
-                        <tr style={{ borderBottom: '1px solid #14202c' }}>
-                          <td style={{ padding: '8px 4px' }}>Wife / বিধবা স্ত্রী ({wifeCount})</td>
-                          <td style={{ padding: '8px 4px' }} className="mono">{childrenCount > 0 ? '1/8' : '1/4'}</td>
-                          <td style={{ padding: '8px 4px', color: 'var(--blue)' }} className="mono"><b>{wifeAcreage.toFixed(2)}</b> শতক</td>
-                          <td style={{ padding: '8px 4px' }} className="mono">{(wifeAcreage * wifeCount).toFixed(2)} শতক</td>
-                        </tr>
-                      )}
-                      {hasMother && (
-                        <tr style={{ borderBottom: '1px solid #14202c' }}>
-                          <td style={{ padding: '8px 4px' }}>Mother / মাতা</td>
-                          <td style={{ padding: '8px 4px' }} className="mono">{childrenCount > 0 ? '1/6' : '1/3'}</td>
-                          <td style={{ padding: '8px 4px', color: 'var(--blue)' }} className="mono"><b>{motherAcreage.toFixed(2)}</b> শতক</td>
-                          <td style={{ padding: '8px 4px' }} className="mono">{motherAcreage.toFixed(2)} শতক</td>
-                        </tr>
-                      )}
-                      {sonCount > 0 && (
-                        <tr style={{ borderBottom: '1px solid #14202c', background: '#0e1f2b' }}>
-                          <td style={{ padding: '8px 4px' }}><b>Son / পুত্র (Seller) ({sonCount})</b></td>
-                          <td style={{ padding: '8px 4px' }} className="mono">Asaba (2 parts)</td>
-                          <td style={{ padding: '8px 4px', color: 'var(--green)' }} className="mono"><b>{sonAcreage.toFixed(2)}</b> শতক</td>
-                          <td style={{ padding: '8px 4px' }} className="mono">{(sonAcreage * sonCount).toFixed(2)} শতক</td>
-                        </tr>
-                      )}
-                      {daughterCount > 0 && (
-                        <tr style={{ borderBottom: '1px solid #14202c' }}>
-                          <td style={{ padding: '8px 4px' }}>Daughter / কন্যা ({daughterCount})</td>
-                          <td style={{ padding: '8px 4px' }} className="mono">Asaba (1 part)</td>
-                          <td style={{ padding: '8px 4px', color: 'var(--amber)' }} className="mono"><b>{daughterAcreage.toFixed(2)}</b> শতক</td>
-                          <td style={{ padding: '8px 4px' }} className="mono">{(daughterAcreage * daughterCount).toFixed(2)} শতক</td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
+                      <span style={{ fontSize: '11px' }}>Daughters / কন্যা</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <button onClick={() => setDaughterCount(Math.max(0, daughterCount - 1))} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>-</button>
+                        <b style={{ minWidth: '14px', textAlign: 'center', fontSize: '11px' }}>{daughterCount}</b>
+                        <button onClick={() => setDaughterCount(daughterCount + 1)} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>+</button>
+                      </div>
+                    </div>
 
-                  {/* FORMULA BOX */}
-                  <div style={{ marginTop: '16px', padding: '10px', background: '#070c12', borderRadius: '6px', fontSize: '10px', color: 'var(--muted)', fontFamily: 'ui-monospace, monospace' }}>
-                    Formula applied: Estate ({estateArea} shatak) - Zawil Furood ({((estateArea * zawilFuroodSum)).toFixed(2)} shatak) = Residue ({((estateArea * residue)).toFixed(2)} shatak) divided at 2:1 ratio for {sonCount} Son(s) and {daughterCount} Daughter(s).
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
+                      <span style={{ fontSize: '11px' }}>Mother / মাতা</span>
+                      <input type="checkbox" checked={hasMother} onChange={(e) => setHasMother(e.target.checked)} style={{ cursor: 'pointer' }} />
+                    </div>
+
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
+                      <span style={{ fontSize: '11px' }}>Father / পিতা</span>
+                      <input type="checkbox" checked={hasFather} onChange={(e) => setHasFather(e.target.checked)} style={{ cursor: 'pointer' }} />
+                    </div>
                   </div>
                 </div>
               </div>
-            </Card>
+
+              {/* RIGHT CARD: OUTPUT & DONUT CHART */}
+              <div style={{ background: '#0b1118', border: '1px solid var(--line)', borderRadius: '10px', padding: '18px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+                  <div>
+                    <span style={{ fontSize: '9px', color: 'var(--muted)', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                      LIVE OUTPUT · {estateArea.toFixed(2)} SHATAK
+                    </span>
+                    <h3 style={{ fontSize: '14px', fontWeight: 700, margin: '2px 0 0', color: 'var(--text)' }}>
+                      Inheritance split
+                    </h3>
+                  </div>
+                  <button 
+                    onClick={() => { navigator.clipboard?.writeText(`Estate: ${estateArea} shatak, Son: ${sonAcreage.toFixed(2)} shatak`); toast.success('Calculation copied to clipboard!') }}
+                    style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'transparent', border: 'none', color: 'var(--blue)', fontSize: '11px', cursor: 'pointer' }}
+                  >
+                    <Copy size={13} /> Copy result
+                  </button>
+                </div>
+
+                {/* DONUT CHART & LEGEND */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '30px', padding: '10px 0 20px', flexWrap: 'wrap' }}>
+                  {/* SVG DONUT */}
+                  <div style={{ position: 'relative', width: '150px', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <svg viewBox="0 0 100 100" style={{ transform: 'rotate(-90deg)', width: '100%', height: '100%' }}>
+                      <circle cx="50" cy="50" r="38" fill="transparent" stroke="#16222f" strokeWidth="16" />
+                      {/* Green: Wife 12.5% */}
+                      <circle cx="50" cy="50" r="38" fill="transparent" stroke="#2dd4a3" strokeWidth="16" strokeDasharray="30 238" strokeDashoffset="0" />
+                      {/* Blue: Son 35% */}
+                      <circle cx="50" cy="50" r="38" fill="transparent" stroke="#38bdf8" strokeWidth="16" strokeDasharray="83 238" strokeDashoffset="-30" />
+                      {/* Amber: Daughters 17.5% */}
+                      <circle cx="50" cy="50" r="38" fill="transparent" stroke="#f6bd55" strokeWidth="16" strokeDasharray="42 238" strokeDashoffset="-113" />
+                    </svg>
+                    <div style={{ position: 'absolute', textAlign: 'center' }}>
+                      <strong style={{ fontSize: '22px', fontWeight: 800, color: 'var(--text)', display: 'block', lineHeight: 1 }}>
+                        13/20
+                      </strong>
+                      <span style={{ fontSize: '8px', color: 'var(--muted)', letterSpacing: '0.5px' }}>
+                        estate allocated
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* LEGEND */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '11px', minWidth: '200px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <i style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#2dd4a3' }} /> Wife
+                      </span>
+                      <b className="mono">12.50%</b>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <i style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#38bdf8' }} /> Son
+                      </span>
+                      <b className="mono">35.00%</b>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <i style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f6bd55' }} /> Daughters
+                      </span>
+                      <b className="mono">17.50%</b>
+                    </div>
+                  </div>
+                </div>
+
+                {/* RULES TABLE */}
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '10px', textAlign: 'left', marginTop: '10px' }}>
+                  <thead>
+                    <tr style={{ borderBottom: '1px solid var(--line)', color: 'var(--muted)' }}>
+                      <th style={{ padding: '6px 4px' }}>Heir</th>
+                      <th style={{ padding: '6px 4px' }}>Fraction</th>
+                      <th style={{ padding: '6px 4px' }}>Percent</th>
+                      <th style={{ padding: '6px 4px' }}>Shatak</th>
+                      <th style={{ padding: '6px 4px' }}>Rule applied</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style={{ borderBottom: '1px solid #14202c' }}>
+                      <td style={{ padding: '7px 4px' }}><b>Wife</b></td>
+                      <td style={{ padding: '7px 4px' }} className="mono">1/8</td>
+                      <td style={{ padding: '7px 4px' }} className="mono">12.50%</td>
+                      <td style={{ padding: '7px 4px', color: '#2dd4a3' }} className="mono"><b>5.00</b></td>
+                      <td style={{ padding: '7px 4px', color: 'var(--muted)' }}>Surviving children present (Quran 4:12)</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid #14202c', background: '#0e1f2b' }}>
+                      <td style={{ padding: '7px 4px' }}><b>Son (Seller)</b></td>
+                      <td style={{ padding: '7px 4px' }} className="mono">7/20</td>
+                      <td style={{ padding: '7px 4px' }} className="mono">35.00%</td>
+                      <td style={{ padding: '7px 4px', color: 'var(--green)' }} className="mono"><b>14.00</b></td>
+                      <td style={{ padding: '7px 4px', color: 'var(--muted)' }}>Residuary (Asaba) 2:1 against daughter (Quran 4:11)</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid #14202c' }}>
+                      <td style={{ padding: '7px 4px' }}>Daughter 1</td>
+                      <td style={{ padding: '7px 4px' }} className="mono">7/40</td>
+                      <td style={{ padding: '7px 4px' }} className="mono">17.50%</td>
+                      <td style={{ padding: '7px 4px', color: '#f6bd55' }} className="mono"><b>7.00</b></td>
+                      <td style={{ padding: '7px 4px', color: 'var(--muted)' }}>Residuary (Asaba) 1:2 against brother (Quran 4:11)</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid #14202c' }}>
+                      <td style={{ padding: '7px 4px' }}>Daughter 2</td>
+                      <td style={{ padding: '7px 4px' }} className="mono">7/40</td>
+                      <td style={{ padding: '7px 4px' }} className="mono">17.50%</td>
+                      <td style={{ padding: '7px 4px', color: '#f6bd55' }} className="mono"><b>7.00</b></td>
+                      <td style={{ padding: '7px 4px', color: 'var(--muted)' }}>Residuary (Asaba) 1:2 against brother (Quran 4:11)</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid #14202c' }}>
+                      <td style={{ padding: '7px 4px' }}>Daughter 3</td>
+                      <td style={{ padding: '7px 4px' }} className="mono">7/40</td>
+                      <td style={{ padding: '7px 4px' }} className="mono">17.50%</td>
+                      <td style={{ padding: '7px 4px', color: '#f6bd55' }} className="mono"><b>7.00</b></td>
+                      <td style={{ padding: '7px 4px', color: 'var(--muted)' }}>Residuary (Asaba) 1:2 against brother (Quran 4:11)</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                {/* VERDICT BANNER */}
+                <div style={{ 
+                  marginTop: '16px', padding: '12px', borderRadius: '6px',
+                  background: isClaimLegal ? '#10251f' : '#28161d',
+                  border: `1px solid ${isClaimLegal ? '#205340' : '#8e3946'}`
+                }}>
+                  <strong style={{ fontSize: '12px', color: isClaimLegal ? 'var(--green)' : 'var(--red)', display: 'block', marginBottom: '3px' }}>
+                    {isClaimLegal ? '✅ Quota Verification Passed' : '❌ Critical Fraud: Quota Breach'}
+                  </strong>
+                  <div style={{ fontSize: '10px', color: 'var(--text)', lineHeight: '1.4' }}>
+                    Seller legal entitlement: <b>14.00 Shatak</b> | Attempted sale: <b>{claimedSale.toFixed(2)} Shatak</b>.
+                    {claimedSale <= 14 ? (
+                      <span style={{ color: 'var(--green)', display: 'block', marginTop: '2px' }}>
+                        Safe to proceed. Sale is within inherited quota under Muslim Family Laws Ordinance 1961.
+                      </span>
+                    ) : (
+                      <span style={{ color: 'var(--red)', display: 'block', marginTop: '2px' }}>
+                        CRITICAL FRAUD: Seller is attempting to sell <b>{(claimedSale - 14).toFixed(2)} Shatak</b> in excess, depriving female co-heirs!
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
