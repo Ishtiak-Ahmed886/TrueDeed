@@ -510,15 +510,15 @@ export default function Page() {
 
           {/* SCENARIO SWITCHER (RIGHT) */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
-            <span style={{ fontSize: '9px', fontWeight: 700, color: 'var(--muted)', letterSpacing: '1px' }}>
-              {lang === 'bn' ? 'পরিস্থিতি:' : 'SCENARIO:'}
+            <span className="scenario-hint-badge">
+              <Zap size={11} /> {lang === 'bn' ? 'ক্লিক করে টেস্ট করুন' : 'CLICK TO TEST'}
             </span>
             <div className="scenario-switcher">
               <button className={scenario === 'valid' ? 'active valid' : ''} onClick={() => setScenario('valid')}>
-                <Check size={13} /> {t('verifiedValidTitle')} <b>94%</b>
+                <Check size={13} /> {lang === 'bn' ? '✓ বৈধ দলিল (৯৪%)' : '✓ Safe Title (94%)'}
               </button>
               <button className={scenario === 'fraud' ? 'active fraud' : ''} onClick={() => setScenario('fraud')}>
-                <AlertTriangle size={13} /> {t('criticalFraud')} <b>18%</b>
+                <AlertTriangle size={13} /> {lang === 'bn' ? '⚠ জালিয়াতি শনাক্তকরণ (১৮%)' : '⚠ Simulate Fraud (18%)'}
               </button>
             </div>
           </div>
@@ -527,61 +527,6 @@ export default function Page() {
         {/* ================= PAGE 1: VERIFICATION COCKPIT ================= */}
         {tab === 'cockpit' && (
           <div>
-            {/* ROLE PERSPECTIVE BANNER */}
-            <div style={{
-              background: role === 'Sub-Registrar' 
-                ? 'linear-gradient(90deg, rgba(13,29,22,0.92) 0%, rgba(10,22,17,0.85) 100%)' 
-                : role === 'Bank Underwriter' 
-                ? 'linear-gradient(90deg, rgba(14,24,36,0.92) 0%, rgba(10,18,28,0.85) 100%)' 
-                : 'linear-gradient(90deg, rgba(28,21,11,0.92) 0%, rgba(20,15,8,0.85) 100%)',
-              border: `1px solid ${role === 'Sub-Registrar' ? 'rgba(45,212,163,0.3)' : role === 'Bank Underwriter' ? 'rgba(102,179,232,0.3)' : 'rgba(246,189,85,0.3)'}`,
-              borderRadius: '8px',
-              padding: '8px 14px',
-              fontSize: '11px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              marginBottom: '10px',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.2)'
-            }}>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '3px 9px',
-                borderRadius: '5px',
-                background: role === 'Sub-Registrar' ? 'rgba(45,212,163,0.15)' : role === 'Bank Underwriter' ? 'rgba(102,179,232,0.15)' : 'rgba(246,189,85,0.15)',
-                color: role === 'Sub-Registrar' ? 'var(--green)' : role === 'Bank Underwriter' ? 'var(--blue)' : 'var(--amber)',
-                fontWeight: 700,
-                fontSize: '10px',
-                letterSpacing: '0.4px',
-                whiteSpace: 'nowrap',
-                flexShrink: 0
-              }}>
-                {role === 'Sub-Registrar' ? <ShieldCheck size={13} /> : role === 'Bank Underwriter' ? <BadgeCheck size={13} /> : <UserRound size={13} />}
-                <span>
-                  {role === 'Sub-Registrar' 
-                    ? (lang === 'bn' ? 'সরকারি সাব-রেজিস্ট্রি ডেস্ক' : 'GOVERNMENT SUB-REGISTRY DESK') 
-                    : role === 'Bank Underwriter' 
-                    ? (lang === 'bn' ? 'বাণিজ্যিক ব্যাংক মর্টগেজ ডেস্ক' : 'COMMERCIAL BANK MORTGAGE DESK') 
-                    : (lang === 'bn' ? 'নাগরিক ও প্রবাসী ভূমি পোর্টাল' : 'CITIZEN & NRB LAND PORTAL')}
-                </span>
-              </div>
-              <span style={{ color: '#cbd5e1', fontSize: '11px', lineHeight: 1.4 }}>
-                {role === 'Sub-Registrar' 
-                  ? (lang === 'bn' 
-                      ? 'সংবিধিবদ্ধ নিবন্ধন কর্তৃপক্ষ ভিউ। সেকশন ২২এ আইনি ভেটো, বায়া দলিলের অবিচ্ছিন্নতা এবং উত্তরাধিকার কোটা বিশ্লেষণ করা হচ্ছে।' 
-                      : 'Statutory registration authority view. Evaluating hard veto triggers, Baya continuity, and automated quota compliance.')
-                  : role === 'Bank Underwriter'
-                  ? (lang === 'bn'
-                      ? 'বন্ধকী জামানত ক্লিয়ারেন্স ভিউ। ঋণের জামানত মূল্যায়ন (৪৫,০০,০০০ টাকা), স্বত্ব ঝুঁকি ও সিআইবি রেকর্ড যাচাই করা হচ্ছে।'
-                      : 'Mortgage collateral clearance view. Assessing title risk, loan security value (BDT 45,00,000), and duplicate lien status.')
-                  : (lang === 'bn'
-                      ? 'জমি ক্রেতা ও প্রবাসী বাংলাদেশিদের জন্য ক্রয়পূর্ব অডিট। টাকা লেনদেন ও চুক্তি স্বাক্ষরের পূর্বে বিক্রেতার নিষ্কণ্টক মালিকানা নিশ্চিত করা হচ্ছে।'
-                      : 'Pre-purchase due diligence view for buyers & non-resident Bangladeshis. Ensuring seller has clean title before monetary exchange.')}
-              </span>
-            </div>
-
             {/* ENHANCED EXECUTIVE METADATA COMMAND STRIP */}
             <div className="case-strip">
               <div className="case-strip-items">
@@ -676,8 +621,10 @@ export default function Page() {
                 <SectionTitle icon={ScanLine}>{t('deedIntake')}<Pill tone="blue">{t('pipelineLive')}</Pill></SectionTitle>
                 <Card>
                   <div className="card-kicker">
-                    <span>{t('documentPreview')}</span>
-                    <span className="mono">TD_SCAN_014872</span>
+                    <span style={{ fontWeight: 700, color: 'var(--text)' }}>
+                      {lang === 'bn' ? 'দলিলের ডিজিটাল স্ক্যান' : 'Scanned Bengali Deed'}
+                    </span>
+                    <span className="mono" style={{ color: 'var(--blue)', fontSize: '10px' }}>TD_SCAN_014872</span>
                   </div>
                   <ScanViewer scenario={scenario} />
                 </Card>
@@ -685,8 +632,12 @@ export default function Page() {
                 <Card>
                   <div className="card-header">
                     <div>
-                      <div className="card-title">{t('extractedEntities')}</div>
-                      <div className="card-sub">{t('normalizedFields')}</div>
+                      <div className="card-title">
+                        {lang === 'bn' ? 'এআই এক্সট্র্যাক্টেড তথ্যাদি' : 'AI Extracted Legal Fields'}
+                      </div>
+                      <div className="card-sub">
+                        {lang === 'bn' ? 'স্বয়ংক্রিয় প্রমিত ডিজিটাল ডেটা' : 'Normalized registry metadata'}
+                      </div>
                     </div>
                     <FileJson size={16} className="muted" />
                   </div>
@@ -1137,43 +1088,6 @@ export default function Page() {
               </button>
             </div>
 
-            {/* ROLE PERSPECTIVE BANNER FOR BAYA */}
-            <div style={{
-              background: role === 'Sub-Registrar' ? '#0d1d16' : role === 'Bank Underwriter' ? '#0e1824' : '#1c150b',
-              border: `1px solid ${role === 'Sub-Registrar' ? '#184533' : role === 'Bank Underwriter' ? '#1a3a54' : '#573a14'}`,
-              color: role === 'Sub-Registrar' ? 'var(--green)' : role === 'Bank Underwriter' ? 'var(--blue)' : 'var(--amber)',
-              borderRadius: '7px',
-              padding: '8px 14px',
-              fontSize: '11px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              marginBottom: '14px',
-              transition: 'all 0.3s ease'
-            }}>
-              {role === 'Sub-Registrar' ? <ShieldCheck size={15} /> : role === 'Bank Underwriter' ? <BadgeCheck size={15} /> : <UserRound size={15} />}
-              <span>
-                <strong>
-                  {role === 'Sub-Registrar' 
-                    ? (lang === 'bn' ? 'সরকারি সাব-রেজিস্ট্রি অডিট' : 'GOVERNMENT REGISTRATION AUDIT') 
-                    : role === 'Bank Underwriter' 
-                    ? (lang === 'bn' ? 'ব্যাংক মর্টগেজ ঝুঁকি অডিট' : 'BANK MORTGAGE RISK AUDIT') 
-                    : (lang === 'bn' ? 'নাগরিক ক্রয়পূর্ব অডিট' : 'CITIZEN PRE-PURCHASE AUDIT')}:
-                </strong>{' '}
-                {role === 'Sub-Registrar'
-                  ? (lang === 'bn' 
-                      ? 'রেজিস্ট্রেশন আইন ১৯০৮-এর ধারা ২২এ অনুযায়ী ১৯২১ সিএস হতে ২০২৬ বর্তমান দলিল পর্যন্ত অবিচ্ছিন্ন বায়া চেইন বিশ্লেষণ।' 
-                      : 'Tracing statutory unbroken chain of title from 1921 CS to 2026 deed under Registration Act Sec 22A.')
-                  : role === 'Bank Underwriter'
-                  ? (lang === 'bn'
-                      ? 'প্রথম-চার্জ জামানত নিরাপত্তা যাচাই; দলিলের কোনো একটি লিংকে ত্রুটি থাকলে আদালতে ঋণ আদায় সম্ভব হবে না।'
-                      : 'Assessing first-charge collateral security; any broken link invalidates bank mortgage recovery in court.')
-                  : (lang === 'bn'
-                      ? 'বায়না চুক্তি বা টাকা হস্তান্তরের পূর্বে নিশ্চিত হওয়া যে বিক্রেতার পূর্ববর্তী মালিকানা নিষ্কণ্টক ছিল কিনা।'
-                      : 'Verifying seller actually owns the title before transferring earnest money or signing purchase agreement.')}
-              </span>
-            </div>
-
             <Card style={{ padding: '24px', marginBottom: '16px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--line)', paddingBottom: '16px', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
                 <div>
@@ -1506,43 +1420,6 @@ export default function Page() {
               </button>
             </div>
 
-            {/* ROLE PERSPECTIVE BANNER FOR FARAYEZ */}
-            <div style={{
-              background: role === 'Sub-Registrar' ? '#0d1d16' : role === 'Bank Underwriter' ? '#0e1824' : '#1c150b',
-              border: `1px solid ${role === 'Sub-Registrar' ? '#184533' : role === 'Bank Underwriter' ? '#1a3a54' : '#573a14'}`,
-              color: role === 'Sub-Registrar' ? 'var(--green)' : role === 'Bank Underwriter' ? 'var(--blue)' : 'var(--amber)',
-              borderRadius: '7px',
-              padding: '8px 14px',
-              fontSize: '11px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              marginBottom: '14px',
-              transition: 'all 0.3s ease'
-            }}>
-              {role === 'Sub-Registrar' ? <ShieldCheck size={15} /> : role === 'Bank Underwriter' ? <BadgeCheck size={15} /> : <UserRound size={15} />}
-              <span>
-                <strong>
-                  {role === 'Sub-Registrar' 
-                    ? (lang === 'bn' ? 'সরকারি উত্তরাধিকার অডিট' : 'GOVERNMENT INHERITANCE AUDIT') 
-                    : role === 'Bank Underwriter' 
-                    ? (lang === 'bn' ? 'ব্যাংক ঋণগ্রহীতা ইকুইটি অডিট' : 'BANK BORROWER EQUITY AUDIT') 
-                    : (lang === 'bn' ? 'নাগরিক সহ-ওয়ারিশ সুরক্ষা অডিট' : 'CITIZEN CO-HEIR PROTECTION AUDIT')}:
-                </strong>{' '}
-                {role === 'Sub-Registrar'
-                  ? (lang === 'bn' 
-                      ? 'মুসলিম পারিবারিক আইন অধ্যাদেশ ১৯৬১ ও শরিয়াহ অনুযায়ী বিক্রেতার বৈধ উত্তরাধিকার কোটা যাচাই।' 
-                      : 'Verifying statutory inheritance quota under Muslim Personal Law (Shariat) to prevent illegal over-sale.')
-                  : role === 'Bank Underwriter'
-                  ? (lang === 'bn'
-                      ? 'ঋণগ্রহীতার সুনির্দিষ্ট নিষ্কণ্টক অংশ নির্ধারণ, যাতে অন্য কোনো সহ-ওয়ারিশের অংশ বন্ধক হিসেবে না পড়ে।'
-                      : 'Calculating exact unencumbered equity share to ensure borrower cannot pledge co-heirs’ property as loan collateral.')
-                  : (lang === 'bn'
-                      ? 'বিক্রেতা তার মা বা বোনদের কোরআনিক অংশ ফাঁকি দিয়ে অতিরিক্ত জমি বিক্রি করছে কিনা তা নিখুঁতভাবে যাচাই।'
-                      : 'Validating that seller is not attempting to sell their sisters’ or mother’s Quranic shares to an unsuspecting buyer.')}
-              </span>
-            </div>
-
             {/* HEADER BANNER */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '18px', flexWrap: 'wrap', gap: '12px' }}>
               <div>
@@ -1766,51 +1643,51 @@ export default function Page() {
                   
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {deceasedGender === 'male' ? (
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
-                        <span style={{ fontSize: '11px' }}>{lang === 'bn' ? 'বিধবা স্ত্রী' : 'Wife / বিধবা স্ত্রী'}</span>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <button onClick={() => setWifeCount(Math.max(0, wifeCount - 1))} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>-</button>
-                          <b style={{ minWidth: '14px', textAlign: 'center', fontSize: '11px' }}>{wifeCount}</b>
-                          <button onClick={() => setWifeCount(wifeCount + 1)} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>+</button>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', border: '1px solid #142230', padding: '8px 12px', borderRadius: '7px' }}>
+                        <span style={{ fontSize: '12px', fontWeight: 600, color: '#e2e8f0' }}>{lang === 'bn' ? 'বিধবা স্ত্রী' : 'Wife / বিধবা স্ত্রী'}</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <button onClick={() => setWifeCount(Math.max(0, wifeCount - 1))} style={{ width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#16222f', border: '1px solid #284157', color: 'var(--text)', borderRadius: '6px', cursor: 'pointer', transition: 'all 0.15s' }} aria-label="Decrease wife count"><Minus size={13} /></button>
+                          <b style={{ minWidth: '20px', textAlign: 'center', fontSize: '13px', fontFamily: 'monospace', color: '#67e8f9' }}>{wifeCount}</b>
+                          <button onClick={() => setWifeCount(wifeCount + 1)} style={{ width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#153a2d', border: '1px solid #286b52', color: 'var(--green)', borderRadius: '6px', cursor: 'pointer', transition: 'all 0.15s' }} aria-label="Increase wife count"><Plus size={13} /></button>
                         </div>
                       </div>
                     ) : (
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
-                        <span style={{ fontSize: '11px' }}>{lang === 'bn' ? 'স্বামী' : 'Husband / স্বামী'}</span>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <button onClick={() => setHusbandCount(Math.max(0, husbandCount - 1))} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>-</button>
-                          <b style={{ minWidth: '14px', textAlign: 'center', fontSize: '11px' }}>{husbandCount}</b>
-                          <button onClick={() => setHusbandCount(husbandCount + 1)} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>+</button>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', border: '1px solid #142230', padding: '8px 12px', borderRadius: '7px' }}>
+                        <span style={{ fontSize: '12px', fontWeight: 600, color: '#e2e8f0' }}>{lang === 'bn' ? 'স্বামী' : 'Husband / স্বামী'}</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <button onClick={() => setHusbandCount(Math.max(0, husbandCount - 1))} style={{ width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#16222f', border: '1px solid #284157', color: 'var(--text)', borderRadius: '6px', cursor: 'pointer', transition: 'all 0.15s' }} aria-label="Decrease husband count"><Minus size={13} /></button>
+                          <b style={{ minWidth: '20px', textAlign: 'center', fontSize: '13px', fontFamily: 'monospace', color: '#67e8f9' }}>{husbandCount}</b>
+                          <button onClick={() => setHusbandCount(husbandCount + 1)} style={{ width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#153a2d', border: '1px solid #286b52', color: 'var(--green)', borderRadius: '6px', cursor: 'pointer', transition: 'all 0.15s' }} aria-label="Increase husband count"><Plus size={13} /></button>
                         </div>
                       </div>
                     )}
 
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '11px' }}>{lang === 'bn' ? 'পুত্র সন্তান' : 'Sons / পুত্র'}</span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <button onClick={() => setSonCount(Math.max(0, sonCount - 1))} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>-</button>
-                        <b style={{ minWidth: '14px', textAlign: 'center', fontSize: '11px' }}>{sonCount}</b>
-                        <button onClick={() => setSonCount(sonCount + 1)} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>+</button>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', border: '1px solid #142230', padding: '8px 12px', borderRadius: '7px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 600, color: '#e2e8f0' }}>{lang === 'bn' ? 'পুত্র সন্তান' : 'Sons / পুত্র'}</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <button onClick={() => setSonCount(Math.max(0, sonCount - 1))} style={{ width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#16222f', border: '1px solid #284157', color: 'var(--text)', borderRadius: '6px', cursor: 'pointer', transition: 'all 0.15s' }} aria-label="Decrease son count"><Minus size={13} /></button>
+                        <b style={{ minWidth: '20px', textAlign: 'center', fontSize: '13px', fontFamily: 'monospace', color: '#67e8f9' }}>{sonCount}</b>
+                        <button onClick={() => setSonCount(sonCount + 1)} style={{ width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#153a2d', border: '1px solid #286b52', color: 'var(--green)', borderRadius: '6px', cursor: 'pointer', transition: 'all 0.15s' }} aria-label="Increase son count"><Plus size={13} /></button>
                       </div>
                     </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '11px' }}>{lang === 'bn' ? 'কন্যা সন্তান' : 'Daughters / কন্যা'}</span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <button onClick={() => setDaughterCount(Math.max(0, daughterCount - 1))} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>-</button>
-                        <b style={{ minWidth: '14px', textAlign: 'center', fontSize: '11px' }}>{daughterCount}</b>
-                        <button onClick={() => setDaughterCount(daughterCount + 1)} style={{ padding: '2px 7px', background: '#14202c', border: 'none', color: 'var(--text)', borderRadius: '3px', cursor: 'pointer' }}>+</button>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', border: '1px solid #142230', padding: '8px 12px', borderRadius: '7px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 600, color: '#e2e8f0' }}>{lang === 'bn' ? 'কন্যা সন্তান' : 'Daughters / কন্যা'}</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <button onClick={() => setDaughterCount(Math.max(0, daughterCount - 1))} style={{ width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#16222f', border: '1px solid #284157', color: 'var(--text)', borderRadius: '6px', cursor: 'pointer', transition: 'all 0.15s' }} aria-label="Decrease daughter count"><Minus size={13} /></button>
+                        <b style={{ minWidth: '20px', textAlign: 'center', fontSize: '13px', fontFamily: 'monospace', color: '#67e8f9' }}>{daughterCount}</b>
+                        <button onClick={() => setDaughterCount(daughterCount + 1)} style={{ width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#153a2d', border: '1px solid #286b52', color: 'var(--green)', borderRadius: '6px', cursor: 'pointer', transition: 'all 0.15s' }} aria-label="Increase daughter count"><Plus size={13} /></button>
                       </div>
                     </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '11px' }}>{lang === 'bn' ? 'মাতা' : 'Mother / মাতা'}</span>
-                      <input type="checkbox" checked={hasMother} onChange={(e) => setHasMother(e.target.checked)} style={{ cursor: 'pointer' }} />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', border: '1px solid #142230', padding: '8px 12px', borderRadius: '7px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 600, color: '#e2e8f0' }}>{lang === 'bn' ? 'মাতা' : 'Mother / মাতা'}</span>
+                      <input type="checkbox" checked={hasMother} onChange={(e) => setHasMother(e.target.checked)} style={{ cursor: 'pointer', width: '16px', height: '16px' }} />
                     </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', padding: '6px 10px', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '11px' }}>{lang === 'bn' ? 'পিতা' : 'Father / পিতা'}</span>
-                      <input type="checkbox" checked={hasFather} onChange={(e) => setHasFather(e.target.checked)} style={{ cursor: 'pointer' }} />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#070c12', border: '1px solid #142230', padding: '8px 12px', borderRadius: '7px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 600, color: '#e2e8f0' }}>{lang === 'bn' ? 'পিতা' : 'Father / পিতা'}</span>
+                      <input type="checkbox" checked={hasFather} onChange={(e) => setHasFather(e.target.checked)} style={{ cursor: 'pointer', width: '16px', height: '16px' }} />
                     </div>
                   </div>
                 </div>
