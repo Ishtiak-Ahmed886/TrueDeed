@@ -66,30 +66,32 @@ The live production prototype demonstrates the full technical workflow across **
 
 ### 1️⃣ Page 1: Pre-Registration Verification Cockpit (`যাচাই ককপিট`)
 - **Dual Live Scenarios:** One-click toggling between **Verified Valid Title (94% Trust Score)** and **Critical Fraud Intercepted (18% Trust Score)**.
+- **Interactive Deed Upload & Case Ingestion (`📤 দলিল আপলোড`):** Drag-and-drop custom deed scans or test with 3 pre-loaded demonstration cases (Clean Title, Quota Overclaim, and Double-Selling Dispute).
 - **Executive Metadata Command Strip:** Live metadata badges with real-time radar-pulse connection to Sub-Registry APIs.
-- **OCR Ingestion & JSON Schema:** Side-by-side Bengali deed scan with OpenCV bounding boxes and normalized entity schema (District, Upazila, Mouza, JL, RS Khatian, Daag, Acreage, NID).
-- **Four Algorithmic Interceptors:**
-  - *Farayez Quota Interceptor:* Audits claimed area against legal inheritance share.
+- **OCR Ingestion & Pure Bilingual Schema:** Side-by-side Bengali deed scan with OpenCV bounding boxes and normalized entity schema (District, Upazila, Mouza, JL, RS Khatian, Daag, Acreage, NID).
+- **Three Algorithmic Interceptors:**
+  - *Farayez Quota Interceptor:* Audits claimed area against legal inheritance share with live Cockpit sync.
   - *Baya Lineage Tracer:* Verifies unbroken transfer history.
   - *Active Concurrency Plot Lock:* Enforces a 45-day mutation lock to stop double-selling.
-  - *NID & Porcha Consistency:* Biometric and registry matching.
 - **Hard Veto Rule Interceptors:** Instantly triggers **REGISTRATION BLOCKED** upon detecting Civil Court Injunctions (*Order 39, Rules 1-2 CPC*), broken Baya chains, or quota violations.
 - **Role-Based Digital Certificates:** Generates cryptographic verification certificates with SHA-256 tamper-evident proofs and QR codes.
 
 ### 2️⃣ Page 2: Baya DAG Lineage Tracer (`বায়া খতিয়ান ও দলিল ধারাবাহিকতা`)
 - **5-Node Directed Acyclic Graph (DAG):** Traces ownership from state survey baselines to the proposed deed:
-  - *Node 1 (1921):* CS Khatian #104 (Cadastral Survey Baseline, 40 Shatak)
-  - *Node 2 (1962):* SA Khatian #218 (State Acquisition Record, 40 Shatak)
+  - *Node 1 (1921):* CS Khatian #102 (Cadastral Survey Baseline, 120 Shatak)
+  - *Node 2 (1962):* SA Khatian #204 (State Acquisition Record, 60 Shatak)
   - *Node 3 (1987):* RS Khatian #412 (Revisional Survey, 40 Shatak)
-  - *Node 4 (2009):* Intermediate Baya Deed #8921 (Savar Sub-Registry)
-  - *Node 5 (2026):* Proposed Transfer Deed #1214 (Under Review)
-- **Visual Fracture Point Interception:** Under the fraud scenario, instantly flags Volume 412 blank anomaly and missing mutation DCR order.
+  - *Node 4 (2009):* Intermediate Baya Deed #1214 (Savar Sub-Registry)
+  - *Node 5 (2026):* Proposed Transfer Deed (Under Review)
+- **Interactive Forensic Node Inspector:** Click any node to reveal digitized record room gazettes, volume ledgers, and cadastral map coordinates.
+- **Baya Chain Audit Dossier Export (`📥 PDF Download`):** One-click generation of the complete 25-year title continuity forensic dossier for banks and registrars.
+- **Visual Fracture Point Interception:** Under the fraud scenario, instantly flags missing intermediate DCR orders and party discontinuity.
 
 ### 3️⃣ Page 3: Farayez Statutory Inheritance Sandbox (`ফারায়েজ বণ্টন ক্যালকুলেটর`)
 - **Hanafi Legal Math Engine:** Implements fractional Quranic rules (*Zawil Furood*, *Asaba*, *Aul* factor) adhering to the *Muslim Family Laws Ordinance 1961*.
-- **Dynamic Family Presets:** Typical Family, Daughters Only, Aul Reduction Scenario, and Custom Resets.
+- **Dynamic Family Presets:** Typical Family, Daughters Only, Aul Reduction Scenario, and Custom Resets with tactile stepper buttons (`+` / `-`).
 - **Interactive Inheritance SVG Donut Chart:** Live fractional distribution rendering with real-time acreage calculation (Shatak, Katha, Acre, Decimal).
-- **Live Quota Breach Alert:** Proactively flags sellers attempting to deed land in excess of their lawful inherited quota.
+- **Bidirectional Cockpit Sync (`⚡ Apply to Deed Audit`):** Directly injects sandbox heir calculations into Page 1's live verification cockpit with instantaneous score recalculation.
 
 ### 👥 3-Role Multi-Stakeholder Perspective Simulator
 Switch roles anytime to experience tailored governance views:
