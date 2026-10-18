@@ -82,7 +82,7 @@ function ScanViewer({ scenario }: { scenario: Scenario }) {
 }
 
 function Interceptor({ icon: Icon, title, status, verdict, children, open, onOpen }: { 
-  icon: React.ElementType; title: string; status: string; verdict: string; children: React.ReactNode; open: boolean; onOpen: () => void 
+  icon: React.ElementType; title: string; status: string; verdict?: string; children: React.ReactNode; open: boolean; onOpen: () => void 
 }) {
   const tone = status === 'PASS' ? 'good' : status === 'BLOCKED' ? 'bad' : 'warn'
   const { t } = useLanguage()
@@ -91,10 +91,7 @@ function Interceptor({ icon: Icon, title, status, verdict, children, open, onOpe
     <Card className={`interceptor ${open ? 'is-open' : ''}`}>
       <button className="interceptor-head" onClick={onOpen} aria-expanded={open}>
         <div className="interceptor-icon"><Icon size={15} /></div>
-        <div className="interceptor-copy">
-          <div className="interceptor-name">{title}</div>
-          <div className="interceptor-verdict">{verdict}</div>
-        </div>
+        <div className="interceptor-name" style={{ flex: 1, fontSize: '11.5px', fontWeight: 700 }}>{title}</div>
         <Pill tone={tone}>{statusLabel}</Pill>
         <ChevronDown size={15} className={open ? 'rotate' : ''} />
       </button>
