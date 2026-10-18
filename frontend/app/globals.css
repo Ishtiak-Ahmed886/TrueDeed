@@ -20,6 +20,22 @@ button:focus-visible,select:focus-visible { outline:2px solid var(--blue); outli
 .scenario-switcher .active.valid { color:#10b981; background:linear-gradient(180deg,#123128 0%,#0d221c 100%); border-color:rgba(45,212,163,0.4); box-shadow:0 0 14px rgba(45,212,163,0.25),inset 0 1px 0 rgba(255,255,255,0.1); }
 .scenario-switcher .active.fraud { color:#f87171; background:linear-gradient(180deg,#3d1b22 0%,#261116 100%); border-color:rgba(239,68,68,0.5); box-shadow:0 0 14px rgba(239,68,68,0.3),inset 0 1px 0 rgba(255,255,255,0.1); }.scenario-note { color:var(--muted); font-size:11px; margin-left:auto; }
 
+/* COMMAND CONSOLE BAR & HERO HIGHLIGHTS */
+.command-console-bar { display:flex; align-items:center; justify-content:space-between; margin:14px 0 12px; background:linear-gradient(180deg,#0e1724 0%,#070c13 100%); border:1.5px solid #20354a; border-radius:12px; padding:7px 12px; gap:14px; box-shadow:0 6px 24px rgba(0,0,0,0.5),0 0 2px rgba(56,189,248,0.3); flex-wrap:wrap; }
+.console-section-label { display:inline-flex; align-items:center; gap:5px; font-size:10px; font-weight:800; letter-spacing:0.9px; text-transform:uppercase; color:#72879d; white-space:nowrap; flex-shrink:0; }
+.console-divider { width:1.5px; height:32px; background:linear-gradient(180deg,transparent,#22374d,transparent); flex-shrink:0; }
+.test-scenario-panel { display:flex; align-items:center; gap:8px; flex-shrink:0; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07); padding:4px 8px; border-radius:9px; }
+.hero-test-btn { display:inline-flex; align-items:center; gap:7px; padding:7px 13px; border-radius:7px; font-size:11px; font-weight:750; cursor:pointer; transition:all 0.2s cubic-bezier(0.16,1,0.3,1); letter-spacing:0.3px; white-space:nowrap; border:1.5px solid transparent; }
+.hero-test-btn.valid-btn { background:#0a1c15; border-color:#1c4839; color:#a7f3d0; }
+.hero-test-btn.valid-btn:hover { background:#113125; border-color:#2dd4a3; color:#ffffff; box-shadow:0 0 12px rgba(45,212,163,0.3); }
+.hero-test-btn.valid-btn.is-active { background:linear-gradient(180deg,#133b2e 0%,#0d271f 100%); border-color:#2dd4a3; color:#ffffff; box-shadow:0 0 18px rgba(45,212,163,0.4),inset 0 1px 0 rgba(255,255,255,0.2); }
+.hero-test-btn.fraud-btn { background:#281218; border-color:#5c222c; color:#fca5a5; position:relative; }
+.hero-test-btn.fraud-btn:hover { background:#3d1821; border-color:#ef4444; color:#ffffff; box-shadow:0 0 16px rgba(239,68,68,0.45); }
+.hero-test-btn.fraud-btn.is-active { background:linear-gradient(180deg,#4e1923 0%,#2e0f15 100%); border-color:#ef4444; color:#ffffff; box-shadow:0 0 22px rgba(239,68,68,0.55),inset 0 1px 0 rgba(255,255,255,0.2); }
+.hero-test-btn.fraud-btn.pulse-cue { animation:heroPulse 2s infinite ease-in-out; }
+@keyframes heroPulse { 0%{box-shadow:0 0 0 0 rgba(239,68,68,0.5)} 70%{box-shadow:0 0 0 7px rgba(239,68,68,0)} 100%{box-shadow:0 0 0 0 rgba(239,68,68,0)} }
+
+
 /* 3-PAGE HIGH AFFORDANCE NAVIGATION TABS */
 .tab-nav-group { display:flex; align-items:center; gap:8px; flex:1 1 auto; overflow-x:auto; padding:2px 0; }
 .nav-tab-btn { display:inline-flex; align-items:center; gap:8px; padding:7px 12px; border-radius:8px; background:#0d1520; border:1.5px solid #1e2c3d; color:#94a3b8; font-size:11px; font-weight:600; cursor:pointer; white-space:nowrap; transition:all 0.2s cubic-bezier(0.16,1,0.3,1); box-shadow:0 2px 6px rgba(0,0,0,0.35); position:relative; }

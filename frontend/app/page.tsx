@@ -450,77 +450,79 @@ export default function Page() {
           </div>
         </header>
 
-        {/* 3-PAGE NAVIGATION & SCENARIO COMMAND BAR */}
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'space-between', 
-          margin: '14px 0 12px', 
-          background: '#0a1017', 
-          border: '1px solid var(--line)', 
-          borderRadius: '10px', 
-          padding: '6px 8px',
-          gap: '12px',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
-        }}>
+        {/* 3-PAGE NAVIGATION & SCENARIO COMMAND CONSOLE */}
+        <div className="command-console-bar">
           {/* TABS (LEFT) */}
-          <div className="tab-nav-group">
-            <button 
-              onClick={() => setTab('cockpit')}
-              className={`nav-tab-btn ${tab === 'cockpit' ? 'active-cockpit' : ''}`}
-              title={lang === 'en' ? 'Module 1: Document Intake & Pre-Registration Cockpit' : 'মডিউল ১: দলিল যাচাই ও প্রাক-নিবন্ধন ককপিট'}
-            >
-              <span className="tab-num-pill">1</span>
-              <ShieldCheck size={14} className="tab-icon" />
-              <div className="tab-text-group">
-                <span className="tab-title">{lang === 'en' ? 'Verification Cockpit' : 'যাচাই ককপিট'}</span>
-                <span className="tab-sub-tag">{lang === 'en' ? 'Scanner' : 'স্ক্যানার'}</span>
-              </div>
-              {tab === 'cockpit' && <span className="tab-active-dot" />}
-            </button>
-
-            <button 
-              onClick={() => setTab('baya')}
-              className={`nav-tab-btn ${tab === 'baya' ? 'active-baya' : ''}`}
-              title={lang === 'en' ? 'Module 2: 25-Year Baya Chain & DAG Lineage' : 'মডিউল ২: ২৫ বছরের বায়া খতিয়ান ও চেইন ট্র্যাকার'}
-            >
-              <span className="tab-num-pill">2</span>
-              <GitBranch size={14} className="tab-icon" />
-              <div className="tab-text-group">
-                <span className="tab-title">{lang === 'en' ? 'Baya DAG Lineage' : 'বায়া খতিয়ান ও দলিল (DAG)'}</span>
-                <span className="tab-sub-tag">{lang === 'en' ? '25-Yr Graph' : '২৫ বছরের চেইন'}</span>
-              </div>
-              {tab === 'baya' && <span className="tab-active-dot" />}
-            </button>
-
-            <button 
-              onClick={() => setTab('farayez')}
-              className={`nav-tab-btn ${tab === 'farayez' ? 'active-farayez' : ''}`}
-              title={lang === 'en' ? 'Module 3: Islamic Inheritance & Quota Math Sandbox' : 'মডিউল ৩: ফারায়েজ বণ্টন ও উত্তরাধিকার অডিট'}
-            >
-              <span className="tab-num-pill">3</span>
-              <Scale size={14} className="tab-icon" />
-              <div className="tab-text-group">
-                <span className="tab-title">{lang === 'en' ? 'Farayez Calculator' : 'ফারায়েজ ক্যালকুলেটর'}</span>
-                <span className="tab-sub-tag">{lang === 'en' ? 'Sandbox' : 'স্যান্ডবক্স'}</span>
-              </div>
-              {tab === 'farayez' && <span className="tab-active-dot" />}
-            </button>
-          </div>
-
-          {/* SCENARIO SWITCHER (RIGHT) */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
-            <span className="scenario-hint-badge">
-              <Zap size={11} /> {lang === 'bn' ? 'ক্লিক করে টেস্ট করুন' : 'CLICK TO TEST'}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: '1 1 auto', overflowX: 'auto' }}>
+            <span className="console-section-label">
+              <Layers size={13} style={{ color: 'var(--blue)' }} /> {lang === 'en' ? 'PAGES:' : 'পৃষ্ঠা:'}
             </span>
-            <div className="scenario-switcher">
-              <button className={scenario === 'valid' ? 'active valid' : ''} onClick={() => setScenario('valid')}>
-                <Check size={13} /> {lang === 'bn' ? '✓ বৈধ দলিল (৯৪%)' : '✓ Safe Title (94%)'}
+            <div className="tab-nav-group">
+              <button 
+                onClick={() => setTab('cockpit')}
+                className={`nav-tab-btn ${tab === 'cockpit' ? 'active-cockpit' : ''}`}
+                title={lang === 'en' ? 'Module 1: Document Intake & Pre-Registration Cockpit' : 'মডিউল ১: দলিল যাচাই ও প্রাক-নিবন্ধন ককপিট'}
+              >
+                <span className="tab-num-pill">1</span>
+                <ShieldCheck size={14} className="tab-icon" />
+                <div className="tab-text-group">
+                  <span className="tab-title">{lang === 'en' ? 'Verification Cockpit' : 'যাচাই ককপিট'}</span>
+                  <span className="tab-sub-tag">{lang === 'en' ? 'Scanner' : 'স্ক্যানার'}</span>
+                </div>
+                {tab === 'cockpit' && <span className="tab-active-dot" />}
               </button>
-              <button className={scenario === 'fraud' ? 'active fraud' : ''} onClick={() => setScenario('fraud')}>
-                <AlertTriangle size={13} /> {lang === 'bn' ? '⚠ জালিয়াতি শনাক্তকরণ (১৮%)' : '⚠ Simulate Fraud (18%)'}
+
+              <button 
+                onClick={() => setTab('baya')}
+                className={`nav-tab-btn ${tab === 'baya' ? 'active-baya' : ''}`}
+                title={lang === 'en' ? 'Module 2: 25-Year Baya Chain & DAG Lineage' : 'মডিউল ২: ২৫ বছরের বায়া খতিয়ান ও চেইন ট্র্যাকার'}
+              >
+                <span className="tab-num-pill">2</span>
+                <GitBranch size={14} className="tab-icon" />
+                <div className="tab-text-group">
+                  <span className="tab-title">{lang === 'en' ? 'Baya DAG Lineage' : 'বায়া খতিয়ান ও দলিল (DAG)'}</span>
+                  <span className="tab-sub-tag">{lang === 'en' ? '25-Yr Graph' : '২৫ বছরের চেইন'}</span>
+                </div>
+                {tab === 'baya' && <span className="tab-active-dot" />}
+              </button>
+
+              <button 
+                onClick={() => setTab('farayez')}
+                className={`nav-tab-btn ${tab === 'farayez' ? 'active-farayez' : ''}`}
+                title={lang === 'en' ? 'Module 3: Islamic Inheritance & Quota Math Sandbox' : 'মডিউল ৩: ফারায়েজ বণ্টন ও উত্তরাধিকার অডিট'}
+              >
+                <span className="tab-num-pill">3</span>
+                <Scale size={14} className="tab-icon" />
+                <div className="tab-text-group">
+                  <span className="tab-title">{lang === 'en' ? 'Farayez Calculator' : 'ফারায়েজ ক্যালকুলেটর'}</span>
+                  <span className="tab-sub-tag">{lang === 'en' ? 'Sandbox' : 'স্যান্ডবক্স'}</span>
+                </div>
+                {tab === 'farayez' && <span className="tab-active-dot" />}
               </button>
             </div>
+          </div>
+
+          <div className="console-divider" />
+
+          {/* SCENARIO SWITCHER (RIGHT) */}
+          <div className="test-scenario-panel">
+            <span className="console-section-label" style={{ color: '#f6bd55' }}>
+              <Zap size={13} /> {lang === 'bn' ? 'টেস্ট সিনারিও:' : 'TEST DEED:'}
+            </span>
+            <button 
+              className={`hero-test-btn valid-btn ${scenario === 'valid' ? 'is-active' : ''}`} 
+              onClick={() => setScenario('valid')}
+              title={lang === 'bn' ? 'বৈধ দলিল দিয়ে যাচাই করুন (স্কোর ৯৪%)' : 'Test genuine registered deed (Score 94%)'}
+            >
+              <Check size={14} /> {lang === 'bn' ? '✓ বৈধ দলিল (৯৪%)' : '✓ Safe Deed (94%)'}
+            </button>
+            <button 
+              className={`hero-test-btn fraud-btn ${scenario === 'fraud' ? 'is-active' : 'pulse-cue'}`} 
+              onClick={() => setScenario('fraud')}
+              title={lang === 'bn' ? 'জাল দলিল দিয়ে হার্ড ভেটো পরীক্ষা করুন (স্কোর ১৮%)' : 'Simulate fraudulent deed with Hard Veto (Score 18%)'}
+            >
+              <AlertTriangle size={14} /> {lang === 'bn' ? '⚡ ⚠ টেস্ট জাল দলিল (১৮%)' : '⚡ ⚠ Test Fraud Deed (18%)'}
+            </button>
           </div>
         </div>
 
