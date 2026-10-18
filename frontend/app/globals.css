@@ -19,6 +19,36 @@ button:focus-visible,select:focus-visible { outline:2px solid var(--blue); outli
 .scenario-switcher button b { font-family:ui-monospace,monospace; color:inherit; font-size:11px; }
 .scenario-switcher .active.valid { color:#10b981; background:linear-gradient(180deg,#123128 0%,#0d221c 100%); border-color:rgba(45,212,163,0.4); box-shadow:0 0 14px rgba(45,212,163,0.25),inset 0 1px 0 rgba(255,255,255,0.1); }
 .scenario-switcher .active.fraud { color:#f87171; background:linear-gradient(180deg,#3d1b22 0%,#261116 100%); border-color:rgba(239,68,68,0.5); box-shadow:0 0 14px rgba(239,68,68,0.3),inset 0 1px 0 rgba(255,255,255,0.1); }.scenario-note { color:var(--muted); font-size:11px; margin-left:auto; }
+
+/* 3-PAGE HIGH AFFORDANCE NAVIGATION TABS */
+.tab-nav-group { display:flex; align-items:center; gap:8px; flex:1 1 auto; overflow-x:auto; padding:2px 0; }
+.nav-tab-btn { display:inline-flex; align-items:center; gap:8px; padding:7px 12px; border-radius:8px; background:#0d1520; border:1.5px solid #1e2c3d; color:#94a3b8; font-size:11px; font-weight:600; cursor:pointer; white-space:nowrap; transition:all 0.2s cubic-bezier(0.16,1,0.3,1); box-shadow:0 2px 6px rgba(0,0,0,0.35); position:relative; }
+.nav-tab-btn:hover { background:#152436; border-color:#38bdf8; color:#f8fafc; transform:translateY(-1.5px); box-shadow:0 4px 14px rgba(56,189,248,0.22); }
+.nav-tab-btn:active { transform:translateY(0); }
+.tab-num-pill { display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; border-radius:5px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#94a3b8; font-size:10px; font-weight:800; font-family:ui-monospace,monospace; }
+.nav-tab-btn:hover .tab-num-pill { background:rgba(56,189,248,0.2); border-color:#38bdf8; color:#38bdf8; }
+.tab-title { font-weight:700; letter-spacing:0.2px; }
+.tab-sub-tag { font-size:9px; padding:2px 6px; border-radius:4px; background:rgba(255,255,255,0.05); color:#64748b; font-weight:700; letter-spacing:0.4px; text-transform:uppercase; border:1px solid rgba(255,255,255,0.06); }
+.nav-tab-btn:hover .tab-sub-tag { background:rgba(56,189,248,0.12); color:#7dd3fc; border-color:rgba(56,189,248,0.3); }
+
+/* Active States */
+.nav-tab-btn.active-cockpit { background:linear-gradient(180deg,#13283a 0%,#0c1925 100%); border-color:#38bdf8; color:#ffffff; box-shadow:0 0 16px rgba(56,189,248,0.3),inset 0 1px 0 rgba(255,255,255,0.15); }
+.nav-tab-btn.active-cockpit .tab-num-pill { background:#38bdf8; border-color:#38bdf8; color:#03141f; }
+.nav-tab-btn.active-cockpit .tab-icon { color:#38bdf8; }
+.nav-tab-btn.active-cockpit .tab-sub-tag { background:rgba(56,189,248,0.2); color:#7dd3fc; border-color:rgba(56,189,248,0.4); }
+
+.nav-tab-btn.active-baya { background:linear-gradient(180deg,#113127 0%,#0b211a 100%); border-color:#2dd4a3; color:#ffffff; box-shadow:0 0 16px rgba(45,212,163,0.3),inset 0 1px 0 rgba(255,255,255,0.15); }
+.nav-tab-btn.active-baya .tab-num-pill { background:#2dd4a3; border-color:#2dd4a3; color:#051b14; }
+.nav-tab-btn.active-baya .tab-icon { color:#2dd4a3; }
+.nav-tab-btn.active-baya .tab-sub-tag { background:rgba(45,212,163,0.2); color:#6ee7b7; border-color:rgba(45,212,163,0.4); }
+
+.nav-tab-btn.active-farayez { background:linear-gradient(180deg,#2f2613 0%,#1e190a 100%); border-color:#f6bd55; color:#ffffff; box-shadow:0 0 16px rgba(246,189,85,0.3),inset 0 1px 0 rgba(255,255,255,0.15); }
+.nav-tab-btn.active-farayez .tab-num-pill { background:#f6bd55; border-color:#f6bd55; color:#211401; }
+.nav-tab-btn.active-farayez .tab-icon { color:#f6bd55; }
+.nav-tab-btn.active-farayez .tab-sub-tag { background:rgba(246,189,85,0.2); color:#fde047; border-color:rgba(246,189,85,0.4); }
+
+.tab-active-dot { width:6px; height:6px; border-radius:50%; background:currentColor; box-shadow:0 0 8px currentColor; margin-left:2px; }
+
 .case-strip { display:flex; align-items:center; justify-content:space-between; gap:12px; background:linear-gradient(180deg,#0e1724 0%,#090f18 100%); border:1px solid #1e2c3d; border-radius:10px; padding:8px 14px; margin-bottom:12px; box-shadow:0 4px 18px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.04); flex-wrap:wrap; }
 .case-strip-items { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
 .case-badge { display:inline-flex; align-items:center; gap:9px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:7px; padding:6px 11px; font-size:11px; transition:all 0.2s ease; }

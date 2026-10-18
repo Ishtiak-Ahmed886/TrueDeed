@@ -467,44 +467,47 @@ export default function Page() {
           boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
         }}>
           {/* TABS (LEFT) */}
-          <div style={{ display: 'flex', gap: '6px', flex: '1 1 auto', overflowX: 'auto' }}>
+          <div className="tab-nav-group">
             <button 
               onClick={() => setTab('cockpit')}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '7px 14px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap',
-                background: tab === 'cockpit' ? '#142735' : 'transparent',
-                color: tab === 'cockpit' ? 'var(--blue)' : 'var(--muted)',
-                boxShadow: tab === 'cockpit' ? '0 0 12px rgba(102,179,232,0.25)' : 'none',
-                transition: 'all 0.2s ease'
-              }}
+              className={`nav-tab-btn ${tab === 'cockpit' ? 'active-cockpit' : ''}`}
+              title={lang === 'en' ? 'Module 1: Document Intake & Pre-Registration Cockpit' : 'মডিউল ১: দলিল যাচাই ও প্রাক-নিবন্ধন ককপিট'}
             >
-              <ShieldCheck size={14} /> {lang === 'en' ? '1. Verification Cockpit' : '১. যাচাই ককপিট'}
+              <span className="tab-num-pill">1</span>
+              <ShieldCheck size={14} className="tab-icon" />
+              <div className="tab-text-group">
+                <span className="tab-title">{lang === 'en' ? 'Verification Cockpit' : 'যাচাই ককপিট'}</span>
+                <span className="tab-sub-tag">{lang === 'en' ? 'Scanner' : 'স্ক্যানার'}</span>
+              </div>
+              {tab === 'cockpit' && <span className="tab-active-dot" />}
             </button>
 
             <button 
               onClick={() => setTab('baya')}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '7px 14px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap',
-                background: tab === 'baya' ? '#142735' : 'transparent',
-                color: tab === 'baya' ? 'var(--blue)' : 'var(--muted)',
-                boxShadow: tab === 'baya' ? '0 0 12px rgba(102,179,232,0.25)' : 'none',
-                transition: 'all 0.2s ease'
-              }}
+              className={`nav-tab-btn ${tab === 'baya' ? 'active-baya' : ''}`}
+              title={lang === 'en' ? 'Module 2: 25-Year Baya Chain & DAG Lineage' : 'মডিউল ২: ২৫ বছরের বায়া খতিয়ান ও চেইন ট্র্যাকার'}
             >
-              <GitBranch size={14} /> {lang === 'en' ? '2. Baya DAG Lineage' : '২. বায়া খতিয়ান ও দলিল ধারাবাহিকতা (DAG)'}
+              <span className="tab-num-pill">2</span>
+              <GitBranch size={14} className="tab-icon" />
+              <div className="tab-text-group">
+                <span className="tab-title">{lang === 'en' ? 'Baya DAG Lineage' : 'বায়া খতিয়ান ও দলিল (DAG)'}</span>
+                <span className="tab-sub-tag">{lang === 'en' ? '25-Yr Graph' : '২৫ বছরের চেইন'}</span>
+              </div>
+              {tab === 'baya' && <span className="tab-active-dot" />}
             </button>
 
             <button 
               onClick={() => setTab('farayez')}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '7px 14px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap',
-                background: tab === 'farayez' ? '#142735' : 'transparent',
-                color: tab === 'farayez' ? 'var(--blue)' : 'var(--muted)',
-                boxShadow: tab === 'farayez' ? '0 0 12px rgba(102,179,232,0.25)' : 'none',
-                transition: 'all 0.2s ease'
-              }}
+              className={`nav-tab-btn ${tab === 'farayez' ? 'active-farayez' : ''}`}
+              title={lang === 'en' ? 'Module 3: Islamic Inheritance & Quota Math Sandbox' : 'মডিউল ৩: ফারায়েজ বণ্টন ও উত্তরাধিকার অডিট'}
             >
-              <Scale size={14} /> {lang === 'en' ? '3. Farayez Calculator' : '৩. ফারায়েজ বণ্টন ক্যালকুলেটর'}
+              <span className="tab-num-pill">3</span>
+              <Scale size={14} className="tab-icon" />
+              <div className="tab-text-group">
+                <span className="tab-title">{lang === 'en' ? 'Farayez Calculator' : 'ফারায়েজ ক্যালকুলেটর'}</span>
+                <span className="tab-sub-tag">{lang === 'en' ? 'Sandbox' : 'স্যান্ডবক্স'}</span>
+              </div>
+              {tab === 'farayez' && <span className="tab-active-dot" />}
             </button>
           </div>
 
