@@ -22,15 +22,21 @@ const data = {
   fraud: { score: 18, seller: { en: 'Md. Abdul Karim', bn: 'মোঃ আব্দুল করিম' }, claimed: 22, entitled: 14, status: 'BLOCKED', verdictKey: 'fraudVerdict', lock: 'ALERT', baya: 10, farayez: 0, lockPoints: 0, nid: 8 },
 }
 
-const entityRows = [
-  ['District / জেলা', { en: 'Dhaka', bn: 'ঢাকা' }, '99%'], 
-  ['Upazila / উপজেলা', { en: 'Savar', bn: 'সাভার' }, '98%'], 
-  ['Mouza / মৌজা', { en: 'Ashulia', bn: 'আশুলিয়া' }, '97%'], 
-  ['JL No / জে.এল', { en: '87', bn: '87' }, '96%'], 
-  ['RS Khatian / খতিয়ান', { en: '412', bn: '412' }, '93%'], 
-  ['Daag No / দাগ', { en: '1893', bn: '1893' }, '91%'], 
-  ['Deeded acreage', { en: '12.00 shatak', bn: '12.00 শতক' }, '88%'], 
-  ['Seller NID', { en: '•••• •••• 4721', bn: '•••• •••• 4721' }, '86%'],
+type EntityRow = {
+  label: Bilingual
+  value: Bilingual
+  confidence: string
+}
+
+const entityRows: EntityRow[] = [
+  { label: { en: 'District', bn: 'জেলা' }, value: { en: 'Dhaka', bn: 'ঢাকা' }, confidence: '99%' },
+  { label: { en: 'Upazila', bn: 'উপজেলা' }, value: { en: 'Savar', bn: 'সাভার' }, confidence: '98%' },
+  { label: { en: 'Mouza', bn: 'মৌজা' }, value: { en: 'Ashulia', bn: 'আশুলিয়া' }, confidence: '97%' },
+  { label: { en: 'JL Number', bn: 'জে.এল নম্বর' }, value: { en: '87', bn: '৮৭' }, confidence: '96%' },
+  { label: { en: 'RS Khatian', bn: 'আরএস খতিয়ান' }, value: { en: '412', bn: '৪১২' }, confidence: '93%' },
+  { label: { en: 'Daag Number', bn: 'দাগ নম্বর' }, value: { en: '1893', bn: '১৮৯৩' }, confidence: '91%' },
+  { label: { en: 'Deeded Area', bn: 'দলিলকৃত জমি' }, value: { en: '12.00 shatak', bn: '১২.০০ শতক' }, confidence: '88%' },
+  { label: { en: 'Seller NID', bn: 'বিক্রেতার এনআইডি' }, value: { en: '•••• •••• 4721', bn: '•••• •••• ৪৭২১' }, confidence: '86%' },
 ]
 
 function Pill({ children, tone = 'neutral' }: { children: React.ReactNode; tone?: 'neutral'|'good'|'warn'|'bad'|'blue' }) {
@@ -62,16 +68,25 @@ function ScoreGauge({ score }: { score: number }) {
   </div>
 }
 
-function ScanViewer({ scenario }: { scenario: Scenario }) {
+function ScanViewer({ scenario, deedCase }: { scenario: Scenario; deedCase?: string }) {
+  const isOverclaim = deedCase === 'overclaim' || scenario === 'fraud'
+  const isDoubleSale = deedCase === 'double_sale'
   return (
     <div className={`scan-viewer ${scenario === 'fraud' ? 'scan-alert' : ''}`}>
       <div className="scan-lines" />
-      <div className="scan-heading">সাফ কবলা দলিল</div>
-      <div className="scan-sub">Document No. 1214 / 2009</div>
-      {['বিক্রেতার নাম: মোঃ আব্দুল করিম','মৌজা: আশুলিয়া · জে.এল: ৮৭','খতিয়ান নং: ৪১২ · দাগ: ১৮৯৩','জমির পরিমাণ: ১২.০০ শতাংশ'].map((line) => (
+      <div className="scan-heading">{isDoubleSale ? 'হেবা ঘোষণা দলিল' : 'সাফ কবলা দলিল'}</div>
+      <div className="scan-sub">
+        {isDoubleSale ? 'Document No. 8819 / 2026 (Double-Sale Alert)' : isOverclaim ? 'Document No. 1214 / 2009 (Quota Breach)' : 'Document No. 1214 / 2009'}
+      </div>
+      {[
+        'বিক্রেতার নাম: মোঃ আব্দুল করিম',
+        isDoubleSale ? 'মৌজা: ধামরাই · জে.এল: ১২' : 'মৌজা: আশুলিয়া · জে.এল: ৮৭',
+        'খতিয়ান নং: ৪১২ · দাগ: ১৮৯৩',
+        isOverclaim ? 'জমির পরিমাণ: ২২.০০ শতাংশ (অতিরিক্ত দাবি)' : 'জমির পরিমাণ: ১২.০০ শতাংশ'
+      ].map((line) => (
         <div className="bangla-line" key={line}>{line}</div>
       ))}
-      <div className="stamp">REG<br/><small>SAVAR</small></div>
+      <div className="stamp">{isDoubleSale ? 'REG\nDHAMRAI' : 'REG\nSAVAR'}<br/><small>{isDoubleSale ? 'DHAMRAI' : 'SAVAR'}</small></div>
       <div className="bbox bbox-one" />
       <div className="bbox bbox-two" />
       <div className="bbox bbox-three" />
@@ -138,6 +153,32 @@ export default function Page() {
   const [open, setOpen] = useState('farayez')
   const [loading, setLoading] = useState(false)
   const [showJson, setShowJson] = useState(false)
+  const [showUploadModal, setShowUploadModal] = useState(false)
+  const [deedCase, setDeedCase] = useState<'standard' | 'overclaim' | 'double_sale'>('standard')
+  const [syncedFarayez, setSyncedFarayez] = useState<{ claimed: number; entitled: number; isOverclaim: boolean } | null>(null)
+  const [selectedDagNode, setSelectedDagNode] = useState<number | null>(null)
+
+  const handleSelectCase = (newCase: 'standard' | 'overclaim' | 'double_sale') => {
+    setDeedCase(newCase)
+    setShowUploadModal(false)
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      if (newCase === 'standard') {
+        setScenario('valid')
+        setSyncedFarayez(null)
+        toast.success(lang === 'bn' ? 'আশুলিয়া সাফ-কবলা দলিল (১২১৪/২০০৯) লোড ও স্ক্যান সম্পন্ন! বৈধ নিষ্কণ্টক টাইটেল।' : 'Saf-Kabla #1214 loaded! Clean statutory title verified.')
+      } else if (newCase === 'overclaim') {
+        setScenario('fraud')
+        setSyncedFarayez({ claimed: 22, entitled: 14, isOverclaim: true })
+        toast.error(lang === 'bn' ? 'দলিল নং ৫৫৩২ লোড হয়েছে: ফারায়েজ কোটা লঙ্ঘন (২২ শতক > ১৪ শতক) শনাক্ত!' : 'Deed #5502 loaded: Farayez inheritance breach (22 > 14 shatak) flagged!')
+      } else {
+        setScenario('fraud')
+        setSyncedFarayez(null)
+        toast.error(lang === 'bn' ? 'হেবা দলিল নং ৮৮১৯ লোড হয়েছে: ধামরাই সাব-রেজিস্ট্রিতে ৪৫ দিনের দ্বৈত বিক্রয় লক শনাক্ত!' : 'Heba Deed #8819 loaded: Active 45-day plot lock conflict in Dhamrai!')
+      }
+    }, 900)
+  }
 
   // Interactive Sandbox state for Page 3 (Farayez)
   const [estateArea, setEstateArea] = useState<number>(40)
@@ -626,9 +667,33 @@ export default function Page() {
                     <span style={{ fontWeight: 700, color: 'var(--text)' }}>
                       {lang === 'bn' ? 'দলিলের ডিজিটাল স্ক্যান' : 'Scanned Bengali Deed'}
                     </span>
-                    <span className="mono" style={{ color: 'var(--blue)', fontSize: '10px' }}>TD_SCAN_014872</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span className="mono" style={{ color: 'var(--blue)', fontSize: '10px' }}>
+                        {deedCase === 'overclaim' ? 'TD_SCAN_05502' : deedCase === 'double_sale' ? 'TD_SCAN_08819' : 'TD_SCAN_014872'}
+                      </span>
+                      <button 
+                        onClick={() => setShowUploadModal(true)}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          padding: '3px 8px',
+                          borderRadius: '5px',
+                          background: '#132838',
+                          border: '1px solid #38bdf8',
+                          color: '#38bdf8',
+                          fontSize: '9.5px',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease'
+                        }}
+                        title={lang === 'bn' ? 'দলিল আপলোড বা কেস পরিবর্তন করুন' : 'Upload or change deed case'}
+                      >
+                        <ScanLine size={11} /> {lang === 'bn' ? '📤 দলিল আপলোড' : '📤 Upload Deed'}
+                      </button>
+                    </div>
                   </div>
-                  <ScanViewer scenario={scenario} />
+                  <ScanViewer scenario={scenario} deedCase={deedCase} />
                 </Card>
 
                 <Card>
@@ -644,12 +709,14 @@ export default function Page() {
                     <FileJson size={16} className="muted" />
                   </div>
                   <div className="entity-list">
-                    {entityRows.map(([name, value, confidence]) => (
-                      <div className="entity-row" key={name as string}>
-                        <span>{name === 'Seller NID' ? t('sellerNid') : (name as string)}</span>
-                        <strong className="mono">{display(value as Bilingual)}</strong>
-                        <span className={Number.parseInt(confidence as string) < 90 ? 'confidence review' : 'confidence'}>
-                          {confidence as string} {Number.parseInt(confidence as string) < 90 ? t('review') : '✓'}
+                    {entityRows.map((row) => (
+                      <div className="entity-row" key={row.label.en}>
+                        <span>{display(row.label)}</span>
+                        <strong className="mono">{display(row.value)}</strong>
+                        <span className={Number.parseInt(row.confidence) < 90 ? 'confidence review' : 'confidence'}>
+                          {lang === 'bn' 
+                            ? (Number.parseInt(row.confidence) < 90 ? `${row.confidence} পর্যালোচনা` : `${row.confidence} ✓`)
+                            : `${row.confidence} ${Number.parseInt(row.confidence) < 90 ? 'Review' : '✓'}`}
                         </span>
                       </div>
                     ))}
@@ -696,17 +763,25 @@ export default function Page() {
                   <div className="compare">
                     <div>
                       <small>{lang === 'bn' ? 'দাবিকৃত জমি' : 'CLAIMED'}</small>
-                      <strong className={scenario === 'fraud' ? 'bad-text' : ''}>
-                        {current.claimed} <small>{t('shatak')}</small>
+                      <strong className={syncedFarayez?.isOverclaim ? 'bad-text' : (scenario === 'fraud' ? 'bad-text' : '')}>
+                        {syncedFarayez ? syncedFarayez.claimed : current.claimed} <small>{t('shatak')}</small>
                       </strong>
                     </div>
                     <div className="compare-arrow">vs</div>
                     <div>
                       <small>{lang === 'bn' ? 'বৈধ প্রাপ্য' : 'ENTITLED'}</small>
-                      <strong className="good-text">14 <small>{t('shatak')}</small></strong>
+                      <strong className="good-text">
+                        {syncedFarayez ? syncedFarayez.entitled : current.entitled} <small>{t('shatak')}</small>
+                      </strong>
                     </div>
                   </div>
-                  <div className="formula">{t('estateFormula')}</div>
+                  <div className="formula">
+                    {syncedFarayez 
+                      ? (lang === 'bn' 
+                          ? `স্যান্ডবক্স হতে সিঙ্ককৃত: মোট জমি ${estateArea} শতক · বিক্রেতার অংশ ${syncedFarayez.entitled} শতক` 
+                          : `Synced from Sandbox: Estate ${estateArea} shatak · Entitled ${syncedFarayez.entitled} shatak`)
+                      : t('estateFormula')}
+                  </div>
                   <button 
                     className="outline-button" 
                     onClick={() => setTab('farayez')}
@@ -1105,6 +1180,17 @@ export default function Page() {
                 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                   <button 
+                    onClick={() => toast.success(lang === 'bn' ? '২৫ বছরের বায়া চেইন ফরেনসিক অডিট সনদ (SHA-256: d8f4…1921) প্রস্তুত ও ডাউনলোড সম্পন্ন!' : '25-Year Baya Chain Forensic Audit Dossier (SHA-256: d8f4…1921) downloaded!')}
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px', fontWeight: 700, cursor: 'pointer',
+                      background: '#132838', border: '1px solid #38bdf8', color: '#ffffff', boxShadow: '0 0 10px rgba(56,189,248,0.25)'
+                    }}
+                  >
+                    <FileCheck2 size={13} style={{ color: '#38bdf8' }} />
+                    {lang === 'bn' ? '📥 অডিট রিপোর্ট ডাউনলোড (PDF)' : '📥 Download Audit Dossier (PDF)'}
+                  </button>
+
+                  <button 
                     onClick={() => setScenario('valid')}
                     style={{
                       display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '6px 12px', borderRadius: '6px', fontSize: '11px', fontWeight: 700, cursor: 'pointer',
@@ -1132,6 +1218,22 @@ export default function Page() {
                       : (lang === 'bn' ? 'মারাত্মক জালিয়াতি: বায়া চেইনে বিচ্যুতি শনাক্ত' : 'CRITICAL FRAUD: BROKEN LINEAGE DETECTED')}
                   </Pill>
                 </div>
+              </div>
+
+              {/* INTERACTIVE NODE INSPECTION HELPER */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px', background: 'rgba(56,189,248,0.05)', border: '1px solid rgba(56,189,248,0.2)', padding: '6px 12px', borderRadius: '6px' }}>
+                <span style={{ fontSize: '11px', color: '#7dd3fc', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Sparkles size={13} style={{ color: '#38bdf8' }} />
+                  {lang === 'bn' ? 'ইন্টারঅ্যাক্টিভ নোড ইনস্পেক্টর: যেকোনো নোডে ক্লিক করে মহাফেজখানা রেকর্ড রুম ভলিউম ও ডিজিটাইজড পর্চা পরীক্ষা করুন' : 'Interactive Node Inspector: Click any node below to inspect record room gazette volumes & digitized porcha'}
+                </span>
+                {selectedDagNode && (
+                  <button 
+                    onClick={() => setSelectedDagNode(null)} 
+                    style={{ background: 'transparent', border: 'none', color: '#94a3b8', fontSize: '10px', cursor: 'pointer', textDecoration: 'underline' }}
+                  >
+                    {lang === 'bn' ? 'ইনস্পেকশন বন্ধ করুন ✕' : 'Close Inspector ✕'}
+                  </button>
+                )}
               </div>
 
               {/* VERTICAL VISUAL DAG TREE */}
@@ -1829,6 +1931,171 @@ export default function Page() {
                     )}
                   </div>
                 </div>
+
+                {/* COCKPIT SYNC BUTTON */}
+                <div style={{ marginTop: '16px' }}>
+                  <button 
+                    onClick={() => {
+                      const isOver = claimedSale > sellerLegalShare + 0.01
+                      setSyncedFarayez({
+                        claimed: claimedSale,
+                        entitled: Number(sellerLegalShare.toFixed(2)),
+                        isOverclaim: isOver
+                      })
+                      if (isOver) {
+                        setScenario('fraud')
+                      } else {
+                        setScenario('valid')
+                      }
+                      toast.success(
+                        lang === 'bn'
+                          ? `ফারায়েজ হিসাব সফলভাবে ককপিটে সিঙ্ক করা হয়েছে! (বৈধ অংশ: ${sellerLegalShare.toFixed(2)} শতক)`
+                          : `Farayez quotas synced to Verification Cockpit! (Entitled: ${sellerLegalShare.toFixed(2)} shatak)`
+                      )
+                      setTab('cockpit')
+                    }}
+                    style={{
+                      width: '100%',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      padding: '12px 18px',
+                      borderRadius: '8px',
+                      background: isClaimLegal ? 'linear-gradient(180deg, #184637 0%, #0d281f 100%)' : 'linear-gradient(180deg, #4f1b25 0%, #301117 100%)',
+                      border: `1.5px solid ${isClaimLegal ? 'var(--green)' : 'var(--red)'}`,
+                      color: '#ffffff',
+                      fontWeight: 700,
+                      fontSize: '12px',
+                      cursor: 'pointer',
+                      boxShadow: `0 0 16px ${isClaimLegal ? 'rgba(45,212,163,0.3)' : 'rgba(239,68,68,0.3)'}`,
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    <Zap size={14} /> 
+                    {lang === 'bn' 
+                      ? '⚡ এই হিসাবটি সক্রিয় দলিলে প্রয়োগ করুন (Cockpit Sync)' 
+                      : '⚡ Apply Calculation to Active Deed Verification (Cockpit Sync)'} 
+                    <ArrowRight size={14} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* DEED INTAKE & CASE SELECTOR MODAL */}
+        {showUploadModal && (
+          <div style={{
+            position: 'fixed', inset: 0, background: 'rgba(3, 7, 12, 0.85)', backdropFilter: 'blur(8px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100, padding: '20px'
+          }}>
+            <div style={{
+              background: '#0d1520', border: '1.5px solid #20354a', borderRadius: '14px', width: '100%', maxWidth: '620px',
+              padding: '24px', boxShadow: '0 20px 60px rgba(0,0,0,0.8), 0 0 1px rgba(56,189,248,0.4)', position: 'relative'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid #1a2c3d', paddingBottom: '12px' }}>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#f1f5f9' }}>
+                    {lang === 'bn' ? '📤 দলিল ইনপুট ও কেস নির্বাচন' : '📤 Deed Intake & Multi-Case Ingestion'}
+                  </h3>
+                  <p style={{ margin: '3px 0 0', fontSize: '11px', color: '#94a3b8' }}>
+                    {lang === 'bn' ? 'যেকোনো স্ক্যান কপি আপলোড করুন অথবা ডেমো কেস নির্বাচন করুন' : 'Upload custom deed scan or select demo test scenarios'}
+                  </p>
+                </div>
+                <button 
+                  onClick={() => setShowUploadModal(false)}
+                  style={{ background: 'transparent', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: '4px' }}
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* FILE UPLOAD DROPZONE */}
+              <div 
+                onClick={() => {
+                  toast.success(lang === 'bn' ? 'নমুনা দলিল ফাইল গৃহীত হয়েছে! এআই স্ক্যানিং শুরু হচ্ছে...' : 'Deed PDF received! Running AI OCR pipeline...')
+                  handleSelectCase('standard')
+                }}
+                style={{
+                  border: '2px dashed #22435e', borderRadius: '10px', padding: '20px', textAlign: 'center', background: '#080d14',
+                  cursor: 'pointer', transition: 'all 0.2s ease', marginBottom: '20px'
+                }}
+              >
+                <ScanLine size={32} style={{ color: 'var(--blue)', margin: '0 auto 8px' }} />
+                <strong style={{ display: 'block', fontSize: '13px', color: '#f1f5f9' }}>
+                  {lang === 'bn' ? 'দলিলের PDF বা ছবি এখানে ড্র্যাগ করুন (বা ক্লিক করুন)' : 'Drag & drop Deed PDF/Scan, or browse files'}
+                </strong>
+                <span style={{ fontSize: '10px', color: '#64748b', marginTop: '4px', display: 'block' }}>
+                  Supported formats: PDF, JPG, PNG · Max 25MB · Optical OCR enabled
+                </span>
+              </div>
+
+              {/* PRE-LOADED TEST CASES */}
+              <span style={{ fontSize: '10px', fontWeight: 800, color: '#72879d', letterSpacing: '0.8px', textTransform: 'uppercase', display: 'block', marginBottom: '10px' }}>
+                {lang === 'bn' ? 'অথবা পরীক্ষামূলক দলিল নির্বাচন করুন:' : 'OR SELECT PRE-LOADED TEST DEED:'}
+              </span>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <button 
+                  onClick={() => handleSelectCase('standard')}
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', borderRadius: '8px',
+                    background: deedCase === 'standard' ? '#122e24' : '#0a1017',
+                    border: `1px solid ${deedCase === 'standard' ? 'var(--green)' : '#1e2c3d'}`,
+                    textAlign: 'left', cursor: 'pointer', transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>
+                    <strong style={{ fontSize: '12px', color: '#f1f5f9', display: 'block' }}>
+                      {lang === 'bn' ? '১. সাফ-কবলা দলিল নং ১২১৪/২০০৯ (সাভার আশুলিয়া)' : '1. Saf-Kabla Deed #1214 / 2009 (Savar Ashulia)'}
+                    </strong>
+                    <span style={{ fontSize: '10px', color: '#94a3b8' }}>
+                      {lang === 'bn' ? 'বৈধ দলিল · ১২ শতক দাবি · ১০০% অবিচ্ছিন্ন বায়া চেইন' : 'Clean Title · 12 Shatak Claim · 100% Unbroken Lineage'}
+                    </span>
+                  </div>
+                  <Pill tone="good">{lang === 'bn' ? 'নিষ্কণ্টক (৯৪%)' : 'SAFE TITLE (94%)'}</Pill>
+                </button>
+
+                <button 
+                  onClick={() => handleSelectCase('overclaim')}
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', borderRadius: '8px',
+                    background: deedCase === 'overclaim' ? '#33151b' : '#0a1017',
+                    border: `1px solid ${deedCase === 'overclaim' ? 'var(--red)' : '#1e2c3d'}`,
+                    textAlign: 'left', cursor: 'pointer', transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>
+                    <strong style={{ fontSize: '12px', color: '#f1f5f9', display: 'block' }}>
+                      {lang === 'bn' ? '২. কোটা লঙ্ঘন দলিল নং ৫৫৩২/২০২৬ (ওয়ারিশ জালিয়াতি)' : '2. Quota Breach Deed #5502 / 2026 (Farayez Fraud)'}
+                    </strong>
+                    <span style={{ fontSize: '10px', color: '#94a3b8' }}>
+                      {lang === 'bn' ? '২২ শতক দাবি (বৈধ প্রাপ্য ১৪ শতক) · সহ-ওয়ারিশদের বঞ্চিতকরণ' : '22 Shatak Claim (Entitled: 14) · Co-heir Deprivation'}
+                    </span>
+                  </div>
+                  <Pill tone="bad">{lang === 'bn' ? 'কোটা লঙ্ঘন (১৮%)' : 'OVERCLAIM (18%)'}</Pill>
+                </button>
+
+                <button 
+                  onClick={() => handleSelectCase('double_sale')}
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', borderRadius: '8px',
+                    background: deedCase === 'double_sale' ? '#33151b' : '#0a1017',
+                    border: `1px solid ${deedCase === 'double_sale' ? 'var(--red)' : '#1e2c3d'}`,
+                    textAlign: 'left', cursor: 'pointer', transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>
+                    <strong style={{ fontSize: '12px', color: '#f1f5f9', display: 'block' }}>
+                      {lang === 'bn' ? '৩. দ্বৈত বিক্রি দলিল নং ৮৮১৯/২০২৬ (ধামরাই সাব-রেজিস্ট্রি)' : '3. Double-Selling Deed #8819 / 2026 (Dhamrai Dispute)'}
+                    </strong>
+                    <span style={{ fontSize: '10px', color: '#94a3b8' }}>
+                      {lang === 'bn' ? 'একই দাগে পূর্বে লক কার্যকর · দ্বৈত আবেদন সরাসরি বাতিল' : 'Duplicate Deed · Active 45-Day Concurrency Lock Triggered'}
+                    </span>
+                  </div>
+                  <Pill tone="warn">{lang === 'bn' ? 'লক কনফ্লিক্ট' : 'LOCK CONFLICT'}</Pill>
+                </button>
               </div>
             </div>
           </div>

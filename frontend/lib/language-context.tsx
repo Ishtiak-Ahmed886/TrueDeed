@@ -132,7 +132,7 @@ const dict = {
     documentPreview: 'দলিলের স্ক্যান প্রিভিউ',
     extractedEntities: 'উদ্ধারকৃত তথ্যসমূহ',
     normalizedFields: 'দলিল স্ক্যান থেকে প্রাপ্ত প্রমিত তথ্য',
-    viewRawJson: 'র’ (Raw) JSON ডেটা দেখুন',
+    viewRawJson: 'মূল JSON মেটাডাটা দেখুন (Raw)',
     review: 'পর্যালোচনা',
     ocrPipeline: 'ওসিআর পাইপলাইন · জেমিনি ফ্ল্যাশ ভিএলএম + ওপেনসিভি',
     rerun: '↻ পুনরায় যাচাই করুন',
